@@ -1,0 +1,71 @@
+---
+title: "RStudio Basics"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Never worked with R?
+
+If you have never worked with R, you can get a basic familiarity by going through [this free tutorial](https://www.datacamp.com/courses/free-introduction-to-r).  Takes about 4 hours.   
+
+You can also learn R straight from within R using the [swirl package](https://swirlstats.com/).  This doesn't require internet access except to install the package.
+
+Here is another basic R introduction from [ComputerWorld](https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html).
+
+## RStudio Overview
+
+When you open RStudio you will see 4 panels:
+
+![RStudio-panels](images/RStudio-screenshot.png)
+
+## Create an RStudio Project
+
+1. In RStudio, choose "File->New Project..."
+1. Then choose "New Directory" and then choose "Empty Project"
+1. In the next dialog, choose a name (_it is best to  use only letters, numbers, dashes, and underscores, and include no spaces in the name_).  
+1. Then click "Create Project".
+
+That should give you a new project.
+
+## Add a new script file
+
+1. Add a new file using 'File > New File > R Script'
+2. Or you can click the new icon in top left corner.
+2. Add some code to that file. Copy and paste in:
+
+```
+require(graphics)
+## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
+## Page 9: Plant Weight Data.
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
+lm.D9 <- lm(weight ~ group)
+opar <- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
+plot(lm.D9, las = 1)      # Residuals, Fitted, ...
+par(opar)
+```
+
+## Run the code
+
+1. Select all the lines of code and select 'Run'
+2. Run all the code by selecting 'Source'
+
+## Workflow basics
+
+Read through the following sections of the R for Data Science book and work through the examples.
+
+* [Workflow basics](http://r4ds.had.co.nz/workflow-basics.html): super basic review on how R works.
+* [Workflow: projects](http://r4ds.had.co.nz/workflow-projects.html): info about organizing RStudio projects.
+* [Workflow: scripts](http://r4ds.had.co.nz/workflow-scripts.html):  how to evaluate code in scripts.
+
+R for Data Science is a great book to introduce you to working with data in R, but we are not going to be doing that in this workshop.
+

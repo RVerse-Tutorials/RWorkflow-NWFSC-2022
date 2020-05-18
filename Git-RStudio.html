@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Notes on Git and RStudio</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 66px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+
+.section h2 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h3 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h4 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h5 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h6 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li>
+  <a href="rstudio.html">
+    <span class="fa fa-cogs"></span>
+     
+    RStudio
+  </a>
+</li>
+<li>
+  <a href="RMarkdown.html">
+    <span class="fa fa-file"></span>
+     
+    R Markdown
+  </a>
+</li>
+<li>
+  <a href="websites.html">
+    <span class="fa fa-chrome"></span>
+     
+    Websites
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    More Tools
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="packages.html">
+        <span class="fa fa-archive"></span>
+         
+        R Packages
+      </a>
+    </li>
+    <li>
+      <a href="jekyll.html">
+        <span class="fa fa-sitemap"></span>
+         
+        Jekyll
+      </a>
+    </li>
+    <li>
+      <a href="bookdown.html">
+        <span class="fa fa-book"></span>
+         
+        Bookdown
+      </a>
+    </li>
+    <li>
+      <a href="shiny.html">
+        <span class="fa fa-gamepad"></span>
+         
+        Shiny
+      </a>
+    </li>
+    <li>
+      <a href="links.html">Links</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://rverse-tutorials.github.io/Fish-Forecast-Training-Course/">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow-Workshop">
+    <span class="fa fa-wrench"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://fish-forecast.github.io/Catch-Forecasting-INCOIS/">
+    <span class="fa fa-line-chart"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-Workshop">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Notes on Git and RStudio</h1>
+
+</div>
+
+
+<div id="using-git-in-rstudio" class="section level2">
+<h2>Using Git in RStudio</h2>
+<p>You can read a whole book about Git and R <a href="http://happygitwithr.com/index.html">Happy Git with R</a>.</p>
+<p>We will not be using Git in RStudio because it can be hard to set-up and hard to debug if you run into problems. If you want to use it, <a href="https://cfss.uchicago.edu/git07.html">read these instructions</a>.</p>
+<p>In particular, read the part about how to set-up so you don’t have to enter your username and password for every commmit.</p>
+</div>
+<div id="alternate-methods-for-downloading-repositories" class="section level2">
+<h2>Alternate methods for downloading repositories</h2>
+<div id="alternate-method-1-download-from-within-r" class="section level3">
+<h3>Alternate Method #1 Download from within R</h3>
+<p>The ‘RWorkflowsetup’ package has a download function. This function will create a folder with the name of the repository. Here is code to download the repository ‘Rmarkdown-Tutorial’. For others, just change the name of the repository.</p>
+<pre><code>library(RWorkflowsetup)
+repo = &quot;Test&quot;
+download.repo(repo)</code></pre>
+</div>
+<div id="alternate-method-2" class="section level3">
+<h3>Alternate Method #2</h3>
+<ol style="list-style-type: decimal">
+<li><p>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Version Control”. Then choose “Git”. Then it asks for a “repository URL”. Supply this: <code>https://github.com/RVerse-Tutorials/Test</code> and leave the “Project Directory Name” empty. And then choose a directory in which to put it and click OK.</p></li>
+<li>Click on the ‘More’ link in the Git Window of RStudio, and click ‘Shell’. Then issue this command.</li>
+</ol>
+<pre><code>git remote rm origin</code></pre>
+<p>This detaches the cloned repository from the remote repository on GitHub from where you cloned it. That will pull the RStudio project off of GitHub, make a local clone of it on your hard drive and open.</p>
+</div>
+<div id="alternate-method-3" class="section level3">
+<h3>Alternate Method #3</h3>
+<p>Go to <a href="https://github.com/RVerse-Tutorials/Test" class="uri">https://github.com/RVerse-Tutorials/Test</a> and click ‘Clone or download’ and chose ‘Download Zip’. Unzip and you’ll probably want to remove ‘master’ added to the end of the repository name.</p>
+<p>If you chose, ‘Clone in Desktop’, you’ll need to open a terminal window, navigate to the new folder you just downloaded, and run the git code <code>git remote rm origin</code> from within the terminal to detach the repository from the RVerse-Tutorials GitHub account.</p>
+</div>
+</div>
+<div id="packages-with-c-code" class="section level2">
+<h2>Packages with C++ code</h2>
+<p>We will not be doing this in this short course, but often you will want to install packages with C++ code. To do that, you will need Rtools (Windows) or Xcode (Mac)</p>
+<ul>
+<li><p><strong>Rtools</strong> Windows users <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> also so you can build packages with C++ code if needed. See comments here about changing path. <a href="http://stat545.com/packages01_system-prep.html#windows-system-prep">Rtools</a></p></li>
+<li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>
+</ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rworkflow1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

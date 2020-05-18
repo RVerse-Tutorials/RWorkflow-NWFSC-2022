@@ -1,0 +1,24 @@
+---
+title: "Links"
+---
+
+# R Markdown
+
+* [RStudio's lessons](https://rmarkdown.rstudio.com/lesson-1.html)
+
+# Other Reproducible Research Short-Courses
+
+* [Reproductible Research 2017](https://eriqande.github.io/rep-res-eeb-2017/index.html)  Source for some of the introductory material.
+
+# Making simple websites
+
+* [Another tutorial] (https://jules32.github.io/rmarkdown-website-tutorial/index.html) with more examples and slightly more complicated websites.
+
+# Jekyll
+
+* [Installing Jekyll on Mac OS](https://learn.cloudcannon.com/jekyll/install-jekyll-on-os-x/)
+* [Jekyll build](https://learn.cloudcannon.com/jekyll/running-jekyll/)
+
+# Jekyll Templates
+
+* [Hugo Academic](https://sourcethemes.com/academic/)  Popular Jekyll template in academia.

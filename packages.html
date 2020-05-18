@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>R Packages</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 66px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+
+.section h2 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h3 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h4 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h5 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h6 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li>
+  <a href="rstudio.html">
+    <span class="fa fa-cogs"></span>
+     
+    RStudio
+  </a>
+</li>
+<li>
+  <a href="RMarkdown.html">
+    <span class="fa fa-file"></span>
+     
+    R Markdown
+  </a>
+</li>
+<li>
+  <a href="websites.html">
+    <span class="fa fa-chrome"></span>
+     
+    Websites
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    More Tools
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="packages.html">
+        <span class="fa fa-archive"></span>
+         
+        R Packages
+      </a>
+    </li>
+    <li>
+      <a href="jekyll.html">
+        <span class="fa fa-sitemap"></span>
+         
+        Jekyll
+      </a>
+    </li>
+    <li>
+      <a href="bookdown.html">
+        <span class="fa fa-book"></span>
+         
+        Bookdown
+      </a>
+    </li>
+    <li>
+      <a href="shiny.html">
+        <span class="fa fa-gamepad"></span>
+         
+        Shiny
+      </a>
+    </li>
+    <li>
+      <a href="links.html">Links</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://rverse-tutorials.github.io/Fish-Forecast-Training-Course/">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow-Workshop">
+    <span class="fa fa-wrench"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://fish-forecast.github.io/Catch-Forecasting-INCOIS/">
+    <span class="fa fa-line-chart"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-Workshop">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R Packages</h1>
+
+</div>
+
+
+<p>In this section, I show how to make a very simple R package and build it with RStudio. If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>.</p>
+<div id="why-a-package" class="section level2">
+<h2>Why a package?</h2>
+<p>An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people. Why use an R package rather than just make a bunch of scripts?</p>
+<ul>
+<li><strong>Reproducibility and documentation</strong> In the long-run, you will save yourself much work if you organize and document your code. Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.</li>
+<li><strong>You want to share your code</strong> If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.</li>
+<li><strong>You want to make an application</strong> If you want to make a shiny application, having your code in a package will help.</li>
+</ul>
+</div>
+<div id="set-up" class="section level2">
+<h2>Set-up</h2>
+<p>You can create a template package using <code>devtools::create()</code>.</p>
+<pre><code>library(devtools)
+library(roxygen2)
+create(&quot;myfirstpackage&quot;)</code></pre>
+<p>But for this short course, fork or make a copy of the ‘TestPackage’ repository.</p>
+<p>Go to the <a href="https://github.com/RVerse-Tutorials/TestPackage">RVerse-Tutorials</a> repository and click the Fork button in the upper right. You will need to be logged into your GitHub account.</p>
+<p><a href="https://youtu.be/xeeKrGuaFRg">Watch a video of this step</a></p>
+<p>Or you can download a zip file of the repository. To do the latter, you can use the ‘download zip file’ button on the GitHub repository or you can navigate to your ‘RWorkflow’ folder in RStudio and click ‘More’ in the Files panel and select ‘Set as working directory’. Then issue these commands.</p>
+<pre><code>library(RWorkflowsetup)
+download.repo(&quot;TestPackage&quot;)</code></pre>
+<p><em>INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.</em></p>
+</div>
+<div id="parts-of-an-r-package" class="section level2">
+<h2>Parts of an R package</h2>
+<div id="the-essentials" class="section level3">
+<h3>The essentials</h3>
+<p>2 files and a directory.</p>
+<ul>
+<li><p><strong>DESCRIPTION</strong> This file has the meta-data about your package. Name and what packages it depends on. Most of it is self-explanatory. The <code>Imports:</code> is any functions from other packages that you use.</p></li>
+<li><p><strong>NAMESPACE</strong> This file indicates what needs to be exposed to users for your R package. For our course, you won’t need to edit as devtools takes care of it.</p></li>
+<li><p><strong>R directory</strong> This is where all your R code goes for your package.</p></li>
+</ul>
+</div>
+<div id="basic-add-ons" class="section level3">
+<h3>Basic add-ons</h3>
+<ul>
+<li><p><strong>man</strong> A directory for documentation. You won’t need to write this. It will be added automatically.</p></li>
+<li><p><strong>data</strong> A directory for data files saved in RData format.</p></li>
+</ul>
+</div>
+</div>
+<div id="lets-build-it" class="section level1">
+<h1>Let’s build it</h1>
+<ul>
+<li><p><strong>Download the template files</strong> Copy all the files in <a href="https://github.com/RVerse-Tutorials/TestPackage">RVerse-Tutorials</a> into a workshop directory called <code>TestPackage</code>.</p></li>
+<li><p><strong>Open in RStudio</strong> Open RStudio and select ‘New Project’ in upper right. Then select ‘Existing Directory’, and then choose ‘TestPackage’.</p></li>
+<li><p><strong>Build the package</strong> Click on the ‘Build’ tab in the upper right, and click ‘Build &amp; Reload’. Your package should build and load.</p></li>
+</ul>
+<div id="using-your-package" class="section level2">
+<h2>Using your package</h2>
+<p>You have built this package and loaded it. You can use the package functions. Type</p>
+<pre><code>SSTplot()</code></pre>
+<p>A plot of SST off the west coast of India right now should appear.</p>
+<p>Type</p>
+<pre><code>dat &lt;- WWWusage
+myarimaforecast(dat, nyears=100)</code></pre>
+<p>and a 100 year forecast of internet usage should appear.</p>
+</div>
+<div id="explore-the-package" class="section level2">
+<h2>Explore the package</h2>
+<div id="the-description-file" class="section level3">
+<h3>The DESCRIPTION file</h3>
+<p>Open the file named DESCRIPTION. Most of it is self-explanatory. The <code>Imports:</code> is any other R packages that your package needs in order to work.</p>
+<pre><code>Package: TestPackage
+Title: This Is A Template Package
+Version: 1.0
+Author: Eli Holmes
+Maintainer: &lt;eli.holmes@noaa.gov&gt;
+Description: This is a template package for students to copy and experiment with for the short course.
+Depends: R (&gt;= 3.4.1)
+Imports: RCurl, png, grid, forecast
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1</code></pre>
+</div>
+<div id="the-r-directory-function-code" class="section level3">
+<h3>The R Directory: Function code</h3>
+<p>This is where functions are put. Each file is a separate function. You can put multiple functions in one file, but that can get confusing unless they are small functions.</p>
+<p>Click on the R directory and open <code>myarimaforecast.R</code>. Scroll to the bottom to see the function:</p>
+<pre><code>myarimaforecast &lt;- function(data, nyears=10){
+  fit &lt;- auto.arima(data)
+  fc &lt;- forecast(fit, h = nyears)
+  plot(fc)
+}</code></pre>
+<p>It has this structure: name and the names of information passed into the function.</p>
+<pre><code>functionname &lt;- function(infofunctionneeds1, infofunctionneeds2, ...)</code></pre>
+<p>The part in the middle is the code that does the work.</p>
+</div>
+<div id="function-documentation" class="section level3">
+<h3>Function documentation</h3>
+<p>Now look at the top of <code>myarimaforecast.R</code>. This is the function documentation. It describes what the function does. See <code>SSTplot()</code> for another example. Here is the structure of the documentation:</p>
+<pre><code>#&#39; Briefly What Does Your Package Do
+#&#39;
+#&#39; Longer description of what your package does.  This is about a paragraph in length.
+#&#39;
+#&#39; @param function_argument describe what the argument is
+#&#39; @param function_argument2 add as many @param&#39;s as you need
+#&#39; @return What does your function return or do?
+#&#39; @examples
+#&#39; add some working R code that shows how to use your function
+#&#39; @export</code></pre>
+<p><code>@export</code> means that your function is not hidden. Just include this for now.</p>
+<p>Updating the documentation. By default, RStudio does not remake the documentation when you click ‘Build &amp; Reload’. You can change that by going to Tools &gt; Project Options &gt; Build Tools and then clicking ‘Configure’ next to ‘Generate documentation with Roxygen’ and then clicking the box next to ‘Build &amp; Reload’. Or you can run the code:</p>
+<pre><code>devtools::document()</code></pre>
+</div>
+</div>
+<div id="sharing-your-r-package" class="section level2">
+<h2>Sharing your R package</h2>
+<p>You can put your package on GitHub and then people can easily install it.</p>
+<p>Open GitHub Desktop. Click New Repository and then type in ‘TestPackage’. ‘TestPackage’ is the name of the directory with the package not the name of the package. I gave them the same name, which is what you should do in general.</p>
+<p>Now you can click ‘Publish repository’ from GitHub Desktop.</p>
+<p>Go to your GitHub account (online) and you will see your repository there.</p>
+</div>
+<div id="installing-your-package-from-github" class="section level2">
+<h2>Installing your package from GitHub</h2>
+<p>The code you will use to install from GitHub is:</p>
+<pre><code>library(devtools)
+install_github(&quot;youraccount/TestPackage&quot;)</code></pre>
+<p>For example to install the package on ‘RVerse-Tutorials’, you would use</p>
+<pre><code>install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
+<p>Now you have created a set of tools that others can easily install and use. If you fix something, people just reinstall using the above code.</p>
+<p>Each time you change your package, you should update the version so that people know which version they are using.</p>
+</div>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rworkflow1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

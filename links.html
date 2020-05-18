@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Links</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 66px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+
+.section h2 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h3 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h4 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h5 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h6 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li>
+  <a href="rstudio.html">
+    <span class="fa fa-cogs"></span>
+     
+    RStudio
+  </a>
+</li>
+<li>
+  <a href="RMarkdown.html">
+    <span class="fa fa-file"></span>
+     
+    R Markdown
+  </a>
+</li>
+<li>
+  <a href="websites.html">
+    <span class="fa fa-chrome"></span>
+     
+    Websites
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    More Tools
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="packages.html">
+        <span class="fa fa-archive"></span>
+         
+        R Packages
+      </a>
+    </li>
+    <li>
+      <a href="jekyll.html">
+        <span class="fa fa-sitemap"></span>
+         
+        Jekyll
+      </a>
+    </li>
+    <li>
+      <a href="bookdown.html">
+        <span class="fa fa-book"></span>
+         
+        Bookdown
+      </a>
+    </li>
+    <li>
+      <a href="shiny.html">
+        <span class="fa fa-gamepad"></span>
+         
+        Shiny
+      </a>
+    </li>
+    <li>
+      <a href="links.html">Links</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://rverse-tutorials.github.io/Fish-Forecast-Training-Course/">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow-Workshop">
+    <span class="fa fa-wrench"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://fish-forecast.github.io/Catch-Forecasting-INCOIS/">
+    <span class="fa fa-line-chart"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-Workshop">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Links</h1>
+
+</div>
+
+
+<div id="r-markdown" class="section level1">
+<h1>R Markdown</h1>
+<ul>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">RStudio’s lessons</a></li>
+</ul>
+</div>
+<div id="other-reproducible-research-short-courses" class="section level1">
+<h1>Other Reproducible Research Short-Courses</h1>
+<ul>
+<li><a href="https://eriqande.github.io/rep-res-eeb-2017/index.html">Reproductible Research 2017</a> Source for some of the introductory material.</li>
+</ul>
+</div>
+<div id="making-simple-websites" class="section level1">
+<h1>Making simple websites</h1>
+<ul>
+<li>[Another tutorial] (<a href="https://jules32.github.io/rmarkdown-website-tutorial/index.html" class="uri">https://jules32.github.io/rmarkdown-website-tutorial/index.html</a>) with more examples and slightly more complicated websites.</li>
+</ul>
+</div>
+<div id="jekyll" class="section level1">
+<h1>Jekyll</h1>
+<ul>
+<li><a href="https://learn.cloudcannon.com/jekyll/install-jekyll-on-os-x/">Installing Jekyll on Mac OS</a></li>
+<li><a href="https://learn.cloudcannon.com/jekyll/running-jekyll/">Jekyll build</a></li>
+</ul>
+</div>
+<div id="jekyll-templates" class="section level1">
+<h1>Jekyll Templates</h1>
+<ul>
+<li><a href="https://sourcethemes.com/academic/">Hugo Academic</a> Popular Jekyll template in academia.</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

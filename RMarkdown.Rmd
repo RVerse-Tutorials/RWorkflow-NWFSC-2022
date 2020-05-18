@@ -1,0 +1,106 @@
+---
+title: "R Markdown Documents"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+R Markdown is a format that allows you to combine text and R code.  From RStudio you can output your file in many formats: html, PDF, Word, presentations.  We are exploring a small slice of R Markdown.  When you are ready to explore more, go to [the R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+
+Note, to make PDF files you will need a LaTeX installation.  If you don't have one already (if you are not sure, then you don't), you can install [tinytex](https://yihui.name/tinytex/).  Run these lines:
+
+```
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
+
+## Get the templates
+
+[Fork](https://youtu.be/b6AaTHFIY7U) the repository [Rmarkdown-Tutorial](https://github.com/RVerse-Tutorials/Rmarkdown-Tutorial) or download a zip file of the repository.  To do the latter, you can use the 'download zip file' button on the GitHub repository or you can navigate to your 'RWorkflow' folder in RStudio and click 'More' in the Files panel and select 'Set as working directory'. Then issue these commands.
+
+```
+library(RWorkflowsetup)
+download.repo("Rmarkdown-Tutorial")
+```
+
+*INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.*
+
+## Add your Project to GitHub (optional)
+
+1. Open GitHub Desktop.
+2. Click File > Add Local Repository
+3. Navigate to the folder `Rmarkdown-Tutorial` and click Add Repository. If your forked the repository, you are done.  
+4. If you downloaded, you should see 'Publish Repository' in GitHub Desktop.  Uncheck the 'keep code private box' and then click 'Publish'.  Note, it can take a moment to work.
+
+
+## Basic Rmd file
+
+Open up `Basic.Rmd`.  
+
+At the top you see
+
+```
+---
+title: "Basic"
+author: "EE Holmes"
+date: "9/2/2018"
+output: html_document
+---
+```
+
+This is the `yaml` which gives the instructions about how to process your R Markdown file.  The `yaml` file is sensitive to spaces.  Do not add or subtract spaces.  This `yaml` is very simple, but the `yaml` can be complex for some applications.  We will only be working with simple examples.
+
+After the `yaml` is the content.  To see a summary of R Markdown formating, click 'Help' menu and then 'Markdown Quick Reference'.
+
+## Create output
+
+We can create documents in different formats from this Rmd file.  Click the drop-down menu next to the 'knit' button.
+
+* **HTML** Select 'knit to HTML' to create a web document.
+* **Word** Select 'knit to Word' to create a Word document.
+* **PDF** Select 'knit to PDF' to create a PDF.
+
+## Getting help
+
+In RStudio, click the 'Help' tab in the top nav bar.  You will see 'Markdown Quick Reference'.  That has basic markdown syntax.  You can also click 'Cheatsheets' and there are two references sheets.   Using Google, you can also find answers to any questions that the RStudio help files doesn't answer.
+
+Tips:
+
+* Markdown is sensitive to leading spaces.  "  ## Topic" will not produce a header while "## Topic" will.  " ```{r}" (note leading space) will not be interpreted as R code.
+* Markdown is sensitive to line returns.  If you are tying to make a list, "1. item", then you must have two line returns before the "1. item".
+
+## Start a new Rmarkdown file
+
+Click the File tab, then select New File > R Markdown. This will open a template R Markdown file.  You will be asked for a title and whether to have the output be html, PDF, or Word.
+
+## Put your report online
+
+#### RPubs
+
+After knitting your Rmd file, a Preview will appear.  Click the 'Publish' button in the top right, select 'RPubs'.  This is a free service for publishing output.  Follow the instructions and you'll soon have a link you can share.  [Here](https://youtu.be/GJ36zamYVLg) is a video showing how to do this.
+
+#### GitHub
+
+If you have made your folder a Git repository, you can upload your html file to GitHub and share a link.  We will cover that when we talk about websites on GitHub.
+
+## Other example Rmds
+
+* Figures `Figures.Rmd`
+* Tables `Table.Rmd`
+* Math `Math.Rmd`
+* Table of contents and Code folding  `Extras.Rmd`
+* Presentations
+  - **ioslidy_presentation.Rmd** Chose File > New > R Markdown > ioslidy presentation to create this presentation template.
+  - **xaringan_presentation.Rmd** This is the file that produced a lecture in the forecasting workshop.  You will need to install the xaringan package.
+  
+```
+install.packages("xaringan")
+```
