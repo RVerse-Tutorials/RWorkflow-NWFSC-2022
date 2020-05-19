@@ -18,6 +18,18 @@ Here is another basic R introduction from [ComputerWorld](https://www.computerwo
 
 * [Happy Git with R](https://happygitwithr.com/) Detail on Git and GitHub, but accessible.
 
+# R packages that I use all the time
+
+These are some basic packages that I use all the time. This does not include the analysis packages that I use.
+
+* [Tidyverse](https://www.tidyverse.org/) packages. I am not a fan of all the tidyverse package and I dislike piping (because it is horribly slow and I need fast), but I try to keep up with the ideas in the "tidyverse" and I try to adopt tidyverse style. In particular, I try to format all my data into tidy format.
+* ggplot2: I am not a fan of ggplot, but I use it all the time because it makes plots with many layers so much easier and it makes plot layout easier. I don't like it for my publication quality plots (just too much hassle to get the look I want) but I use it constantly for mock-ups.
+* stringr: I work with strings all the time so I always need this.
+* dplyr: When I need to go from wide-form to short-form layout, I like it. Definitely I think it is good to inform yourself as to what it does.
+* XML: I use it to scrape data from online tables using the `readHTMLTable()` function. I think xml2 in the tidyverse might do the same thing.
+* here: This is a handy utility package, along with `file.path()` allows you to make file paths to the base of the project. If you find yourself doing `setwd()` anywhere in your code, you'll want to use `here()` to avoid that because doing that breaks your code for anyone else.
+* xtable: Handy for making complex tables.
+
 # Other Reproducible Research Short-Courses
 
 * [Reproductible Research 2017](https://eriqande.github.io/rep-res-eeb-2017/index.html)  Source for some of the introductory material.
