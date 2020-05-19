@@ -11,6 +11,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+### Rmarkdown for reports: how to do big tables and export formats for Word docs
+
+This week will shift gears and talk about writing reports using Rmarkdown. There are many on-line tutorials for Rmarkdown which will cover the basics. I'll focus on some of the aspects of Rmarkdown that can really speed up your work: automating the making of tables and graphs. Our work often involves making tables that process some data and then report that in tables. When the data change (which happens often), we have to remake tables (and graphs). This is very time-consuming and creates errors. I'll show you how to automate this process so you are not manually remaking tables for reports.
+
 ## Overview
 
 R Markdown is a format that allows you to combine text and R code.  From RStudio you can output your file in many formats: html, PDF, Word, presentations.  We are exploring a small slice of R Markdown.  When you are ready to explore more, go to [the R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
@@ -30,8 +34,6 @@ tinytex::install_tinytex()
 library(RWorkflowsetup)
 download.repo("Rmarkdown-Tutorial")
 ```
-
-*INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.*
 
 ## Add your Project to GitHub (optional)
 

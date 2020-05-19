@@ -1,5 +1,5 @@
 ---
-title: "Week 1: RStudio+GitHub"
+title: "Week 2: Coding Tips"
 output:
   html_document:
     toc: true
@@ -11,12 +11,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Week 1. Introduction to workflow using RStudio and Git/GitHub
+# Week 2. Basic coding practices for reproducible and extendible code
 
-I will introduce you to RStudio and GitHub. I will show you a variety of approaches for organizing your projects that involve code and show you how to use GitHub without having to learn Git. If you already use RStudio and GitHub, skip this week as this will be introductory level. If you have tried RStudio or GitHub and gotten frustrated or thought 'I don't have time to learn this', this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.
+This week I will cover some basic coding tips that I have learned over the years. These are good habits that will help make your code less buggy and easier to extend.
 
-I'm going to show you how to work with Git/GitHub with no command-line interface. The goal is to futz with Git as little as possible. See the Links tab above for a nice online workshop on Git/GitHub if you want to learn more.
-
+* How to organize and plan your code and why adopting an 'object-oriented mindset' will help your code organization (regardless of whether you use object-oriented coding)
+* Tips on writing code and functions in R - little things that will make your code better and more robust
+* Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs
 
 ## RStudio Overview
 

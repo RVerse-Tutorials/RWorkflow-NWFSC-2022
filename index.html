@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>R Workflow Short-Course</title>
+<title>Practical R Workflow for Scientists May-June 2020</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -74,9 +73,7 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -90,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -100,6 +96,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -115,7 +114,6 @@ body {
   padding-top: 71px;
   margin-top: -71px;
 }
-
 .section h2 {
   padding-top: 71px;
   margin-top: -71px;
@@ -135,6 +133,43 @@ body {
 .section h6 {
   padding-top: 71px;
   margin-top: -71px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -156,19 +191,74 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -288,26 +378,42 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">R Workflow Short-Course</h1>
+<h1 class="title toc-ignore">Practical R Workflow for Scientists May-June 2020</h1>
 
 </div>
 
 
-<p><a href="http://www.incois.gov.in/ITCOocean/ftsf.jsp">Course Announcement</a></p>
 <p><img style="float: right;" src="images/tools-logo-transparent.png" width=30%></p>
-<p>This short-course will cover Report-writing and Code documentation with R:</p>
+<p>These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be faster, more efficient and organized in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on).</p>
+<p><strong>About me</strong>: I am a modeler/applied mathematician and I am immersed in R. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research.</p>
+<div id="week-1.-introduction-to-workflow-using-rstudio-and-gitgithub" class="section level3">
+<h3>Week 1. Introduction to workflow using RStudio and Git/GitHub</h3>
+<p>I will introduce you to RStudio and GitHub. I will show you a variety of approaches for organizing your projects that involve code and show you how to use GitHub without having to learn Git. If you already use RStudio and GitHub, skip this week as this will be introductory level. If you have tried RStudio or GitHub and gotten frustrated or thought ‘I don’t have to learn this’, this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.</p>
+</div>
+<div id="week-2.-basic-coding-practices-for-reproducible-and-extendible-code" class="section level3">
+<h3>Week 2. Basic coding practices for reproducible and extendible code</h3>
+<p>This week I will cover some basic coding tips that I have learned over the years. These are good habits that will help make your code less buggy and easier to extend.</p>
 <ul>
-<li>Basic workflow using RStudio, Git and GitHub</li>
-<li>Intro to R Markdown</li>
-<li>Creating simple websites from RStudio</li>
-<li>Build an R package with RStudio</li>
-<li>Creating simple websites from R packages on GitHub</li>
-<li>Creating a book with R Markdown: Intro to Bookdown.</li>
-<li>Creating and publishing RShiny applications</li>
+<li>How to organize and plan your code and why adopting an ‘object-oriented mindset’ will help your code organization (regardless of whether you use object-oriented coding)</li>
+<li>Tips on writing code and functions in R - little things that will make your code better and more robust</li>
+<li>Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs</li>
 </ul>
+</div>
+<div id="week-3.-rmarkdown-for-reports-how-to-do-big-tables-and-export-formats-for-word-docs" class="section level3">
+<h3>Week 3. Rmarkdown for reports: how to do big tables and export formats for Word docs</h3>
+<p>This week will shift gears and talk about writing reports using Rmarkdown. There are many on-line tutorials for Rmarkdown which will cover the basics. I’ll focus on some of the aspects of Rmarkdown that can really speed up your work: automating the making of tables and graphs. Our work often involves making tables that process some data and then report that in tables. When the data change (which happens often), we have to remake tables (and graphs). This is very time-consuming and creates errors. I’ll show you how to automate this process so you are not manually remaking tables for reports.</p>
+</div>
+<div id="week-4.-part-1.-organizing-your-r-code-into-a-package" class="section level3">
+<h3>Week 4. Part 1. Organizing your R code into a package</h3>
+<p>Any code that I share with others is organized into an R package and any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very easy. By the end of this session, you will be able to build your own mini R package and host it on GitHub with a nice little landing page.</p>
+</div>
+<div id="week-5.-part-2.-documenting-your-code-and-data-with-roxygen" class="section level3">
+<h3>Week 5. Part 2. Documenting your code and data with Roxygen</h3>
+<p>We all know that documenting our code is important, but equally important is to be able to read that documentation. If you use R, you know that the help feature (?function) is essential. If you organize your code into an R package, it is super easy to create help files that you and users can use to call up using ?. Documenting code may sound like a snoozer of a topic, but using Roxygen and diligently writing documentation for my functions and data is one of the top 3 habits that has made my coding more efficient. You can also document all your data in the same way.</p>
 <hr>
 <div style="text-align: center">
 <p><i class="fas fa-cubes"></i> NOAA Fisheries – NW Fisheries Science Center <i class="fas fa-cubes"></i></p>
+</div>
 </div>
 
 
@@ -327,6 +433,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

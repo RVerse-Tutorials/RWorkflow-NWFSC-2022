@@ -1,5 +1,5 @@
 ---
-title: "Week 4: R Packages"
+title: "Week 5: Roxygen"
 output:
   html_document:
     toc: true
@@ -11,10 +11,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Organizing your R code into a package
-Any code that I share with others is organized into an R package and any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very easy. By the end of this session, you will be able to build your own mini R package and host it on GitHub with a nice little landing page.
+# Documenting your code and data with Roxygen
 
-In this section, I show how to make a very simple R package and build it with RStudio.  If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
+We all know that documenting our code is important, but equally important is to be able to read that documentation. If you use R, you know that the help feature (?function) is essential. If you organize your code into an R package, it is super easy to create help files that you and users can use to call up using ?. Documenting code may sound like a snoozer of a topic, but using Roxygen and diligently writing documentation for my functions and data is one of the top 3 habits that has made my coding more efficient. You can also document all your data in the same way.
+
+For more help on Roxygen, see the section in Hadley Wickham's book R Packages on [Documentation](http://r-pkgs.had.co.nz/man.html). Here's a short cheatsheet [Roxygen helper](https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html).
 
 ## Why a package?
 

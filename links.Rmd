@@ -1,10 +1,22 @@
 ---
-title: "Links"
+title: "Resources"
 ---
+
+## Never worked with R?
+
+If you have never worked with R, you can get a basic familiarity by going through [this free tutorial](https://www.datacamp.com/courses/free-introduction-to-r).  Takes about 4 hours.   
+
+You can also learn R straight from within R using the [swirl package](https://swirlstats.com/).  This doesn't require internet access except to install the package.
+
+Here is another basic R introduction from [ComputerWorld](https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html).
 
 # R Markdown
 
 * [RStudio's lessons](https://rmarkdown.rstudio.com/lesson-1.html)
+
+# Git and GitHub
+
+* [Happy Git with R](https://happygitwithr.com/) Detail on Git and GitHub, but accessible.
 
 # Other Reproducible Research Short-Courses
 

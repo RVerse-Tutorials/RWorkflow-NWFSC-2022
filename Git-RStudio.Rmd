@@ -15,21 +15,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 You can read a whole book about Git and R [Happy Git with R](http://happygitwithr.com/index.html).
 
-We will not be using Git in RStudio because it can be hard to set-up and hard to debug if you
-run into problems.  If you want to use it, [read these instructions](https://cfss.uchicago.edu/git07.html).
+Using Git in RStudio can be hard to set-up and hard to debug if you run into problems.  If you want to use it, [read these instructions](https://cfss.uchicago.edu/git07.html).
 
 In particular, read the part about how to set-up so you don't have to enter your username and password for every commmit.
 
-## Alternate methods for downloading repositories
+## Methods for downloading repositories
+
+If you want to copy someone's repository on GitHub or make a copy of one of your own, it can be a hassle. You can't fork (the little button on top right) your own repositories and if you fork someone else's reposititory, your fork will always show theirs as a 'parent'---which doesn't really affect you but I rarely want my copy of someone's repo to be linked to theirs in any way.
 
 ### Alternate Method #1 Download from within R
 
-The 'RWorkflowsetup' package has a download function. This function will create a folder with the name of the repository.  Here is code to download the repository 'Rmarkdown-Tutorial'.  For others, just change the name of the repository.
+At the bottom is a download function. This function will create a folder with the name of the repository.  Here is code to download the repository ``https://github.com/RVerse-Tutorials/Test`.  For others, just change the name of the repository.
 
 ```
-library(RWorkflowsetup)
 repo = "Test"
-download.repo(repo)
+download.repo(repo, githuburl = "https://github.com/RVerse-Tutorials/")
 ```
 
 ### Alternate Method #2
@@ -40,6 +40,8 @@ download.repo(repo)
 Supply this: `https://github.com/RVerse-Tutorials/Test` and 
 leave the "Project Directory Name" empty.  And then choose a directory 
 in which to put it and click OK.
+
+This method will have your new repository associated with the repository from where you downloaded. If it is not your own GitHub repository, you don't want this.
 
 2. Click on the 'More' link in the Git Window of RStudio, and click 'Shell'.  Then issue this command.
 ```
@@ -54,6 +56,15 @@ Go to https://github.com/RVerse-Tutorials/Test and click 'Clone or download' and
 
 If you chose, 'Clone in Desktop', you'll need to open a terminal window, navigate to the new folder you just downloaded, and run the git code `git remote rm origin` from within the terminal to detach the repository from the RVerse-Tutorials GitHub account.
 
+### Alternate Method #4
+
+This is how I copy one of my own folders and make a new GitHub repo. Note, this will seem really ridiculous if you know Git. Why don't you just use Git commands at the command line?? Because I don't use Git at the command line very often and rather than looking up how to do it, getting something wrong 3x and then researching how to debug the problem, and then finding I've spend the morning with a simple task.... I just do the following now.
+
+1. Make a new repo on GitHub and click the button to add a Readme.md file.
+2. Download and link to the new repo using Alternate Method #2 and Step 1 above. Skip Step 2 since I don't want to detach the new repo from GitHub. This creates a folder (where I told RStudio to make it).
+3. Copy the files (on my computer) from the repo I want to copy into the new folder.
+4. Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).
+
 
 ## Packages with C++ code
 
@@ -62,5 +73,38 @@ We will not be doing this in this short course, but often you will want to insta
 * **Rtools** Windows users  [Rtools](https://cran.r-project.org/bin/windows/Rtools/) also so you can build packages with C++ code if needed.  See comments here about changing path. [Rtools](http://stat545.com/packages01_system-prep.html#windows-system-prep)
 
 * **Xcode** Mac users Open terminal and type the following command `xcode-select --install`
+
+## The download.repo function
+
+This downloads a repo and unzips into the working directory. Navigate to where you want the copy (folder) created.
+
+* **repo** The name of the repo that you are copying in quotes
+* **githuburl** The url of the GitHub account in quotes
+* **clean** If TRUE (default), remove .gitignore, .gitattributes, .RProj
+
+```
+download.repo <- function(repo, githuburl = "https://github.com/RVerse-Tutorials/", clean=TRUE){
+    ok <- download.file( 
+    url <- paste0(githuburl, repo, "/archive/master.zip"),
+                  destfile = paste0(repo, "-master.zip")
+    )
+    unzip( zipfile = paste0(repo, "-master.zip") )
+    file.rename( paste0(repo,"-master"), repo )
+    file.remove( paste0(repo,"-master.zip") )
+    if(clean){
+      suppressWarnings(file.remove(paste0(repo,"/.gitignore")))
+      suppressWarnings(file.remove(paste0(repo,"/.gitattibutes")))
+      suppressWarnings(file.remove(paste0(repo,"/*.Rproj")))
+      suppressWarnings(file.remove(paste0(repo,"/.Rhistory")))
+      suppressWarnings(file.remove(paste0(repo,"/.RData")))
+    }
+    if(ok){
+      cat("Success!\n")
+    }else{
+      cat("Failed!\n", ok)
+    }
+    
+}
+```
 
 
