@@ -6,20 +6,26 @@ navbar:
   - text: Set-up
     icon: fa-clone
     href: set-up.html
-  - text: RStudio
+  - text: Week 1: RStudio
     icon: fa-cogs
     href: rstudio.html
-  - text: R Markdown
+  - text: Week 2: Coding
+    icon: fa-code
+    href: coding.html
+  - text: Week 3: R Markdown
     icon: fa-file
     href: RMarkdown.html
-  - text: Websites
-    icon: fa-chrome
-    href: websites.html
+  - text: Week 4: R Packages
+    icon: fa-archive
+    href: packages.html
+  - text: Week 5: Roxygen
+    icon: fa-question-circle
+    href: roxygen.html
   - text: More Tools
     menu:
-    - text: R Packages
-      icon: fa-archive
-      href: packages.html
+    - text: Websites
+      icon: fa-chrome
+      href: websites.html
     - text: Jekyll
       icon: fa-sitemap
       href: jekyll.html
@@ -33,13 +39,9 @@ navbar:
       href: links.html
   right:
   - icon: fa-home
-    href: https://rverse-tutorials.github.io/Fish-Forecast-Training-Course/
-  - icon: fa-wrench
-    href: https://rverse-tutorials.github.io/RWorkflow-Workshop
-  - icon: fa-line-chart
-    href: https://fish-forecast.github.io/Catch-Forecasting-INCOIS/
+    href: https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020
   - icon: fa-github
-    href: https://github.com/RVerse-Tutorials/RWorkflow-Workshop
+    href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
     
 output:
   html_document:
