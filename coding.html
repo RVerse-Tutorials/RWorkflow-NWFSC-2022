@@ -11,7 +11,7 @@
 
 
 
-<title>Practical R Workflow for Scientists May-June 2020</title>
+<title>Week 2: Coding Tips</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -252,6 +255,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -259,6 +331,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -380,31 +462,100 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Practical R Workflow for Scientists May-June 2020</h1>
+<h1 class="title toc-ignore">Week 2: Coding Tips</h1>
 
 </div>
 
 
-<p><img style="float: right;" src="images/tools-logo-transparent.png" width=30%></p>
-<p>These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be <strong>faster, more efficient and organized</strong> in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on).</p>
-<p><strong>About me</strong>: I am a modeler/applied mathematician and I am immersed in R. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research.</p>
-<div id="topics" class="section level2">
-<h2>Topics</h2>
+<div id="week-2.-basic-coding-practices-for-reproducible-and-extendible-code" class="section level1">
+<h1>Week 2. Basic coding practices for reproducible and extendible code</h1>
+<p>This week I will cover some basic coding tips that I have learned over the years. These are good habits that will help make your code less buggy and easier to extend.</p>
 <ul>
-<li><p>Week 1. Introduction to workflow using RStudio and Git/GitHub</p></li>
-<li><p>Week 2. Basic coding practices for reproducible and extendible code</p></li>
-<li><p>Week 3. Rmarkdown for reports: how to do big tables and export formats for Word docs</p></li>
-<li><p>Week 4. Part 1. Organizing your R code into a package</p></li>
-<li><p>Week 5. Part 2. Documenting your code and data with Roxygen</p></li>
+<li>How to organize and plan your code and why adopting an ‘object-oriented mindset’ will help your code organization (regardless of whether you use object-oriented coding)</li>
+<li>Tips on writing code and functions in R - little things that will make your code better and more robust</li>
+<li>Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs</li>
 </ul>
-<hr>
-<div style="text-align: center">
-<p><i class="fas fa-cubes"></i> NOAA Fisheries – NW Fisheries Science Center <i class="fas fa-cubes"></i></p>
+<div id="rstudio-overview" class="section level2">
+<h2>RStudio Overview</h2>
+<p>When you open RStudio you will see 4 panels:</p>
+<div class="figure">
+<img src="images/RStudio-screenshot.png" alt="RStudio-panels" />
+<p class="caption">RStudio-panels</p>
+</div>
+</div>
+<div id="create-an-rstudio-project" class="section level2">
+<h2>Create an RStudio Project</h2>
+<ol style="list-style-type: decimal">
+<li>In RStudio, choose “File-&gt;New Project…”</li>
+<li>Then choose “New Directory” and then choose “Empty Project”</li>
+<li>In the next dialog, choose a name (<em>it is best to use only letters, numbers, dashes, and underscores, and include no spaces in the name</em>).<br />
+</li>
+<li>Then click “Create Project”.</li>
+</ol>
+<p>That should give you a new project.</p>
+</div>
+<div id="add-a-new-script-file" class="section level2">
+<h2>Add a new script file</h2>
+<ol style="list-style-type: decimal">
+<li>Add a new file using ‘File &gt; New File &gt; R Script’</li>
+<li>Or you can click the new icon in top left corner.</li>
+<li>Add some code to that file. Copy and paste in:</li>
+</ol>
+<pre><code>require(graphics)
+## Annette Dobson (1990) &quot;An Introduction to Generalized Linear Models&quot;.
+## Page 9: Plant Weight Data.
+ctl &lt;- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt &lt;- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group &lt;- gl(2, 10, 20, labels = c(&quot;Ctl&quot;,&quot;Trt&quot;))
+weight &lt;- c(ctl, trt)
+lm.D9 &lt;- lm(weight ~ group)
+opar &lt;- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
+plot(lm.D9, las = 1)      # Residuals, Fitted, ...
+par(opar)</code></pre>
+</div>
+<div id="run-the-code" class="section level2">
+<h2>Run the code</h2>
+<ol style="list-style-type: decimal">
+<li>Select all the lines of code and select ‘Run’</li>
+<li>Run all the code by selecting ‘Source’</li>
+</ol>
+</div>
+<div id="try-it-out" class="section level2">
+<h2>Try it out!</h2>
+<p>Read through the following sections of the R for Data Science book and work through the examples.</p>
+<ul>
+<li><a href="http://r4ds.had.co.nz/workflow-basics.html">Workflow basics</a>: super basic review on how R works.</li>
+<li><a href="http://r4ds.had.co.nz/workflow-projects.html">Workflow: projects</a>: info about organizing RStudio projects.</li>
+<li><a href="http://r4ds.had.co.nz/workflow-scripts.html">Workflow: scripts</a>: how to evaluate code in scripts.</li>
+</ul>
+<p>R for Data Science is a great book to introduce you to working with data in R, but we are not going to be doing that in this workshop.</p>
 </div>
 </div>
 
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rworkflow1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
+</div>
+</div>
 
 </div>
 
@@ -437,6 +588,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

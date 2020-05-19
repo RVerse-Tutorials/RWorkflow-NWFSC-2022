@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -25,9 +25,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -77,9 +76,7 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -93,7 +90,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -103,6 +99,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -118,7 +117,6 @@ body {
   padding-top: 71px;
   margin-top: -71px;
 }
-
 .section h2 {
   padding-top: 71px;
   margin-top: -71px;
@@ -138,6 +136,43 @@ body {
 .section h6 {
   padding-top: 71px;
   margin-top: -71px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -159,47 +194,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -213,6 +267,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -248,8 +308,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -264,6 +322,16 @@ div.tocify {
 }
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -300,21 +368,35 @@ div.tocify {
   <a href="rstudio.html">
     <span class="fa fa-cogs"></span>
      
-    RStudio
+    RStudio+GitHub
+  </a>
+</li>
+<li>
+  <a href="coding.html">
+    <span class="fa fa-code"></span>
+     
+    Coding Tips
   </a>
 </li>
 <li>
   <a href="RMarkdown.html">
     <span class="fa fa-file"></span>
      
-    R Markdown
+    RMarkdown
   </a>
 </li>
 <li>
-  <a href="websites.html">
-    <span class="fa fa-chrome"></span>
+  <a href="packages.html">
+    <span class="fa fa-archive"></span>
      
-    Websites
+    R Packages
+  </a>
+</li>
+<li>
+  <a href="roxygen.html">
+    <span class="fa fa-question-circle"></span>
+     
+    Roxygen
   </a>
 </li>
 <li class="dropdown">
@@ -325,10 +407,10 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="packages.html">
-        <span class="fa fa-archive"></span>
+      <a href="websites.html">
+        <span class="fa fa-chrome"></span>
          
-        R Packages
+        Websites
       </a>
     </li>
     <li>
@@ -360,25 +442,13 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://rverse-tutorials.github.io/Fish-Forecast-Training-Course/">
+  <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020">
     <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://rverse-tutorials.github.io/RWorkflow-Workshop">
-    <span class="fa fa-wrench"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://fish-forecast.github.io/Catch-Forecasting-INCOIS/">
-    <span class="fa fa-line-chart"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://github.com/RVerse-Tutorials/RWorkflow-Workshop">
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
     <span class="fa fa-github"></span>
      
   </a>
@@ -400,22 +470,25 @@ div.tocify {
 <div id="using-git-in-rstudio" class="section level2">
 <h2>Using Git in RStudio</h2>
 <p>You can read a whole book about Git and R <a href="http://happygitwithr.com/index.html">Happy Git with R</a>.</p>
-<p>We will not be using Git in RStudio because it can be hard to set-up and hard to debug if you run into problems. If you want to use it, <a href="https://cfss.uchicago.edu/git07.html">read these instructions</a>.</p>
+<p>Using Git in RStudio can be hard to set-up and hard to debug if you run into problems. If you want to use it, <a href="https://cfss.uchicago.edu/git07.html">read these instructions</a>.</p>
 <p>In particular, read the part about how to set-up so you don’t have to enter your username and password for every commmit.</p>
 </div>
-<div id="alternate-methods-for-downloading-repositories" class="section level2">
-<h2>Alternate methods for downloading repositories</h2>
+<div id="methods-for-downloading-repositories" class="section level2">
+<h2>Methods for downloading repositories</h2>
+<p>If you want to copy someone’s repository on GitHub or make a copy of one of your own, it can be a hassle. You can’t fork (the little button on top right) your own repositories and if you fork someone else’s reposititory, your fork will always show theirs as a ‘parent’—which doesn’t really affect you but I rarely want my copy of someone’s repo to be linked to theirs in any way.</p>
 <div id="alternate-method-1-download-from-within-r" class="section level3">
 <h3>Alternate Method #1 Download from within R</h3>
-<p>The ‘RWorkflowsetup’ package has a download function. This function will create a folder with the name of the repository. Here is code to download the repository ‘Rmarkdown-Tutorial’. For others, just change the name of the repository.</p>
-<pre><code>library(RWorkflowsetup)
-repo = &quot;Test&quot;
-download.repo(repo)</code></pre>
+<p>At the bottom is a download function. This function will create a folder with the name of the repository. Here is code to download the repository `<code>https://github.com/RVerse-Tutorials/Test</code>. For others, just change the name of the repository.</p>
+<pre><code>repo = &quot;Test&quot;
+download.repo(repo, githuburl = &quot;https://github.com/RVerse-Tutorials/&quot;)</code></pre>
 </div>
 <div id="alternate-method-2" class="section level3">
 <h3>Alternate Method #2</h3>
 <ol style="list-style-type: decimal">
-<li><p>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Version Control”. Then choose “Git”. Then it asks for a “repository URL”. Supply this: <code>https://github.com/RVerse-Tutorials/Test</code> and leave the “Project Directory Name” empty. And then choose a directory in which to put it and click OK.</p></li>
+<li>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Version Control”. Then choose “Git”. Then it asks for a “repository URL”. Supply this: <code>https://github.com/RVerse-Tutorials/Test</code> and leave the “Project Directory Name” empty. And then choose a directory in which to put it and click OK.</li>
+</ol>
+<p>This method will have your new repository associated with the repository from where you downloaded. If it is not your own GitHub repository, you don’t want this.</p>
+<ol start="2" style="list-style-type: decimal">
 <li>Click on the ‘More’ link in the Git Window of RStudio, and click ‘Shell’. Then issue this command.</li>
 </ol>
 <pre><code>git remote rm origin</code></pre>
@@ -426,6 +499,16 @@ download.repo(repo)</code></pre>
 <p>Go to <a href="https://github.com/RVerse-Tutorials/Test" class="uri">https://github.com/RVerse-Tutorials/Test</a> and click ‘Clone or download’ and chose ‘Download Zip’. Unzip and you’ll probably want to remove ‘master’ added to the end of the repository name.</p>
 <p>If you chose, ‘Clone in Desktop’, you’ll need to open a terminal window, navigate to the new folder you just downloaded, and run the git code <code>git remote rm origin</code> from within the terminal to detach the repository from the RVerse-Tutorials GitHub account.</p>
 </div>
+<div id="alternate-method-4" class="section level3">
+<h3>Alternate Method #4</h3>
+<p>This is how I copy one of my own folders and make a new GitHub repo. Note, this will seem really ridiculous if you know Git. Why don’t you just use Git commands at the command line?? Because I don’t use Git at the command line very often and rather than looking up how to do it, getting something wrong 3x and then researching how to debug the problem, and then finding I’ve spend the morning with a simple task…. I just do the following now.</p>
+<ol style="list-style-type: decimal">
+<li>Make a new repo on GitHub and click the button to add a Readme.md file.</li>
+<li>Download and link to the new repo using Alternate Method #2 and Step 1 above. Skip Step 2 since I don’t want to detach the new repo from GitHub. This creates a folder (where I told RStudio to make it).</li>
+<li>Copy the files (on my computer) from the repo I want to copy into the new folder.</li>
+<li>Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).</li>
+</ol>
+</div>
 </div>
 <div id="packages-with-c-code" class="section level2">
 <h2>Packages with C++ code</h2>
@@ -434,6 +517,37 @@ download.repo(repo)</code></pre>
 <li><p><strong>Rtools</strong> Windows users <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> also so you can build packages with C++ code if needed. See comments here about changing path. <a href="http://stat545.com/packages01_system-prep.html#windows-system-prep">Rtools</a></p></li>
 <li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>
 </ul>
+</div>
+<div id="the-download.repo-function" class="section level2">
+<h2>The download.repo function</h2>
+<p>This downloads a repo and unzips into the working directory. Navigate to where you want the copy (folder) created.</p>
+<ul>
+<li><strong>repo</strong> The name of the repo that you are copying in quotes</li>
+<li><strong>githuburl</strong> The url of the GitHub account in quotes</li>
+<li><strong>clean</strong> If TRUE (default), remove .gitignore, .gitattributes, .RProj</li>
+</ul>
+<pre><code>download.repo &lt;- function(repo, githuburl = &quot;https://github.com/RVerse-Tutorials/&quot;, clean=TRUE){
+    ok &lt;- download.file( 
+    url &lt;- paste0(githuburl, repo, &quot;/archive/master.zip&quot;),
+                  destfile = paste0(repo, &quot;-master.zip&quot;)
+    )
+    unzip( zipfile = paste0(repo, &quot;-master.zip&quot;) )
+    file.rename( paste0(repo,&quot;-master&quot;), repo )
+    file.remove( paste0(repo,&quot;-master.zip&quot;) )
+    if(clean){
+      suppressWarnings(file.remove(paste0(repo,&quot;/.gitignore&quot;)))
+      suppressWarnings(file.remove(paste0(repo,&quot;/.gitattibutes&quot;)))
+      suppressWarnings(file.remove(paste0(repo,&quot;/*.Rproj&quot;)))
+      suppressWarnings(file.remove(paste0(repo,&quot;/.Rhistory&quot;)))
+      suppressWarnings(file.remove(paste0(repo,&quot;/.RData&quot;)))
+    }
+    if(ok){
+      cat(&quot;Success!\n&quot;)
+    }else{
+      cat(&quot;Failed!\n&quot;, ok)
+    }
+    
+}</code></pre>
 </div>
 
 <div id="disqus_thread"></div>
@@ -474,6 +588,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
