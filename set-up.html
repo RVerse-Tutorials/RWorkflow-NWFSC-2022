@@ -467,13 +467,15 @@ div.tocify {
 </div>
 
 
+<p>If you want to follow along with the presentations, you will need R, RStudio, a GitHub account, and GitHub Desktop.</p>
 <div id="get-an-account-on-github" class="section level2">
 <h2>Get an account on GitHub</h2>
-<p>If you don’t already have an account on GitHub, go to <a href="https://github.com">github.com</a> and click the “sign up” link near upper right of the page. It is pretty self-explanatory. Go ahead and get a <strong>free</strong> account.</p>
-<p>The free GitHub account does not have private repositories. Everything is public and viewable. You can upgrade (for money) and get private repositories. Or <em>if you are a student</em>, you can get private repositories from GitHub for free. Go to <a href="https://education.github.com/pack" class="uri">https://education.github.com/pack</a> to sign up for your free student pack. You will need to upload proof that you are a student or faculty.</p>
+<p>If you don’t already have an account on GitHub, go to <a href="https://github.com">github.com</a> and click the “sign up” link near upper right of the page. It is pretty self-explanatory. Go ahead and get a <strong>free</strong> account.<br />
+The free GitHub account does not have private repositories. Everything is public and viewable. You can upgrade (for money) and get private repositories.</p>
 </div>
 <div id="install-github-desktop-windows-and-mac-users" class="section level2">
 <h2>Install GitHub Desktop (Windows and Mac users)</h2>
+<p>Although you can use Git through RStudio, I am going to show you how to use GitHub Desktop, which is a nice Git/GitHub interface for basic work.</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://desktop.github.com/">desktop.github.com</a> and install.</li>
 <li>Open GitHub Desktop, go to ‘GitHub Desktop &gt; Preferences’ menu.<br />
@@ -481,14 +483,14 @@ div.tocify {
 <li>Under ‘Accounts’, sign into your GitHub account.</li>
 <li>Under ‘Git’, enter your name (or initials) and the email you used for your GitHub account.</li>
 </ol>
-<p>Linux users can install Git and interact with GitHub though RStudio. GitHub Desktop is not essential for the course, however it is a standard R Workflow that I will be demonstrating.</p>
+<p>Linux users can install Git and interact with GitHub though RStudio.</p>
 </div>
 <div id="install-r-and-rstudio" class="section level2">
 <h2>Install R and RStudio</h2>
 <ul>
-<li><p><strong>R:</strong> Make sure you have the latest version of R.<br />
-Go to <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> and find the download link for your computer system.</p></li>
-<li><p><strong>RStudio:</strong> Install the latest version of RStudio. Get it from <a href="https://www.rstudio.com/products/rstudio/download" class="uri">https://www.rstudio.com/products/rstudio/download</a> and install the appropriate one for your OS.</p></li>
+<li><p><strong>R:</strong> Make sure you have a fairly recent version of R.<br />
+Go to <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.</p></li>
+<li><p><strong>RStudio:</strong> Install the latest version of RStudio. Get it from <a href="https://www.rstudio.com/products/rstudio/download" class="uri">https://www.rstudio.com/products/rstudio/download</a> and install the appropriate one for your OS. Again contact IT to help install if you are on a NOAA computer.</p></li>
 </ul>
 </div>
 <div id="set-up-rstudio-to-use-git" class="section level2">
@@ -498,20 +500,28 @@ Go to <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.o
 <li>Go to Global Options (from the Tools menu)</li>
 <li>Click Git/SVN</li>
 <li>Click Enable version control interface for RStudio projects</li>
+<li>You will need the location of the git executible. On my mac it is <code>/usr/bin/git</code></li>
 </ol>
 <p>Linux users will need to install Git for this to work. Windows/Mac users: Git comes with GitHub Desktop.</p>
-</div>
-<div id="install-r-packages" class="section level2">
-<h2>Install R packages</h2>
-<p>From the command line in R Studio</p>
-<ol style="list-style-type: decimal">
-<li><strong>bookdown:</strong> package. Enter the following code at the command line (<code>&gt;</code>).</li>
-</ol>
-<pre class="r"><code>install.packages(&quot;devtools&quot;)  </code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Install the <strong>packages</strong> that we are going to be need. I have created a package on GitHub that will install the packages you need.</li>
-</ol>
-<pre class="r"><code>devtools::install_github(&quot;RVerse-Tutorials/RWorkflowsetup&quot;)</code></pre>
+<!--
+## Install R packages
+
+From the command line in R Studio
+
+1. **devtools** package.  Enter the following code at the command line (`>`).
+
+
+```r
+install.packages("devtools")  
+```
+
+2. Install the **packages** that we are going to be need. I have created a package on GitHub that will install the packages you need.
+
+
+```r
+devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
+```
+-->
 </div>
 <div id="create-a-workshop-folder" class="section level2">
 <h2>Create a workshop folder</h2>
@@ -519,24 +529,24 @@ Go to <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.o
 </div>
 <div id="downloading-repositories" class="section level2">
 <h2>Downloading repositories</h2>
-<p><strong>In case we do not have internet access, I will provide the files on a thumb drive also.</strong></p>
-<p>You will need to download repositories from <a href="https://github.com/RVerse-Tutorials">RVerse-Tutorials</a> for many of the labs. Here is one way to do that. <a href="https://youtu.be/b6AaTHFIY7U">Watch a video that shows you how to do this</a></p>
+<p>You will need to download repositories from <a href="https://github.com/RVerse-Tutorials">RVerse-Tutorials</a> for some of the weeks. Here is one way to do that. <a href="https://youtu.be/b6AaTHFIY7U">Watch a video that shows you how to do this</a></p>
 <ol style="list-style-type: decimal">
-<li>Go to the repository you want to copy in your browser.</li>
+<li>In a browser, go to the GitHub repository you want to copy.</li>
 <li>Click ‘Fork’ in the upper right corner of the repository.</li>
 <li>Open RStudio. Click File &gt; New Project &gt; Version Control</li>
-<li>Paste in the url of the repository you are copying—the <strong>forked</strong> repository in your GitHub account. For example, <code>https://github.com/&lt;youraccount&gt;/Test-Website</code> You can leave project name blank. Replace <code>&lt;youraccount&gt;</code> with your GitHub account.</li>
+<li>Paste in the url of the repository you are copying—the <strong>forked</strong> repository in your GitHub account. For example, <code>https://github.com/&lt;youraccount&gt;/Test</code> You can leave project name blank. Replace <code>&lt;youraccount&gt;</code> with your GitHub account.</li>
+<li>Add the new repo to GitHub Desktop. Open GitHub Desktop, select File&gt;Add Local Repository and navigate to the folder with the new repository.</li>
 </ol>
-<p>Another way is to download the repository as a zip file and unzip. <a href="https://youtu.be/bYySjso7vRo">Watch a video that shows you how to do this</a></p>
-<p>Another way is to use the function I wrote:</p>
-<pre><code>library(RWorkflowsetup)
-download.repo(&quot;Rmarkdown-Tutorial&quot;)</code></pre>
-<p><a href="https://youtu.be/b6AaTHFIY7U">Watch a video that shows you how to do this</a></p>
 <p>For other ways to download a repository, see this <a href="Git-RStudio.html">page</a>.</p>
+</div>
+<div id="installing-packages-from-github" class="section level2">
+<h2>Installing packages from GitHub</h2>
+<p>Run this code.</p>
+<pre class="r"><code>devtools::install_github(&quot;&lt;github account&gt;/repo name&quot;)</code></pre>
 </div>
 <div id="optional-packages-with-c-code" class="section level2">
 <h2>(Optional) Packages with C++ code</h2>
-<p>We will not be doing this in this short course, but often you will want to install packages with C++ code. To do that, you will need Rtools (Windows) or Xcode (Mac)</p>
+<p>We will not be doing this, but often you will want to install packages with C++ code. To do that, you will need Rtools (Windows) or Xcode (Mac)</p>
 <ul>
 <li><p><strong>Rtools</strong> Windows users <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> also so you can build packages with C++ code if needed. See comments here about changing path. <a href="http://stat545.com/packages01_system-prep.html#windows-system-prep">Rtools</a></p></li>
 <li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>

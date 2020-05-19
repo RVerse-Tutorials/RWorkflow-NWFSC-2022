@@ -10,6 +10,10 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 **About me**: I am a modeler/applied mathematician and I am immersed in R. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research.
 
+## Set-up
+
+You can just watch or if you want to try out what I am showing, go to [Set-up](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html) and install the needed applications (RStudio + GitHub Desktop).
+
 ## Topics
 
 * Week 1. Introduction to workflow using RStudio and Git/GitHub

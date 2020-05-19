@@ -21,18 +21,65 @@ In particular, read the part about how to set-up so you don't have to enter your
 
 ## Methods for downloading repositories
 
-If you want to copy someone's repository on GitHub or make a copy of one of your own, it can be a hassle. You can't fork (the little button on top right) your own repositories and if you fork someone else's reposititory, your fork will always show theirs as a 'parent'---which doesn't really affect you but I rarely want my copy of someone's repo to be linked to theirs in any way.
+If you want to copy someone's repository on GitHub or make a copy of one of your own, there are a few approaches that you can take. I am going to use `https://github.com/RVerse-Tutorials/Test` as the repository that you want to copy and we will put the repository at `Documents/GitHub/Test`.
 
-### Alternate Method #1 Download from within R
+### Method #1 Fork it
+
+1. Navigate to `https://github.com/RVerse-Tutorials/Test` on GitHub and click the 'fork' button in the upper right. Follow the instructions.
+
+Now you need to get it on your computer.
+
+2. From RStudio, go to the menu option
+'File->New Project...'. Then from the resulting dialog, choose
+"Version Control".  Then choose "Git".  Then it asks for a "repository URL".
+Supply this: `https://github.com/<your github account>/Test` and 
+leave the "Project Directory Name" empty.  And then choose a directory 
+in which to put the new repository and click OK.
+
+If you are using GitHub Desktop, you need to add it to that too.
+
+3. From GitHub Desktop, go to the menu option
+'File->Add Local Repository'. Then navigate to  `~/Documents/GitHub/Test` and add.
+
+The problem with forking is that you can't fork your own repositories and if you fork someone else's repository, your fork will always show theirs as a 'parent'---which doesn't really have a bad effect but I rarely want my copy of someone's repo to be linked to theirs in any way. Normally forking is used when you are contributing to the parent repository and need a copy to work on.
+
+### Method #2 Copying my OWN repos (not someone else's)
+
+This method is pretty failsafe and I find easy to remember. This how I normally copy one of my own folders and make a new GitHub repo. I don't use Git at the command line very often and rather than looking up how to do it, getting something wrong 3x and then researching how to debug the problem, and then finding I've spent the morning with a simple task.... I just do the following now.
+
+1. Make a new repo (say `Test`) on GitHub and click the button to add a Readme.md file.
+2. Download and link to the new repo using Step 2 above (in Method #1). 
+3. Add the repo to GitHub Desktop using Step 3 above (in Method #1)
+4. Copy the files (on my computer) from the repo I want to copy into the new folder. Note this works because I already have the files I want on my computer.
+5. Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).
+
+### Method #3 Download from within R
+
+[Watch a video that shows you how to do this](https://youtu.be/b6AaTHFIY7U)
 
 At the bottom is a download function. This function will create a folder with the name of the repository.  Here is code to download the repository ``https://github.com/RVerse-Tutorials/Test`.  For others, just change the name of the repository.
+
+1. Within RStudio, navigate to where you want the folder created  `Documents/GitHub/`. Then set your working directory to there (Click the More tab with the cog). Or issue the command `setwd("~/Documents/GitHub/")`.
+
+2. Download and create a folder for the new repository using these commands. `repo` is the name of the repo that you are copying (on GitHub).
 
 ```
 repo = "Test"
 download.repo(repo, githuburl = "https://github.com/RVerse-Tutorials/")
 ```
 
-### Alternate Method #2
+3. From RStudio, go to the menu option
+'File->New Project...'. Then from the resulting dialog, choose
+"Existing Directory".  Then choose `~/Documents/GitHub/Test`
+ and click OK.
+ 
+4. Add Git to project. From RStudio, go to Tools>Project Options>Git/SVN and then add version control.
+
+5. Add the new repository to GitHub Desktop and then publish to GitHub. From GitHub Desktop, go to File>Add Local Repository and then navigate to `~/Documents/GitHub/Test` and add.
+
+6. Publish to GitHub. Once you do step 5, a 'Publish to GitHub' button will appear. Click that to publish to GitHub.
+
+### Method #4
 
 1. From RStudio, go to the menu option
 'File->New Project...'. Then from the resulting dialog, choose
@@ -41,29 +88,27 @@ Supply this: `https://github.com/RVerse-Tutorials/Test` and
 leave the "Project Directory Name" empty.  And then choose a directory 
 in which to put it and click OK.
 
-This method will have your new repository associated with the repository from where you downloaded. If it is not your own GitHub repository, you don't want this.
+This method will have your new repository associated with the repository from where you downloaded. If it is not your own GitHub repository, you don't want this because you will not be able to push changes to GitHub.
 
 2. Click on the 'More' link in the Git Window of RStudio, and click 'Shell'.  Then issue this command.
 ```
 git remote rm origin
 ```
-This detaches the cloned repository from the remote repository on GitHub from where you cloned it. That will pull the RStudio project off of GitHub, make a local clone
-of it on your hard drive and open.
+This detaches the cloned repository from the remote repository on GitHub from where you cloned it. 
 
-### Alternate Method #3
+3. Add the new repository to GitHub Desktop and then publish to GitHub. From GitHub Desktop, go to File>Add Local Repository and then navigate to `~/Documents/GitHub/Test` and add.
+
+4. Publish to GitHub. Once you do step 3, a 'Publish to GitHub' button will appear. Click that to publish to GitHub.
+
+Note, there are Git commands you could use to do steps 3 and 4, but in this workshop we are using GitHub Desktop.
+
+### Alternate Method #5
+
+Another way is to download the repository as a zip file and unzip.  [Watch a video that shows you how to do this](https://youtu.be/bYySjso7vRo)
 
 Go to https://github.com/RVerse-Tutorials/Test and click 'Clone or download' and chose 'Download Zip'.  Unzip and you'll probably want to remove  'master' added to the end of the repository name.
 
 If you chose, 'Clone in Desktop', you'll need to open a terminal window, navigate to the new folder you just downloaded, and run the git code `git remote rm origin` from within the terminal to detach the repository from the RVerse-Tutorials GitHub account.
-
-### Alternate Method #4
-
-This is how I copy one of my own folders and make a new GitHub repo. Note, this will seem really ridiculous if you know Git. Why don't you just use Git commands at the command line?? Because I don't use Git at the command line very often and rather than looking up how to do it, getting something wrong 3x and then researching how to debug the problem, and then finding I've spend the morning with a simple task.... I just do the following now.
-
-1. Make a new repo on GitHub and click the button to add a Readme.md file.
-2. Download and link to the new repo using Alternate Method #2 and Step 1 above. Skip Step 2 since I don't want to detach the new repo from GitHub. This creates a folder (where I told RStudio to make it).
-3. Copy the files (on my computer) from the repo I want to copy into the new folder.
-4. Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).
 
 
 ## Packages with C++ code
@@ -84,7 +129,7 @@ This downloads a repo and unzips into the working directory. Navigate to where y
 
 ```
 download.repo <- function(repo, githuburl = "https://github.com/RVerse-Tutorials/", clean=TRUE){
-    ok <- download.file( 
+    notok <- download.file( 
     url <- paste0(githuburl, repo, "/archive/master.zip"),
                   destfile = paste0(repo, "-master.zip")
     )
@@ -98,10 +143,10 @@ download.repo <- function(repo, githuburl = "https://github.com/RVerse-Tutorials
       suppressWarnings(file.remove(paste0(repo,"/.Rhistory")))
       suppressWarnings(file.remove(paste0(repo,"/.RData")))
     }
-    if(ok){
-      cat("Success!\n")
-    }else{
+    if(notok){
       cat("Failed!\n", ok)
+    }else{
+      cat("Success!\n")
     }
     
 }
