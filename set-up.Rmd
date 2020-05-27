@@ -17,7 +17,7 @@ If you want to follow along with the presentations, you will need R, RStudio, a 
 
 ### NWFSC staff
 
-**GitHub** If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I'll show a few examples. There is paperwork to fill out ([https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view](info) and [https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view](checklist)). Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub. 
+**GitHub** If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I'll show a few examples. There is paperwork to fill out [info](https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view) and [checklist](https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view). Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub. 
 
 **GitLab** If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitLab server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed. Note it is easy to import back and forth between GitHub and GitLab.
 
@@ -25,7 +25,7 @@ If you want to follow along with the presentations, you will need R, RStudio, a 
 
 If you don't already have an account on GitHub, go to [github.com](https://github.com) and click the "sign up" link near upper right of the page.  It is pretty self-explanatory.  Go ahead and get a **free** account. The free GitHub account does not have private repositories.  Everything is public and viewable.  You can upgrade (for money) and get private repositories.
 
-[gitlab.com](GitLab)_is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab's free account gives you unlimited private repos.
+[GitLab](gitlab.com) is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab's free account gives you unlimited private repos.
 
 ## Install GitHub Desktop (Windows and Mac users)
 
@@ -41,9 +41,9 @@ Linux users can install Git and interact with GitHub/GitLab though RStudio.
 ## Install R and RStudio
 
 * **R:**  Make sure you have a fairly recent version of R.  
-Go to [https://cran.r-project.org/](https://cran.r-project.org/) and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.
+Go to [CRAN](https://cran.r-project.org/) and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.
 
-* **RStudio:** Install the latest version of RStudio.  Get it from [https://www.rstudio.com/products/rstudio/download](https://www.rstudio.com/products/rstudio/download) and install the appropriate one for your OS. Again contact IT to help install if you are on a NOAA computer.
+* **RStudio:** Install the latest version of RStudio.  Get it from [RStudio](https://www.rstudio.com/products/rstudio/download) and install the appropriate one for your OS. Again contact IT to help install if you are on a NOAA computer.
 
 ## Set up RStudio to use Git
 
