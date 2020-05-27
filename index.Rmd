@@ -16,7 +16,7 @@ You can just watch or if you want to try out what I am showing, go to [Set-up](h
 
 ## Topics
 
-* Week 1. Introduction to workflow using RStudio and Git/GitHub
+* Week 1. Introduction to workflow using RStudio and Git/GitHub/GitLab
 
 * Week 2. Basic coding practices for reproducible and extendible code
 
@@ -29,7 +29,6 @@ You can just watch or if you want to try out what I am showing, go to [Set-up](h
 
 <hr>
 
-
 <div style="text-align: center">
-<i class="fas fa-cubes"></i> NOAA Fisheries -- NW Fisheries Science Center <i class="fas fa-cubes"></i>
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
 </div>

@@ -11,7 +11,7 @@
 
 
 
-<title>Week 1: RStudio+GitHub</title>
+<title>Week 1. Introduction to workflow using RStudio and Git</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,6 +25,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -368,7 +369,7 @@ div.tocify {
   <a href="rstudio.html">
     <span class="fa fa-cogs"></span>
      
-    RStudio+GitHub
+    RStudio+Git
   </a>
 </li>
 <li>
@@ -462,22 +463,43 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 1: RStudio+GitHub</h1>
+<h1 class="title toc-ignore">Week 1. Introduction to workflow using RStudio and Git</h1>
 
 </div>
 
 
-<div id="week-1.-introduction-to-workflow-using-rstudio-and-gitgithub" class="section level1">
-<h1>Week 1. Introduction to workflow using RStudio and Git/GitHub</h1>
-<p>I will introduce you to RStudio and GitHub. I will show you a variety of approaches for organizing your projects that involve code and show you how to use GitHub without having to learn Git. If you already use RStudio and GitHub, skip this week as this will be introductory level. If you have tried RStudio or GitHub and gotten frustrated or thought ‘I don’t have time to learn this’, this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.</p>
-<p>I’m going to show you how to work with Git/GitHub with no command-line interface. The goal is to futz with Git as little as possible. See the Links tab above for a nice online workshop on Git/GitHub if you want to learn more.</p>
-<div id="rstudio-overview" class="section level2">
-<h2>RStudio Overview</h2>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;color: white !important;background-color: blue !important;">
+Compartmentalized
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;">
+Documented
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;">
+Extendible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;">
+Reproducible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;">
+Robust
+</td>
+</tr>
+</tbody>
+</table>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>I will introduce you to RStudio and GitHub/GitLab I will show you a variety of approaches for organizing your projects that involve code and show you how to use GitHub/GitLab without having to learn Git. If you already use RStudio and Git, skip this week as this will be introductory level. If you have tried RStudio or Git and gotten frustrated or thought ‘I don’t have time to learn this’, this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.</p>
+<p>I’m going to show you how to work with Git/GitHub/GitLab with no command-line interface. The goal is to futz with Git as little as possible. See the Links tab above for a nice online workshop on Git/GitHub if you want to learn more.</p>
+</div>
+<div id="rstudio" class="section level1">
+<h1>RStudio</h1>
 <p>When you open RStudio you will see 4 panels:</p>
 <div class="figure">
 <img src="images/RStudio-screenshot.png" alt="RStudio-panels" />
 <p class="caption">RStudio-panels</p>
-</div>
 </div>
 <div id="create-an-rstudio-project" class="section level2">
 <h2>Create an RStudio Project</h2>
@@ -516,38 +538,159 @@ par(opar)</code></pre>
 <li>Run all the code by selecting ‘Source’</li>
 </ol>
 </div>
-<div id="try-it-out" class="section level2">
-<h2>Try it out!</h2>
-<p>Read through the following sections of the R for Data Science book and work through the examples.</p>
+<div id="project-organization" class="section level2">
+<h2>Project organization</h2>
+<p>Keep your projects in separate folders with a uniform set of folder names. For example,</p>
+<ul>
+<li>R - your functions</li>
+<li>scripts - scripts (so not functions)</li>
+<li>data - your RData files</li>
+<li>output -</li>
+<li>inst - random stuff</li>
+<li>notes -</li>
+</ul>
+<p>The top right corner allows you to create projects and switch between projects.</p>
+<div class="figure">
+<img src="images/RStudio-screenshot.png" alt="RStudio-panels" />
+<p class="caption">RStudio-panels</p>
+</div>
+<div id="project-settings" class="section level3">
+<h3>Project settings</h3>
+<p>Key one is to <strong>not</strong> save your <code>.Rdata</code> (your environment) when your are done for the day. Under Tools &gt; Project Options… &gt; General</p>
+</div>
+<div id="super-helpful-features" class="section level3">
+<h3>Super helpful features</h3>
+<ul>
+<li>Edit &gt; Find in Files…</li>
+<li>Code &gt; Comment</li>
+<li>Code &gt; Reindent Lines</li>
+<li>File &gt; New (templates)</li>
+<li>History tab</li>
+<li>Help tab (index at bottom)</li>
+<li>Help &gt; Markdown quick reference</li>
+</ul>
+</div>
+</div>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
+<p>R for Data Science is a great book to introduce you to working with data in R. Read through the following sections of the R for Data Science book and work through the examples.</p>
 <ul>
 <li><a href="http://r4ds.had.co.nz/workflow-basics.html">Workflow basics</a>: super basic review on how R works.</li>
 <li><a href="http://r4ds.had.co.nz/workflow-projects.html">Workflow: projects</a>: info about organizing RStudio projects.</li>
 <li><a href="http://r4ds.had.co.nz/workflow-scripts.html">Workflow: scripts</a>: how to evaluate code in scripts.</li>
 </ul>
-<p>R for Data Science is a great book to introduce you to working with data in R, but we are not going to be doing that in this workshop.</p>
+</div>
+</div>
+<div id="git-githubgitlab" class="section level1">
+<h1>Git (GitHub/GitLab)</h1>
+<p>Tracking your code (and project) changes. I am focusing on Git for individuals <strong>not teams</strong>. If you aren’t using a change tracker (version control), then start just with a personal project and track only your changes. I will not cover <em>branches</em>.</p>
+<p>For NOAA staff, GitHub can be used for publishing public projects: <a href="https://github.com/NOAAGov/NOAA-Affiliated-Projects">NOAA GitHub</a> and a NWFSC example <a href="https://nwfsc-timeseries.github.io/">NWFSC Timeseries</a>. NWFSC has a GitLab server if you want a repository server for your non-public projects and for internal collaboration.</p>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<ul>
+<li>Repo: Repository. It is your code and the record of your changes. In a hidden folder called <code>.git</code> (so if you wanted to get rid of the history and other Git info, you could delete that folder). You have a local repo and a remote repo (on GitHub/GitLab).</li>
+<li>Actions: Commit, Push, Pull</li>
+<li>Git: The program that keeps track of the changes on local and remote repo.</li>
+<li>Git GUIs: A graphical interface for Git (which is command line). There are <a href="https://git-scm.com/downloads/guis">many</a>. I am teaching an easy-entry one, GitHub Desktop.</li>
+</ul>
+<p>Workflow (to get started):</p>
+<ul>
+<li>Make local changes to code.</li>
+<li>Record what those changes were about and commit to the code change record (history).</li>
+<li>Push those changes to your remote copy (aka your backup)</li>
+</ul>
+<div class="figure">
+<img src="images/git-intro.png" alt="First foray into Git/GitHub/GitLab" />
+<p class="caption">First foray into Git/GitHub/GitLab</p>
+</div>
+<p>Goals today:</p>
+<ol style="list-style-type: decimal">
+<li>Get you started.</li>
+<li>Show you a simple workflow.</li>
+<li>Show some simple GitHub/GitLab features.</li>
+</ol>
+</div>
+<div id="lets-get-started" class="section level2">
+<h2>Let’s get started!</h2>
+<p>I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub (or GitLab) is a source of much misery, and in my experience creating the repo on GitHub (or GitLab) first eliminates the problems.</p>
+<div id="make-a-github-or-gitlab-repo" class="section level3">
+<h3>Make a GitHub or GitLab Repo</h3>
+<ol style="list-style-type: decimal">
+<li>Go to GitHub or GitLab and create a new repository (the + in the top right or New Project)</li>
+<li>Click add Readme.md and add .gitignore (type R to get the R .gitignore)</li>
+<li>Copy the url of your new repo</li>
+</ol>
+</div>
+<div id="add-to-rstudio" class="section level3">
+<h3>Add to RStudio</h3>
+<ol style="list-style-type: decimal">
+<li>Open RStudio and click <code>New Project</code> (upper right, blue cube with R)</li>
+<li>Click New Project… &gt; Version Control &gt; Git and paste in the url. Give your project a name and make sure the directory is where you want the project.</li>
+<li>Done!</li>
+</ol>
+</div>
+<div id="make-some-changes-and-commit" class="section level3">
+<h3>Make some changes and commit</h3>
+<ol style="list-style-type: decimal">
+<li>Add a file. File &gt; New File &gt; R Script</li>
+<li>Type something and then save the file.</li>
+<li>Click the <code>Git</code> tab in the upper right.</li>
+<li>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</li>
+<li>Click the Green up arrow to Push to GitHub or GitLab.</li>
+</ol>
+</div>
+<div id="make-some-changes-and-look-at-the-history" class="section level3">
+<h3>Make some changes and look at the history</h3>
+<ol style="list-style-type: decimal">
+<li>Repeat 1-4 a few times.</li>
+<li><p>Now look at the history. The little clock-like icon (or History in the Git window).</p>
+<ul>
+<li>Click on <code>filter by file</code> to see just the changes to one file.</li>
+<li>Do a search in the upper right.</li>
+<li>Click on an early commit and click <code>View file @...</code></li>
+</ul></li>
+<li><p>Push changes up the GitHub or GitLab</p></li>
+</ol>
+</div>
+<div id="key-tips-when-you-are-getting-started" class="section level3">
+<h3>Key tips when you are getting started</h3>
+<ol style="list-style-type: decimal">
+<li>Do not make changes on GitHub or GitLab directly.</li>
+</ol>
+<ul>
+<li>Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, Google is your friend.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Do not use branches (wait till you are friends with Git).</p></li>
+<li><p>Do not use Git at the command line.</p></li>
+<li><p>If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don’t put your Git repos in those folders.</p></li>
+<li><p>The Git info is in the hidden folder <code>.git</code>. If you need to get rid of the repository data (like history), delete that. Don’t copy that folder into another repo.</p></li>
+</ol>
+</div>
+</div>
+<div id="github-desktop" class="section level2">
+<h2>GitHub Desktop</h2>
+<p>Despite the name, it works with GitLab too.</p>
+<p>You can commit your changes and push them with RStudio only, but many people use a Git GUI to interact with Git and their remote repository. GitHub Desktop is simple and works well. Why not just use RStudio? If you are happy with that, fine. Many people prefer a separate Git GUI, though Git with RStudio has improved and serves many just fine.</p>
+<div class="figure">
+<img src="images/GitHub-Desktop.png" alt="GitHub Desktop" />
+<p class="caption">GitHub Desktop</p>
+</div>
+<div id="adding-a-local-repository" class="section level3">
+<h3>Adding a local repository</h3>
+<p>To use your local repository with GitHub Desktop, you need to add it.</p>
+<ol style="list-style-type: decimal">
+<li>File &gt; Add Local Repository.</li>
+</ol>
+</div>
 </div>
 </div>
 
-<div id="disqus_thread"></div>
-<script>
+<hr>
 
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://rworkflow1.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
+</div>
 
 
 </div>

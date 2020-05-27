@@ -6,7 +6,7 @@ navbar:
   - text: Set-up
     icon: fa-clone
     href: set-up.html
-  - text: RStudio+GitHub
+  - text: RStudio+Git
     icon: fa-cogs
     href: rstudio.html
   - text: Coding Tips
@@ -55,4 +55,5 @@ output:
     self_contained: no
     include:
       in_header: header.html
+      in_footer: footer.html
 

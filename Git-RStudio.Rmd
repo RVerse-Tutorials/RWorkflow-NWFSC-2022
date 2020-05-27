@@ -19,6 +19,42 @@ Using Git in RStudio can be hard to set-up and hard to debug if you run into pro
 
 In particular, read the part about how to set-up so you don't have to enter your username and password for every commmit.
 
+## Creating a local repository and then getting it on GitHub (or GitLab)
+
+## Let's create a local repository
+
+1. Create a RStudio project (upper right with the blue cube with R). New project... > New Directory > New Project
+2. Check the box that says `Create a git repository`. You have made a local repository.
+3. Add a file. File > New File > R Script
+4. Type something and then save the file.
+5. Click the `Git` tab in the upper right.
+6. Click the changes that you want to commit (do all). And click `Commit`. Add a comment: first line is subject, newline, description (options).
+7. Repeat 4-6 a few times.
+8. Now look at the history. The little clock-like icon (or History in the Git window). 
+   
+   * Click on `filter by file` to see just the changes to one file.
+   * Do a search in the upper right.
+   * Click on an early commit and click `View file @...`
+   
+## Now let's get this on GitHub (similar strategy if you are working on GitLab)
+
+1. Go to GitHub and create a repo with the same name
+2. Don't select add Readme or anything
+3. A page that tells you how to get started should show up. Look for this code.
+
+**…or push an existing repository from the command line**
+```
+git remote add origin https://github.com/<youraccount>/<reponame>.git
+git push -u origin master
+```
+
+4. Copy the code and go back to RStudio.
+5. Click the cog on the Git tab and click Shell
+6. Paste the code into the command line.
+7. If you see something about Keychain, try Deny. It will hopefully ask you for your GitHub account info on the command line.
+8. If it all works, you should now be able to push.
+
+
 ## Methods for downloading repositories
 
 If you want to copy someone's repository on GitHub or make a copy of one of your own, there are a few approaches that you can take. I am going to use `https://github.com/RVerse-Tutorials/Test` as the repository that you want to copy and we will put the repository at `Documents/GitHub/Test`.

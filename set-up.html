@@ -368,7 +368,7 @@ div.tocify {
   <a href="rstudio.html">
     <span class="fa fa-cogs"></span>
      
-    RStudio+GitHub
+    RStudio+Git
   </a>
 </li>
 <li>
@@ -472,13 +472,13 @@ div.tocify {
 <h2>GitHub and GitLab</h2>
 <div id="nwfsc-staff" class="section level3">
 <h3>NWFSC staff</h3>
-<p><strong>GitHub</strong> If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I’ll show a few examples. There is paperwork to fill out (<a href="info">https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view</a> and <a href="checklist">https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view</a>). Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub.</p>
+<p><strong>GitHub</strong> If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I’ll show a few examples. There is paperwork to fill out <a href="https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view">info</a> and <a href="https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view">checklist</a>. Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub.</p>
 <p><strong>GitLab</strong> If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitLab server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed. Note it is easy to import back and forth between GitHub and GitLab.</p>
 </div>
 <div id="non-noaa-participants-or-those-using-githubgitlab-purely-for-non-noaa-work" class="section level3">
 <h3>Non-NOAA participants or those using GitHub/GitLab purely for non-NOAA work</h3>
 <p>If you don’t already have an account on GitHub, go to <a href="https://github.com">github.com</a> and click the “sign up” link near upper right of the page. It is pretty self-explanatory. Go ahead and get a <strong>free</strong> account. The free GitHub account does not have private repositories. Everything is public and viewable. You can upgrade (for money) and get private repositories.</p>
-<p><a href="GitLab">gitlab.com</a>_is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab’s free account gives you unlimited private repos.</p>
+<p><a href="gitlab.com">GitLab</a> is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab’s free account gives you unlimited private repos.</p>
 </div>
 </div>
 <div id="install-github-desktop-windows-and-mac-users" class="section level2">
@@ -497,8 +497,8 @@ div.tocify {
 <h2>Install R and RStudio</h2>
 <ul>
 <li><p><strong>R:</strong> Make sure you have a fairly recent version of R.<br />
-Go to <a href="https://cran.r-project.org/">https://cran.r-project.org/</a> and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.</p></li>
-<li><p><strong>RStudio:</strong> Install the latest version of RStudio. Get it from <a href="https://www.rstudio.com/products/rstudio/download">https://www.rstudio.com/products/rstudio/download</a> and install the appropriate one for your OS. Again contact IT to help install if you are on a NOAA computer.</p></li>
+Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.</p></li>
+<li><p><strong>RStudio:</strong> Install the latest version of RStudio. Get it from <a href="https://www.rstudio.com/products/rstudio/download">RStudio</a> and install the appropriate one for your OS. Again contact IT to help install if you are on a NOAA computer.</p></li>
 </ul>
 </div>
 <div id="set-up-rstudio-to-use-git" class="section level2">
@@ -517,7 +517,7 @@ Go to <a href="https://cran.r-project.org/">https://cran.r-project.org/</a> and 
 <p>In order to connect to GitLab, you will need to make an SSH key. GitLab will ask you for this.</p>
 <ol style="list-style-type: decimal">
 <li>Open a terminal</li>
-<li>Type this <code>ssh-keygen -t ed25519 -C "gitlab"</code></li>
+<li>Type this <code>ssh-keygen -t ed25519 -C &quot;gitlab&quot;</code></li>
 <li>Hit ‘return’ at each prompt (for filename and for password). Don’t enter anything.</li>
 <li>Ignore what is printed out. Navigate to Users/yourname/.ssh/id_ed25519</li>
 <li>Open with an editor (like Notepad or TextEdit)</li>
@@ -598,26 +598,11 @@ devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
 </ul>
 </div>
 
-<div id="disqus_thread"></div>
-<script>
+<hr>
 
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://rworkflow1.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
+</div>
 
 
 </div>
