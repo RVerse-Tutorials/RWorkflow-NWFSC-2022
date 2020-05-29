@@ -442,12 +442,6 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020">
-    <span class="fa fa-home"></span>
-     
-  </a>
-</li>
-<li>
   <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
     <span class="fa fa-github"></span>
      
@@ -555,17 +549,17 @@ shinyUI(fluidPage(
 <div id="putting-your-application-online" class="section level2">
 <h2>Putting your application online</h2>
 <p>NW Fisheries Science Center (where I work) has its own R Shiny Server because we has applications with proprietary data that cannot be put on non-NOAA server. In addition, many of our applications require specialized extra software for fitting Bayesian models. Thus our application need more than just R packages.</p>
-<p>However, if your application does not have these special constraints, you can host online for free with <a href="http://www.shinyapps.io/" class="uri">http://www.shinyapps.io/</a>.</p>
+<p>However, if your application does not have these special constraints, you can host online for free with <a href="http://www.shinyapps.io/">http://www.shinyapps.io/</a>.</p>
 <p>Follow the instructions <a href="https://shiny.rstudio.com/articles/shinyapps.html">here</a>. In summary:</p>
 <ol style="list-style-type: decimal">
-<li><p>Sign up for an account at <a href="http://www.shinyapps.io/" class="uri">http://www.shinyapps.io/</a></p></li>
-<li>install the rsconnect package</li>
+<li><p>Sign up for an account at <a href="http://www.shinyapps.io/">http://www.shinyapps.io/</a></p></li>
+<li><p>install the rsconnect package</p></li>
 </ol>
 <pre><code>install.packages(&quot;rsconnect&quot;)
 library(rsconnect)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Login into your account at <a href="http://www.shinyapps.io/" class="uri">http://www.shinyapps.io/</a>. Click on your user name in top right, and click ‘Tokens’</p></li>
-<li>A window should popup with code that looks like</li>
+<li><p>Login into your account at <a href="http://www.shinyapps.io/">http://www.shinyapps.io/</a>. Click on your user name in top right, and click ‘Tokens’</p></li>
+<li><p>A window should popup with code that looks like</p></li>
 </ol>
 <pre><code>rsconnect::setAccountInfo(name=&quot;&lt;ACCOUNT&gt;&quot;, token=&quot;&lt;TOKEN&gt;&quot;, secret=&quot;&lt;SECRET&gt;&quot;)</code></pre>
 <p>Click ‘Copy to clipboard’.</p>
@@ -582,14 +576,14 @@ library(rsconnect)</code></pre>
 <li><p>Create a folder called ‘inst’ in your package.</p></li>
 <li><p>Create a folder called ‘shiny’ in that.</p></li>
 <li><p>Within that folder, put your folder with all your application files. ‘ui.R’, ‘server.R’, any data files, any function files.</p></li>
-<li>Add the following code to a files called <code>launchApp.R</code> to your R directory. Change “myapp” and “mypackage” to the right names.</li>
+<li><p>Add the following code to a files called <code>launchApp.R</code> to your R directory. Change “myapp” and “mypackage” to the right names.</p></li>
 </ol>
 <pre><code>#&#39; @export
 launchApp &lt;- function(x=&quot;myapp&quot;) {
   appDir &lt;- system.file(&quot;shiny&quot;, &quot;myapp&quot;, package = &quot;mypackage&quot;)
   shiny::runApp(appDir, display.mode = &quot;normal&quot;)
 }</code></pre>
-<p>Rebuild your package. If later you add more shiny apps, but their folder in the shiny directory too. You run them with <code>launchApp(&quot;mynewapp&quot;)</code>.</p>
+<p>Rebuild your package. If later you add more shiny apps, but their folder in the shiny directory too. You run them with <code>launchApp("mynewapp")</code>.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>To run</li>
 </ol>

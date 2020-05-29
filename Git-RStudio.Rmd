@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Using Git in RStudio
+# Using Git in RStudio
 
 You can read a whole book about Git and R [Happy Git with R](http://happygitwithr.com/index.html).
 
@@ -21,7 +21,9 @@ In particular, read the part about how to set-up so you don't have to enter your
 
 ## Creating a local repository and then getting it on GitHub (or GitLab)
 
-## Let's create a local repository
+Note. Creating the repo locally first often leads to misery in my experience. Often safer to start by making a blank repo on GitHub or GitLab.
+
+### Let's create a local repository
 
 1. Create a RStudio project (upper right with the blue cube with R). New project... > New Directory > New Project
 2. Check the box that says `Create a git repository`. You have made a local repository.
@@ -89,32 +91,6 @@ This method is pretty failsafe and I find easy to remember. This how I normally 
 4. Copy the files (on my computer) from the repo I want to copy into the new folder. Note this works because I already have the files I want on my computer.
 5. Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).
 
-### Method #3 Download from within R
-
-[Watch a video that shows you how to do this](https://youtu.be/b6AaTHFIY7U)
-
-At the bottom is a download function. This function will create a folder with the name of the repository.  Here is code to download the repository ``https://github.com/RVerse-Tutorials/Test`.  For others, just change the name of the repository.
-
-1. Within RStudio, navigate to where you want the folder created  `Documents/GitHub/`. Then set your working directory to there (Click the More tab with the cog). Or issue the command `setwd("~/Documents/GitHub/")`.
-
-2. Download and create a folder for the new repository using these commands. `repo` is the name of the repo that you are copying (on GitHub).
-
-```
-repo = "Test"
-download.repo(repo, githuburl = "https://github.com/RVerse-Tutorials/")
-```
-
-3. From RStudio, go to the menu option
-'File->New Project...'. Then from the resulting dialog, choose
-"Existing Directory".  Then choose `~/Documents/GitHub/Test`
- and click OK.
- 
-4. Add Git to project. From RStudio, go to Tools>Project Options>Git/SVN and then add version control.
-
-5. Add the new repository to GitHub Desktop and then publish to GitHub. From GitHub Desktop, go to File>Add Local Repository and then navigate to `~/Documents/GitHub/Test` and add.
-
-6. Publish to GitHub. Once you do step 5, a 'Publish to GitHub' button will appear. Click that to publish to GitHub.
-
 ### Method #4
 
 1. From RStudio, go to the menu option
@@ -154,38 +130,4 @@ We will not be doing this in this short course, but often you will want to insta
 * **Rtools** Windows users  [Rtools](https://cran.r-project.org/bin/windows/Rtools/) also so you can build packages with C++ code if needed.  See comments here about changing path. [Rtools](http://stat545.com/packages01_system-prep.html#windows-system-prep)
 
 * **Xcode** Mac users Open terminal and type the following command `xcode-select --install`
-
-## The download.repo function
-
-This downloads a repo and unzips into the working directory. Navigate to where you want the copy (folder) created.
-
-* **repo** The name of the repo that you are copying in quotes
-* **githuburl** The url of the GitHub account in quotes
-* **clean** If TRUE (default), remove .gitignore, .gitattributes, .RProj
-
-```
-download.repo <- function(repo, githuburl = "https://github.com/RVerse-Tutorials/", clean=TRUE){
-    notok <- download.file( 
-    url <- paste0(githuburl, repo, "/archive/master.zip"),
-                  destfile = paste0(repo, "-master.zip")
-    )
-    unzip( zipfile = paste0(repo, "-master.zip") )
-    file.rename( paste0(repo,"-master"), repo )
-    file.remove( paste0(repo,"-master.zip") )
-    if(clean){
-      suppressWarnings(file.remove(paste0(repo,"/.gitignore")))
-      suppressWarnings(file.remove(paste0(repo,"/.gitattibutes")))
-      suppressWarnings(file.remove(paste0(repo,"/*.Rproj")))
-      suppressWarnings(file.remove(paste0(repo,"/.Rhistory")))
-      suppressWarnings(file.remove(paste0(repo,"/.RData")))
-    }
-    if(notok){
-      cat("Failed!\n", ok)
-    }else{
-      cat("Success!\n")
-    }
-    
-}
-```
-
 

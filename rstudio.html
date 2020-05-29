@@ -443,12 +443,6 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020">
-    <span class="fa fa-home"></span>
-     
-  </a>
-</li>
-<li>
   <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
     <span class="fa fa-github"></span>
      
@@ -471,19 +465,19 @@ div.tocify {
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
-<td style="text-align:left;color: white !important;background-color: blue !important;">
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
 Compartmentalized
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;">
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
 Documented
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;">
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
 Extendible
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;">
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
 Reproducible
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;">
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
 Robust
 </td>
 </tr>
@@ -511,9 +505,8 @@ Robust
 <li>Then click “Create Project”.</li>
 </ol>
 <p>That should give you a new project.</p>
-</div>
-<div id="add-a-new-script-file" class="section level2">
-<h2>Add a new script file</h2>
+<div id="add-a-new-script-file" class="section level3">
+<h3>Add a new script file</h3>
 <ol style="list-style-type: decimal">
 <li>Add a new file using ‘File &gt; New File &gt; R Script’</li>
 <li>Or you can click the new icon in top left corner.</li>
@@ -531,12 +524,13 @@ opar &lt;- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
 plot(lm.D9, las = 1)      # Residuals, Fitted, ...
 par(opar)</code></pre>
 </div>
-<div id="run-the-code" class="section level2">
-<h2>Run the code</h2>
+<div id="run-the-code" class="section level3">
+<h3>Run the code</h3>
 <ol style="list-style-type: decimal">
 <li>Select all the lines of code and select ‘Run’</li>
 <li>Run all the code by selecting ‘Source’</li>
 </ol>
+</div>
 </div>
 <div id="project-organization" class="section level2">
 <h2>Project organization</h2>
@@ -558,8 +552,9 @@ par(opar)</code></pre>
 <h3>Project settings</h3>
 <p>Key one is to <strong>not</strong> save your <code>.Rdata</code> (your environment) when your are done for the day. Under Tools &gt; Project Options… &gt; General</p>
 </div>
-<div id="super-helpful-features" class="section level3">
-<h3>Super helpful features</h3>
+</div>
+<div id="super-helpful-features" class="section level2">
+<h2>Super helpful features</h2>
 <ul>
 <li>Edit &gt; Find in Files…</li>
 <li>Code &gt; Comment</li>
@@ -569,7 +564,6 @@ par(opar)</code></pre>
 <li>Help tab (index at bottom)</li>
 <li>Help &gt; Markdown quick reference</li>
 </ul>
-</div>
 </div>
 <div id="more-exercises" class="section level2">
 <h2>More exercises</h2>
@@ -612,7 +606,7 @@ par(opar)</code></pre>
 </div>
 <div id="lets-get-started" class="section level2">
 <h2>Let’s get started!</h2>
-<p>I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub (or GitLab) is a source of much misery, and in my experience creating the repo on GitHub (or GitLab) first eliminates the problems.</p>
+<p>I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub (or GitLab) is a source of much misery, and in my experience <strong>creating the repo on GitHub (or GitLab) first</strong> eliminates the problems. This really important for the first time you connect your computer to the remote repository server (GitHub or GitLab). Start with a new repo created on GitHub or GitLab.</p>
 <div id="make-a-github-or-gitlab-repo" class="section level3">
 <h3>Make a GitHub or GitLab Repo</h3>
 <ol style="list-style-type: decimal">
@@ -642,7 +636,7 @@ par(opar)</code></pre>
 <div id="make-some-changes-and-look-at-the-history" class="section level3">
 <h3>Make some changes and look at the history</h3>
 <ol style="list-style-type: decimal">
-<li>Repeat 1-4 a few times.</li>
+<li><p>Repeat 1-4 a few times.</p></li>
 <li><p>Now look at the history. The little clock-like icon (or History in the Git window).</p>
 <ul>
 <li>Click on <code>filter by file</code> to see just the changes to one file.</li>
@@ -652,8 +646,22 @@ par(opar)</code></pre>
 <li><p>Push changes up the GitHub or GitLab</p></li>
 </ol>
 </div>
-<div id="key-tips-when-you-are-getting-started" class="section level3">
-<h3>Key tips when you are getting started</h3>
+</div>
+<div id="copy-someones-else-rep" class="section level2">
+<h2>Copy someone’s else rep</h2>
+<ol style="list-style-type: decimal">
+<li><p>In a browser, <a href="https://github.com/RVerse-Tutorials/Test" class="uri">https://github.com/RVerse-Tutorials/Test</a>.</p></li>
+<li><p>Copy its url.</p></li>
+<li><p>Open GitHub or GitLab.<br />
+</p></li>
+<li><p>If using GitHub, click the <code>+</code> in top right and click <code>import repository</code>. Paste in the url and give your repo a name.</p></li>
+<li><p>If using GitLab, click <code>New Project</code> on right, then <code>Import Repository</code> tab, then click <code>Repo by URL</code>. Paste in url and give repo a name.</p></li>
+<li><p>Open RStudio and click the project tab in the top right and select, <code>New Project</code>. Then select <code>Version Control</code> and paste in the url of <strong>your</strong> repository’s url. For example, <code>https://github.com/&lt;youraccount&gt;/Test</code> or <code>https://gitlab.com/&lt;youraccount&gt;/Test</code> or</p></li>
+<li><p>Add the new repo to GitHub Desktop. Open GitHub Desktop, select File&gt;Add Local Repository and navigate to the folder with the new repository.</p></li>
+</ol>
+</div>
+<div id="key-tips" class="section level2">
+<h2>Key tips</h2>
 <ol style="list-style-type: decimal">
 <li>Do not make changes on GitHub or GitLab directly.</li>
 </ol>
@@ -665,24 +673,25 @@ par(opar)</code></pre>
 <li><p>Do not use Git at the command line.</p></li>
 <li><p>If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don’t put your Git repos in those folders.</p></li>
 <li><p>The Git info is in the hidden folder <code>.git</code>. If you need to get rid of the repository data (like history), delete that. Don’t copy that folder into another repo.</p></li>
+<li><p>Start by making a blank repo on GitHub or GitLab and select the box to add a Readme file. Then clone that with RStudio or GitHub Desktop.</p></li>
 </ol>
 </div>
 </div>
-<div id="github-desktop" class="section level2">
-<h2>GitHub Desktop</h2>
+<div id="github-desktop" class="section level1">
+<h1>GitHub Desktop</h1>
 <p>Despite the name, it works with GitLab too.</p>
 <p>You can commit your changes and push them with RStudio only, but many people use a Git GUI to interact with Git and their remote repository. GitHub Desktop is simple and works well. Why not just use RStudio? If you are happy with that, fine. Many people prefer a separate Git GUI, though Git with RStudio has improved and serves many just fine.</p>
 <div class="figure">
 <img src="images/GitHub-Desktop.png" alt="GitHub Desktop" />
 <p class="caption">GitHub Desktop</p>
 </div>
-<div id="adding-a-local-repository" class="section level3">
-<h3>Adding a local repository</h3>
+<div id="adding-your-local-repository" class="section level2">
+<h2>Adding your local repository</h2>
 <p>To use your local repository with GitHub Desktop, you need to add it.</p>
 <ol style="list-style-type: decimal">
 <li>File &gt; Add Local Repository.</li>
 </ol>
-</div>
+<p>How does it know what the remote repository (GitHub/GitLab) is? It is stored in the .git information which was set when you cloned the repo from GitHub/GitLab.</p>
 </div>
 </div>
 

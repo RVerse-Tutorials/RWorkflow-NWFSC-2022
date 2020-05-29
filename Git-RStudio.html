@@ -442,12 +442,6 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020">
-    <span class="fa fa-home"></span>
-     
-  </a>
-</li>
-<li>
   <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
     <span class="fa fa-github"></span>
      
@@ -467,25 +461,24 @@ div.tocify {
 </div>
 
 
-<div id="using-git-in-rstudio" class="section level2">
-<h2>Using Git in RStudio</h2>
+<div id="using-git-in-rstudio" class="section level1">
+<h1>Using Git in RStudio</h1>
 <p>You can read a whole book about Git and R <a href="http://happygitwithr.com/index.html">Happy Git with R</a>.</p>
 <p>Using Git in RStudio can be hard to set-up and hard to debug if you run into problems. If you want to use it, <a href="https://cfss.uchicago.edu/git07.html">read these instructions</a>.</p>
 <p>In particular, read the part about how to set-up so you don’t have to enter your username and password for every commmit.</p>
-</div>
 <div id="creating-a-local-repository-and-then-getting-it-on-github-or-gitlab" class="section level2">
 <h2>Creating a local repository and then getting it on GitHub (or GitLab)</h2>
-</div>
-<div id="lets-create-a-local-repository" class="section level2">
-<h2>Let’s create a local repository</h2>
+<p>Note. Creating the repo locally first often leads to misery in my experience. Often safer to start by making a blank repo on GitHub or GitLab.</p>
+<div id="lets-create-a-local-repository" class="section level3">
+<h3>Let’s create a local repository</h3>
 <ol style="list-style-type: decimal">
-<li>Create a RStudio project (upper right with the blue cube with R). New project… &gt; New Directory &gt; New Project</li>
-<li>Check the box that says <code>Create a git repository</code>. You have made a local repository.</li>
-<li>Add a file. File &gt; New File &gt; R Script</li>
-<li>Type something and then save the file.</li>
-<li>Click the <code>Git</code> tab in the upper right.</li>
-<li>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</li>
-<li>Repeat 4-6 a few times.</li>
+<li><p>Create a RStudio project (upper right with the blue cube with R). New project… &gt; New Directory &gt; New Project</p></li>
+<li><p>Check the box that says <code>Create a git repository</code>. You have made a local repository.</p></li>
+<li><p>Add a file. File &gt; New File &gt; R Script</p></li>
+<li><p>Type something and then save the file.</p></li>
+<li><p>Click the <code>Git</code> tab in the upper right.</p></li>
+<li><p>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</p></li>
+<li><p>Repeat 4-6 a few times.</p></li>
 <li><p>Now look at the history. The little clock-like icon (or History in the Git window).</p>
 <ul>
 <li>Click on <code>filter by file</code> to see just the changes to one file.</li>
@@ -493,6 +486,7 @@ div.tocify {
 <li>Click on an early commit and click <code>View file @...</code></li>
 </ul></li>
 </ol>
+</div>
 </div>
 <div id="now-lets-get-this-on-github-similar-strategy-if-you-are-working-on-gitlab" class="section level2">
 <h2>Now let’s get this on GitHub (similar strategy if you are working on GitLab)</h2>
@@ -541,23 +535,6 @@ git push -u origin master</code></pre>
 <li>Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).</li>
 </ol>
 </div>
-<div id="method-3-download-from-within-r" class="section level3">
-<h3>Method #3 Download from within R</h3>
-<p><a href="https://youtu.be/b6AaTHFIY7U">Watch a video that shows you how to do this</a></p>
-<p>At the bottom is a download function. This function will create a folder with the name of the repository. Here is code to download the repository `<code>https://github.com/RVerse-Tutorials/Test</code>. For others, just change the name of the repository.</p>
-<ol style="list-style-type: decimal">
-<li><p>Within RStudio, navigate to where you want the folder created <code>Documents/GitHub/</code>. Then set your working directory to there (Click the More tab with the cog). Or issue the command <code>setwd(&quot;~/Documents/GitHub/&quot;)</code>.</p></li>
-<li><p>Download and create a folder for the new repository using these commands. <code>repo</code> is the name of the repo that you are copying (on GitHub).</p></li>
-</ol>
-<pre><code>repo = &quot;Test&quot;
-download.repo(repo, githuburl = &quot;https://github.com/RVerse-Tutorials/&quot;)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li><p>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Existing Directory”. Then choose <code>~/Documents/GitHub/Test</code> and click OK.</p></li>
-<li><p>Add Git to project. From RStudio, go to Tools&gt;Project Options&gt;Git/SVN and then add version control.</p></li>
-<li><p>Add the new repository to GitHub Desktop and then publish to GitHub. From GitHub Desktop, go to File&gt;Add Local Repository and then navigate to <code>~/Documents/GitHub/Test</code> and add.</p></li>
-<li><p>Publish to GitHub. Once you do step 5, a ‘Publish to GitHub’ button will appear. Click that to publish to GitHub.</p></li>
-</ol>
-</div>
 <div id="method-4" class="section level3">
 <h3>Method #4</h3>
 <ol style="list-style-type: decimal">
@@ -590,36 +567,6 @@ download.repo(repo, githuburl = &quot;https://github.com/RVerse-Tutorials/&quot;
 <li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>
 </ul>
 </div>
-<div id="the-download.repo-function" class="section level2">
-<h2>The download.repo function</h2>
-<p>This downloads a repo and unzips into the working directory. Navigate to where you want the copy (folder) created.</p>
-<ul>
-<li><strong>repo</strong> The name of the repo that you are copying in quotes</li>
-<li><strong>githuburl</strong> The url of the GitHub account in quotes</li>
-<li><strong>clean</strong> If TRUE (default), remove .gitignore, .gitattributes, .RProj</li>
-</ul>
-<pre><code>download.repo &lt;- function(repo, githuburl = &quot;https://github.com/RVerse-Tutorials/&quot;, clean=TRUE){
-    notok &lt;- download.file( 
-    url &lt;- paste0(githuburl, repo, &quot;/archive/master.zip&quot;),
-                  destfile = paste0(repo, &quot;-master.zip&quot;)
-    )
-    unzip( zipfile = paste0(repo, &quot;-master.zip&quot;) )
-    file.rename( paste0(repo,&quot;-master&quot;), repo )
-    file.remove( paste0(repo,&quot;-master.zip&quot;) )
-    if(clean){
-      suppressWarnings(file.remove(paste0(repo,&quot;/.gitignore&quot;)))
-      suppressWarnings(file.remove(paste0(repo,&quot;/.gitattibutes&quot;)))
-      suppressWarnings(file.remove(paste0(repo,&quot;/*.Rproj&quot;)))
-      suppressWarnings(file.remove(paste0(repo,&quot;/.Rhistory&quot;)))
-      suppressWarnings(file.remove(paste0(repo,&quot;/.RData&quot;)))
-    }
-    if(notok){
-      cat(&quot;Failed!\n&quot;, ok)
-    }else{
-      cat(&quot;Success!\n&quot;)
-    }
-    
-}</code></pre>
 </div>
 
 <hr>

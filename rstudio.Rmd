@@ -11,12 +11,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(kableExtra)
 dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
 kable(dt, col.names=NULL) %>%
   kable_styling(full_width = TRUE) %>%
-  row_spec(1, bold = FALSE, color = "white", background = "blue")
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
 ```
 
 # Overview
@@ -40,7 +41,7 @@ When you open RStudio you will see 4 panels:
 
 That should give you a new project.
 
-## Add a new script file
+### Add a new script file
 
 1. Add a new file using 'File > New File > R Script'
 2. Or you can click the new icon in top left corner.
@@ -60,7 +61,7 @@ plot(lm.D9, las = 1)      # Residuals, Fitted, ...
 par(opar)
 ```
 
-## Run the code
+### Run the code
 
 1. Select all the lines of code and select 'Run'
 2. Run all the code by selecting 'Source'
@@ -84,7 +85,7 @@ The top right corner allows you to create projects and switch between projects.
 
 Key one is to **not** save your `.Rdata` (your environment) when your are done for the day.  Under Tools > Project Options... > General
 
-### Super helpful features
+## Super helpful features
 
 * Edit > Find in Files...
 * Code > Comment
@@ -133,7 +134,7 @@ Goals today:
 
 ## Let's get started!
 
-I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub (or GitLab) is a source of much misery, and in my experience creating the repo on GitHub (or GitLab) first eliminates the problems. 
+I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub (or GitLab) is a source of much misery, and in my experience **creating the repo on GitHub (or GitLab) first** eliminates the problems. This really important for the first time you connect your computer to the remote repository server (GitHub or GitLab). Start with a new repo created on GitHub or GitLab.
 
 ### Make a GitHub or GitLab Repo
 
@@ -166,7 +167,19 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
    
 3. Push changes up the GitHub or GitLab
 
-### Key tips when you are getting started
+## Copy someone's else rep
+
+1. In a browser, https://github.com/RVerse-Tutorials/Test.
+2. Copy its url.
+3. Open GitHub or GitLab.  
+4. If using GitHub, click the `+` in top right and click `import repository`. Paste in the url and give your repo a name.
+4. If using GitLab, click `New Project` on right, then `Import Repository` tab, then click `Repo by URL`. Paste in url and give repo a name.
+5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Version Control` and paste in the url of **your** repository's url.  For example, `https://github.com/<youraccount>/Test` or 
+`https://gitlab.com/<youraccount>/Test` or 
+
+6. Add the new repo to GitHub Desktop. Open GitHub Desktop, select File>Add Local Repository and navigate to the folder with the new repository.
+
+## Key tips
 
 1. Do not make changes on GitHub or GitLab directly.
 
@@ -179,8 +192,10 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
 4. If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don't put your Git repos in those folders.
 
 5. The Git info is in the hidden folder `.git`. If you need to get rid of the repository data (like history), delete that. Don't copy that folder into another repo.
+
+6. Start by making a blank repo on GitHub or GitLab and select the box to add a Readme file. Then clone that with RStudio or GitHub Desktop.
  
-## GitHub Desktop
+# GitHub Desktop
 
 Despite the name, it works with GitLab too.
 
@@ -188,10 +203,13 @@ You can commit your changes and push them with RStudio only, but many people use
 
 ![GitHub Desktop](images/GitHub-Desktop.png)
 
-### Adding a local repository
+## Adding your local repository
 
 To use your local repository with GitHub Desktop, you need to add it.
 
 1. File > Add Local Repository.
+
+How does it know what the remote repository (GitHub/GitLab) is? It is stored in the .git information which was set when you cloned the repo from GitHub/GitLab.
+
 
 
