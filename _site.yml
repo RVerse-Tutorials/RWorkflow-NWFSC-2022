@@ -38,8 +38,6 @@ navbar:
     - text: Links
       href: links.html
   right:
-  - icon: fa-home
-    href: https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020
   - icon: fa-github
     href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
     
