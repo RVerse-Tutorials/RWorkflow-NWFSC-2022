@@ -10,6 +10,11 @@ You can also learn R straight from within R using the [swirl package](https://sw
 
 Here is another basic R introduction from [ComputerWorld](https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html).
 
+The book that I recommend for scientists who have never worked with R is [The R Student Companion](https://www.amazon.com/R-Student-Companion-Brian-Dennis-ebook/dp/B009AIU07G) by Brian Dennis. It'll get you up to speed with the type of programming that scientists do with R. I think you'd be fine just renting it for a month and getting through as much as you can in a month. After a few chapters, you'll know your way around R and, more importantly, how to program with functions. Then you'll be ready for something else. 
+
+Once you work through that, [R for Data Science](https://r4ds.had.co.nz/) by Garrett Grolemund
+and Hadley Wickham is very good for what the sort of work we do.
+
 # R Markdown
 
 * [RStudio's lessons](https://rmarkdown.rstudio.com/lesson-1.html)

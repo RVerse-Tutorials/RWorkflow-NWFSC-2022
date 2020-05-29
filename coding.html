@@ -25,6 +25,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -375,7 +376,7 @@ div.tocify {
   <a href="coding.html">
     <span class="fa fa-code"></span>
      
-    Coding Tips
+    More Git+Coding
   </a>
 </li>
 <li>
@@ -407,6 +408,9 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="links.html">Tutorials</a>
+    </li>
+    <li>
       <a href="websites.html">
         <span class="fa fa-chrome"></span>
          
@@ -434,9 +438,6 @@ div.tocify {
         Shiny
       </a>
     </li>
-    <li>
-      <a href="links.html">Links</a>
-    </li>
   </ul>
 </li>
       </ul>
@@ -461,68 +462,47 @@ div.tocify {
 </div>
 
 
-<div id="week-2.-basic-coding-practices-for-reproducible-and-extendible-code" class="section level1">
-<h1>Week 2. Basic coding practices for reproducible and extendible code</h1>
-<p>This week I will cover some basic coding tips that I have learned over the years. These are good habits that will help make your code less buggy and easier to extend.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Compartmentalized
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Documented
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Extendible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Reproducible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Robust
+</td>
+</tr>
+</tbody>
+</table>
+<div id="week-2.-more-git-better-coding-practices" class="section level1">
+<h1>Week 2. More Git + Better Coding Practices</h1>
+<p>This week I will cover more Git topics and basic coding habits that I have learned over the years. These are good habits that will help make your code less buggy and easier to extend.</p>
+<div id="agenda" class="section level3">
+<h3>Agenda</h3>
+<p>Git, GitHub, GitLab</p>
+<ul>
+<li>How to clone someone else’s GitHub or GitLab repository</li>
+<li>How to clone your own repository–when you want to make a copy and use that as a template for something new.</li>
+<li>What are branches, merge conflicts and pull requests?</li>
+<li>Fork or clone? What’s the difference?</li>
+<li>How to add Git to an existing RStudio project and get that on GitHub or GitLab.</li>
+</ul>
+<p>Coding Tips</p>
 <ul>
 <li>How to organize and plan your code and why adopting an ‘object-oriented mindset’ will help your code organization (regardless of whether you use object-oriented coding)</li>
+<li>What are namespaces and why you should use <code>::</code> to call functions.</li>
 <li>Tips on writing code and functions in R - little things that will make your code better and more robust</li>
 <li>Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs</li>
 </ul>
-<div id="rstudio-overview" class="section level2">
-<h2>RStudio Overview</h2>
-<p>When you open RStudio you will see 4 panels:</p>
-<div class="figure">
-<img src="images/RStudio-screenshot.png" alt="RStudio-panels" />
-<p class="caption">RStudio-panels</p>
-</div>
-</div>
-<div id="create-an-rstudio-project" class="section level2">
-<h2>Create an RStudio Project</h2>
-<ol style="list-style-type: decimal">
-<li>In RStudio, choose “File-&gt;New Project…”</li>
-<li>Then choose “New Directory” and then choose “Empty Project”</li>
-<li>In the next dialog, choose a name (<em>it is best to use only letters, numbers, dashes, and underscores, and include no spaces in the name</em>).<br />
-</li>
-<li>Then click “Create Project”.</li>
-</ol>
-<p>That should give you a new project.</p>
-</div>
-<div id="add-a-new-script-file" class="section level2">
-<h2>Add a new script file</h2>
-<ol style="list-style-type: decimal">
-<li>Add a new file using ‘File &gt; New File &gt; R Script’</li>
-<li>Or you can click the new icon in top left corner.</li>
-<li>Add some code to that file. Copy and paste in:</li>
-</ol>
-<pre><code>require(graphics)
-## Annette Dobson (1990) &quot;An Introduction to Generalized Linear Models&quot;.
-## Page 9: Plant Weight Data.
-ctl &lt;- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
-trt &lt;- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
-group &lt;- gl(2, 10, 20, labels = c(&quot;Ctl&quot;,&quot;Trt&quot;))
-weight &lt;- c(ctl, trt)
-lm.D9 &lt;- lm(weight ~ group)
-opar &lt;- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
-plot(lm.D9, las = 1)      # Residuals, Fitted, ...
-par(opar)</code></pre>
-</div>
-<div id="run-the-code" class="section level2">
-<h2>Run the code</h2>
-<ol style="list-style-type: decimal">
-<li>Select all the lines of code and select ‘Run’</li>
-<li>Run all the code by selecting ‘Source’</li>
-</ol>
-</div>
-<div id="try-it-out" class="section level2">
-<h2>Try it out!</h2>
-<p>Read through the following sections of the R for Data Science book and work through the examples.</p>
-<ul>
-<li><a href="http://r4ds.had.co.nz/workflow-basics.html">Workflow basics</a>: super basic review on how R works.</li>
-<li><a href="http://r4ds.had.co.nz/workflow-projects.html">Workflow: projects</a>: info about organizing RStudio projects.</li>
-<li><a href="http://r4ds.had.co.nz/workflow-scripts.html">Workflow: scripts</a>: how to evaluate code in scripts.</li>
-</ul>
-<p>R for Data Science is a great book to introduce you to working with data in R, but we are not going to be doing that in this workshop.</p>
 </div>
 </div>
 

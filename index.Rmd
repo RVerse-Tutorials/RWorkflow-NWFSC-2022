@@ -18,7 +18,7 @@ You can just watch or if you want to try out what I am showing, go to [Set-up](h
 
 * Week 1. Introduction to workflow using RStudio and Git/GitHub/GitLab
 
-* Week 2. Basic coding practices for reproducible and extendible code
+* Week 2. More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code
 
 * Week 3. Rmarkdown for reports: how to do big tables and export formats for Word docs
 

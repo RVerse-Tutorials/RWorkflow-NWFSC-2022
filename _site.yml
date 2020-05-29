@@ -9,7 +9,7 @@ navbar:
   - text: RStudio+Git
     icon: fa-cogs
     href: rstudio.html
-  - text: Coding Tips
+  - text: More Git+Coding
     icon: fa-code
     href: coding.html
   - text: RMarkdown
@@ -23,6 +23,8 @@ navbar:
     href: roxygen.html
   - text: More Tools
     menu:
+    - text: Tutorials
+      href: links.html
     - text: Websites
       icon: fa-chrome
       href: websites.html
@@ -35,8 +37,6 @@ navbar:
     - text: Shiny
       icon: fa-gamepad
       href: shiny.html
-    - text: Links
-      href: links.html
   right:
   - icon: fa-github
     href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020

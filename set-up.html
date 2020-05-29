@@ -375,7 +375,7 @@ div.tocify {
   <a href="coding.html">
     <span class="fa fa-code"></span>
      
-    Coding Tips
+    More Git+Coding
   </a>
 </li>
 <li>
@@ -407,6 +407,9 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="links.html">Tutorials</a>
+    </li>
+    <li>
       <a href="websites.html">
         <span class="fa fa-chrome"></span>
          
@@ -434,9 +437,6 @@ div.tocify {
         Shiny
       </a>
     </li>
-    <li>
-      <a href="links.html">Links</a>
-    </li>
   </ul>
 </li>
       </ul>
@@ -462,8 +462,8 @@ div.tocify {
 
 
 <p>If you want to follow along with the presentations, you will need R, RStudio, a GitHub or GitLab account, and GitHub Desktop. Note GitHub Desktop works with both GitHub and GitLab and I will illustrate both.</p>
-<div id="github-and-gitlab" class="section level2">
-<h2>GitHub and GitLab</h2>
+<div id="week-1-github-and-gitlab" class="section level2">
+<h2>Week 1: GitHub and GitLab</h2>
 <div id="nwfsc-staff" class="section level3">
 <h3>NWFSC staff</h3>
 <p><strong>GitHub</strong> If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I’ll show a few examples. There is paperwork to fill out <a href="https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view">info</a> and <a href="https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view">checklist</a>. Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub.</p>
@@ -475,8 +475,8 @@ div.tocify {
 <p><a href="gitlab.com">GitLab</a> is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab’s free account gives you unlimited private repos.</p>
 </div>
 </div>
-<div id="install-github-desktop-windows-and-mac-users" class="section level2">
-<h2>Install GitHub Desktop (Windows and Mac users)</h2>
+<div id="week-1-install-github-desktop-windows-and-mac-users" class="section level2">
+<h2>Week 1: Install GitHub Desktop (Windows and Mac users)</h2>
 <p>Although you can use Git through RStudio, I am going to show you how to use GitHub Desktop, which is a nice Git interface for basic work. Despite the name, GitHub Desktop works just as well with GitLab.</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://desktop.github.com/">desktop.github.com</a> and install.</li>
@@ -487,28 +487,29 @@ div.tocify {
 </ol>
 <p>Linux users can install Git and interact with GitHub/GitLab though RStudio.</p>
 </div>
-<div id="install-r-and-rstudio" class="section level2">
-<h2>Install R and RStudio</h2>
+<div id="week-1-install-r-and-rstudio" class="section level2">
+<h2>Week 1: Install R and RStudio</h2>
 <ul>
 <li><p><strong>R:</strong> Make sure you have a fairly recent version of R.<br />
 Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.</p></li>
 <li><p><strong>RStudio:</strong> Install the latest version of RStudio. Get it from <a href="https://www.rstudio.com/products/rstudio/download">RStudio</a> and install the appropriate one for your OS. Again contact IT to help install if you are on a NOAA computer.</p></li>
 </ul>
-</div>
-<div id="set-up-rstudio-to-use-git" class="section level2">
-<h2>Set up RStudio to use Git</h2>
+<div id="set-up-rstudio-to-use-git" class="section level3">
+<h3>Set up RStudio to use Git</h3>
 <ol style="list-style-type: decimal">
 <li>Open RStudio</li>
 <li>Go to Global Options (from the Tools menu)</li>
 <li>Click Git/SVN</li>
 <li>Click Enable version control interface for RStudio projects</li>
-<li>You will need the location of the git executible. On my mac it is <code>/usr/bin/git</code></li>
+<li>You will need the location of the git executible. On my mac the value in the <code>Git executible</code> box is <code>/usr/bin/git</code>. On my PC, it is <code>C:/Program Files/Git/bin/git.exe</code></li>
 </ol>
 <p>Linux users will need to install Git for this to work. Windows/Mac users: Git comes with GitHub Desktop.</p>
 </div>
+</div>
 <div id="gitlab-and-ssh-keys-and-ssl-tokens" class="section level2">
 <h2>GitLab and SSH keys and SSL tokens</h2>
-<p>In order to connect to GitLab, you will need to make an SSH key. GitLab will ask you for this.</p>
+<p>In order to connect to GitLab, you will need to make an SSH key. GitLab will ask you for this. Note, I am not 100% sure GitLab actually needs this if it let’s you. You can try skipping this.</p>
+<p>Windows users: The txt file with the public token will be xxx.pub and Windows sees that as a MSPublisher file. Don’t double-click the file to open. Use Open With, and select a text editor.</p>
 <ol style="list-style-type: decimal">
 <li>Open a terminal</li>
 <li>Type this <code>ssh-keygen -t ed25519 -C "gitlab"</code></li>
@@ -518,10 +519,52 @@ Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link 
 <li>Copy the key. It’s long and begins with ssh-ed25519.</li>
 <li>Paste into the page where GitHub asks for it. Lost that place? It’s in Settings&gt;SSH keys</li>
 </ol>
-<p>Does RStudio or GitHub Desktop complain about no SSL tokens when you try to Push?</p>
-<ol start="8" style="list-style-type: decimal">
-<li>Open terminal.</li>
+</div>
+<div id="tell-git-how-to-get-your-username-and-password-for-githubgitlab" class="section level2">
+<h2>Tell Git how to get your username and password for GitHub/GitLab</h2>
+<ol style="list-style-type: decimal">
+<li>Open a terminal window.</li>
+<li>Type <code>git config --get credential.helper</code></li>
+<li>If you are on a PC, you should see <code>manager</code> and if on a mac, <code>osxkeychain</code></li>
+<li>If not type, Mac: <code>git config --global credential.helper osxkeychain</code> Windows: <code>git config --global credential.helper manager</code></li>
+</ol>
+</div>
+<div id="help" class="section level2">
+<h2>Help!</h2>
+<p>Can’t get Git, GitHub/GitLab, and RStudio to connect?</p>
+<p>There are two typical problems. 1. Git doesn’t know how to ask you for your username and password. 2. Your repo is pointing to the wrong GitHub/GitLab account. This can happen when you try to copy someone else’s account.</p>
+<div id="does-rstudio-or-github-desktop-complain-about-no-ssl-tokens-when-you-try-to-push" class="section level3">
+<h3>Does RStudio or GitHub Desktop complain about no SSL tokens when you try to Push?</h3>
+<ol style="list-style-type: decimal">
+<li>Open a terminal window.</li>
 <li>Paste in this code <code>git config --global http.sslVerify false</code></li>
+</ol>
+</div>
+<div id="does-rstudio-complain-about-needing-access-to-your-credentials" class="section level3">
+<h3>Does RStudio complain about needing access to your credentials?</h3>
+<ul>
+<li>First, you should have a fairly recent version of RStudio because the Git integration has gotten better.</li>
+<li>If you have a pop-up window, click ‘Deny’. Hopefully a terminal window pops up and asks for your GitHub or GitLab username and password.</li>
+</ul>
+</div>
+<div id="does-rstudio-ask-for-your-username-and-password-every-time-you-try-to-push" class="section level3">
+<h3>Does RStudio ask for your username and password every time you try to push?</h3>
+<p>You need to do a push from the terminal to store your username/password.</p>
+<ol style="list-style-type: decimal">
+<li>Open up your project in RStudio and click the Git tab.</li>
+<li>Click on the cog icon and click <code>Shell...</code></li>
+<li>Type <code>git config --get credential.helper</code> and make sure you see <code>manager</code> (or <code>wincred</code>) if on Windows and <code>osxkeychain</code> if on Mac.</li>
+<li>If not, look above for the <code>git</code> command to add those credential helpers.</li>
+</ol>
+</div>
+<div id="still-no-luck-authenticating" class="section level3">
+<h3>Still no luck authenticating?</h3>
+<p>Git might not know how to open a terminal window for you. You can try running the commands at the command line.</p>
+<ol style="list-style-type: decimal">
+<li>Open up your project in RStudio.</li>
+<li>Make a change and commit the change.</li>
+<li>Click the Git tab. Then click on the cog icon and click <code>Shell...</code></li>
+<li></li>
 </ol>
 <!--
 ## Install R packages
@@ -543,17 +586,14 @@ devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
 ```
 -->
 </div>
-<div id="create-a-workshop-folder" class="section level2">
-<h2>Create a workshop folder</h2>
-<p>Create a folder/directory on your computer for the workshop materials. You can create it anywhere you want. But name it <code>RWorkflow</code> just so we all use the same folder name for the workshop.</p>
 </div>
-<div id="downloading-repositories" class="section level2">
-<h2>Downloading repositories</h2>
+<div id="week-2-downloading-other-peoples-repositories" class="section level2">
+<h2>Week 2: Downloading other people’s repositories</h2>
 <p>You will need to download repositories from <a href="https://github.com/RVerse-Tutorials">RVerse-Tutorials</a> for some of the weeks.</p>
 <p>There are two easy ways to do this. Use the one that seems more logical to you.</p>
 <p>Method 1.</p>
 <ol style="list-style-type: decimal">
-<li>In a browser, go to the GitHub repository you want to copy.</li>
+<li>In a browser, go to the GitHub (or GitLab) repository you want to copy.</li>
 <li>Copy its url.</li>
 <li>Open GitHub or GitLab.<br />
 </li>
@@ -569,18 +609,16 @@ devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
 <li>Open GitHub Desktop. Select File&gt;Clone Repository. Paste in the repository url that you are copying and tell it where to save the repository.</li>
 <li>Open RStudio and click the project tab in the top right and select, <code>New Project</code>. Then select <code>Existing Directory</code> and navigate to the directory where you just saved the repo.</li>
 </ol>
-<p>You can also clone someone elses repo directly into RStudio or GitHub Desktop and then “Publish” to GitHub or GitLab. I am not going to show that but I show that on this <a href="Git-RStudio.html">page</a> or you can google that info easily. For GitLab, it will require issuing Git commands from a terminal.</p>
+<p>You can also clone someone elses repo directly into RStudio or GitHub Desktop and then “Publish” to GitHub or GitLab. I am not going to show that but I show that on this <a href="Git-RStudio.html">page</a> or you can google that info easily. For GitLab, it will require issuing Git commands from a terminal. Note, in my experience, cloning to my GitHub/GitLab and then cloning that repository to my computer is the way to avoid Git-misery.</p>
 </div>
-<div id="installing-packages-from-github" class="section level2">
-<h2>Installing packages from GitHub</h2>
-<p>Run this code.</p>
-<pre class="r"><code>devtools::install_github(&quot;&lt;github account&gt;/repo name&quot;)</code></pre>
-</div>
-<div id="installing-packages-from-gitlab" class="section level2">
-<h2>Installing packages from GitLab</h2>
-<p>To install from the <code>gitlab.com</code> use this</p>
+<div id="week-2-installing-packages-from-githubgitlab" class="section level2">
+<h2>Week 2: Installing packages from GitHub/GitLab</h2>
+<p>Windows people: You will need to install <a href="https://cran.r-project.org/bin/windows/Rtools/history.html">Rtools</a>.</p>
+<p>Run this code to confirm that you can install packages from GitHub:</p>
+<pre class="r"><code>devtools::install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
+<p>To install from the <code>gitlab.com</code> the command is similar. <code>&lt;gitlab account&gt;</code> is a dummy. Replace with the real values.</p>
 <pre class="r"><code>devtools::install_gitlab(&quot;&lt;gitlab account&gt;/repo name&quot;)</code></pre>
-<p>To install from an internal GitLab server, like the NWFSC GitLab, use this. Note for the NWFSC GitLab, you need to be on the network since this is an internal (not public) server.</p>
+<p>To install from an internal GitLab server, like the NWFSC GitLab, use this. Note for the NWFSC GitLab, you need to be on the network since this is an internal (not public) server. Again, replace the dummy variables with the real values.</p>
 <pre class="r"><code>devtools::install_gitlab(&quot;&lt;gitlab account&gt;/repo name&quot;, host=&quot;&lt;url of the server&gt;&quot;)</code></pre>
 </div>
 <div id="optional-packages-with-c-code" class="section level2">
