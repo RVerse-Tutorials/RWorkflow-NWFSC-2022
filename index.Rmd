@@ -26,7 +26,6 @@ You can just watch or if you want to try out what I am showing, go to [Set-up](h
 
 * Week 5. Part 2. Documenting your code and data with Roxygen
 
-
 <hr>
 
 
