@@ -16,7 +16,7 @@ You can just watch or if you want to try out what I am showing, go to [Set-up](h
 
 ## Topics
 
-* Week 1. Introduction to workflow using RStudio and Git/GitHub/GitLab [Video](https://noaanmfs-meets.webex.com/recordingservice/sites/noaanmfs-meets/recording/playback/628dee4867004831803da607bd066031) Access code: PkUmZKt7
+* Week 1. Introduction to workflow using RStudio and Git/GitHub/GitLab [Video](https://www.youtube.com/watch?v=HxIpxVdQsDs)
 
 * Week 2. More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code
 
