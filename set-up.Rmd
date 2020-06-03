@@ -11,7 +11,20 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-If you want to follow along with the presentations, you will need R, RStudio, a GitHub or GitLab account, and GitHub Desktop. Note GitHub Desktop works with both GitHub and GitLab and I will illustrate both.
+If you want to follow along with the presentations, you will need R, RStudio, a GitHub or GitLab account, Git, and GitHub Desktop. Note GitHub Desktop works with both GitHub and GitLab and I will illustrate both.
+
+Summary of the set-up steps. Do them in this order.
+
+1. Get a GitHub or GitLab account
+2. Install Git for your operating system
+3. (optional) Install GitHub Desktop
+4. Install R (if needed)
+5. Install RStudio (if needed)
+6. Tell RStudio where git.exe is located
+7. Tell Git how to store and get your GitHub/GitLab username and password
+8. (optional) Login to GitHub/GitLab from GitHub Desktop
+
+The first time you do these steps, it can take some time and be confusing, but you only do this once.
 
 ## Week 1: GitHub and GitLab
 
@@ -27,9 +40,16 @@ If you don't already have an account on GitHub, go to [github.com](https://githu
 
 [GitLab](gitlab.com) is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab's free account gives you unlimited private repos.
 
-## Week 1: Install GitHub Desktop (Windows and Mac users)
+## Week 1
 
-Although you can use Git through RStudio, I am going to show you how to use GitHub Desktop, which is a nice Git interface for basic work. Despite the name, GitHub Desktop works just as well with GitLab.
+### Install Git
+
+  * Windows https://gitforwindows.org/ [Read notes here](https://happygitwithr.com/install-git.html#install-git-windows)
+  * Mac It should be installed. Open a terminal window and type, `git --version`. If it asked to install XCode, say Yes. [Read notes here](https://happygitwithr.com/install-git.html#macos)
+
+### Install GitHub Desktop (Windows and Mac users)
+
+You can use Git through RStudio, but I am also going to show you how to use GitHub Desktop, which is a nice Git interface for basic work. Despite the name, GitHub Desktop works just as well with GitLab.
 
 1. Go to [desktop.github.com](https://desktop.github.com/) and install.
 2. Open GitHub Desktop, go to 'GitHub Desktop > Preferences' menu.  
@@ -51,13 +71,11 @@ Go to [CRAN](https://cran.r-project.org/) and find the download link for your co
 2. Go to Global Options (from the Tools menu)
 3. Click Git/SVN
 4. Click Enable version control interface for RStudio projects
-5. You will need the location of the git executible. On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe`
-
-Linux users will need to install Git for this to work.  Windows/Mac users: Git comes with GitHub Desktop.
+5. You will need the location of the git executible. On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe`.
 
 ## GitLab and SSH keys and SSL tokens
 
-In order to connect to GitLab, you will need to make an SSH key. GitLab will ask you for this. Note, I am not 100% sure GitLab actually needs this if it let's you. You can try skipping this.
+In order to connect to GitLab, you will need to make an SSH key. GitLab will ask you for this. Note, I am not 100% sure GitLab actually needs this. If it let's you, you can try skipping this.
 
 Windows users: The txt file with the public token will be xxx.pub and Windows sees that as a MSPublisher file. Don't double-click the file to open. Use Open With, and select a text editor.
 
@@ -103,15 +121,26 @@ You need to do a push from the terminal to store your username/password.
 3. Type `git config --get credential.helper` and make sure you see `manager` (or `wincred`) if on Windows and `osxkeychain` if on Mac.
 4. If not, look above for the `git` command to add those credential helpers.
 
-### Still no luck authenticating? 
+### When you try to push with RStudio do you get an error with `askpass`?
 
-Git might not know how to open a terminal window for you. You can try running the commands at the command line.
+RStudio doesn't know how to open a terminal to ask for your username and password. You'll need to push from the shell the first time.
 
 1. Open up your project in RStudio.
-2. Make a change and commit the change.
-3. Click the Git tab. Then click on the cog icon and click `Shell...`
-4. 
+2. Make a change to a file and commit the change.
+3. Click on the Git tab, click the cog icon and click `Shell...`
+4. Type `git push`
+5. It should ask for your GitHub or GitLab username and password.
 
+
+### Still no luck authenticating? 
+
+Git might have the wrong remote.
+
+1. Open up your project in RStudio.
+2. Click the Git tab. Then click on the cog icon and click `Shell...`
+3. Type `git remote -v` and see if what is listed looks correct.
+4. If not, the command to set the new remote is
+`git remote set-url origin URL` Replace `URL` with the URL of your repository!!
 
 
 
