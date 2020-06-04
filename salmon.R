@@ -1,0 +1,43 @@
+#Set your working directory
+setwd('~/GitHub/RWorkflow-NWFSC-2020/')
+
+#-----Read in salmon data----
+fil <- "salmon.csv"
+saldat <- read.csv(fil)
+colnames(saldat) <- c("year", "wild", "flow", "temp")
+fil <- "steelhead.csv"
+steeldat <- as.matrix(read.csv(fil))
+
+#Create training and testing data frames
+dat1 <- saldat[saldat$year<=2010,]
+dat2 <- saldat[saldat$year>2010,]
+
+# gam fit
+library(mgcv)
+fit1 <- gam(wild ~ s(flow), data=dat1)
+fit2 <- lm(steeldat[1,1:30] ~ steeldat[2,1:30])
+library(forecast)
+dat <- dat1$wild
+fit3 <- auto.arima(dat)
+
+#Save data
+save(fit1, fit2, fit3, file="Sim_6_5_2020_wild.RData") #save data 
+
+#Make some plots
+plot(fit1)
+plot(fit2)
+
+pred1 <- predict(fit1, newdata=data.frame(dat2))
+plot(dat1$year, dat1$wild, xlim=c(1980,2020), type="l")
+lines(dat2$year, dat2$wild, col="blue")
+lines(dat2$year, pred1, col="red", lty=2)
+
+pred2 <- predict(fit2, newdata=data.frame(dat2))
+plot(dat1$year, dat1$wild, xlim=c(1980,2020), type="l")
+lines(dat2$year, dat2$wild, col="blue")
+lines(dat2$year, pred2, col="red", lty=2)
+
+pred3 <- forecast(fit3, h=9)
+plot(dat1$year, dat1$wild, xlim=c(1980,2020), type="l")
+lines(dat2$year, dat2$wild, col="blue")
+lines(dat2$year, pred3$mean, col="red", lty=2)

@@ -463,8 +463,8 @@ div.tocify {
 
 <p>If you want to follow along with the presentations, you will need R, RStudio, a GitHub or GitLab account, and GitHub Desktop or Git+GitHub Desktop. Note GitHub Desktop works with both GitHub and GitLab and I will illustrate both.</p>
 <p>Summary of the set-up steps. You can also consult this <a href="https://happygitwithr.com/">great online reference</a>.</p>
-<div id="git-from-rstudio" class="section level2">
-<h2>Git from RStudio</h2>
+<div id="git-from-rstudio" class="section level1">
+<h1>Git from RStudio</h1>
 <p>For the class, I am showing Git within RStudio, but it can be a real headache to get working for beginners. The following set-up is most likely to work.</p>
 <ol style="list-style-type: decimal">
 <li>Get a GitHub or GitLab account</li>
@@ -476,8 +476,8 @@ div.tocify {
 <li>Do your first Push from the shell to store your username and password.</li>
 </ol>
 </div>
-<div id="git-from-github-desktop" class="section level2">
-<h2>Git from GitHub Desktop</h2>
+<div id="git-from-github-desktop" class="section level1">
+<h1>Git from GitHub Desktop</h1>
 <p>I normally work with Git from GitHub Desktop only. It tends not to have the authentication headaches that Git in RStudio has. However, for the class I am going to work with Git from RStudio but I will also show GitHub Desktop. GitHub Desktop doesn’t have the authentication headaches that Git in RStudio has.</p>
 <ol style="list-style-type: decimal">
 <li>Get a GitHub or GitLab account</li>
@@ -488,33 +488,42 @@ div.tocify {
 </ol>
 <p>Next steps depend if you are a GitHub user or GitLab user:</p>
 <p>GitHub: Login to GitHub from GitHub Desktop</p>
-<p>GitLab: 1. Create a PUBLIC repo on GitLab. 2. Copy its URL. 3. Open GitHub Desktop. Click File &gt; Clone Repository &gt; URL. Then paste in the URL of the GitLab repo. Pick a directory to save the repo in. 4. Open the new repo in RStudio and make a change to a file. Save. 5. Go back to GitHub Desktop. Commit the change. 6. Push. A window will popup asking for your username and password. 7. You’re done. Next time it won’t need to ask.</p>
+<p>GitLab:</p>
+<ol style="list-style-type: decimal">
+<li>Create a PUBLIC repo on GitLab.</li>
+<li>Copy its URL.</li>
+<li>Open GitHub Desktop. Click File &gt; Clone Repository &gt; URL. Then paste in the URL of the GitLab repo. Pick a directory to save the repo in.</li>
+<li>Open the new repo in RStudio and make a change to a file. Save.</li>
+<li>Go back to GitHub Desktop. Commit the change.</li>
+<li>Push. A window will popup asking for your username and password.</li>
+<li>You’re done. Next time it won’t need to ask.</li>
+</ol>
 <p>To use both, do both sets of steps above.</p>
 </div>
-<div id="details" class="section level2">
-<h2>Details</h2>
-<div id="github-and-gitlab" class="section level3">
-<h3>GitHub and GitLab</h3>
-<div id="nwfsc-staff" class="section level4">
-<h4>NWFSC staff</h4>
+<div id="details" class="section level1">
+<h1>Details</h1>
+<div id="github-and-gitlab" class="section level2">
+<h2>GitHub and GitLab</h2>
+<div id="nwfsc-staff" class="section level3">
+<h3>NWFSC staff</h3>
 <p><strong>GitHub</strong> If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I’ll show a few examples. There is paperwork to fill out <a href="https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view">info</a> and <a href="https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view">checklist</a>. Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub.</p>
 <p><strong>GitLab</strong> If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitLab server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed. Note it is easy to import back and forth between GitHub and GitLab.</p>
 </div>
-<div id="non-noaa-participants-or-those-using-githubgitlab-purely-for-non-noaa-work" class="section level4">
-<h4>Non-NOAA participants or those using GitHub/GitLab purely for non-NOAA work</h4>
+<div id="non-noaa-participants-or-those-using-githubgitlab-purely-for-non-noaa-work" class="section level3">
+<h3>Non-NOAA participants or those using GitHub/GitLab purely for non-NOAA work</h3>
 <p>If you don’t already have an account on GitHub, go to <a href="https://github.com">github.com</a> and click the “sign up” link near upper right of the page. It is pretty self-explanatory. Go ahead and get a <strong>free</strong> account. The free GitHub account does not have private repositories. Everything is public and viewable. You can upgrade (for money) and get private repositories.</p>
 <p><a href="gitlab.com">GitLab</a> is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab’s free account gives you unlimited private repos.</p>
 </div>
 </div>
-<div id="git-for-your-os" class="section level3">
-<h3>Git for your OS</h3>
+<div id="git-for-your-os" class="section level2">
+<h2>Git for your OS</h2>
 <ul>
 <li>Windows <a href="https://gitforwindows.org/" class="uri">https://gitforwindows.org/</a> <a href="https://happygitwithr.com/install-git.html#install-git-windows">Read notes here</a></li>
 <li>Mac It should be installed. Open a terminal window and type, <code>git --version</code>. If it asks to install XCode, say Yes. <a href="https://happygitwithr.com/install-git.html#macos">Read notes here</a></li>
 </ul>
 </div>
-<div id="github-desktop" class="section level3">
-<h3>GitHub Desktop</h3>
+<div id="github-desktop" class="section level2">
+<h2>GitHub Desktop</h2>
 <p>GitHub Desktop is a nice Git interface for basic work. Despite the name, GitHub Desktop works just as well with GitLab.</p>
 <ol style="list-style-type: decimal">
 <li>Go to <a href="https://desktop.github.com/">desktop.github.com</a> and install.</li>
@@ -523,16 +532,24 @@ div.tocify {
 <li>Under ‘Accounts’, sign into your GitHub account.</li>
 <li>Under ‘Git’, enter your name (or initials) and the email you used for your GitHub account.</li>
 </ol>
-<p>If you are using GitLab: GitLab: 1. Create a PUBLIC repo on GitLab. 2. Copy its URL. 3. Open GitHub Desktop. Click File &gt; Clone Repository &gt; URL. Then paste in the URL of the GitLab repo. Pick a directory to save the repo in. 4. Open the new repo in RStudio and make a change to a file. Save. 5. Go back to GitHub Desktop. Commit the change. 6. Push. A window will popup asking for your username and password. 7. You’re done. Next time it won’t need to ask.</p>
+<p>If you are using GitLab:</p>
+<ol style="list-style-type: decimal">
+<li>Create a PUBLIC repo on GitLab.</li>
+<li>Copy its URL.</li>
+<li>Open GitHub Desktop. Click File &gt; Clone Repository &gt; URL. Then paste in the URL of the GitLab repo. Pick a directory to save the repo in.</li>
+<li>Open the new repo in RStudio and make a change to a file. Save.</li>
+<li>Go back to GitHub Desktop. Commit the change.</li>
+<li>Push. A window will popup asking for your username and password.</li>
+<li>You’re done. Next time it won’t need to ask.</li>
+</ol>
 </div>
-<div id="r-and-rstudio" class="section level3">
-<h3>R and RStudio</h3>
+<div id="r-and-rstudio" class="section level2">
+<h2>R and RStudio</h2>
 <ul>
 <li><p><strong>R:</strong> Make sure you have a fairly recent version of R.<br />
 Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.</p></li>
 <li><p><strong>RStudio:</strong> Install the latest version of RStudio. Get it from <a href="https://www.rstudio.com/products/rstudio/download">RStudio</a> and install the appropriate one for your operating system (Windows or Mac). Again contact IT to help install if you are on a NOAA computer.</p></li>
 </ul>
-</div>
 </div>
 <div id="set-up-rstudio-to-use-git" class="section level2">
 <h2>Set up RStudio to use Git</h2>
@@ -574,8 +591,9 @@ Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link 
 <li>Paste into the page where GitHub asks for it. Lost that place? It’s in Settings&gt;SSH keys</li>
 </ol>
 </div>
-<div id="help" class="section level2">
-<h2>Help!</h2>
+</div>
+<div id="help" class="section level1">
+<h1>Help!</h1>
 <p>Can’t get Git, GitHub/GitLab, and RStudio to connect?</p>
 <p>First off, can you get GitHub Desktop to work? If so, I would say just use that for awhile. You don’t need to use Git in RStudio.</p>
 <p>If you want to use Git in RStudio, read on. You can also consult this <a href="https://happygitwithr.com/">great online resource</a>.</p>
@@ -644,7 +662,6 @@ devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
 ```
 -->
 </div>
-</div>
 <div id="week-2-downloading-other-peoples-repositories" class="section level2">
 <h2>Week 2: Downloading other people’s repositories</h2>
 <p>You will need to download repositories from <a href="https://github.com/RVerse-Tutorials">RVerse-Tutorials</a> for some of the weeks.</p>
@@ -686,6 +703,7 @@ devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
 <li><p><strong>Rtools</strong> Windows users <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> also so you can build packages with C++ code if needed. See comments here about changing path. <a href="http://stat545.com/packages01_system-prep.html#windows-system-prep">Rtools</a></p></li>
 <li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>
 </ul>
+</div>
 </div>
 
 <hr>

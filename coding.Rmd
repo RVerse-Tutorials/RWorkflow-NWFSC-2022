@@ -42,4 +42,43 @@ Coding Tips
 * Tips on writing code and functions in R - little things that will make your code better and more robust
 * Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs
 
+# Code Organization
+
+## R is object oriented
+
+Run this code.
+
+```{r}
+fit <- lm(dist ~ speed, data=cars)
+class(fit)
+```
+
+"lm" is the class of the object "fit". R *knows* things to do with objects of class "lm".
+
+```{r}
+coef(fit)
+```
+
+It did that because there is a function `coef.lm` and R looks for that to see what to do when you pass a "lm" object to `coef()`.
+
+All object of class "lm" are a list with a standard set of items in that list:
+
+```{r}
+names(fit)
+```
+
+That information contains all the information about the fit, the data used for the fit, and the call to `lm()`. We can just pass `fit` to `print()`, `plot()`, `summary()`, etc. I could write a new function, `foo.lm`, to do something new with a "lm" object. 
+
+In the call to `lm`, we had another object, `saldat`. `saldat` is class `data.frame`. `lm()` knows what to do with data that is a data frame.
+
+## Object-oriented mindset
+
+Let's look at `salmon.R`. What sort of elements are in this script?
+
+* data
+* fits
+* predictions
+* plots
+
+But the elements are not like "objects". One data set is a data frame with column headings year, wild, flow, temp and the other is a matrix with years as column headings. The fits are all different types and some have no info about what years or data I fit to (see eg `fit3`). The plots have to be tweaked based on the data and the fits.
 
