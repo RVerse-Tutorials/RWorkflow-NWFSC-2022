@@ -73,7 +73,7 @@ In the call to `lm`, we had another object, `saldat`. `saldat` is class `data.fr
 
 ## Object-oriented mindset
 
-Let's look at `salmon.R`. What sort of elements are in this script?
+Let's look at `salmon.R` [View here](salmon-script.html). What sort of elements are in this script?
 
 * data
 * fits
@@ -81,4 +81,8 @@ Let's look at `salmon.R`. What sort of elements are in this script?
 * plots
 
 But the elements are not like "objects". One data set is a data frame with column headings year, wild, flow, temp and the other is a matrix with years as column headings. The fits are all different types and some have no info about what years or data I fit to (see eg `fit3`). The plots have to be tweaked based on the data and the fits.
+
+Let's think about how to make these stand-alone "objects". This is the time to get out your notebook.
+
+We'll have a data processing function, a fitting function, a prediction function, and a plotting function. Each outputs an object with the necessary info needed by other functions (maybe we'll skip that for the plotting function).
 
