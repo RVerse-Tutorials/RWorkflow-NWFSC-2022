@@ -227,31 +227,6 @@ devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
 ```
 -->
 
-## Week 2: Downloading other people's repositories
-
-You will need to download repositories from [RVerse-Tutorials](https://github.com/RVerse-Tutorials) for some of the weeks.  
-
-There are two easy ways to do this. Use the one that seems more logical to you.
-
-Method 1.
-
-1. In a browser, go to the GitHub (or GitLab) repository you want to copy.
-2. Copy its url.
-3. Open GitHub or GitLab.  
-4. If using GitHub, click the `+` in top right and click `import repository`. Paste in the url and give your repo a name.
-4. If using GitLab, click `New Project` on right, then `Import Repository` tab, then click `Repo by URL`. Paste in url and give repo a name.
-5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Version Control` and paste in the url of **your** repository's url.  For example, `https://github.com/<youraccount>/Test`  
-6. Add the new repo to GitHub Desktop. Open GitHub Desktop, select File>Add Local Repository and navigate to the folder with the new repository.
-
-Method 2.
-
-Steps 1-4 are the same but you can swap step 5 and 6.
-
-5. Open GitHub Desktop. Select File>Clone Repository. Paste in the repository url that you are copying and tell it where to save the repository.
-5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Existing Directory` and navigate to the directory where you 
-just saved the repo.
-
-You can also clone someone elses repo directly into RStudio or GitHub Desktop and then "Publish" to GitHub or GitLab. I am not going to show that but I show that on this [page](Git-RStudio.html) or you can google that info easily. For GitLab, it will require issuing Git commands from a terminal. Note, in my experience, cloning to my GitHub/GitLab and then cloning that repository to my computer is the way to avoid Git-misery.
 
 ## Week 2: Installing packages from GitHub/GitLab
 

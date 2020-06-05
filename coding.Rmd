@@ -42,6 +42,39 @@ Coding Tips
 
 The material I'm presenting geared toward those who have done a bit of R programming but work mainly with scripts or with functions just for their own use.  For new programmers, I recommend [The R Student Companion](https://www.amazon.com/R-Student-Companion-Brian-Dennis-ebook/dp/B009AIU07G) -> [R for Data Science](https://r4ds.had.co.nz/) -> books specific to your work. 
 
+## Downloading other people's repositories
+
+There are two easy ways to do this. Use the one that seems more logical to you.
+
+Method 1.
+
+1. In a browser, go to the GitHub (or GitLab) repository you want to copy.
+2. Copy its url.
+3. Open GitHub or GitLab.  
+4. If using GitHub, click the `+` in top right and click `import repository`. Paste in the url and give your repo a name.
+4. If using GitLab, click `New Project` on right, then `Import Repository` tab, then click `Repo by URL`. Paste in url and give repo a name.
+5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Version Control` and paste in the url of **your** repository's url.  For example, `https://github.com/<youraccount>/Test`  
+6. Add the new repo to GitHub Desktop. Open GitHub Desktop, select File>Add Local Repository and navigate to the folder with the new repository.
+
+Method 2.
+
+Steps 1-4 are the same but you can swap step 5 and 6.
+
+5. Open GitHub Desktop. Select File>Clone Repository. Paste in the repository url that you are copying and tell it where to save the repository.
+5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Existing Directory` and navigate to the directory where you 
+just saved the repo.
+
+You can also clone someone elses repo directly into RStudio or GitHub Desktop and then "Publish" to GitHub or GitLab. I am not going to show that but I show that on this [page](Git-RStudio.html). For GitLab, it will require issuing Git commands from a terminal. Note, in my experience, method 1 or 2 above is the way to avoid Git-misery as a Git beginner.
+
+## Making a copy of your own repository
+
+Let say you want to make a copy of a repository and use it as a template to make something else. And you don't want the history!
+
+1. Make a blank repo on GitHub or GitLab (add that Readme file)
+2. Pull that down to your computer
+3. Copy the repo you want to copy into the new repo folder but **do not copy the .git folder**. Remember the `.git` folder is hidden.
+
+
 # Code Organization
 
 ## R is object oriented

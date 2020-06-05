@@ -502,6 +502,38 @@ Robust
 <li>Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs</li>
 </ul>
 <p>The material I’m presenting geared toward those who have done a bit of R programming but work mainly with scripts or with functions just for their own use. For new programmers, I recommend <a href="https://www.amazon.com/R-Student-Companion-Brian-Dennis-ebook/dp/B009AIU07G">The R Student Companion</a> -&gt; <a href="https://r4ds.had.co.nz/">R for Data Science</a> -&gt; books specific to your work.</p>
+<div id="downloading-other-peoples-repositories" class="section level2">
+<h2>Downloading other people’s repositories</h2>
+<p>There are two easy ways to do this. Use the one that seems more logical to you.</p>
+<p>Method 1.</p>
+<ol style="list-style-type: decimal">
+<li>In a browser, go to the GitHub (or GitLab) repository you want to copy.</li>
+<li>Copy its url.</li>
+<li>Open GitHub or GitLab.<br />
+</li>
+<li>If using GitHub, click the <code>+</code> in top right and click <code>import repository</code>. Paste in the url and give your repo a name.</li>
+<li>If using GitLab, click <code>New Project</code> on right, then <code>Import Repository</code> tab, then click <code>Repo by URL</code>. Paste in url and give repo a name.</li>
+<li>Open RStudio and click the project tab in the top right and select, <code>New Project</code>. Then select <code>Version Control</code> and paste in the url of <strong>your</strong> repository’s url. For example, <code>https://github.com/&lt;youraccount&gt;/Test</code><br />
+</li>
+<li>Add the new repo to GitHub Desktop. Open GitHub Desktop, select File&gt;Add Local Repository and navigate to the folder with the new repository.</li>
+</ol>
+<p>Method 2.</p>
+<p>Steps 1-4 are the same but you can swap step 5 and 6.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Open GitHub Desktop. Select File&gt;Clone Repository. Paste in the repository url that you are copying and tell it where to save the repository.</li>
+<li>Open RStudio and click the project tab in the top right and select, <code>New Project</code>. Then select <code>Existing Directory</code> and navigate to the directory where you just saved the repo.</li>
+</ol>
+<p>You can also clone someone elses repo directly into RStudio or GitHub Desktop and then “Publish” to GitHub or GitLab. I am not going to show that but I show that on this <a href="Git-RStudio.html">page</a>. For GitLab, it will require issuing Git commands from a terminal. Note, in my experience, method 1 or 2 above is the way to avoid Git-misery as a Git beginner.</p>
+</div>
+<div id="making-a-copy-of-your-own-repository" class="section level2">
+<h2>Making a copy of your own repository</h2>
+<p>Let say you want to make a copy of a repository and use it as a template to make something else. And you don’t want the history!</p>
+<ol style="list-style-type: decimal">
+<li>Make a blank repo on GitHub or GitLab (add that Readme file)</li>
+<li>Pull that down to your computer</li>
+<li>Copy the repo you want to copy into the new repo folder but <strong>do not copy the .git folder</strong>. Remember the <code>.git</code> folder is hidden.</li>
+</ol>
+</div>
 </div>
 <div id="code-organization" class="section level1">
 <h1>Code Organization</h1>
@@ -760,7 +792,7 @@ plot(1:10)</code></pre>
 <pre class="r"><code>rnorm(100) %&gt;%
   matrix(ncol = 2) %&gt;%
   apply(2,mean)</code></pre>
-<pre><code>## [1] -0.15417262 -0.08296111</code></pre>
+<pre><code>## [1] 0.1373098 0.1282173</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Gravitate towards a standard coding style. Don’t make one up. Use a standard one. I use mainly the <a href="https://style.tidyverse.org/">tidyverse style guide</a> (or I try). There is a package called <strong>styler</strong> that has a RStudio plugin that makes it easy to restyle all your code.</p></li>
 <li><p>Gravitate towards a standardized data format. It’s easier to reuse your plotting functions (and others) if you do that. I use a format similar to <a href="https://r4ds.had.co.nz/tidy-data.html">tidy data</a> to data in data frames.</p></li>
