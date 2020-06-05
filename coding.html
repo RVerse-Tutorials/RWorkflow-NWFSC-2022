@@ -11,7 +11,7 @@
 
 
 
-<title>Week 2: Coding Tips</title>
+<title>Week 2. More Git + Better Coding Practices</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -457,7 +457,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 2: Coding Tips</h1>
+<h1 class="title toc-ignore">Week 2. More Git + Better Coding Practices</h1>
 
 </div>
 
@@ -483,11 +483,9 @@ Robust
 </tr>
 </tbody>
 </table>
-<div id="week-2.-more-git-better-coding-practices" class="section level1">
-<h1>Week 2. More Git + Better Coding Practices</h1>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
 <p>This week I will cover more Git topics and basic coding habits that I have learned over the years. These are good habits that will help make your code less buggy and easier to extend.</p>
-<div id="agenda" class="section level3">
-<h3>Agenda</h3>
 <p>Git, GitHub, GitLab</p>
 <ul>
 <li>How to clone someone else’s GitHub or GitLab repository</li>
@@ -503,7 +501,6 @@ Robust
 <li>Tips on writing code and functions in R - little things that will make your code better and more robust</li>
 <li>Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs</li>
 </ul>
-</div>
 </div>
 <div id="code-organization" class="section level1">
 <h1>Code Organization</h1>
@@ -528,31 +525,32 @@ class(fit)</code></pre>
 </div>
 <div id="object-oriented-mindset" class="section level2">
 <h2>Object-oriented mindset</h2>
-<p>Let’s look at <code>salmon.R</code>. What sort of elements are in this script?</p>
+<p>Let’s look at <a href="salmon.html">salmon.R</a>. What sort of elements are in this script?</p>
 <ul>
 <li>data</li>
 <li>fits</li>
 <li>predictions</li>
 <li>plots</li>
 </ul>
-<p>But the elements are not like “objects”. One data set is a data frame with column headings year, wild, flow, temp and the other is a matrix with years as column headings. The fits are all different types and some have no info about what years or data I fit to (see eg <code>fit3</code>). The plots have to be tweaked based on the data and the fits.</p>
+<p>But the elements are not like “objects”. One data set is a data frame with column headings year, wild, flow, temp and the other is a matrix with years as column headings. The fits are all different types and some have no info about what years or data I fit to (see e.g. <code>fit3</code>). The plots have to be tweaked based on the data and the fits.</p>
 <p>Instead we would like to work with “objects” that have a consistent format and have all the information needed for functions that use those objects.</p>
 <p><img src="images/code-org.png" width="500" /></p>
-<div id="an-object" class="section level3">
-<h3>An object</h3>
+</div>
+<div id="an-object" class="section level2">
+<h2>An object</h2>
 <ul>
-<li><strong>Has a standardized form</strong></li>
+<li><strong>Has a standardized form</strong> (you can describe what elements it needs to have)</li>
 <li>Has all the information that subsequent functions might need to use this object.</li>
 <li>Has information so you know how this object was made</li>
 </ul>
-</div>
 </div>
 <div id="how-on-earth-is-one-supposed-to-do-this" class="section level2">
 <h2>How on earth is one supposed to do this?</h2>
 <p><em>…if it is even worthwhile, which I’m not so sure about…</em></p>
 <p>This is part of code organization. Time put into planning and standardizing your code will make you much more efficient (even if it takes time in the beginning) and will definitely help prevent errors and bugs in your code. A big coding project requires this way of thinking.</p>
-<div id="how-do-get-started-with-this-kind-of-structure" class="section level3">
-<h3>How do get started with this kind of structure</h3>
+</div>
+<div id="how-do-get-started-with-this-kind-of-structure" class="section level2">
+<h2>How do get started with this kind of structure</h2>
 <ol style="list-style-type: decimal">
 <li>Do a little planning on a piece of paper. Example, <strong>data</strong>:</li>
 </ol>
@@ -560,8 +558,9 @@ class(fit)</code></pre>
 <img src="images/data-planning.jpg" alt="data planning" />
 <p class="caption">data planning</p>
 </div>
-<ol start="2" style="list-style-type: decimal">
-<li>Write functions instead of long scripts.</li>
+<ol style="list-style-type: decimal">
+<li><p>Then start putting your script in to categories (data, fitting, plotting). Look at <a href="salmon.html">salmon.R</a></p></li>
+<li><p>Write functions instead of long scripts.</p></li>
 </ol>
 <p>Like <code>read_data()</code>, <code>fit_model()</code>, <code>plot1()</code>. This will naturally lead you towards “object-oriented” thinking.</p>
 <p>You do not want to be duplicating your code, e.g. lines of code that fit a model or plot, over and over. You’ll just introduce impossible to find errors when you decide to change how you are fitting the data.</p>
@@ -574,7 +573,9 @@ class(fit)</code></pre>
   if(stringr::str_detect(fil, &quot;Chinook&quot;)) species &lt;- &quot;Chinook&quot;
   if(stringr::str_detect(fil, &quot;Coho&quot;)) species &lt;- &quot;Coho&quot;
   meta=list(
+    file=fil,
     call=deparse( sys.call() ),
+    date=Sys.time(),
     notes=notes,
     species=species,
     min.year=min(dat$year),
@@ -610,27 +611,164 @@ plot1(b, ylims=ylims)</code></pre>
 </ol>
 <p>Next step for object-oriented programming: Weeks 4 and 5 will go into how to assemble your code into an R package and I’ll talk about creating formal objects and methods (like print, plot) for those objects.</p>
 </div>
-</div>
-<div id="coding-tips" class="section level2">
-<h2>Coding Tips</h2>
+<div id="namespaces" class="section level2">
+<h2>Namespaces</h2>
 <ul>
 <li>Namespaces. Every function in R belongs to a package. You can be 100% explicit in your function calls by using <code>::</code>. So <code>forecast::forecast()</code> would specify the <code>forecast</code> function in the <strong>forecast</strong> package. Why use this?</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Show what package the function comes from</li>
-<li>Don’t run into the problem where code fails because you forgot to do <code>library(package)</code>.</li>
-<li>Don’t run into problem where you have functions with the same name in two different packages or you accidentally give your function the same name as the function in a package that you need.</li>
+<li><strong>Show what package the function comes from</strong></li>
 </ol>
+<pre class="r"><code>?dismo</code></pre>
+<pre><code>## No documentation for &#39;dismo&#39; in specified packages and libraries:
+## you could try &#39;??dismo&#39;</code></pre>
+<pre class="r"><code>?dismo::dismo</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>You won’t run into the problem where code fails because you forgot to do <code>library(package)</code> or <code>require(package)</code>.</li>
+<li>You won’t run into problem where you have functions with the same name in two different packages or you accidentally give your function the same name as the function in a package that you need.</li>
+</ol>
+<p>Disastrous things that happen to your code when you don’t use Namespaces.</p>
+<pre class="r"><code>auto.arima &lt;- function(x){x}
+library(forecast)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;forecast&#39;:
+##   method             from    
+##   fitted.fracdiff    fracdiff
+##   residuals.fracdiff fracdiff</code></pre>
+<pre><code>## 
+## Attaching package: &#39;forecast&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     auto.arima</code></pre>
+<pre class="r"><code>auto.arima(1:10)</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>rm(auto.arima)
+auto.arima(1:10)</code></pre>
+<pre><code>## Series: 1:10 
+## ARIMA(0,1,0) with drift 
+## 
+## Coefficients:
+## drift  
+##     1  
+## 
+## sigma^2 estimated as 0:  log likelihood=Inf
+## AIC=-Inf   AICc=-Inf   BIC=-Inf</code></pre>
 <p>I use <code>::</code> for cases where I only need a few functions from that package OR when I am writing an R package (because it is required for me to do this).</p>
-<ul>
-<li>Tips on writing code and functions in R - little things that will make your code better and more robust</li>
-<li>Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs</li>
-</ul>
+</div>
+<div id="various-tips-and-quirks-of-r" class="section level2">
+<h2>Various Tips and Quirks of R</h2>
+<ol style="list-style-type: decimal">
+<li>Your working directory environment is your enemy (for bugs at least). You will have to keep it clean <code>rm(list=ls())</code>, use Rmarkdown files to run code (because that uses a clean environment), or assemble your code into an R package.</li>
+</ol>
+<p><em>All R coders forget this periodically and have wasted significant hours debugging due to a variable left in the environment.</em></p>
+<ol style="list-style-type: decimal">
+<li><p>Use <code>class()</code> to figure out what R thinks an objects class is. The class of an object determines many things about how R functions respond to an object.</p></li>
+<li><p>Data frames are lists not matrices. Sadly R does not tell you this.</p></li>
+</ol>
+<pre class="r"><code>a &lt;- data.frame(a=1:10, b=1:10, c=1:10)
+t(a[,1:2])</code></pre>
+<pre><code>##   [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## a    1    2    3    4    5    6    7    8    9    10
+## b    1    2    3    4    5    6    7    8    9    10</code></pre>
+<pre class="r"><code>a[,1:2]%*%t(a[,1:2])</code></pre>
+<pre><code>## Error in a[, 1:2] %*% t(a[, 1:2]): requires numeric/complex matrix/vector arguments</code></pre>
+<p>Doesn’t work because <code>a</code> is not a matrix not matter how it looks like one.</p>
+<pre class="r"><code>class(a[,1:2])</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>class(a[[1]])</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>class(a[1])</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>class(unlist(a))</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>unlist(lapply(a, length))</code></pre>
+<pre><code>##  a  b  c 
+## 10 10 10</code></pre>
+<ol style="list-style-type: decimal">
+<li>Factors (in data frames) is cause of much trouble. You can avoid with</li>
+</ol>
+<pre class="r"><code>a &lt;- data.frame(a=1:10, b=letters[1:10], stringsAsFactors=FALSE)
+unlist(lapply(a,class))</code></pre>
+<pre><code>##           a           b 
+##   &quot;integer&quot; &quot;character&quot;</code></pre>
+<pre class="r"><code>a &lt;- data.frame(a=1:10, b=letters[1:10])
+unlist(lapply(a,class))</code></pre>
+<pre><code>##         a         b 
+## &quot;integer&quot;  &quot;factor&quot;</code></pre>
+<p>Figuring out when you need a character to be a “factor” and when you need it to be a “character” will lead to much suffering, but with time, you’ll figure it out. Remember, <code>class()</code> is your friend.</p>
+<ol style="list-style-type: decimal">
+<li>R “helps” you changing class on your objects…<strong>silently</strong>. This will cause a frightful number of mysterious bugs and errors.</li>
+</ol>
+<pre class="r"><code>a &lt;- data.frame(a=1:10, b=letters[1:10], stringsAsFactors=FALSE)
+apply(a, 2, function(x){x[1:2]})</code></pre>
+<pre><code>##      a    b  
+## [1,] &quot; 1&quot; &quot;a&quot;
+## [2,] &quot; 2&quot; &quot;b&quot;</code></pre>
+<p>What just happened? <code>apply</code> needs a matrix, so R <em>silently</em> turned your data frame into a matrix. In a matrix all elements need to be the same class. So in this case it made everything a character.</p>
+<pre class="r"><code>a &lt;- matrix(1, 3, 3)
+apply(a, 2, mean)</code></pre>
+<pre><code>## [1] 1 1 1</code></pre>
+<pre class="r"><code>apply(a[,1:2], 2, mean)</code></pre>
+<pre><code>## [1] 1 1</code></pre>
+<pre class="r"><code>apply(a[,1], 2, mean)</code></pre>
+<pre><code>## Error in apply(a[, 1], 2, mean): dim(X) must have a positive length</code></pre>
+<pre class="r"><code>class(a)</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre class="r"><code>class(a[,1])</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>class(a[,1,drop=FALSE])</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
 <ol style="list-style-type: decimal">
 <li>Use <code>FALSE</code> and <code>TRUE</code> instead of <code>F</code> and <code>T</code></li>
-<li></li>
 </ol>
+<pre class="r"><code>T==1</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>T &lt;- 1:10
+T==1</code></pre>
+<pre><code>##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>TRUE=1:10</code></pre>
+<pre><code>## Error in TRUE = 1:10: invalid (do_set) left-hand side to assignment</code></pre>
+<pre class="r"><code>rm(T)</code></pre>
+<ol style="list-style-type: decimal">
+<li>You can overwrite most any function in R. Like <code>plot()</code>!!</li>
+</ol>
+<pre class="r"><code>plot &lt;- function(x){cat(&quot;Yelp!&quot;)}
+plot(1:10)</code></pre>
+<pre><code>## Yelp!</code></pre>
+<pre class="r"><code>graphics::plot(1:10)</code></pre>
+<p><img src="coding_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code>rm(plot)</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>You could spend 2-3 hours figuring out how to use <code>tapply()</code> or <strong>dplyr</strong> to do a task, or just use a <code>for</code> loop.</p></li>
+<li><p><a href="https://r4ds.had.co.nz/pipes.html">Piping</a> means compact code, less memory consumption…. and can be terribly slow computationally. Avoid in simulations.</p></li>
+</ol>
+<p>What’s piping? It’s a function in the <strong>magrittr</strong> that allows you to strings operations together.</p>
+<pre class="r"><code>library(magrittr)
+rnorm(100) %&gt;%
+  matrix(ncol = 2) %&gt;%
+  apply(2,mean)</code></pre>
+<pre><code>## [1] -0.05897808  0.22849185</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Gravitate towards a standard coding style. Don’t make one up. Use a standard one. I use mainly the <a href="https://style.tidyverse.org/">tidyverse style guide</a> (or I try). There is a package called <strong>styler</strong> that has a RStudio plugin that makes it easy to restyle all your code.</p></li>
+<li><p>Gravitate towards a standardized data format. It’s easier to reuse your plotting functions (and others) if you do that. I use a format similar to <a href="https://r4ds.had.co.nz/tidy-data.html">tidy data</a> to data in data frames.</p></li>
+<li><p>Use the <strong>here</strong> package along with <code>file.path()</code> to avoid hard-wired directory names. This will properly construct file paths for whatever Os you are on. Use RStudio project feature to get you to the right working directory.</p></li>
+</ol>
+<pre class="r"><code>#setwd(&#39;~/GitHub/RWorkflow-NWFSC-2020/&#39;)
+fil &lt;- file.path(here::here(), &quot;data&quot;, &quot;salmon.R&quot;)
+fil</code></pre>
+<pre><code>## [1] &quot;/Users/eli.holmes/Documents/GitHub/RWorkflow-NWFSC-2020/data/salmon.R&quot;</code></pre>
 </div>
+</div>
+<div id="week-3" class="section level1">
+<h1>Week 3</h1>
+<p>Brief summary of some debugging tools in R and RStudio + mostly RMarkdown.</p>
+<ul>
+<li>debugging functions</li>
+<li>bench-marking</li>
+<li>profiling</li>
+</ul>
 </div>
 
 <hr>
