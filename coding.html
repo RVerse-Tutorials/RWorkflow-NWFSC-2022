@@ -549,8 +549,8 @@ class(fit)</code></pre>
 <p><em>…if it is even worthwhile, which I’m not so sure about…</em></p>
 <p>This is part of code organization. Time put into planning and standardizing your code will make you much more efficient (even if it takes time in the beginning) and will definitely help prevent errors and bugs in your code. A big coding project requires this way of thinking.</p>
 </div>
-<div id="how-do-get-started-with-this-kind-of-structure" class="section level2">
-<h2>How do get started with this kind of structure</h2>
+<div id="how-do-get-started" class="section level2">
+<h2>How do get started</h2>
 <ol style="list-style-type: decimal">
 <li>Do a little planning on a piece of paper. Example, <strong>data</strong>:</li>
 </ol>
@@ -611,8 +611,9 @@ plot1(b, ylims=ylims)</code></pre>
 </ol>
 <p>Next step for object-oriented programming: Weeks 4 and 5 will go into how to assemble your code into an R package and I’ll talk about creating formal objects and methods (like print, plot) for those objects.</p>
 </div>
-<div id="namespaces" class="section level2">
-<h2>Namespaces</h2>
+</div>
+<div id="namespaces" class="section level1">
+<h1>Namespaces</h1>
 <ul>
 <li>Namespaces. Every function in R belongs to a package. You can be 100% explicit in your function calls by using <code>::</code>. So <code>forecast::forecast()</code> would specify the <code>forecast</code> function in the <strong>forecast</strong> package. Why use this?</li>
 </ul>
@@ -657,8 +658,19 @@ auto.arima(1:10)</code></pre>
 ## AIC=-Inf   AICc=-Inf   BIC=-Inf</code></pre>
 <p>I use <code>::</code> for cases where I only need a few functions from that package OR when I am writing an R package (because it is required for me to do this).</p>
 </div>
-<div id="various-tips-and-quirks-of-r" class="section level2">
-<h2>Various Tips and Quirks of R</h2>
+<div id="various-tips-and-quirks-of-r" class="section level1">
+<h1>Various Tips and Quirks of R</h1>
+<ol style="list-style-type: decimal">
+<li>Do not hard code any variables into your scripts or code. Ok. The reality is, you will. Try to hard code <strong>less</strong>. The more you avoid hard-coding, the faster you will be.</li>
+</ol>
+<p>Not this</p>
+<pre class="r"><code>x &lt;- 1
+for(i in 1:10) x &lt;- c(x, 2*i)</code></pre>
+<p>but this</p>
+<pre class="r"><code>n &lt;- 10
+w &lt;- 2
+x &lt;- 1
+for(i in 1:n) x &lt;- c(x, w*i)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Your working directory environment is your enemy (for bugs at least). You will have to keep it clean <code>rm(list=ls())</code>, use Rmarkdown files to run code (because that uses a clean environment), or assemble your code into an R package.</li>
 </ol>
@@ -738,7 +750,7 @@ T==1</code></pre>
 plot(1:10)</code></pre>
 <pre><code>## Yelp!</code></pre>
 <pre class="r"><code>graphics::plot(1:10)</code></pre>
-<p><img src="coding_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="coding_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <pre class="r"><code>rm(plot)</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>You could spend 2-3 hours figuring out how to use <code>tapply()</code> or <strong>dplyr</strong> to do a task, or just use a <code>for</code> loop.</p></li>
@@ -749,17 +761,17 @@ plot(1:10)</code></pre>
 rnorm(100) %&gt;%
   matrix(ncol = 2) %&gt;%
   apply(2,mean)</code></pre>
-<pre><code>## [1] -0.05897808  0.22849185</code></pre>
+<pre><code>## [1] -0.06557336 -0.05544045</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Gravitate towards a standard coding style. Don’t make one up. Use a standard one. I use mainly the <a href="https://style.tidyverse.org/">tidyverse style guide</a> (or I try). There is a package called <strong>styler</strong> that has a RStudio plugin that makes it easy to restyle all your code.</p></li>
 <li><p>Gravitate towards a standardized data format. It’s easier to reuse your plotting functions (and others) if you do that. I use a format similar to <a href="https://r4ds.had.co.nz/tidy-data.html">tidy data</a> to data in data frames.</p></li>
+<li><p>Gravitate towards a standardized names for things you use in your code consistently. Using <code>alpha</code>, <code>alp</code>, <code>Alpha</code>, <code>a</code> for the same thing in different coding projects make re-using code much slower.</p></li>
 <li><p>Use the <strong>here</strong> package along with <code>file.path()</code> to avoid hard-wired directory names. This will properly construct file paths for whatever Os you are on. Use RStudio project feature to get you to the right working directory.</p></li>
 </ol>
 <pre class="r"><code>#setwd(&#39;~/GitHub/RWorkflow-NWFSC-2020/&#39;)
 fil &lt;- file.path(here::here(), &quot;data&quot;, &quot;salmon.R&quot;)
 fil</code></pre>
 <pre><code>## [1] &quot;/Users/eli.holmes/Documents/GitHub/RWorkflow-NWFSC-2020/data/salmon.R&quot;</code></pre>
-</div>
 </div>
 <div id="week-3" class="section level1">
 <h1>Week 3</h1>

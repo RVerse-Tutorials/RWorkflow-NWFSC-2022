@@ -102,7 +102,7 @@ knitr::include_graphics("images/code-org.png")
 
 This is part of code organization. Time put into planning and standardizing your code will make you much more efficient (even if it takes time in the beginning) and will definitely help prevent errors and bugs in your code. A big coding project requires this way of thinking.
 
-## How do get started with this kind of structure
+## How do get started
 
 1. Do a little planning on a piece of paper. Example, **data**:
 
@@ -171,7 +171,7 @@ plot1(b, ylims=ylims)
 
 Next step for object-oriented programming: Weeks 4 and 5 will go into how to assemble your code into an R package and I'll talk about creating formal objects and methods (like print, plot) for those objects.
 
-## Namespaces
+# Namespaces
 
 * Namespaces. Every function in R belongs to a package. You can be 100% explicit in your function calls by using `::`. So `forecast::forecast()` would specify the `forecast` function in the **forecast** package. Why use this?
 
@@ -200,7 +200,25 @@ auto.arima(1:10)
 
 I use `::` for cases where I only need a few functions from that package OR when I am writing an R package (because it is required for me to do this).
 
-## Various Tips and Quirks of R
+# Various Tips and Quirks of R
+
+1. Do not hard code any variables into your scripts or code. Ok. The reality is, you will. Try to hard code **less**. The more you avoid hard-coding, the faster you will be.
+
+Not this
+```{r}
+x <- 1
+for(i in 1:10) x <- c(x, 2*i)
+```
+
+but this
+
+```{r}
+n <- 10
+w <- 2
+x <- 1
+for(i in 1:n) x <- c(x, w*i)
+```
+
 
 1. Your working directory environment is your enemy (for bugs at least). You will have to keep it clean `rm(list=ls())`, use Rmarkdown files to run code (because that uses a clean environment), or assemble your code into an R package. 
 
@@ -294,6 +312,8 @@ rnorm(100) %>%
 1. Gravitate towards a standard coding style. Don't make one up. Use a standard one. I use mainly the [tidyverse style guide](https://style.tidyverse.org/) (or I try). There is a package called **styler** that has a RStudio plugin that makes it easy to restyle all your code.
 
 1. Gravitate towards a standardized data format. It's easier to reuse your plotting functions (and others) if you do that. I use a format similar to [tidy data](https://r4ds.had.co.nz/tidy-data.html) to data in data frames.
+
+1. Gravitate towards a standardized names for things you use in your code consistently. Using `alpha`, `alp`, `Alpha`, `a` for the same thing in different coding projects make re-using code much slower.
 
 1. Use the **here** package along with `file.path()` to avoid hard-wired directory names. This will properly construct file paths for whatever Os you are on.  Use RStudio project feature to get you to the right working directory.
 
