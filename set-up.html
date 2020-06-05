@@ -559,7 +559,7 @@ Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link 
 <li>Go to Global Options (from the Tools menu)</li>
 <li>Click Git/SVN</li>
 <li>Click Enable version control interface for RStudio projects</li>
-<li>You will need the location of the git executible. On my mac the value in the <code>Git executible</code> box is <code>/usr/bin/git</code>. On my PC, it is <code>C:/Program Files/Git/bin/git.exe</code>.</li>
+<li>You will need the location of the git executible. On my mac the value in the <code>Git executible</code> box is <code>/usr/bin/git</code>. On my PC, it is <code>C:/Program Files/Git/bin/git.exe</code>. If you install Git for Windows locally, it may be at <code>C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe</code>.</li>
 </ol>
 <p>Tell Git how to get your username and password for GitHub/GitLab</p>
 <ol style="list-style-type: decimal">
@@ -583,7 +583,7 @@ Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link 
 <p>Windows users: The txt file with the public token will be xxx.pub and Windows sees that as a MSPublisher file. Don’t double-click the file to open. Use Open With, and select a text editor.</p>
 <ol style="list-style-type: decimal">
 <li>Open a terminal</li>
-<li>Type this <code>ssh-keygen -t ed25519 -C "gitlab"</code></li>
+<li>Type this <code>ssh-keygen -t ed25519 -C &quot;gitlab&quot;</code></li>
 <li>Hit ‘return’ at each prompt (for filename and for password). Don’t enter anything.</li>
 <li>Ignore what is printed out. Navigate to Users/yourname/.ssh/id_ed25519</li>
 <li>Open with an editor (like Notepad or TextEdit)</li>
@@ -625,12 +625,16 @@ Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link 
 <div id="when-you-try-to-push-with-rstudio-do-you-get-an-error-with-askpass" class="section level3">
 <h3>When you try to push with RStudio do you get an error with <code>askpass</code>?</h3>
 <p>RStudio doesn’t know how to open a terminal to ask for your username and password. You’ll need to push from the shell the first time.</p>
+<p>So what’s going on is that Git (within RStudio) doesn’t know how to ask you for your GitHub username and password.</p>
 <ol style="list-style-type: decimal">
-<li>Open up your project in RStudio.</li>
-<li>Make a change to a file and commit the change.</li>
-<li>Click on the Git tab, click the cog icon and click <code>Shell...</code></li>
-<li>Type <code>git push</code></li>
-<li>It should ask for your GitHub or GitLab username and password.</li>
+<li>Open up RStudio and make sure your project is showing in the top right with the blue cube with R in it (meaning you have that RStudio project loaded).</li>
+<li>Make a change to a file in your project and save.</li>
+<li>Click on the Git tab in the upper right window.</li>
+<li>Commit that change by clicking on the little box next to the change (in the Git window), adding a comment and clicking Commit.</li>
+<li>Click on the little cog and select Shell…</li>
+<li>Type <code>git config --list</code>. You should see <code>credentials.helper=manager</code> (if on Windows) or <code>credentials.helper=osxkeychain</code> (if on Mac). If not type, one of these commands. Mac: <code>git config --global credential.helper osxkeychain</code> Windows: <code>git config --global credential.helper manager</code>.</li>
+<li>Now Type <code>git push</code>. You should be asked for your GitHub username and password.</li>
+<li>Now make another change to a file, commit the change, and try to Push with the Green arrow.</li>
 </ol>
 </div>
 <div id="still-no-luck-authenticating" class="section level3">

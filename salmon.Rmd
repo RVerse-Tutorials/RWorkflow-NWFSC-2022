@@ -1,3 +1,4 @@
+```
 #Set your working directory
 setwd('~/GitHub/RWorkflow-NWFSC-2020/')
 #setwd('C:Users/Eli.Holmes/Workshops/RWorkflow-NWFSC-2020/')
@@ -6,7 +7,7 @@ setwd('~/GitHub/RWorkflow-NWFSC-2020/')
 fil <- "data/salmon.csv"
 saldat <- read.csv(fil)
 colnames(saldat) <- c("year", "wild", "flow", "temp")
-fil <- "data/steelhead.csv"
+fil <- "steelhead.csv"
 steeldat <- as.matrix(read.csv(fil))
 
 #Create training and testing data frames
@@ -42,3 +43,18 @@ pred3 <- forecast(fit3, h=9)
 plot(dat1$year, dat1$wild, xlim=c(1980,2020), type="l")
 lines(dat2$year, dat2$wild, col="blue")
 lines(dat2$year, pred3$mean, col="red", lty=2)
+```
+
+Let's take the fitting lines and make a function.
+
+```
+fitfun <- function(x, max.train.year=2010, fun="gam", response.var="wild", covariate="flow"){
+  subx <- subset(x, year<max.train.year)
+  subx$resp <- subx[[response.var]]
+  subx$cov <- subx[[covariate]]
+  if(fun=="gam") fit <- mgcv::gam(resp ~ s(cov), data=subx)
+  if(fun=="lm") fit <- stats::lm(resp ~ cov, data=subx)
+  if(fun=="auto.arima") fit <- forecast::auto.arima(subx$resp)
+  return(fit)
+}
+```
