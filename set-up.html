@@ -583,7 +583,7 @@ Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link 
 <p>Windows users: The txt file with the public token will be xxx.pub and Windows sees that as a MSPublisher file. Don’t double-click the file to open. Use Open With, and select a text editor.</p>
 <ol style="list-style-type: decimal">
 <li>Open a terminal</li>
-<li>Type this <code>ssh-keygen -t ed25519 -C &quot;gitlab&quot;</code></li>
+<li>Type this <code>ssh-keygen -t ed25519 -C "gitlab"</code></li>
 <li>Hit ‘return’ at each prompt (for filename and for password). Don’t enter anything.</li>
 <li>Ignore what is printed out. Navigate to Users/yourname/.ssh/id_ed25519</li>
 <li>Open with an editor (like Notepad or TextEdit)</li>
@@ -611,6 +611,12 @@ Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link 
 <li>First, you should have a fairly recent version of RStudio because the Git integration has gotten better.</li>
 <li>If you have a pop-up window, click ‘Deny’. Hopefully a terminal window pops up and asks for your GitHub or GitLab username and password.</li>
 </ul>
+</div>
+<div id="does-rstudio-say-it-cannot-find-bash.exe" class="section level3">
+<h3>Does RStudio say it cannot find bash.exe?</h3>
+<p>RStudio doesn’t know where <code>git.exe</code> is. First, have you installed Git yet?</p>
+<p>If you are on Windows and you have not installed Git, install <a href="https://gitforwindows.org/">Git for Windows</a>. Mac users should have it already. Mac It should be installed. Open a terminal window and type, git –version. If it asks to install XCode, say Yes.</p>
+<p>Next, tell RStudio where to find <code>git.exe</code>. You need to tell it under Tools &gt; Global Options &gt; Git/SVN &gt; Git executible. On my mac the value in the <code>Git executible</code> box is <code>/usr/bin/git</code>. On my PC, it is <code>C:/Program Files/Git/bin/git.exe</code> but IT installed it for me and installed for all users (so with admin). If you install Git for Windows locally (meaning you install it just for your account instead of for all users on your computer), it should be at <code>C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe</code></p>
 </div>
 <div id="does-rstudio-ask-for-your-username-and-password-every-time-you-try-to-push" class="section level3">
 <h3>Does RStudio ask for your username and password every time you try to push?</h3>

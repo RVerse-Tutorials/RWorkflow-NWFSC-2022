@@ -501,6 +501,7 @@ Robust
 <li>Tips on writing code and functions in R - little things that will make your code better and more robust</li>
 <li>Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs</li>
 </ul>
+<p>The material I’m presenting geared toward those who have done a bit of R programming but work mainly with scripts or with functions just for their own use. For new programmers, I recommend <a href="https://www.amazon.com/R-Student-Companion-Brian-Dennis-ebook/dp/B009AIU07G">The R Student Companion</a> -&gt; <a href="https://r4ds.had.co.nz/">R for Data Science</a> -&gt; books specific to your work.</p>
 </div>
 <div id="code-organization" class="section level1">
 <h1>Code Organization</h1>
@@ -532,7 +533,7 @@ class(fit)</code></pre>
 <li>predictions</li>
 <li>plots</li>
 </ul>
-<p>But the elements are not like “objects”. One data set is a data frame with column headings year, wild, flow, temp and the other is a matrix with years as column headings. The fits are all different types and some have no info about what years or data I fit to (see e.g. <code>fit3</code>). The plots have to be tweaked based on the data and the fits.</p>
+<p>But the elements are not like “objects”. One data set is a data frame with column headings year, wild, flow, temp and the other is a matrix with years as column headings. The fits are all different types and some have no info about what years or data I fit to (see e.g. <code>fit3</code>). The plots have to be tweaked based on the data and the fits.</p>
 <p>Instead we would like to work with “objects” that have a consistent format and have all the information needed for functions that use those objects.</p>
 <p><img src="images/code-org.png" width="500" /></p>
 </div>
@@ -631,13 +632,10 @@ plot1(b, ylims=ylims)</code></pre>
 <p>Disastrous things that happen to your code when you don’t use Namespaces.</p>
 <pre class="r"><code>auto.arima &lt;- function(x){x}
 library(forecast)</code></pre>
+<pre><code>## Warning: package &#39;forecast&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
 ##   method            from
 ##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## Registered S3 methods overwritten by &#39;forecast&#39;:
-##   method             from    
-##   fitted.fracdiff    fracdiff
-##   residuals.fracdiff fracdiff</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;forecast&#39;</code></pre>
 <pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
@@ -750,18 +748,19 @@ T==1</code></pre>
 plot(1:10)</code></pre>
 <pre><code>## Yelp!</code></pre>
 <pre class="r"><code>graphics::plot(1:10)</code></pre>
-<p><img src="coding_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="coding_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <pre class="r"><code>rm(plot)</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>You could spend 2-3 hours figuring out how to use <code>tapply()</code> or <strong>dplyr</strong> to do a task, or just use a <code>for</code> loop.</p></li>
 <li><p><a href="https://r4ds.had.co.nz/pipes.html">Piping</a> means compact code, less memory consumption…. and can be terribly slow computationally. Avoid in simulations.</p></li>
 </ol>
 <p>What’s piping? It’s a function in the <strong>magrittr</strong> that allows you to strings operations together.</p>
-<pre class="r"><code>library(magrittr)
-rnorm(100) %&gt;%
+<pre class="r"><code>library(magrittr)</code></pre>
+<pre><code>## Warning: package &#39;magrittr&#39; was built under R version 3.6.3</code></pre>
+<pre class="r"><code>rnorm(100) %&gt;%
   matrix(ncol = 2) %&gt;%
   apply(2,mean)</code></pre>
-<pre><code>## [1] -0.06557336 -0.05544045</code></pre>
+<pre><code>## [1] -0.15417262 -0.08296111</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Gravitate towards a standard coding style. Don’t make one up. Use a standard one. I use mainly the <a href="https://style.tidyverse.org/">tidyverse style guide</a> (or I try). There is a package called <strong>styler</strong> that has a RStudio plugin that makes it easy to restyle all your code.</p></li>
 <li><p>Gravitate towards a standardized data format. It’s easier to reuse your plotting functions (and others) if you do that. I use a format similar to <a href="https://r4ds.had.co.nz/tidy-data.html">tidy data</a> to data in data frames.</p></li>
@@ -771,7 +770,7 @@ rnorm(100) %&gt;%
 <pre class="r"><code>#setwd(&#39;~/GitHub/RWorkflow-NWFSC-2020/&#39;)
 fil &lt;- file.path(here::here(), &quot;data&quot;, &quot;salmon.R&quot;)
 fil</code></pre>
-<pre><code>## [1] &quot;/Users/eli.holmes/Documents/GitHub/RWorkflow-NWFSC-2020/data/salmon.R&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/eli.holmes/Documents/GitHub/RWorkflow-NWFSC-2020/data/salmon.R&quot;</code></pre>
 </div>
 <div id="week-3" class="section level1">
 <h1>Week 3</h1>

@@ -163,6 +163,15 @@ There are two typical problems. 1. Git doesn't know how to ask you for your user
 * First, you should have a fairly recent version of RStudio because the Git integration has gotten better.
 * If you have a pop-up window, click 'Deny'. Hopefully a terminal window pops up and asks for your GitHub or GitLab username and password.
 
+### Does RStudio say it cannot find bash.exe?
+
+RStudio doesn't know where `git.exe` is. First, have you installed Git yet?
+
+If you are on Windows and you have not installed Git, install [Git for Windows](https://gitforwindows.org/). Mac users should have it already. Mac It should be installed. Open a terminal window and type, git --version. If it asks to install XCode, say Yes.
+
+Next, tell RStudio where to find `git.exe`. You need to tell it under Tools > Global Options > Git/SVN > Git executible.  On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe` but IT installed it for me and installed for all users (so with admin). If you install Git for Windows locally (meaning you install it just for your account instead of for all users on your computer), it should be at `C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe`
+
+
 ### Does RStudio ask for your username and password every time you try to push?
 
 You need to do a push from the terminal to store your username/password.

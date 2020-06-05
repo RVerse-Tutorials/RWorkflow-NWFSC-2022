@@ -40,6 +40,8 @@ Coding Tips
 * Tips on writing code and functions in R - little things that will make your code better and more robust
 * Tips on things to avoid in your R code, i.e. quirks of R that will tend to create bugs
 
+The material I'm presenting geared toward those who have done a bit of R programming but work mainly with scripts or with functions just for their own use.  For new programmers, I recommend [The R Student Companion](https://www.amazon.com/R-Student-Companion-Brian-Dennis-ebook/dp/B009AIU07G) -> [R for Data Science](https://r4ds.had.co.nz/) -> books specific to your work. 
+
 # Code Organization
 
 ## R is object oriented
@@ -179,6 +181,8 @@ Next step for object-oriented programming: Weeks 4 and 5 will go into how to ass
 
 ```{r}
 ?dismo
+```
+```{r eval=FALSE}
 ?dismo::dismo
 ```
 
