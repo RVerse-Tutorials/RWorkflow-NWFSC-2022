@@ -109,7 +109,7 @@ If you want to use Git within RStudio, do these steps. Note it is not necessary 
 2. Go to Global Options (from the Tools menu)
 3. Click Git/SVN
 4. Click Enable version control interface for RStudio projects
-5. You will need the location of the git executible. On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe`.
+5. You will need the location of the git executible. On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe`. If you install Git for Windows locally, it may be at `C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe`.
 
 Tell Git how to get your username and password for GitHub/GitLab
 
@@ -176,12 +176,17 @@ You need to do a push from the terminal to store your username/password.
 
 RStudio doesn't know how to open a terminal to ask for your username and password. You'll need to push from the shell the first time.
 
-1. Open up your project in RStudio.
-2. Make a change to a file and commit the change.
-3. Click on the Git tab, click the cog icon and click `Shell...`
-4. Type `git push`
-5. It should ask for your GitHub or GitLab username and password.
+So what's going on is that Git (within RStudio) doesn't know how to ask you for your GitHub username and password.
 
+1. Open up RStudio and make sure your project is showing in the top right with the blue cube with R in it (meaning you have that RStudio project loaded).
+2. Make a change to a file in your project and save.
+3. Click on the Git tab in the upper right window.
+4. Commit that change by clicking on the little box next to the change (in the Git window), adding a comment and clicking Commit.
+5. Click on the little cog and select Shell...
+6. Type `git config --list`. You should see `credentials.helper=manager` (if on Windows) or `credentials.helper=osxkeychain` (if on Mac). If not type, one of these commands. 
+Mac: `git config --global credential.helper osxkeychain` Windows: `git config --global credential.helper manager`.
+7. Now Type `git push`. You should be asked for your GitHub username and password.
+8. Now make another change to a file, commit the change, and try to Push with the Green arrow.
 
 ### Still no luck authenticating? 
 
