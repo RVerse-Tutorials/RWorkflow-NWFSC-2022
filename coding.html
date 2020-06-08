@@ -588,7 +588,7 @@ class(fit)</code></pre>
 <li>Do a little planning on a piece of paper. Example, <strong>data</strong>:</li>
 </ol>
 <div class="figure">
-<img src="images/data-planning.jpg" alt="data planning" />
+<img src="images/data-planning.jpg" alt="" />
 <p class="caption">data planning</p>
 </div>
 <ol style="list-style-type: decimal">
@@ -664,7 +664,6 @@ plot1(b, ylims=ylims)</code></pre>
 <p>Disastrous things that happen to your code when you don’t use Namespaces.</p>
 <pre class="r"><code>auto.arima &lt;- function(x){x}
 library(forecast)</code></pre>
-<pre><code>## Warning: package &#39;forecast&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
 ##   method            from
 ##   as.zoo.data.frame zoo</code></pre>
@@ -787,12 +786,11 @@ plot(1:10)</code></pre>
 <li><p><a href="https://r4ds.had.co.nz/pipes.html">Piping</a> means compact code, less memory consumption…. and can be terribly slow computationally. Avoid in simulations.</p></li>
 </ol>
 <p>What’s piping? It’s a function in the <strong>magrittr</strong> that allows you to strings operations together.</p>
-<pre class="r"><code>library(magrittr)</code></pre>
-<pre><code>## Warning: package &#39;magrittr&#39; was built under R version 3.6.3</code></pre>
-<pre class="r"><code>rnorm(100) %&gt;%
+<pre class="r"><code>library(magrittr)
+rnorm(100) %&gt;%
   matrix(ncol = 2) %&gt;%
   apply(2,mean)</code></pre>
-<pre><code>## [1] 0.1373098 0.1282173</code></pre>
+<pre><code>## [1]  0.1783023 -0.1054595</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Gravitate towards a standard coding style. Don’t make one up. Use a standard one. I use mainly the <a href="https://style.tidyverse.org/">tidyverse style guide</a> (or I try). There is a package called <strong>styler</strong> that has a RStudio plugin that makes it easy to restyle all your code.</p></li>
 <li><p>Gravitate towards a standardized data format. It’s easier to reuse your plotting functions (and others) if you do that. I use a format similar to <a href="https://r4ds.had.co.nz/tidy-data.html">tidy data</a> to data in data frames.</p></li>
@@ -802,7 +800,7 @@ plot(1:10)</code></pre>
 <pre class="r"><code>#setwd(&#39;~/GitHub/RWorkflow-NWFSC-2020/&#39;)
 fil &lt;- file.path(here::here(), &quot;data&quot;, &quot;salmon.R&quot;)
 fil</code></pre>
-<pre><code>## [1] &quot;C:/Users/eli.holmes/Documents/GitHub/RWorkflow-NWFSC-2020/data/salmon.R&quot;</code></pre>
+<pre><code>## [1] &quot;/Users/eli.holmes/Documents/GitHub/RWorkflow-NWFSC-2020/data/salmon.R&quot;</code></pre>
 </div>
 <div id="week-3" class="section level1">
 <h1>Week 3</h1>
@@ -869,7 +867,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

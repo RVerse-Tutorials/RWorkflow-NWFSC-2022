@@ -18,7 +18,7 @@ You can just watch or if you want to try out what I am showing, go to [Set-up](h
 
 * Week 1. Introduction to workflow using RStudio and Git/GitHub/GitLab [Video](https://www.youtube.com/watch?v=HxIpxVdQsDs)
 
-* Week 2. More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code
+* Week 2. More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code [Video](https://noaanmfs-meets.webex.com/recordingservice/sites/noaanmfs-meets/recording/playback/cfdafd50f1444e06a6e451c543ef9f18) Access code mGFWHBD9
 
 * Week 3. Rmarkdown for reports: how to do big tables and export formats for Word docs
 
