@@ -9,9 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="EE Holmes" />
 
 
-<title>R Markdown Documents</title>
+<title>Untitled</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +20,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -255,75 +253,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -331,16 +260,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -456,129 +375,20 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">R Markdown Documents</h1>
+<h1 class="title toc-ignore">Untitled</h1>
+<h4 class="author">EE Holmes</h4>
+<h4 class="date">6/8/2020</h4>
 
 </div>
 
 
-<div id="rmarkdown-for-reports-how-to-do-big-tables-and-export-formats-for-word-docs" class="section level3">
-<h3>Rmarkdown for reports: how to do big tables and export formats for Word docs</h3>
-<p>This week will shift gears and talk about writing reports using R Markdown. There are many on-line tutorials for R Markdown which will cover the basics. I’ll focus on some of the aspects of R Markdown that can really speed up your work: automating the making of tables and graphs. Our work often involves making tables that process some data and then report that in tables. When the data change (which happens often), we have to remake tables (and graphs). This is very time-consuming and creates errors. I’ll show you how to automate this process so you are not manually remaking tables for reports.</p>
-</div>
-<div id="set-up" class="section level2">
-<h2>Set-up</h2>
-<p>If you want to try out the things I am showing, you will need R and RStudio. If you have never made an R Markdown file, there are some packages that you’ll need.</p>
-<p>Build your first R Markdown file</p>
-<ul>
-<li>Open RStudio, and click File &gt; New File &gt; R Markdown… .</li>
-<li>Select the default (document) and click ok. This will open a template R Markdown document.</li>
-<li>Save the file and then click ‘Knit’ in the nav bar above your template.</li>
-<li>Download the necessary packages if RStudio complains and won’t build.</li>
-</ul>
-<p>Note, to make PDF files you will need a LaTeX installation. If you don’t have one already (if you are not sure, then you don’t), you can install <a href="https://yihui.name/tinytex/">tinytex</a>. Run these lines:</p>
-<pre><code>install.packages(&#39;tinytex&#39;)
-tinytex::install_tinytex()</code></pre>
-<!--
-
-## Overview
-
-R Markdown is a format that allows you to combine text and R code.  From RStudio you can output your file in many formats: html, PDF, Word, presentations.  We are exploring a small slice of R Markdown.  When you are ready to explore more, go to [the R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+<pre class="r"><code>library(devtools)
+a=1
+a
+b</code></pre>
 
 
 
-## Get the templates
-
-[Fork](https://youtu.be/b6AaTHFIY7U) the repository [Rmarkdown-Tutorial](https://github.com/RVerse-Tutorials/Rmarkdown-Tutorial) or download a zip file of the repository.  To do the latter, you can use the 'download zip file' button on the GitHub repository or you can navigate to your 'RWorkflow' folder in RStudio and click 'More' in the Files panel and select 'Set as working directory'. Then issue these commands.
-
-```
-library(RWorkflowsetup)
-download.repo("Rmarkdown-Tutorial")
-```
-
-## Add your Project to GitHub (optional)
-
-1. Open GitHub Desktop.
-2. Click File > Add Local Repository
-3. Navigate to the folder `Rmarkdown-Tutorial` and click Add Repository. If your forked the repository, you are done.  
-4. If you downloaded, you should see 'Publish Repository' in GitHub Desktop.  Uncheck the 'keep code private box' and then click 'Publish'.  Note, it can take a moment to work.
-
-
-## Basic Rmd file
-
-Open up `Basic.Rmd`.  
-
-At the top you see
-
-```
----
-title: "Basic"
-author: "EE Holmes"
-date: "9/2/2018"
-output: html_document
----
-```
-
-This is the `yaml` which gives the instructions about how to process your R Markdown file.  The `yaml` file is sensitive to spaces.  Do not add or subtract spaces.  This `yaml` is very simple, but the `yaml` can be complex for some applications.  We will only be working with simple examples.
-
-After the `yaml` is the content.  To see a summary of R Markdown formating, click 'Help' menu and then 'Markdown Quick Reference'.
-
-## Create output
-
-We can create documents in different formats from this Rmd file.  Click the drop-down menu next to the 'knit' button.
-
-* **HTML** Select 'knit to HTML' to create a web document.
-* **Word** Select 'knit to Word' to create a Word document.
-* **PDF** Select 'knit to PDF' to create a PDF.
-
-## Getting help
-
-In RStudio, click the 'Help' tab in the top nav bar.  You will see 'Markdown Quick Reference'.  That has basic markdown syntax.  You can also click 'Cheatsheets' and there are two references sheets.   Using Google, you can also find answers to any questions that the RStudio help files doesn't answer.
-
-Tips:
-
-* Markdown is sensitive to leading spaces.  "  ## Topic" will not produce a header while "## Topic" will.  " ```{r}" (note leading space) will not be interpreted as R code.
-* Markdown is sensitive to line returns.  If you are tying to make a list, "1. item", then you must have two line returns before the "1. item".
-
-## Start a new Rmarkdown file
-
-Click the File tab, then select New File > R Markdown. This will open a template R Markdown file.  You will be asked for a title and whether to have the output be html, PDF, or Word.
-
-## Put your report online
-
-#### RPubs
-
-After knitting your Rmd file, a Preview will appear.  Click the 'Publish' button in the top right, select 'RPubs'.  This is a free service for publishing output.  Follow the instructions and you'll soon have a link you can share.  [Here](https://youtu.be/GJ36zamYVLg) is a video showing how to do this.
-
-#### GitHub
-
-If you have made your folder a Git repository, you can upload your html file to GitHub and share a link.  We will cover that when we talk about websites on GitHub.
-
-## Other example Rmds
-
-* Figures `Figures.Rmd`
-* Tables `Table.Rmd`
-* Math `Math.Rmd`
-* Table of contents and Code folding  `Extras.Rmd`
-* Presentations
-  - **ioslidy_presentation.Rmd** Chose File > New > R Markdown > ioslidy presentation to create this presentation template.
-  - **xaringan_presentation.Rmd** This is the file that produced a lecture in the forecasting workshop.  You will need to install the xaringan package.
-  
-```
-install.packages("xaringan")
-```
-
--->
-</div>
-
-<hr>
-
-<div style="text-align: center">
-<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
-</div>
-
-
-</div>
-</div>
 
 </div>
 
@@ -611,32 +421,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

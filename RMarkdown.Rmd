@@ -13,11 +13,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Rmarkdown for reports: how to do big tables and export formats for Word docs
 
-This week will shift gears and talk about writing reports using Rmarkdown. There are many on-line tutorials for Rmarkdown which will cover the basics. I'll focus on some of the aspects of Rmarkdown that can really speed up your work: automating the making of tables and graphs. Our work often involves making tables that process some data and then report that in tables. When the data change (which happens often), we have to remake tables (and graphs). This is very time-consuming and creates errors. I'll show you how to automate this process so you are not manually remaking tables for reports.
+This week will shift gears and talk about writing reports using R Markdown. There are many on-line tutorials for R Markdown which will cover the basics. I'll focus on some of the aspects of R Markdown that can really speed up your work: automating the making of tables and graphs. Our work often involves making tables that process some data and then report that in tables. When the data change (which happens often), we have to remake tables (and graphs). This is very time-consuming and creates errors. I'll show you how to automate this process so you are not manually remaking tables for reports.
 
-## Overview
+## Set-up
 
-R Markdown is a format that allows you to combine text and R code.  From RStudio you can output your file in many formats: html, PDF, Word, presentations.  We are exploring a small slice of R Markdown.  When you are ready to explore more, go to [the R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+If you want to try out the things I am showing, you will need R and RStudio. If you have never made an R Markdown file, there are some packages that you'll need. 
+
+Build your first R Markdown file
+
+* Open RStudio, and click File > New File > R Markdown... . 
+* Select the default (document) and click ok. This will open a template R Markdown document. 
+* Save the file and then click 'Knit' in the nav bar above your template. 
+* Download the necessary packages if RStudio complains and won't build.
 
 Note, to make PDF files you will need a LaTeX installation.  If you don't have one already (if you are not sure, then you don't), you can install [tinytex](https://yihui.name/tinytex/).  Run these lines:
 
@@ -25,6 +32,14 @@ Note, to make PDF files you will need a LaTeX installation.  If you don't have o
 install.packages('tinytex')
 tinytex::install_tinytex()
 ```
+
+<!--
+
+## Overview
+
+R Markdown is a format that allows you to combine text and R code.  From RStudio you can output your file in many formats: html, PDF, Word, presentations.  We are exploring a small slice of R Markdown.  When you are ready to explore more, go to [the R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+
+
 
 ## Get the templates
 
@@ -106,3 +121,5 @@ If you have made your folder a Git repository, you can upload your html file to 
 ```
 install.packages("xaringan")
 ```
+
+-->
