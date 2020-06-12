@@ -13,24 +13,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This will show you how to make a very simple website with R Markdown and put that online via GitHub Pages.  When you are ready to learn more go to the [Links](links.html) page for more tutorials.
 
-## Download a template
+## Simple website template
 
-Go to the [RVerse-Tutorials\Test-Website](https://github.com/RVerse-Tutorials/Test-Website) repository and click the Fork button in the upper right.  You will need to be logged into your GitHub account.
- 
-[Watch a video of this step](https://youtu.be/xeeKrGuaFRg)
+Clone the [RVerse-Tutorials\Test-Website](https://github.com/RVerse-Tutorials/Test-Website) repository.
 
-Or you can download a zip file of the repository.  To do the latter, you can use the 'download zip file' button on the GitHub repository or you can navigate to your 'RWorkflow' folder in RStudio and click 'More' in the Files panel and select 'Set as working directory'. Then issue these commands.
+* Copy the URL.
+* Open GitHub and click the "+" in top right for new repo.  Select 'Import repository', then select import from URL and paste in the URL.
+* Once it is imported (might take awhile), copy the URL for **your** new repository.
+* Open RStudio. Click the blue cube with R in top right. Select New Project > Version Control > Git and paste in the URL.
 
-```
-library(RWorkflowsetup)
-download.repo("Test-Website")
-```
+Now you'll have a copy of Test-Website on GitHub and a copy on your computer that is linked to your remote repository (on GitHub).
 
-*INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.*
 
 ## Build the website
 
-1. Open RStudio and 'New Project' in the upper right.  Then select 'From Existing Directory' and select the 'Test-Website' directory.
 
 2. From RStudio, click 'Build' from upper right and then 'Build Website'.  Your website should open.  You can select 'View in browser'.
 

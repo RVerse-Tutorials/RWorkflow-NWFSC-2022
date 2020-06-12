@@ -462,20 +462,21 @@ div.tocify {
 
 
 <p>This will show you how to make a very simple website with R Markdown and put that online via GitHub Pages. When you are ready to learn more go to the <a href="links.html">Links</a> page for more tutorials.</p>
-<div id="download-a-template" class="section level2">
-<h2>Download a template</h2>
-<p>Go to the <a href="https://github.com/RVerse-Tutorials/Test-Website">RVerse-Tutorials-Website</a> repository and click the Fork button in the upper right. You will need to be logged into your GitHub account.</p>
-<p><a href="https://youtu.be/xeeKrGuaFRg">Watch a video of this step</a></p>
-<p>Or you can download a zip file of the repository. To do the latter, you can use the ‘download zip file’ button on the GitHub repository or you can navigate to your ‘RWorkflow’ folder in RStudio and click ‘More’ in the Files panel and select ‘Set as working directory’. Then issue these commands.</p>
-<pre><code>library(RWorkflowsetup)
-download.repo(&quot;Test-Website&quot;)</code></pre>
-<p><em>INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.</em></p>
+<div id="simple-website-template" class="section level2">
+<h2>Simple website template</h2>
+<p>Clone the <a href="https://github.com/RVerse-Tutorials/Test-Website">RVerse-Tutorials-Website</a> repository.</p>
+<ul>
+<li>Copy the URL.</li>
+<li>Open GitHub and click the “+” in top right for new repo. Select ‘Import repository’, then select import from URL and paste in the URL.</li>
+<li>Once it is imported (might take awhile), copy the URL for <strong>your</strong> new repository.</li>
+<li>Open RStudio. Click the blue cube with R in top right. Select New Project &gt; Version Control &gt; Git and paste in the URL.</li>
+</ul>
+<p>Now you’ll have a copy of Test-Website on GitHub and a copy on your computer that is linked to your remote repository (on GitHub).</p>
 </div>
 <div id="build-the-website" class="section level2">
 <h2>Build the website</h2>
-<ol style="list-style-type: decimal">
-<li><p>Open RStudio and ‘New Project’ in the upper right. Then select ‘From Existing Directory’ and select the ‘Test-Website’ directory.</p></li>
-<li><p>From RStudio, click ‘Build’ from upper right and then ‘Build Website’. Your website should open. You can select ‘View in browser’.</p></li>
+<ol start="2" style="list-style-type: decimal">
+<li>From RStudio, click ‘Build’ from upper right and then ‘Build Website’. Your website should open. You can select ‘View in browser’.</li>
 </ol>
 <ul>
 <li>You can also right click on ‘index.html’ from the files, and select ‘open in browser’.</li>
