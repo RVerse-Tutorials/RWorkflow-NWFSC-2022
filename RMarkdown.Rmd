@@ -184,10 +184,11 @@ Another option is to have R Markdown save the figures, and use LaTeX:
 * Websites: The workshop website is built off Rmd files. See the [website](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/websites.html) tutorial to learn how to do this. It is super easy.
 * Online books using bookdown: Books [like this one](https://nwfsc-timeseries.github.io/atsa-labs/) for our time-series course are easy to make using Rmds. See the [bookdown](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/bookdown.html) tutorial to learn how to do this. Again super easy.
 * Create a spiffy landing page for your repository: Like this one for our [MARSS package](https://nwfsc-timeseries.github.io/MARSS/). This is literally a couple clicks on GitHub (not sure if this is possible on GitLab).
+* A journal article repo. [Journal Article](https://github.com/RVerse-Tutorials/Journal_Article) This shows you a realistic repo for a journal article. I've cut out many paragraphs here and there to shorten it, but it is still has all the parts. The repository is a self-contained paper with all the data and the analyses are redone completely whenever Main.Rmd is re-knit. So if the data change, all the analyses will be updated.
 
 ## Figure and Table numbering
 
-Automatic figures and table numbering for a paper or a report is a hassle with R Markdown. Here is my [solution](https://stackoverflow.com/a/47298632/10947238).
+Automatic figures and table numbering for a paper or a report is a hassle with R Markdown. Here is my [solution](https://stackoverflow.com/a/47298632/10947238). The Journal Article repo uses this method.
 
 
 
