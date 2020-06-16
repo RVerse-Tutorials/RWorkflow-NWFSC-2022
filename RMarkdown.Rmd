@@ -104,6 +104,8 @@ After knitting your Rmd file, a Preview will appear.  Click the 'Publish' button
 
 * Figures `Figures.Rmd`
 * Tables `Table.Rmd`
+* Tables for Word, html, or latex `Table_Extras.Rmd`
+* Creating many tables using a function (to make say a standard format table for each population in a dataset) `Report_with_Tables` folder
 * Math `Math.Rmd`
 * Table of contents and Code folding  `Extras.Rmd`
 * Presentations
