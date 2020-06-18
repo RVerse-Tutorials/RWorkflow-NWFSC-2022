@@ -12,9 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Organizing your R code into a package
-Any code that I share with others is organized into an R package and any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very easy. By the end of this session, you will be able to build your own mini R package and host it on GitHub with a nice little landing page.
+This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very, very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I'll show you how to host it on GitLab or GitHub with a nice little landing page.
 
-In this section, I show how to make a very simple R package and build it with RStudio.  If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
+If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
 
 ## Why a package?
 
@@ -26,29 +26,22 @@ An R package is an easy and the standard way to organize your R code, document y
 
 ## Set-up
 
-You can create a template package using `devtools::create()`.
+**Windows users**: You might need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  Mac users, don't need anything.
 
-```
-library(devtools)
-library(roxygen2)
-create("myfirstpackage")
-```
+### Making your first package
 
-But for this short course, fork or make a copy of the 'TestPackage' repository.
+1. Open RStudio
+2. In the upper right hand corner, click the blue cube with R, and click New Project.
+3. Click 'New Directory' and choose R package.
+4. Give your package a name and select the directory where to put it. 
+5. Click Create Package. That's it. You have created an R package.
 
-Go to the [RVerse-Tutorials\TestPackage](https://github.com/RVerse-Tutorials/TestPackage) repository and click the Fork button in the upper right.  You will need to be logged into your GitHub account.
- 
-[Watch a video of this step](https://youtu.be/xeeKrGuaFRg)
+### Make sure it builds
 
-Or you can download a zip file of the repository.  To do the latter, you can use the 'download zip file' button on the GitHub repository or you can navigate to your 'RWorkflow' folder in RStudio and click 'More' in the Files panel and select 'Set as working directory'. Then issue these commands.
+In you new package (you'll know you are in the package because you see the name in the top right corner), click on the Build tab in the top right panel. Click "Install and Restart".
 
-```
-library(RWorkflowsetup)
-download.repo("TestPackage")
-```
-
-
-*INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.*
+* Works? Yeah you're ready.
+* Complains? See if it wants some packages, like it might want **devtools**. If it still complains and you are on Windows, install [RTools](https://cran.r-project.org/bin/windows/Rtools/) (make sure you get the right one for your version of R). What version of R do you have? Type `R.Version()$version.string` at the command line.
 
 ## Parts of an R package
 
@@ -70,12 +63,11 @@ download.repo("TestPackage")
 
 # Let's build it
 
-* **Download the template files** Copy all the files in [RVerse-Tutorials\TestPackage](https://github.com/RVerse-Tutorials/TestPackage) into a workshop directory called `TestPackage`.
+* **Open in RStudio** Open RStudio and select the new package that you created in the Set-Up section above.
 
-* **Open in RStudio** Open RStudio and select 'New Project' in upper right. Then select 'Existing Directory', and then choose 'TestPackage'.
+* **Build the package** Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
 
-* **Build the package** Click on the 'Build' tab in the upper right, and click 'Build & Reload'.  Your package should build and load.
-
+<!--
 ## Using your package
 
 You have built this package and loaded it.  You can use the package functions.  Type 
@@ -90,6 +82,7 @@ dat <- WWWusage
 myarimaforecast(dat, nyears=100)
 ```
 and a 100 year forecast of internet usage should appear.
+
 
 ## Explore the package
 
@@ -188,3 +181,4 @@ Now you have created a set of tools that others can easily install and use.  If 
 Each time you change your package, you should update the version so that people know which version they are using.
 
 
+-->

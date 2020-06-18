@@ -463,8 +463,8 @@ div.tocify {
 
 <div id="organizing-your-r-code-into-a-package" class="section level1">
 <h1>Organizing your R code into a package</h1>
-<p>Any code that I share with others is organized into an R package and any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very easy. By the end of this session, you will be able to build your own mini R package and host it on GitHub with a nice little landing page.</p>
-<p>In this section, I show how to make a very simple R package and build it with RStudio. If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>.</p>
+<p>This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very, very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I’ll show you how to host it on GitLab or GitHub with a nice little landing page.</p>
+<p>If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>.</p>
 <div id="why-a-package" class="section level2">
 <h2>Why a package?</h2>
 <p>An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people. Why use an R package rather than just make a bunch of scripts?</p>
@@ -476,17 +476,25 @@ div.tocify {
 </div>
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
-<p>You can create a template package using <code>devtools::create()</code>.</p>
-<pre><code>library(devtools)
-library(roxygen2)
-create(&quot;myfirstpackage&quot;)</code></pre>
-<p>But for this short course, fork or make a copy of the ‘TestPackage’ repository.</p>
-<p>Go to the <a href="https://github.com/RVerse-Tutorials/TestPackage">RVerse-Tutorials</a> repository and click the Fork button in the upper right. You will need to be logged into your GitHub account.</p>
-<p><a href="https://youtu.be/xeeKrGuaFRg">Watch a video of this step</a></p>
-<p>Or you can download a zip file of the repository. To do the latter, you can use the ‘download zip file’ button on the GitHub repository or you can navigate to your ‘RWorkflow’ folder in RStudio and click ‘More’ in the Files panel and select ‘Set as working directory’. Then issue these commands.</p>
-<pre><code>library(RWorkflowsetup)
-download.repo(&quot;TestPackage&quot;)</code></pre>
-<p><em>INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.</em></p>
+<p><strong>Windows users</strong>: You might need to install <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a>. Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don’t have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works. Mac users, don’t need anything.</p>
+<div id="making-your-first-package" class="section level3">
+<h3>Making your first package</h3>
+<ol style="list-style-type: decimal">
+<li>Open RStudio</li>
+<li>In the upper right hand corner, click the blue cube with R, and click New Project.</li>
+<li>Click ‘New Directory’ and choose R package.</li>
+<li>Give your package a name and select the directory where to put it.</li>
+<li>Click Create Package. That’s it. You have created an R package.</li>
+</ol>
+</div>
+<div id="make-sure-it-builds" class="section level3">
+<h3>Make sure it builds</h3>
+<p>In you new package (you’ll know you are in the package because you see the name in the top right corner), click on the Build tab in the top right panel. Click “Install and Restart”.</p>
+<ul>
+<li>Works? Yeah you’re ready.</li>
+<li>Complains? See if it wants some packages, like it might want <strong>devtools</strong>. If it still complains and you are on Windows, install <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> (make sure you get the right one for your version of R). What version of R do you have? Type <code>R.Version()$version.string</code> at the command line.</li>
+</ul>
+</div>
 </div>
 <div id="parts-of-an-r-package" class="section level2">
 <h2>Parts of an R package</h2>
@@ -511,86 +519,124 @@ download.repo(&quot;TestPackage&quot;)</code></pre>
 <div id="lets-build-it" class="section level1">
 <h1>Let’s build it</h1>
 <ul>
-<li><p><strong>Download the template files</strong> Copy all the files in <a href="https://github.com/RVerse-Tutorials/TestPackage">RVerse-Tutorials</a> into a workshop directory called <code>TestPackage</code>.</p></li>
-<li><p><strong>Open in RStudio</strong> Open RStudio and select ‘New Project’ in upper right. Then select ‘Existing Directory’, and then choose ‘TestPackage’.</p></li>
-<li><p><strong>Build the package</strong> Click on the ‘Build’ tab in the upper right, and click ‘Build &amp; Reload’. Your package should build and load.</p></li>
+<li><p><strong>Open in RStudio</strong> Open RStudio and select the new package that you created in the Set-Up section above.</p></li>
+<li><p><strong>Build the package</strong> Click on the ‘Build’ tab in the upper right, and click ‘Install and Restart’. Your package should build and load.</p></li>
 </ul>
-<div id="using-your-package" class="section level2">
-<h2>Using your package</h2>
-<p>You have built this package and loaded it. You can use the package functions. Type</p>
-<pre><code>SSTplot()</code></pre>
-<p>A plot of SST off the west coast of India right now should appear.</p>
-<p>Type</p>
-<pre><code>dat &lt;- WWWusage
-myarimaforecast(dat, nyears=100)</code></pre>
-<p>and a 100 year forecast of internet usage should appear.</p>
-</div>
-<div id="explore-the-package" class="section level2">
-<h2>Explore the package</h2>
-<div id="the-description-file" class="section level3">
-<h3>The DESCRIPTION file</h3>
-<p>Open the file named DESCRIPTION. Most of it is self-explanatory. The <code>Imports:</code> is any other R packages that your package needs in order to work.</p>
-<pre><code>Package: TestPackage
+<!--
+## Using your package
+
+You have built this package and loaded it.  You can use the package functions.  Type 
+```
+SSTplot()
+```
+A plot of SST off the west coast of India right now should appear.
+
+Type 
+```
+dat <- WWWusage
+myarimaforecast(dat, nyears=100)
+```
+and a 100 year forecast of internet usage should appear.
+
+
+## Explore the package
+
+### The DESCRIPTION file
+
+Open the file named DESCRIPTION.  Most of it is self-explanatory.  The `Imports:` is any other R packages that your package needs in order to work.
+
+```
+Package: TestPackage
 Title: This Is A Template Package
 Version: 1.0
 Author: Eli Holmes
-Maintainer: &lt;eli.holmes@noaa.gov&gt;
+Maintainer: <eli.holmes@noaa.gov>
 Description: This is a template package for students to copy and experiment with for the short course.
-Depends: R (&gt;= 3.4.1)
+Depends: R (>= 3.4.1)
 Imports: RCurl, png, grid, forecast
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1</code></pre>
-</div>
-<div id="the-r-directory-function-code" class="section level3">
-<h3>The R Directory: Function code</h3>
-<p>This is where functions are put. Each file is a separate function. You can put multiple functions in one file, but that can get confusing unless they are small functions.</p>
-<p>Click on the R directory and open <code>myarimaforecast.R</code>. Scroll to the bottom to see the function:</p>
-<pre><code>myarimaforecast &lt;- function(data, nyears=10){
-  fit &lt;- auto.arima(data)
-  fc &lt;- forecast(fit, h = nyears)
+RoxygenNote: 6.0.1
+```
+
+### The R Directory: Function code
+
+This is where functions are put.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions.
+
+Click on the R directory and open `myarimaforecast.R`.  Scroll to the bottom to see the function:
+
+```
+myarimaforecast <- function(data, nyears=10){
+  fit <- auto.arima(data)
+  fc <- forecast(fit, h = nyears)
   plot(fc)
-}</code></pre>
-<p>It has this structure: name and the names of information passed into the function.</p>
-<pre><code>functionname &lt;- function(infofunctionneeds1, infofunctionneeds2, ...)</code></pre>
-<p>The part in the middle is the code that does the work.</p>
-</div>
-<div id="function-documentation" class="section level3">
-<h3>Function documentation</h3>
-<p>Now look at the top of <code>myarimaforecast.R</code>. This is the function documentation. It describes what the function does. See <code>SSTplot()</code> for another example. Here is the structure of the documentation:</p>
-<pre><code>#&#39; Briefly What Does Your Package Do
-#&#39;
-#&#39; Longer description of what your package does.  This is about a paragraph in length.
-#&#39;
-#&#39; @param function_argument describe what the argument is
-#&#39; @param function_argument2 add as many @param&#39;s as you need
-#&#39; @return What does your function return or do?
-#&#39; @examples
-#&#39; add some working R code that shows how to use your function
-#&#39; @export</code></pre>
-<p><code>@export</code> means that your function is not hidden. Just include this for now.</p>
-<p>Updating the documentation. By default, RStudio does not remake the documentation when you click ‘Build &amp; Reload’. You can change that by going to Tools &gt; Project Options &gt; Build Tools and then clicking ‘Configure’ next to ‘Generate documentation with Roxygen’ and then clicking the box next to ‘Build &amp; Reload’. Or you can run the code:</p>
-<pre><code>devtools::document()</code></pre>
-</div>
-</div>
-<div id="sharing-your-r-package" class="section level2">
-<h2>Sharing your R package</h2>
-<p>You can put your package on GitHub and then people can easily install it.</p>
-<p>Open GitHub Desktop. Click New Repository and then type in ‘TestPackage’. ‘TestPackage’ is the name of the directory with the package not the name of the package. I gave them the same name, which is what you should do in general.</p>
-<p>Now you can click ‘Publish repository’ from GitHub Desktop.</p>
-<p>Go to your GitHub account (online) and you will see your repository there.</p>
-</div>
-<div id="installing-your-package-from-github" class="section level2">
-<h2>Installing your package from GitHub</h2>
-<p>The code you will use to install from GitHub is:</p>
-<pre><code>library(devtools)
-install_github(&quot;youraccount/TestPackage&quot;)</code></pre>
-<p>For example to install the package on ‘RVerse-Tutorials’, you would use</p>
-<pre><code>install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
-<p>Now you have created a set of tools that others can easily install and use. If you fix something, people just reinstall using the above code.</p>
-<p>Each time you change your package, you should update the version so that people know which version they are using.</p>
-</div>
+}
+```
+
+It has this structure: name and the names of information passed into the function.
+```
+functionname <- function(infofunctionneeds1, infofunctionneeds2, ...)
+```
+
+The part in the middle is the code that does the work.
+
+### Function documentation
+
+Now look at the top of `myarimaforecast.R`.  This is the function documentation.  It describes what the function does.  See `SSTplot()` for another example.  Here is the structure of the documentation:
+
+```
+#' Briefly What Does Your Package Do
+#'
+#' Longer description of what your package does.  This is about a paragraph in length.
+#'
+#' @param function_argument describe what the argument is
+#' @param function_argument2 add as many @param's as you need
+#' @return What does your function return or do?
+#' @examples
+#' add some working R code that shows how to use your function
+#' @export
+```
+
+`@export` means that your function is not hidden.  Just include this for now.
+
+Updating the documentation.  By default, RStudio does not remake the documentation when you click 'Build & Reload'.  You can change that by going to Tools > Project Options > Build Tools and then clicking 'Configure' next to 'Generate documentation with Roxygen' and then clicking the box next to 'Build & Reload'.  Or you can run the code:
+
+```
+devtools::document()
+```
+
+## Sharing your R package
+
+You can put your package on GitHub and then people can easily install it.
+
+Open GitHub Desktop.  Click New Repository and then type in 'TestPackage'.  'TestPackage' is the name of the directory with the package not the name of the package.  I gave them the same name, which is what you should do in general.
+
+Now you can click 'Publish repository' from GitHub Desktop.
+
+Go to your GitHub account (online) and you will see your repository there.
+
+## Installing your package from GitHub
+
+The code you will use to install from GitHub is:
+
+```
+library(devtools)
+install_github("youraccount/TestPackage")
+```
+
+For example to install the package on 'RVerse-Tutorials', you would use
+```
+install_github("RVerse-Tutorials/TestPackage")
+```
+
+
+Now you have created a set of tools that others can easily install and use.  If you fix something, people just reinstall using the above code.  
+
+Each time you change your package, you should update the version so that people know which version they are using.
+
+
+-->
 </div>
 
 <hr>
