@@ -684,8 +684,10 @@ install_gitlab(&quot;youraccount/MyNewPackage&quot;)</code></pre>
 <p>For example to install the package on ‘RVerse-Tutorials’, you would use</p>
 <pre><code>install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
 </div>
-<div id="a-landing-page-for-your-package" class="section level2">
-<h2>A landing page for your package</h2>
+<div id="more-on-githublab" class="section level2">
+<h2>More on GitHub/Lab</h2>
+<div id="landing-page" class="section level3">
+<h3>Landing page</h3>
 <p>Why? It looks nicer and conveys the needed info to users. This is for GitHub. I haven’t done this on GitLab.</p>
 <ol style="list-style-type: decimal">
 <li>In RStudio in your <code>MyNewPackage</code>, create a new text file called <code>README.md</code> and type in some info about your package.</li>
@@ -693,10 +695,91 @@ install_gitlab(&quot;youraccount/MyNewPackage&quot;)</code></pre>
 <li>Open repo on GitHub, Click Settings, Scroll down to GitHub Pages, Select Source and select “master”. Select a theme.</li>
 <li>Wait a few minutes and then go to the URL shown.</li>
 </ol>
+</div>
 <div id="pkgdown" class="section level3">
 <h3><strong>pkgdown</strong></h3>
 <p>I am actually switching to <a href="https://pkgdown.r-lib.org/articles/pkgdown.html">pkgdown</a> for my landing pages for more developed products.</p>
 </div>
+<div id="making-releases" class="section level3">
+<h3>Making releases</h3>
+<p>Make a release on GitHub (tag on GitLab)</p>
+<p>To install the latest release</p>
+<pre><code>install_github(&quot;youraccount/MyNewPackage@*release&quot;)</code></pre>
+</div>
+</div>
+<div id="debugging-tools" class="section level2">
+<h2>Debugging Tools</h2>
+<div id="entering-functions" class="section level3">
+<h3>Entering functions</h3>
+<p>This is an personal list of some simple degugging tools. Also I am not familiar with the debugging tools in RStudio.</p>
+<pre><code>debug(function)
+undebug(function)</code></pre>
+<p>Allows you to go line by line through the function and interact at the command line.</p>
+<p><code>browser()</code></p>
+<p>Put in your code where you want to enter the function.</p>
+<p><code>options(error=recover)</code></p>
+<p>Puts you into browser() at the point of the error (instead of a specific spot)</p>
+<p><code>traceback()</code></p>
+<p>Tells you where your code stopped. Note RStudio will show this also. Check your Project Options under Tools if you don’t see Traceback on errors.</p>
+</div>
+<div id="how-long" class="section level3">
+<h3>How long?</h3>
+<p><code>system.time( function )</code></p>
+<p>How long does it take?</p>
+<p><strong>Profiling</strong></p>
+<p><code>Rprof()</code> and <code>summaryRprof()</code></p>
+<p>Profile your code to find out what are the time hogs.</p>
+<pre class="r"><code>a=matrix(0,10,100)
+Rprof(tmp&lt;-tempfile())
+for(i in 1:10000){ b=t(a)%*%a }
+Rprof()
+summaryRprof(tmp)</code></pre>
+<pre><code>## $by.self
+##             self.time self.pct total.time total.pct
+## &quot;%*%&quot;            1.12    93.33       1.12     93.33
+## &quot;t.default&quot;      0.06     5.00       0.06      5.00
+## &quot;t&quot;              0.02     1.67       0.08      6.67
+## 
+## $by.total
+##                          total.time total.pct self.time self.pct
+## &quot;block_exec&quot;                   1.20    100.00      0.00     0.00
+## &quot;call_block&quot;                   1.20    100.00      0.00     0.00
+## &quot;eval&quot;                         1.20    100.00      0.00     0.00
+## &quot;evaluate_call&quot;                1.20    100.00      0.00     0.00
+## &quot;evaluate::evaluate&quot;           1.20    100.00      0.00     0.00
+## &quot;evaluate&quot;                     1.20    100.00      0.00     0.00
+## &quot;FUN&quot;                          1.20    100.00      0.00     0.00
+## &quot;generator$render&quot;             1.20    100.00      0.00     0.00
+## &quot;handle&quot;                       1.20    100.00      0.00     0.00
+## &quot;in_dir&quot;                       1.20    100.00      0.00     0.00
+## &quot;knitr::knit&quot;                  1.20    100.00      0.00     0.00
+## &quot;lapply&quot;                       1.20    100.00      0.00     0.00
+## &quot;process_file&quot;                 1.20    100.00      0.00     0.00
+## &quot;process_group.block&quot;          1.20    100.00      0.00     0.00
+## &quot;process_group&quot;                1.20    100.00      0.00     0.00
+## &quot;render_one&quot;                   1.20    100.00      0.00     0.00
+## &quot;rmarkdown::render_site&quot;       1.20    100.00      0.00     0.00
+## &quot;rmarkdown::render&quot;            1.20    100.00      0.00     0.00
+## &quot;sapply&quot;                       1.20    100.00      0.00     0.00
+## &quot;suppressMessages&quot;             1.20    100.00      0.00     0.00
+## &quot;timing_fn&quot;                    1.20    100.00      0.00     0.00
+## &quot;withCallingHandlers&quot;          1.20    100.00      0.00     0.00
+## &quot;withVisible&quot;                  1.20    100.00      0.00     0.00
+## &quot;%*%&quot;                          1.12     93.33      1.12    93.33
+## &quot;t&quot;                            0.08      6.67      0.02     1.67
+## &quot;t.default&quot;                    0.06      5.00      0.06     5.00
+## 
+## $sample.interval
+## [1] 0.02
+## 
+## $sampling.time
+## [1] 1.2</code></pre>
+<p><strong>microbenchmark</strong></p>
+</div>
+</div>
+<div id="styling" class="section level2">
+<h2>Styling</h2>
+<p><strong>styler</strong> package</p>
 </div>
 </div>
 
@@ -755,7 +838,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

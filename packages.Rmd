@@ -270,7 +270,9 @@ For example to install the package on 'RVerse-Tutorials', you would use
 install_github("RVerse-Tutorials/TestPackage")
 ```
 
-## A landing page for your package
+## More on GitHub/Lab
+
+### Landing page
 
 Why? It looks nicer and conveys the needed info to users. This is for GitHub. I haven't done this on GitLab.
 
@@ -282,4 +284,68 @@ Why? It looks nicer and conveys the needed info to users. This is for GitHub. I 
 ### **pkgdown**
 
 I am actually switching to [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) for my landing pages for more developed products.
+
+### Making releases
+
+Make a release on GitHub (tag on GitLab)
+
+To install the latest release
+
+```
+install_github("youraccount/MyNewPackage@*release")
+```
+
+
+## Debugging Tools
+
+### Entering functions
+
+This is an personal list of some simple degugging tools. Also I am not familiar with the debugging tools in RStudio.
+
+```
+debug(function)
+undebug(function)
+```
+
+Allows you to go line by line through the function and interact at the command line.
+
+`browser()`
+
+Put in your code where you want to enter the function. 
+
+`options(error=recover)`
+
+Puts you into browser() at the point of the error (instead of a specific spot)
+
+`traceback()`
+
+Tells you where your code stopped. Note RStudio will show this also. Check your Project Options under Tools if you don't see Traceback on errors.
+
+### How long?
+
+`system.time( function )`
+
+How long does it take?
+
+**Profiling**
+
+`Rprof()` and `summaryRprof()`
+
+Profile your code to find out what are the time hogs.
+
+```{r}
+a=matrix(0,10,100)
+Rprof(tmp<-tempfile())
+for(i in 1:10000){ b=t(a)%*%a }
+Rprof()
+summaryRprof(tmp)
+```
+
+**microbenchmark**
+
+
+## Styling
+
+**styler** package
+
 
