@@ -1,5 +1,5 @@
 ---
-title: "Week 4: R Packages"
+title: "Week 4: Organizing your R code into a package"
 output:
   html_document:
     toc: true
@@ -11,7 +11,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Organizing your R code into a package
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
 This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very, very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I'll show you how to host it on GitLab or GitHub with a nice little landing page.
 
 If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
@@ -343,9 +350,18 @@ summaryRprof(tmp)
 
 **microbenchmark**
 
+```{r}
+library(microbenchmark)
+a <- 2
+res <- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
+ggplot2::autoplot(res)
+```
 
-## Styling
+
+## Styling your code
 
 **styler** package
+
+Has a plug-in for RStudio. Easy to style a whole file or even whole folder of files.
 
 
