@@ -487,14 +487,17 @@ div.tocify {
 <li>Click Create Package. That’s it. You have created an R package.</li>
 </ol>
 </div>
-<div id="make-sure-it-builds" class="section level3">
-<h3>Make sure it builds</h3>
-<p>In you new package (you’ll know you are in the package because you see the name in the top right corner), click on the Build tab in the top right panel. Click “Install and Restart”.</p>
-<ul>
-<li>Works? Yeah you’re ready.</li>
-<li>Complains? See if it wants some packages, like it might want <strong>devtools</strong>. If it still complains and you are on Windows, install <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> (make sure you get the right one for your version of R). What version of R do you have? Type <code>R.Version()$version.string</code> at the command line.</li>
-</ul>
 </div>
+<div id="make-a-package" class="section level2">
+<h2>Make a package</h2>
+<ol style="list-style-type: decimal">
+<li>Open RStudio</li>
+<li>In the upper right hand corner, click the blue cube with R, and click New Project.</li>
+<li>Click ‘New Directory’ and choose R package.</li>
+<li>Name your package <code>MyNewPackage</code> and select the directory where to put it.</li>
+<li>Click Create Package.</li>
+<li>Click on the ‘Build’ tab in the upper right, and click ‘Install and Restart’. Your package should build and load.</li>
+</ol>
 </div>
 <div id="parts-of-an-r-package" class="section level2">
 <h2>Parts of an R package</h2>
@@ -511,75 +514,95 @@ div.tocify {
 <h3>Basic add-ons</h3>
 <ul>
 <li><p><strong>man</strong> A directory for documentation. You won’t need to write this. It will be added automatically.</p></li>
-<li><p><strong>data</strong> A directory for data files saved in RData format.</p></li>
+<li><p><strong>data</strong> A directory for data files saved in RData format (with the ending <code>.RData</code>)</p></li>
 </ul>
 </div>
 </div>
+<div id="using-and-adding-stuff" class="section level2">
+<h2>Using and adding stuff</h2>
+<p>You have built this package and loaded it. You can use the package functions. Type</p>
+<pre><code>hello()</code></pre>
+<div id="add-a-new-function" class="section level3">
+<h3>Add a new function</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new R script. Call it <code>littleforecast.R</code> and save in the R directory.</li>
+</ol>
+<pre><code>littleforecast &lt;- function(data, nyears=10){
+  fit &lt;- forecast::auto.arima(data)
+  fc &lt;- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+}</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Open NAMESPACE. and Paste in</li>
+</ol>
+<pre><code>export(littleforecast)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Open DESCRIPTION. Under Description, paste these lines</li>
+</ol>
+<pre><code>Depends: R (&gt;= 3.4.1), ggplot2
+Imports: forecast</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Click Install and Restart from the build tab.</li>
+</ol>
 </div>
-<div id="lets-build-it" class="section level1">
-<h1>Let’s build it</h1>
-<ul>
-<li><p><strong>Open in RStudio</strong> Open RStudio and select the new package that you created in the Set-Up section above.</p></li>
-<li><p><strong>Build the package</strong> Click on the ‘Build’ tab in the upper right, and click ‘Install and Restart’. Your package should build and load.</p></li>
-</ul>
-<!--
-## Using your package
-
-You have built this package and loaded it.  You can use the package functions.  Type 
-```
-SSTplot()
-```
-A plot of SST off the west coast of India right now should appear.
-
-Type 
-```
-dat <- WWWusage
-myarimaforecast(dat, nyears=100)
-```
-and a 100 year forecast of internet usage should appear.
-
-
-## Explore the package
-
-### The DESCRIPTION file
-
-Open the file named DESCRIPTION.  Most of it is self-explanatory.  The `Imports:` is any other R packages that your package needs in order to work.
-
-```
-Package: TestPackage
-Title: This Is A Template Package
-Version: 1.0
-Author: Eli Holmes
-Maintainer: <eli.holmes@noaa.gov>
-Description: This is a template package for students to copy and experiment with for the short course.
-Depends: R (>= 3.4.1)
-Imports: RCurl, png, grid, forecast
-License: GPL-2
+<div id="use-your-new-function" class="section level3">
+<h3>Use your new function</h3>
+<pre><code>dat &lt;- WWWusage
+littleforecast(dat, nyears=100)</code></pre>
+<p>and a 100 year forecast of internet usage should appear.</p>
+</div>
+</div>
+<div id="add-data" class="section level2">
+<h2>Add data</h2>
+<ol style="list-style-type: decimal">
+<li><p>Add a folder called <code>data</code></p></li>
+<li><p>Run these lines from the command line.</p></li>
+</ol>
+<pre><code>WWW2 &lt;- WWWusage^2
+save(WWW2, file=&quot;data/WWW2.RData&quot;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Click Install and Restart from the Build tab</p></li>
+<li><p>Now your data is available from your package. Type</p></li>
+</ol>
+<pre><code>WWW2
+littleforecast(WWW2)</code></pre>
+<p>at the command line.</p>
+</div>
+<div id="the-key-components" class="section level2">
+<h2>The key components</h2>
+<div id="the-description-file" class="section level3">
+<h3>The DESCRIPTION file</h3>
+<p>Open the file named DESCRIPTION. Most of it is self-explanatory. <code>Depends:</code> means the user will have all the commands of that package at the command line. <code>Imports:</code> is any other R packages that your package needs in order to work but it’s functions won’t be available at the command line (unless you choose).</p>
+<pre><code>Package: MyNewPackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer &lt;yourself@somewhere.net&gt;
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+Depends: R (&gt;= 3.4.1), ggplot2
+Imports: forecast
+License: What license is it under?
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.0.1
-```
-
-### The R Directory: Function code
-
-This is where functions are put.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions.
-
-Click on the R directory and open `myarimaforecast.R`.  Scroll to the bottom to see the function:
-
-```
-myarimaforecast <- function(data, nyears=10){
-  fit <- auto.arima(data)
-  fc <- forecast(fit, h = nyears)
-  plot(fc)
-}
-```
-
-It has this structure: name and the names of information passed into the function.
-```
-functionname <- function(infofunctionneeds1, infofunctionneeds2, ...)
-```
-
-The part in the middle is the code that does the work.
+LazyData: true</code></pre>
+</div>
+<div id="the-namespace-file" class="section level3">
+<h3>The NAMESPACE file</h3>
+<p>This is commands to export functions (in the R folder) to the command line for use. If you don’t have a function here, the user will need to use <code>:::</code> to access the function.</p>
+<pre><code>exportPattern(&quot;^[[:alpha:]]+&quot;)
+export(littleforecast)</code></pre>
+<p>The first line means “export all functions”. I don’t normally have that line. The next line is exporting the <code>littleforecast</code> function.</p>
+</div>
+<div id="the-r-directory-function-code" class="section level3">
+<h3>The R Directory: Function code</h3>
+<p>This is where functions are put. Each file is a separate function. You can put multiple functions in one file, but that can get confusing unless they are small functions.</p>
+<p>It has this structure: name and the names of information passed into the function.</p>
+<pre><code>functionname &lt;- function(infofunctionneeds1, infofunctionneeds2, ...){
+# The work
+return(&lt;what you want to return to user&gt;)
+}</code></pre>
+<!---
 
 ### Function documentation
 
@@ -606,37 +629,75 @@ Updating the documentation.  By default, RStudio does not remake the documentati
 devtools::document()
 ```
 
-## Sharing your R package
-
-You can put your package on GitHub and then people can easily install it.
-
-Open GitHub Desktop.  Click New Repository and then type in 'TestPackage'.  'TestPackage' is the name of the directory with the package not the name of the package.  I gave them the same name, which is what you should do in general.
-
-Now you can click 'Publish repository' from GitHub Desktop.
-
-Go to your GitHub account (online) and you will see your repository there.
-
-## Installing your package from GitHub
-
-The code you will use to install from GitHub is:
-
-```
-library(devtools)
-install_github("youraccount/TestPackage")
-```
-
-For example to install the package on 'RVerse-Tutorials', you would use
-```
-install_github("RVerse-Tutorials/TestPackage")
-```
-
-
-Now you have created a set of tools that others can easily install and use.  If you fix something, people just reinstall using the above code.  
-
-Each time you change your package, you should update the version so that people know which version they are using.
-
-
 -->
+</div>
+</div>
+<div id="sharing-your-package" class="section level2">
+<h2>Sharing your package</h2>
+<p>You can put your package on GitLab or GitHub and then people can easily install it. Yes, you could share a zip file…</p>
+<p>Note: Each time you change your package, you should update the version so that people know which version they are using.</p>
+<div id="github-desktop-instructions" class="section level3">
+<h3>GitHub Desktop Instructions</h3>
+<p>** You have not made your folder a Git repository yet</p>
+<ul>
+<li>Open GitHub Desktop.<br />
+</li>
+<li>Click New Repository and then type in ‘MyNewPackage’ (or whatever you named your new package).</li>
+<li>Click Publish (to GitHub)</li>
+</ul>
+<p>** You have made your folder a Git repository already</p>
+<ul>
+<li>Open GitHub Desktop.<br />
+</li>
+<li>Click Add Local Repository… and then type in ‘MyNewPackage’ (or whatever you named your new package).</li>
+<li>Click Publish (to GitHub)</li>
+</ul>
+<p>Go to your GitHub account (online) and you will see your repository there.</p>
+</div>
+<div id="rstudio-instructions" class="section level3">
+<h3>RStudio Instructions</h3>
+<p>For GitHub or GitLab.</p>
+<ol style="list-style-type: decimal">
+<li>Open RStudio and make sure <code>MyNewPackage</code> (or whatever you named your new package) shows up in the upper right corner.</li>
+<li>Click Tools &gt; Version Control &gt; Project Setup and select Git in the drop down. Click Create Repository.</li>
+<li>Open GitLab or GitHub.</li>
+<li>Create a blank repository with the name <code>MyNewPackage</code> (or whatever you named your new package). Don’t add anything to it.</li>
+<li>Copy the URL of that new repository.</li>
+<li>Go back to RStudio. Click on the Git tab.</li>
+<li>Commit all your new changes (those files we added and such)</li>
+<li>Click the cog and select “Shell”.</li>
+<li>Type these lines to the command line. Note URL is the URL you copied above.</li>
+</ol>
+<pre><code>git remote add URL
+git push -u origin master</code></pre>
+<p>Note, I don’t actually do it this way because I often mess things up and it’s too many steps to remember. I create a new project with that URL (New Project &gt; Version Control &gt; URL) and then manually copy my files into the new repository folder.</p>
+</div>
+</div>
+<div id="installing-from-githublab" class="section level2">
+<h2>Installing from GitHub/Lab</h2>
+<p>The code you will use to install from GitHub is:</p>
+<pre><code>library(devtools)
+install_github(&quot;youraccount/MyNewPackage&quot;)</code></pre>
+<p>or</p>
+<pre><code>library(devtools)
+install_gitlab(&quot;youraccount/MyNewPackage&quot;)</code></pre>
+<p>For example to install the package on ‘RVerse-Tutorials’, you would use</p>
+<pre><code>install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
+</div>
+<div id="a-landing-page-for-your-package" class="section level2">
+<h2>A landing page for your package</h2>
+<p>Why? It looks nicer and conveys the needed info to users. This is for GitHub. I haven’t done this on GitLab.</p>
+<ol style="list-style-type: decimal">
+<li>In RStudio in your <code>MyNewPackage</code>, create a new text file called <code>README.md</code> and type in some info about your package.</li>
+<li>Push the new file to GitHub.</li>
+<li>Open repo on GitHub, Click Settings, Scroll down to GitHub Pages, Select Source and select “master”. Select a theme.</li>
+<li>Wait a few minutes and then go to the URL shown.</li>
+</ol>
+<div id="pkgdown" class="section level3">
+<h3><strong>pkgdown</strong></h3>
+<p>I am actually switching to <a href="https://pkgdown.r-lib.org/articles/pkgdown.html">pkgdown</a> for my landing pages for more developed products.</p>
+</div>
+</div>
 </div>
 
 <hr>
