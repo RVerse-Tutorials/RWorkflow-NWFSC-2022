@@ -33,15 +33,9 @@ An R package is an easy and the standard way to organize your R code, document y
 
 ## Set-up
 
-**Windows users**: You might need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  Mac users, don't need anything.
+**Windows users**: You might need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  
+**Mac users**: You don't need anything.
 
-### Making your first package
-
-1. Open RStudio
-2. In the upper right hand corner, click the blue cube with R, and click New Project.
-3. Click 'New Directory' and choose R package.
-4. Give your package a name and select the directory where to put it. 
-5. Click Create Package. That's it. You have created an R package.
 
 ## Make a package
 
@@ -82,6 +76,8 @@ hello()
 ### Add a new function
 
 1. Create a new R script. Call it `littleforecast.R` and save in the R directory.
+
+**You need to install the forecast package for this to work.**
 
 ```
 littleforecast <- function(data, nyears=10){
