@@ -12,9 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Organizing your R code into a package
-Any code that I share with others is organized into an R package and any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very easy. By the end of this session, you will be able to build your own mini R package and host it on GitHub with a nice little landing page.
+This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very, very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I'll show you how to host it on GitLab or GitHub with a nice little landing page.
 
-In this section, I show how to make a very simple R package and build it with RStudio.  If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
+If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
 
 ## Why a package?
 
@@ -26,29 +26,24 @@ An R package is an easy and the standard way to organize your R code, document y
 
 ## Set-up
 
-You can create a template package using `devtools::create()`.
+**Windows users**: You might need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  Mac users, don't need anything.
 
-```
-library(devtools)
-library(roxygen2)
-create("myfirstpackage")
-```
+### Making your first package
 
-But for this short course, fork or make a copy of the 'TestPackage' repository.
+1. Open RStudio
+2. In the upper right hand corner, click the blue cube with R, and click New Project.
+3. Click 'New Directory' and choose R package.
+4. Give your package a name and select the directory where to put it. 
+5. Click Create Package. That's it. You have created an R package.
 
-Go to the [RVerse-Tutorials\TestPackage](https://github.com/RVerse-Tutorials/TestPackage) repository and click the Fork button in the upper right.  You will need to be logged into your GitHub account.
- 
-[Watch a video of this step](https://youtu.be/xeeKrGuaFRg)
+## Make a package
 
-Or you can download a zip file of the repository.  To do the latter, you can use the 'download zip file' button on the GitHub repository or you can navigate to your 'RWorkflow' folder in RStudio and click 'More' in the Files panel and select 'Set as working directory'. Then issue these commands.
-
-```
-library(RWorkflowsetup)
-download.repo("TestPackage")
-```
-
-
-*INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.*
+1. Open RStudio
+2. In the upper right hand corner, click the blue cube with R, and click New Project.
+3. Click 'New Directory' and choose R package.
+4. Name your package `MyNewPackage` and select the directory where to put it. 
+5. Click Create Package.
+6. Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
 
 ## Parts of an R package
 
@@ -66,72 +61,122 @@ download.repo("TestPackage")
 
 * **man** A directory for documentation.  You won't need to write this.  It will be added automatically.
 
-* **data** A directory for data files saved in RData format.
+* **data** A directory for data files saved in RData format (with the ending `.RData`)
 
-# Let's build it
 
-* **Download the template files** Copy all the files in [RVerse-Tutorials\TestPackage](https://github.com/RVerse-Tutorials/TestPackage) into a workshop directory called `TestPackage`.
-
-* **Open in RStudio** Open RStudio and select 'New Project' in upper right. Then select 'Existing Directory', and then choose 'TestPackage'.
-
-* **Build the package** Click on the 'Build' tab in the upper right, and click 'Build & Reload'.  Your package should build and load.
-
-## Using your package
+## Using and adding stuff
 
 You have built this package and loaded it.  You can use the package functions.  Type 
-```
-SSTplot()
-```
-A plot of SST off the west coast of India right now should appear.
 
-Type 
+```
+hello()
+```
+
+### Add a new function
+
+1. Create a new R script. Call it `littleforecast.R` and save in the R directory.
+
+```
+littleforecast <- function(data, nyears=10){
+  fit <- forecast::auto.arima(data)
+  fc <- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+}
+```
+
+2. Open NAMESPACE. and Paste in 
+
+```
+export(littleforecast)
+```
+
+3. Open DESCRIPTION. Under Description, paste these lines
+
+```
+Depends: R (>= 3.4.1), ggplot2
+Imports: forecast
+```
+
+4. Click Install and Restart from the build tab.
+
+
+### Use your new function
+
 ```
 dat <- WWWusage
-myarimaforecast(dat, nyears=100)
+littleforecast(dat, nyears=100)
 ```
+
 and a 100 year forecast of internet usage should appear.
 
-## Explore the package
+## Add data
+
+1. Add a folder called `data`
+
+2. Run these lines from the command line.
+
+```
+WWW2 <- WWWusage^2
+save(WWW2, file="data/WWW2.RData")
+```
+
+3. Click Install and Restart from the Build tab
+
+4. Now your data is available from your package. Type 
+
+```
+WWW2
+littleforecast(WWW2)
+```
+at the command line.
+
+## The key components
 
 ### The DESCRIPTION file
 
-Open the file named DESCRIPTION.  Most of it is self-explanatory.  The `Imports:` is any other R packages that your package needs in order to work.
+Open the file named DESCRIPTION.  Most of it is self-explanatory.  `Depends:` means the user will have all the commands of that package at the command line. `Imports:` is any other R packages that your package needs in order to work but it's functions won't be available at the command line (unless you choose).
 
 ```
-Package: TestPackage
-Title: This Is A Template Package
-Version: 1.0
-Author: Eli Holmes
-Maintainer: <eli.holmes@noaa.gov>
-Description: This is a template package for students to copy and experiment with for the short course.
-Depends: R (>= 3.4.1)
-Imports: RCurl, png, grid, forecast
-License: GPL-2
+Package: MyNewPackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+Depends: R (>= 3.4.1), ggplot2
+Imports: forecast
+License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
 ```
+
+### The NAMESPACE file
+
+This is commands to export functions (in the R folder) to the command line for use. If you don't have a function here, the user will need to use `:::` to access the function.
+
+```
+exportPattern("^[[:alpha:]]+")
+export(littleforecast)
+```
+
+The first line means "export all functions". I don't normally have that line. The next line is exporting the `littleforecast` function.
 
 ### The R Directory: Function code
 
 This is where functions are put.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions.
 
-Click on the R directory and open `myarimaforecast.R`.  Scroll to the bottom to see the function:
+It has this structure: name and the names of information passed into the function.
 
 ```
-myarimaforecast <- function(data, nyears=10){
-  fit <- auto.arima(data)
-  fc <- forecast(fit, h = nyears)
-  plot(fc)
+functionname <- function(infofunctionneeds1, infofunctionneeds2, ...){
+# The work
+return(<what you want to return to user>)
 }
 ```
 
-It has this structure: name and the names of information passed into the function.
-```
-functionname <- function(infofunctionneeds1, infofunctionneeds2, ...)
-```
-
-The part in the middle is the code that does the work.
+<!---
 
 ### Function documentation
 
@@ -158,23 +203,66 @@ Updating the documentation.  By default, RStudio does not remake the documentati
 devtools::document()
 ```
 
-## Sharing your R package
+-->
 
-You can put your package on GitHub and then people can easily install it.
+## Sharing your package
 
-Open GitHub Desktop.  Click New Repository and then type in 'TestPackage'.  'TestPackage' is the name of the directory with the package not the name of the package.  I gave them the same name, which is what you should do in general.
+You can put your package on GitLab or GitHub and then people can easily install it. Yes, you could share a zip file...
 
-Now you can click 'Publish repository' from GitHub Desktop.
+Note: Each time you change your package, you should update the version so that people know which version they are using.
+
+
+### GitHub Desktop Instructions
+
+** You have not made your folder a Git repository yet
+
+* Open GitHub Desktop.  
+* Click New Repository and then type in 'MyNewPackage' (or whatever you named your new package).
+* Click Publish (to GitHub)
+
+** You have made your folder a Git repository already
+
+* Open GitHub Desktop.  
+* Click Add Local Repository... and then type in 'MyNewPackage' (or whatever you named your new package).
+* Click Publish (to GitHub)
 
 Go to your GitHub account (online) and you will see your repository there.
 
-## Installing your package from GitHub
+### RStudio Instructions
+
+For GitHub or GitLab.
+
+1. Open RStudio and make sure `MyNewPackage` (or whatever you named your new package) shows up in the upper right corner.
+2. Click Tools > Version Control > Project Setup and select Git in the drop down. Click Create Repository.
+3. Open GitLab or GitHub.
+4. Create a blank repository with the name `MyNewPackage` (or whatever you named your new package). Don't add anything to it.
+5. Copy the URL of that new repository.
+6. Go back to RStudio. Click on the Git tab. 
+7. Commit all your new changes (those files we added and such)
+8. Click the cog and select "Shell".
+7. Type these lines to the command line. Note URL is the URL you copied above.
+```
+git remote add URL
+git push -u origin master
+```
+
+Note, I don't actually do it this way because I often mess things up and it's too many steps to remember. I create a new project with that URL (New Project > Version Control > URL) and then manually copy my files into the new repository folder.
+
+
+## Installing from GitHub/Lab
 
 The code you will use to install from GitHub is:
 
 ```
 library(devtools)
-install_github("youraccount/TestPackage")
+install_github("youraccount/MyNewPackage")
+```
+
+or
+
+```
+library(devtools)
+install_gitlab("youraccount/MyNewPackage")
 ```
 
 For example to install the package on 'RVerse-Tutorials', you would use
@@ -182,9 +270,16 @@ For example to install the package on 'RVerse-Tutorials', you would use
 install_github("RVerse-Tutorials/TestPackage")
 ```
 
+## A landing page for your package
 
-Now you have created a set of tools that others can easily install and use.  If you fix something, people just reinstall using the above code.  
+Why? It looks nicer and conveys the needed info to users. This is for GitHub. I haven't done this on GitLab.
 
-Each time you change your package, you should update the version so that people know which version they are using.
+1. In RStudio in your `MyNewPackage`, create a new text file called `README.md` and type in some info about your package.
+2. Push the new file to GitHub.
+3. Open repo on GitHub, Click Settings, Scroll down to GitHub Pages, Select Source and select "master". Select a theme.
+4. Wait a few minutes and then go to the URL shown.
 
+### **pkgdown**
+
+I am actually switching to [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) for my landing pages for more developed products.
 
