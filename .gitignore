@@ -45,3 +45,4 @@ vignettes/*.pdf
 # Debug files
 Rprof.out
 Rprof.out
+*.out
