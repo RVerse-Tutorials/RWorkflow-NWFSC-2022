@@ -31,6 +31,10 @@ install.packages('tinytex')
 tinytex::install_tinytex()
 ```
 
+Note the first time you make a PDF, tinytex will load any needed packages and it can take a **long** time. You'll see a spinning wheel on the R Markdown tab.
+
+
+
 ## Overview
 
 R Markdown is a format that allows you to combine text and R code.  From RStudio you can output your file in many formats: html, PDF, Word, presentations.  We are exploring a small slice of R Markdown.  

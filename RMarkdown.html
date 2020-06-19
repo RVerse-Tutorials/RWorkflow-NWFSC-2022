@@ -475,6 +475,7 @@ div.tocify {
 <p>Note, to make PDF files you will need a LaTeX installation. If you don’t have one already (if you are not sure, then you don’t), you can install <a href="https://yihui.name/tinytex/">tinytex</a>. Run these lines:</p>
 <pre><code>install.packages(&#39;tinytex&#39;)
 tinytex::install_tinytex()</code></pre>
+<p>Note the first time you make a PDF, tinytex will load any needed packages and it can take a <strong>long</strong> time. You’ll see a spinning wheel on the R Markdown tab.</p>
 </div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
@@ -1085,7 +1086,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
