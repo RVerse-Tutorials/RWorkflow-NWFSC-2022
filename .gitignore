@@ -41,3 +41,7 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 .Rproj.user
+
+# Debug files
+Rprof.out
+Rprof.out
