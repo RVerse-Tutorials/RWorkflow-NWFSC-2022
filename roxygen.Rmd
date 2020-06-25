@@ -17,6 +17,8 @@ We all know that documenting our code is important, but equally important is to 
 
 For more help on Roxygen, see the section in Hadley Wickham's book R Packages on [Documentation](http://r-pkgs.had.co.nz/man.html). Here's a short cheatsheet [Roxygen helper](https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html).
 
+<!--
+
 ## Why a package?
 
 An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts?
@@ -187,5 +189,7 @@ install_github("RVerse-Tutorials/TestPackage")
 Now you have created a set of tools that others can easily install and use.  If you fix something, people just reinstall using the above code.  
 
 Each time you change your package, you should update the version so that people know which version they are using.
+
+-->
 
 
