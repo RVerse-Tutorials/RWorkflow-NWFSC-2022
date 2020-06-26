@@ -374,11 +374,41 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Week 1 RStudio + Version Control</li>
-    <li class="dropdown-header">Week 2 More Git + Code Organization</li>
-    <li class="dropdown-header">Week 3 R Markdown</li>
-    <li class="dropdown-header">Week 4 R Packages</li>
-    <li class="dropdown-header">Week 5 Roxygen</li>
+    <li>
+      <a href="week1-rstudio.html">
+        <span class="fa fa-cogs"></span>
+         
+        Week 1 RStudio + Version Control
+      </a>
+    </li>
+    <li>
+      <a href="week2-coding.html">
+        <span class="fa fa-code"></span>
+         
+        Week 2 More Git + Code Organization
+      </a>
+    </li>
+    <li>
+      <a href="week3-RMarkdown.html">
+        <span class="fa fa-file"></span>
+         
+        Week 3 R Markdown
+      </a>
+    </li>
+    <li>
+      <a href="week4-packages.html">
+        <span class="fa fa-archive"></span>
+         
+        Week 4 R Packages
+      </a>
+    </li>
+    <li>
+      <a href="week5-roxygen.html">
+        <span class="fa fa-question-circle"></span>
+         
+        Week 5 Roxygen
+      </a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -780,9 +810,9 @@ for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            1.04    91.23       1.04     91.23
-## &quot;t.default&quot;      0.08     7.02       0.08      7.02
-## &quot;t&quot;              0.02     1.75       0.10      8.77</code></pre>
+## &quot;%*%&quot;            1.10    90.16       1.10     90.16
+## &quot;t.default&quot;      0.10     8.20       0.10      8.20
+## &quot;t&quot;              0.02     1.64       0.12      9.84</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
