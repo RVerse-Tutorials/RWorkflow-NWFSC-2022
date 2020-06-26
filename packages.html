@@ -748,54 +748,51 @@ Rprof()
 summaryRprof(tmp)</code></pre>
 <pre><code>## $by.self
 ##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            0.48    82.76       0.48     82.76
-## &quot;t&quot;              0.08    13.79       0.10     17.24
-## &quot;t.default&quot;      0.02     3.45       0.02      3.45
+## &quot;%*%&quot;            1.12    91.80       1.12     91.80
+## &quot;t.default&quot;      0.08     6.56       0.08      6.56
+## &quot;eval&quot;           0.02     1.64       1.22    100.00
 ## 
 ## $by.total
 ##                          total.time total.pct self.time self.pct
-## &quot;block_exec&quot;                   0.58    100.00      0.00     0.00
-## &quot;call_block&quot;                   0.58    100.00      0.00     0.00
-## &quot;eval&quot;                         0.58    100.00      0.00     0.00
-## &quot;evaluate&quot;                     0.58    100.00      0.00     0.00
-## &quot;evaluate::evaluate&quot;           0.58    100.00      0.00     0.00
-## &quot;evaluate_call&quot;                0.58    100.00      0.00     0.00
-## &quot;FUN&quot;                          0.58    100.00      0.00     0.00
-## &quot;generator$render&quot;             0.58    100.00      0.00     0.00
-## &quot;handle&quot;                       0.58    100.00      0.00     0.00
-## &quot;in_dir&quot;                       0.58    100.00      0.00     0.00
-## &quot;knitr::knit&quot;                  0.58    100.00      0.00     0.00
-## &quot;lapply&quot;                       0.58    100.00      0.00     0.00
-## &quot;process_file&quot;                 0.58    100.00      0.00     0.00
-## &quot;process_group&quot;                0.58    100.00      0.00     0.00
-## &quot;process_group.block&quot;          0.58    100.00      0.00     0.00
-## &quot;render_one&quot;                   0.58    100.00      0.00     0.00
-## &quot;rmarkdown::render&quot;            0.58    100.00      0.00     0.00
-## &quot;rmarkdown::render_site&quot;       0.58    100.00      0.00     0.00
-## &quot;sapply&quot;                       0.58    100.00      0.00     0.00
-## &quot;suppressMessages&quot;             0.58    100.00      0.00     0.00
-## &quot;timing_fn&quot;                    0.58    100.00      0.00     0.00
-## &quot;withCallingHandlers&quot;          0.58    100.00      0.00     0.00
-## &quot;withVisible&quot;                  0.58    100.00      0.00     0.00
-## &quot;%*%&quot;                          0.48     82.76      0.48    82.76
-## &quot;t&quot;                            0.10     17.24      0.08    13.79
-## &quot;t.default&quot;                    0.02      3.45      0.02     3.45
+## &quot;eval&quot;                         1.22    100.00      0.02     1.64
+## &quot;block_exec&quot;                   1.22    100.00      0.00     0.00
+## &quot;call_block&quot;                   1.22    100.00      0.00     0.00
+## &quot;evaluate_call&quot;                1.22    100.00      0.00     0.00
+## &quot;evaluate::evaluate&quot;           1.22    100.00      0.00     0.00
+## &quot;evaluate&quot;                     1.22    100.00      0.00     0.00
+## &quot;FUN&quot;                          1.22    100.00      0.00     0.00
+## &quot;generator$render&quot;             1.22    100.00      0.00     0.00
+## &quot;handle&quot;                       1.22    100.00      0.00     0.00
+## &quot;in_dir&quot;                       1.22    100.00      0.00     0.00
+## &quot;knitr::knit&quot;                  1.22    100.00      0.00     0.00
+## &quot;lapply&quot;                       1.22    100.00      0.00     0.00
+## &quot;process_file&quot;                 1.22    100.00      0.00     0.00
+## &quot;process_group.block&quot;          1.22    100.00      0.00     0.00
+## &quot;process_group&quot;                1.22    100.00      0.00     0.00
+## &quot;render_one&quot;                   1.22    100.00      0.00     0.00
+## &quot;rmarkdown::render_site&quot;       1.22    100.00      0.00     0.00
+## &quot;rmarkdown::render&quot;            1.22    100.00      0.00     0.00
+## &quot;sapply&quot;                       1.22    100.00      0.00     0.00
+## &quot;suppressMessages&quot;             1.22    100.00      0.00     0.00
+## &quot;timing_fn&quot;                    1.22    100.00      0.00     0.00
+## &quot;withCallingHandlers&quot;          1.22    100.00      0.00     0.00
+## &quot;withVisible&quot;                  1.22    100.00      0.00     0.00
+## &quot;%*%&quot;                          1.12     91.80      1.12    91.80
+## &quot;t.default&quot;                    0.08      6.56      0.08     6.56
+## &quot;t&quot;                            0.08      6.56      0.00     0.00
 ## 
 ## $sample.interval
 ## [1] 0.02
 ## 
 ## $sampling.time
-## [1] 0.58</code></pre>
+## [1] 1.22</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
-<pre class="r"><code>library(microbenchmark)</code></pre>
-<pre><code>## Warning: package &#39;microbenchmark&#39; was built under R version 3.6.3</code></pre>
-<pre class="r"><code>a &lt;- 2
+<pre class="r"><code>library(microbenchmark)
+a &lt;- 2
 res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 100 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 </div>
@@ -860,7 +857,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

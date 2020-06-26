@@ -464,181 +464,126 @@ div.tocify {
 <div id="documenting-your-code-and-data-with-roxygen" class="section level1">
 <h1>Documenting your code and data with Roxygen</h1>
 <p>We all know that documenting our code is important, but equally important is to be able to read that documentation. If you use R, you know that the help feature (?function) is essential. If you organize your code into an R package, it is super easy to create help files that you and users can use to call up using ?. Documenting code may sound like a snoozer of a topic, but using Roxygen and diligently writing documentation for my functions and data is one of the top 3 habits that has made my coding more efficient. You can also document all your data in the same way.</p>
-<p>For more help on Roxygen, see the section in Hadley Wickham’s book R Packages on <a href="http://r-pkgs.had.co.nz/man.html">Documentation</a>. Here’s a short cheatsheet <a href="https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html">Roxygen helper</a>.</p>
-<!--
-
-## Why a package?
-
-An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts?
-
-* **Reproducibility and documentation**  In the long-run, you will save yourself much work if you organize and document your code.  Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.
-* **You want to share your code**  If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.
-* **You want to make an application**  If you want to make a shiny application, having your code in a package will help.
-
-## Set-up
-
-You can create a template package using `devtools::create()`.
-
-```
-library(devtools)
-library(roxygen2)
-create("myfirstpackage")
-```
-
-But for this short course, fork or make a copy of the 'TestPackage' repository.
-
-Go to the [RVerse-Tutorials\TestPackage](https://github.com/RVerse-Tutorials/TestPackage) repository and click the Fork button in the upper right.  You will need to be logged into your GitHub account.
- 
-[Watch a video of this step](https://youtu.be/xeeKrGuaFRg)
-
-Or you can download a zip file of the repository.  To do the latter, you can use the 'download zip file' button on the GitHub repository or you can navigate to your 'RWorkflow' folder in RStudio and click 'More' in the Files panel and select 'Set as working directory'. Then issue these commands.
-
-```
-library(RWorkflowsetup)
-download.repo("TestPackage")
-```
-
-
-*INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.*
-
-## Parts of an R package
-
-### The essentials
-
-2 files and a directory.
-
-* **DESCRIPTION** This file has the meta-data about your package.  Name and what packages it depends on.  Most of it is self-explanatory.  The `Imports:` is any functions from other packages that you use.
-
-* **NAMESPACE** This file indicates what needs to be exposed to users for your R package. For our course, you won't need to edit as devtools takes care of it.
-
-* **R directory** This is where all your R code goes for your package.
-
-### Basic add-ons
-
-* **man** A directory for documentation.  You won't need to write this.  It will be added automatically.
-
-* **data** A directory for data files saved in RData format.
-
-# Let's build it
-
-* **Download the template files** Copy all the files in [RVerse-Tutorials\TestPackage](https://github.com/RVerse-Tutorials/TestPackage) into a workshop directory called `TestPackage`.
-
-* **Open in RStudio** Open RStudio and select 'New Project' in upper right. Then select 'Existing Directory', and then choose 'TestPackage'.
-
-* **Build the package** Click on the 'Build' tab in the upper right, and click 'Build & Reload'.  Your package should build and load.
-
-## Using your package
-
-You have built this package and loaded it.  You can use the package functions.  Type 
-```
-SSTplot()
-```
-A plot of SST off the west coast of India right now should appear.
-
-Type 
-```
-dat <- WWWusage
-myarimaforecast(dat, nyears=100)
-```
-and a 100 year forecast of internet usage should appear.
-
-## Explore the package
-
-### The DESCRIPTION file
-
-Open the file named DESCRIPTION.  Most of it is self-explanatory.  The `Imports:` is any other R packages that your package needs in order to work.
-
-```
-Package: TestPackage
-Title: This Is A Template Package
-Version: 1.0
-Author: Eli Holmes
-Maintainer: <eli.holmes@noaa.gov>
-Description: This is a template package for students to copy and experiment with for the short course.
-Depends: R (>= 3.4.1)
-Imports: RCurl, png, grid, forecast
-License: GPL-2
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.0.1
-```
-
-### The R Directory: Function code
-
-This is where functions are put.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions.
-
-Click on the R directory and open `myarimaforecast.R`.  Scroll to the bottom to see the function:
-
-```
-myarimaforecast <- function(data, nyears=10){
-  fit <- auto.arima(data)
-  fc <- forecast(fit, h = nyears)
-  plot(fc)
-}
-```
-
-It has this structure: name and the names of information passed into the function.
-```
-functionname <- function(infofunctionneeds1, infofunctionneeds2, ...)
-```
-
-The part in the middle is the code that does the work.
-
-### Function documentation
-
-Now look at the top of `myarimaforecast.R`.  This is the function documentation.  It describes what the function does.  See `SSTplot()` for another example.  Here is the structure of the documentation:
-
-```
-#' Briefly What Does Your Package Do
-#'
-#' Longer description of what your package does.  This is about a paragraph in length.
-#'
-#' @param function_argument describe what the argument is
-#' @param function_argument2 add as many @param's as you need
-#' @return What does your function return or do?
-#' @examples
-#' add some working R code that shows how to use your function
-#' @export
-```
-
-`@export` means that your function is not hidden.  Just include this for now.
-
-Updating the documentation.  By default, RStudio does not remake the documentation when you click 'Build & Reload'.  You can change that by going to Tools > Project Options > Build Tools and then clicking 'Configure' next to 'Generate documentation with Roxygen' and then clicking the box next to 'Build & Reload'.  Or you can run the code:
-
-```
-devtools::document()
-```
-
-## Sharing your R package
-
-You can put your package on GitHub and then people can easily install it.
-
-Open GitHub Desktop.  Click New Repository and then type in 'TestPackage'.  'TestPackage' is the name of the directory with the package not the name of the package.  I gave them the same name, which is what you should do in general.
-
-Now you can click 'Publish repository' from GitHub Desktop.
-
-Go to your GitHub account (online) and you will see your repository there.
-
-## Installing your package from GitHub
-
-The code you will use to install from GitHub is:
-
-```
-library(devtools)
-install_github("youraccount/TestPackage")
-```
-
-For example to install the package on 'RVerse-Tutorials', you would use
-```
-install_github("RVerse-Tutorials/TestPackage")
-```
-
-
-Now you have created a set of tools that others can easily install and use.  If you fix something, people just reinstall using the above code.  
-
-Each time you change your package, you should update the version so that people know which version they are using.
-
--->
+<p>For more help on Roxygen, see the section in Hadley Wickham’s book R Packages on <a href="http://r-pkgs.had.co.nz/man.html">Documentation</a>. Here’s a short cheatsheet <a href="https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html">Roxygen helper</a>. Also Roxygen has good tutorials and help. Type</p>
+<pre><code>browseVignettes(package=&quot;roxygen2&quot;)</code></pre>
+<p>to open a browser window with links to the tutorials.</p>
+<div id="type-of-documentation" class="section level2">
+<h2>Type of documentation</h2>
+<p>Roxygen (and the the ‘Build and Install’ step) will create a the help files that users access with `?function.name.</p>
+<p>The same man files are also used to create a package manual, e.g.  <a href="https://cran.r-project.org/web/packages/MARSS/MARSS.pdf" class="uri">https://cran.r-project.org/web/packages/MARSS/MARSS.pdf</a></p>
+<p>And it generates the navigation page for all the documentation</p>
+<pre><code>help(package=&quot;forecast&quot;)</code></pre>
+<p>The man files are also used by <strong>pkgdown</strong> to make a website version of your documentation. Here is an example of the default <a href="http://jebyrnes.github.io/multifunc/index.html">pkgdown-generated webpage</a>.</p>
+<div id="not-just-for-public-products" class="section level3">
+<h3>Not just for public products!</h3>
+<p>This is an example of a package that is purely <em>personal</em>. It is for the data, and a few utility functions, for a group of researchers working with a shared set of data.</p>
+<pre><code>help(package=&quot;SardineForecast&quot;)</code></pre>
+</div>
+</div>
+<div id="set-up" class="section level2">
+<h2>Set-up</h2>
+<div id="install-the-roxygen2-r-package." class="section level3">
+<h3>Install the <strong>roxygen2</strong> R package.</h3>
+<pre><code>install.packages(&quot;roxygen2&quot;)</code></pre>
+<p>Open your test package, <strong>MyNewPackage</strong>. Open RStudio and then click the little arrow next to the blue cube in the top right corner.</p>
+</div>
+<div id="set-the-project-build-options-to-use-roxygen" class="section level3">
+<h3>Set the Project Build Options to use Roxygen</h3>
+<p>Tools &gt; Project Options… &gt; Build Tools &gt; then check the checkbox “Generate documentation with Roxygen”. Then click “Configure”. Check the box at the bottom for “Install and Restart”.</p>
+</div>
+</div>
+<div id="basic-structure-of-roxygen2-comments" class="section level2">
+<h2>Basic structure of Roxygen2 comments</h2>
+<p>Roxygen comments with #’ are put at the top of your function, in the same file. They have a standard format and standard sections. There is a bit of customization you can do, but the following basic form will cover 95% of your needs.</p>
+<pre><code>#&#39; @title Short title
+#&#39;
+#&#39; @description 
+#&#39; Description should be one paragraph. Put details in details.
+#&#39;
+#&#39; @details
+#&#39; Optional if you want to add more detais.J
+#&#39;
+#&#39; @param param.name1 Describe all your function arguments
+#&#39; @param param.name2 Describe all your function arguments
+#&#39;
+#&#39; @examples
+#&#39; # provide some examples of how to use your function
+#&#39; hello()
+#&#39;
+#&#39; @seealso List relevant other functions
+#&#39; 
+#` @references 
+#&#39; List references
+#&#39; @export
+yourfunction &lt;- function(param.name1, param.name2){}</code></pre>
+<p><code>@title</code> and <code>@description</code> can be left off (not the text, just the @…. part), but title text should be in line 1, then a blank line (#’ only), and then the description text. The only required elements are <code>@title</code>, <code>@description</code>, and <code>@param</code> (defining the function arguments).</p>
+<p><code>@export</code> means that your function is added to your NAMESPACE so is not hidden. Just include this for now.</p>
+</div>
+<div id="add-help-to-hello" class="section level2">
+<h2>Add help to <code>hello()</code></h2>
+<p>First remove the old <code>hello.Rd</code> file from the man folder. That is there because when we created our new package using RStudio’s template, we didn’t select ‘use Roxygen’ so it added a manually created help (i.e. Rd) file for us in the man folder. Now we are going to use Roxygen, so we need to remove that file.</p>
+<p>Copy and paste this to the top of <code>hello.r</code> in the R folder. Replace all the comments at the top with these lines.</p>
+<pre><code>#&#39; Hello World!
+#&#39;
+#&#39; Prints a the classic first program greeting. It takes no arguments.
+#&#39;
+#&#39; @examples
+#&#39; hello()
+#&#39; @export</code></pre>
+<p>To build the documentation, click ‘Install and Restart’ from the Build tab.</p>
+<p>Once you see that <code>MyNewPackage</code> is reloaded (<code>library(MyNewPackage)</code> appears on the command line), you can type <code>?hello</code> to get the help info.</p>
+<div id="the-namespace" class="section level3">
+<h3>The NAMESPACE</h3>
+<p>Roxygen will complain that the NAMESPACE was not generated by Roxygen so it is ignoring our <code>@export</code>. Let delect the NAMESPACE file and try again.</p>
+</div>
+</div>
+<div id="updating-the-documentation" class="section level2">
+<h2>Updating the documentation</h2>
+<p>When you update the documentation or add new documentation, rebuild the help files using the ‘Install and Restart’ button on the Build tab. Note, with the default Project Options, RStudio does not remake the documentation when you click ‘Install and Restart’. You have to change that by going to Tools &gt; Project Options &gt; Build Tools and then clicking ‘Configure’ next to ‘Generate documentation with Roxygen’ and then clicking the box next to ‘Install and Restart’. Or you can run this code to make the documentation.</p>
+<pre><code>devtools::document()</code></pre>
+</div>
+<div id="customizing-your-help-files" class="section level2">
+<h2>Customizing your help files</h2>
+<p>The easiest way to figure out how to customize Roxygen headers is to look at the Roxygen header for a help file you are trying to copy.</p>
+<div id="adding-references" class="section level3">
+<h3>Adding references</h3>
+<p>If you use BibTex you can insert referenes by citation in your help files.</p>
+<ol style="list-style-type: decimal">
+<li>Create the <code>inst</code> folder if you don’t have one</li>
+<li>Within that, create <code>REFERENCES.bib</code> 3 Add refs to that in BibTex format.</li>
+<li>Install the <strong>Rdpack</strong> package</li>
+<li>Add <strong>Rdpack</strong> to <code>Imports</code> in your DESCRIPTION file and add <code>RdMacros: Rdpack</code> to your DESCRIPTION file.</li>
+<li>Cite in your Roxygen header using</li>
+</ol>
+<pre><code>\insertRef{Waltonetal1998}{MyNewPackage}</code></pre>
+<p>Example of a reference in <code>REFERENCES.bib</code></p>
+<pre><code>@article{Waltonetal1998,
+  title={The development and operational application of nonlinear algorithms for the measurement of sea surface temperatures with the NOAA polar-orbiting environmental satellites},
+  author={Walton, CC and Pichel, WG and Sapper, JF and May, DA},
+  journal={Journal of Geophysical Research: Oceans},
+  volume={103},
+  number={C12},
+  pages={27999--28012},
+  year={1998},
+  publisher={Wiley Online Library}
+}</code></pre>
+<p>You can get the citation for R packages from</p>
+<pre><code>citation(package=&quot;ggplot2&quot;)</code></pre>
+<p>Add the citation to your Rd file with</p>
+<pre><code>\insertRef{Waltonetal1998}{MyNewPackage}</code></pre>
+</div>
+</div>
+<div id="styling-your-code" class="section level2">
+<h2>Styling your code</h2>
+<p>You should adopt a standardized style for your code. Choosing your own personal style is not good idea, just makes it harder for others to follow your code. I use, or more accurately try to ues, the <a href="https://style.tidyverse.org/">tidyverse style</a>. However I remembering all the rules uses up memory space better allotted differently.</p>
+<p><strong>styler</strong> package</p>
+<p>Has a plug-in for RStudio. Easy to style a whole file or even whole folder of files.</p>
+</div>
+<div id="byte-compile" class="section level2">
+<h2>Byte Compile</h2>
+<p>Adding this line to your DESCRIPTION file can really speed up your code.</p>
+<pre><code>ByteCompile: TRUE</code></pre>
+</div>
 </div>
 
 <hr>
