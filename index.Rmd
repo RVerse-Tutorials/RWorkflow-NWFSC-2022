@@ -22,6 +22,17 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 * [Week 5](week5-roxygen.html). Part 2. Documenting your code and data with Roxygen
 
+<!--
+Requests
+
+ggplot
+Bayesian stats
+tidyverse verbs
+collaboration with github/gitlab
+tidyverse world.
+
+-->
+
 <hr>
 
 <div style="text-align: center">
