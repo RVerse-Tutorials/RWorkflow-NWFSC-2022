@@ -1,0 +1,70 @@
+---
+title: "More Git"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
+
+
+# Overview
+
+Here I will cover a few more come Git tasks and show some straight-forward ways to do these tasks
+
+* How to clone someone else's GitHub or GitLab repository
+* How to clone your own repository--when you want to make a copy and use that as a template for something new.
+
+<!--
+* What are branches, merge conflicts and pull requests?
+* Fork or clone? What's the difference?
+* How to add Git to an existing RStudio project and get that on GitHub or GitLab.
+-->
+
+## Downloading other people's repositories
+
+There are two easy ways to do this. Use the one that seems more logical to you.
+
+Method 1.
+
+1. In a browser, go to the GitHub (or GitLab) repository you want to copy.
+2. Copy its url.
+3. Open GitHub or GitLab.  
+4. If using GitHub, click the `+` in top right and click `import repository`. Paste in the url and give your repo a name.
+4. If using GitLab, click `New Project` on right, then `Import Repository` tab, then click `Repo by URL`. Paste in url and give repo a name.
+5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Version Control` and paste in the url of **your** repository's url.  For example, `https://github.com/<youraccount>/Test`  
+6. Add the new repo to GitHub Desktop. Open GitHub Desktop, select File>Add Local Repository and navigate to the folder with the new repository.
+
+Method 2.
+
+Steps 1-4 are the same but you can swap step 5 and 6.
+
+5. Open GitHub Desktop. Select File>Clone Repository. Paste in the repository url that you are copying and tell it where to save the repository.
+5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Existing Directory` and navigate to the directory where you 
+just saved the repo.
+
+You can also clone someone elses repo directly into RStudio or GitHub Desktop and then "Publish" to GitHub or GitLab. I am not going to show that but I show that on this [page](Git-RStudio.html). For GitLab, it will require issuing Git commands from a terminal. Note, in my experience, method 1 or 2 above is the way to avoid Git-misery as a Git beginner.
+
+## Making a copy of your own repository
+
+Let say you want to make a copy of a repository and use it as a template to make something else. And you don't want the history!
+
+1. Make a blank repo on GitHub or GitLab (add that Readme file)
+2. Pull that down to your computer
+3. Copy the repo you want to copy into the new repo folder but **do not copy the .git folder**. Remember the `.git` folder is hidden.
+
+
+

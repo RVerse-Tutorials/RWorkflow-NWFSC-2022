@@ -336,10 +336,28 @@ Rprof(NULL) #stop profiling
 
 **microbenchmark**
 
+This is a handy package for comparing speeds of code.
+
 ```{r}
 library(microbenchmark)
 a <- 2
 res <- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
+ggplot2::autoplot(res)
+```
+
+This shows an example of code using [piping](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) (`%>%`) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.
+
+```{r}
+library(magrittr)
+x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
+fun1 <- function(x){
+x %>% log() %>%
+    diff() %>%
+    exp() %>%
+    round(1)
+}
+fun2 <- function(x){ round(exp(diff(log(x))), 1) }
+res <- microbenchmark::microbenchmark(fun1(x), fun2(x))
 ggplot2::autoplot(res)
 ```
 
