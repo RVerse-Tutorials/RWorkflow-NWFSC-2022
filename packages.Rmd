@@ -155,16 +155,51 @@ Encoding: UTF-8
 LazyData: true
 ```
 
+The packages on the @Depends and @Imports lines are required to be installed in order to install your package. If the user doesn't have these packages, then they will be installed.
+
+**@Depends** These packages that will be loaded when your package is loaded. So if you have **gplot2** in @Depends, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. 
+
+**@Imports** Are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you will use `::` to access the functions from the packages on the @Imports line. *Most of your package dependencies will be here.*
+
+To limit the number of headaches that users face when trying to install your package, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
+
+I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
+
+For my MARSS package, I have only 3 non-base dependencies in the @Imports line and nothing on the @Depends line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the @Suggests line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
+
+**What should you put on your Depends and Imports lines?**
+
+First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
+
+1. ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
+```
+ggplot2::ggplot(df) +
+  ggplot2::geom_point(ggplot2::aes(gp, y))
+```
+Arg. Another example is say a GAM call:
+```
+mgcv::gam(a ~ mgcv::s(b), data=df)
+```
+But this is just for your package functions. In your scripts, you'd probably use a `library()` call.
+2. However never ever use `library()` in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.
+3. Add those packages to @Depends or @Imports as you go along.
+4. Every so often check that you don't have packages on @Depends and @Imports that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
+
+How do you know if you forgot a dependency or forgot a `::` somewhere? Two ways:
+
+1. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in @Imports but forgot a `::` somewhere.
+2. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
+
 ### The NAMESPACE file
 
-This is commands to export functions (in the R folder) to the command line for use. If you don't have a function here, the user will need to use `:::` to access the function.
+This file has the commands to export the functions (in the R folder) to the command line for use. If you don't have a function here, the user will need to use `:::` to access the function.
 
 ```
 exportPattern("^[[:alpha:]]+")
 export(littleforecast)
 ```
 
-The first line means "export all functions". I don't normally have that line. The next line is exporting the `littleforecast` function.
+The first line means "export all functions". I don't normally have that line but it is handy when you are starting out; just export all your functions. The next line is exporting the `littleforecast` function.
 
 ### The R Directory: Function code
 
@@ -179,34 +214,7 @@ return(<what you want to return to user>)
 }
 ```
 
-<!---
 
-### Function documentation
-
-Now look at the top of `myarimaforecast.R`.  This is the function documentation.  It describes what the function does.  See `SSTplot()` for another example.  Here is the structure of the documentation:
-
-```
-#' Briefly What Does Your Package Do
-#'
-#' Longer description of what your package does.  This is about a paragraph in length.
-#'
-#' @param function_argument describe what the argument is
-#' @param function_argument2 add as many @param's as you need
-#' @return What does your function return or do?
-#' @examples
-#' add some working R code that shows how to use your function
-#' @export
-```
-
-`@export` means that your function is not hidden.  Just include this for now.
-
-Updating the documentation.  By default, RStudio does not remake the documentation when you click 'Build & Reload'.  You can change that by going to Tools > Project Options > Build Tools and then clicking 'Configure' next to 'Generate documentation with Roxygen' and then clicking the box next to 'Build & Reload'.  Or you can run the code:
-
-```
-devtools::document()
-```
-
--->
 
 ## Sharing your package
 
@@ -272,6 +280,22 @@ For example to install the package on 'RVerse-Tutorials', you would use
 ```
 install_github("RVerse-Tutorials/TestPackage")
 ```
+
+### Installing from GitHub headaches
+
+If you are on a Windows machine and get an error saying 'loading failed for i386' or similar, then try
+```
+options(devtools.install.args = "--no-multiarch")
+```
+If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use
+```
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
+```
+If R asks you to update packages, you don't need to update (normally). If you do update, and it asks if you want to install from source, you can probably say 'No'. It is very unlikely that the package you trying to install needs the most updated version of a package. If that were the case, the package writer could have explicitly stated a version dependency, like `forecast (>=2.0)`.
+
+If R simply won't install a package from GitHub/Lab (or CRAN even) because of a package dependency problem, something like `can't install because couldn't remove old installation` error. Then click on the Packages tab (lower right panel) and click Install. Look at where R is installing packages. There might be more than one place. Close all your RStudio windows  (exit altogether) and go to those locations and delete the library folder(s) for the offending package. Then open RStudio and re-install that package.
+
+To limit the number of headaches that users face when trying to install your package from GitHub/Lab, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
 
 ## More on GitHub/Lab
 

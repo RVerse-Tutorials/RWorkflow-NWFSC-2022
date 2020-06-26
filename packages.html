@@ -365,63 +365,84 @@ div.tocify {
     Set-up
   </a>
 </li>
-<li>
-  <a href="rstudio.html">
-    <span class="fa fa-cogs"></span>
-     
-    RStudio+Git
-  </a>
-</li>
-<li>
-  <a href="coding.html">
-    <span class="fa fa-code"></span>
-     
-    More Git+Coding
-  </a>
-</li>
-<li>
-  <a href="RMarkdown.html">
-    <span class="fa fa-file"></span>
-     
-    RMarkdown
-  </a>
-</li>
-<li>
-  <a href="packages.html">
-    <span class="fa fa-archive"></span>
-     
-    R Packages
-  </a>
-</li>
-<li>
-  <a href="roxygen.html">
-    <span class="fa fa-question-circle"></span>
-     
-    Roxygen
-  </a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    More Tools
+    <span class="fa fa-cogs"></span>
+     
+    Coding
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="links.html">Tutorials</a>
+      <a href="rstudio.html">
+        <span class="fa fa-cogs"></span>
+         
+        Week 1 RStudio + Version Control
+      </a>
+    </li>
+    <li>
+      <a href="coding.html">
+        <span class="fa fa-code"></span>
+         
+        Week 2 Object oriented structure
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-git"></span>
+     
+    Git
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio.html">
+        <span class="fa fa-cogs"></span>
+         
+        Week 1 Intro to Git
+      </a>
+    </li>
+    <li>
+      <a href="coding.html">
+        <span class="fa fa-github"></span>
+         
+        Week 2 More Git + GitHub
+      </a>
     </li>
     <li>
       <a href="websites.html">
         <span class="fa fa-chrome"></span>
          
-        Websites
+        Websites with GitHub
       </a>
     </li>
     <li>
       <a href="jekyll.html">
         <span class="fa fa-sitemap"></span>
          
-        Jekyll
+        Dynamic Websites with Jekyll and GitHub
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file"></span>
+     
+    RMarkdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="RMarkdown.html">
+        <span class="fa fa-file"></span>
+         
+        Week 3 R Markdown for Reports
       </a>
     </li>
     <li>
@@ -431,12 +452,49 @@ div.tocify {
         Bookdown
       </a>
     </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-archive"></span>
+     
+    R Packages
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="packages.html">
+        <span class="fa fa-archive"></span>
+         
+        Week 4 R Packaging with RStudio
+      </a>
+    </li>
+    <li>
+      <a href="roxygen.html">
+        <span class="fa fa-question-circle"></span>
+         
+        Week 5 Roxygen documentation
+      </a>
+    </li>
     <li>
       <a href="shiny.html">
         <span class="fa fa-gamepad"></span>
          
-        Shiny
+        Shiny GUIs
       </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="links.html">Tutorials</a>
     </li>
   </ul>
 </li>
@@ -446,6 +504,7 @@ div.tocify {
   <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
     <span class="fa fa-github"></span>
      
+    Repo
   </a>
 </li>
       </ul>
@@ -598,13 +657,34 @@ Imports: forecast
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true</code></pre>
+<p>The packages on the <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines are required to be installed in order to install your package. If the user doesn’t have these packages, then they will be installed.</p>
+<p><strong><span class="citation">@Depends</span></strong> These packages that will be loaded when your package is loaded. So if you have <strong>gplot2</strong> in <span class="citation">@Depends</span>, like above, then the user automatically can use <strong>ggplot2</strong> functions without issuing the command <code>library(ggplot2)</code>.</p>
+<p><strong><span class="citation">@Imports</span></strong> Are required for the package functions, but the user will not have access to the functions without calling <code>library(...)</code>. In your package, you will use <code>::</code> to access the functions from the packages on the <span class="citation">@Imports</span> line. <em>Most of your package dependencies will be here.</em></p>
+<p>To limit the number of headaches that users face when trying to install your package, use as few packages on your <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on <span class="citation">@Suggests</span>.</p>
+<p>I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I’ll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command <code>library(SardineForecast)</code> a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won’t load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it’s a suffer-fest.</p>
+<p>For my MARSS package, I have only 3 non-base dependencies in the <span class="citation">@Imports</span> line and nothing on the <span class="citation">@Depends</span> line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the <span class="citation">@Suggests</span> line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).</p>
+<p><strong>What should you put on your Depends and Imports lines?</strong></p>
+<p>First off, when you are starting, don’t worry too much about this. Just add packages that are needed as you work on your functions.</p>
+<ol style="list-style-type: decimal">
+<li>ALWAYS use <code>::</code> to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for <code>xyzpackage::</code> to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like <code>ggplot()</code> which use functions within their calls and you have to use <code>::</code> everywhere. Like so</li>
+</ol>
+<pre><code>ggplot2::ggplot(df) +
+  ggplot2::geom_point(ggplot2::aes(gp, y))</code></pre>
+<p>Arg. Another example is say a GAM call:</p>
+<pre><code>mgcv::gam(a ~ mgcv::s(b), data=df)</code></pre>
+<p>But this is just for your package functions. In your scripts, you’d probably use a <code>library()</code> call. 2. However never ever use <code>library()</code> in a function! Use <code>xyzfunction::function</code>. Sure use <code>library()</code> in your scripts, but never in a package function. 3. Add those packages to <span class="citation">@Depends</span> or <span class="citation">@Imports</span> as you go along. 4. Every so often check that you don’t have packages on <span class="citation">@Depends</span> and <span class="citation">@Imports</span> that you don’t use. Just do a Edit &gt; Find in Files… search for <code>xyzpackage::</code> to find out if you are still using <code>xyzpackage</code>.</p>
+<p>How do you know if you forgot a dependency or forgot a <code>::</code> somewhere? Two ways:</p>
+<ol style="list-style-type: decimal">
+<li>Do Session &gt; Restart R to close all your loaded packages. Then load your package with <code>library(yourpackagename)</code> and try your functions. Things will fail if you have a package in <span class="citation">@Imports</span> but forgot a <code>::</code> somewhere.</li>
+<li>From the Build tab, use More &gt; Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).</li>
+</ol>
 </div>
 <div id="the-namespace-file" class="section level3">
 <h3>The NAMESPACE file</h3>
-<p>This is commands to export functions (in the R folder) to the command line for use. If you don’t have a function here, the user will need to use <code>:::</code> to access the function.</p>
+<p>This file has the commands to export the functions (in the R folder) to the command line for use. If you don’t have a function here, the user will need to use <code>:::</code> to access the function.</p>
 <pre><code>exportPattern(&quot;^[[:alpha:]]+&quot;)
 export(littleforecast)</code></pre>
-<p>The first line means “export all functions”. I don’t normally have that line. The next line is exporting the <code>littleforecast</code> function.</p>
+<p>The first line means “export all functions”. I don’t normally have that line but it is handy when you are starting out; just export all your functions. The next line is exporting the <code>littleforecast</code> function.</p>
 </div>
 <div id="the-r-directory-function-code" class="section level3">
 <h3>The R Directory: Function code</h3>
@@ -614,34 +694,6 @@ export(littleforecast)</code></pre>
 # The work
 return(&lt;what you want to return to user&gt;)
 }</code></pre>
-<!---
-
-### Function documentation
-
-Now look at the top of `myarimaforecast.R`.  This is the function documentation.  It describes what the function does.  See `SSTplot()` for another example.  Here is the structure of the documentation:
-
-```
-#' Briefly What Does Your Package Do
-#'
-#' Longer description of what your package does.  This is about a paragraph in length.
-#'
-#' @param function_argument describe what the argument is
-#' @param function_argument2 add as many @param's as you need
-#' @return What does your function return or do?
-#' @examples
-#' add some working R code that shows how to use your function
-#' @export
-```
-
-`@export` means that your function is not hidden.  Just include this for now.
-
-Updating the documentation.  By default, RStudio does not remake the documentation when you click 'Build & Reload'.  You can change that by going to Tools > Project Options > Build Tools and then clicking 'Configure' next to 'Generate documentation with Roxygen' and then clicking the box next to 'Build & Reload'.  Or you can run the code:
-
-```
-devtools::document()
-```
-
--->
 </div>
 </div>
 <div id="sharing-your-package" class="section level2">
@@ -695,6 +747,16 @@ install_github(&quot;youraccount/MyNewPackage&quot;)</code></pre>
 install_gitlab(&quot;youraccount/MyNewPackage&quot;)</code></pre>
 <p>For example to install the package on ‘RVerse-Tutorials’, you would use</p>
 <pre><code>install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
+<div id="installing-from-github-headaches" class="section level3">
+<h3>Installing from GitHub headaches</h3>
+<p>If you are on a Windows machine and get an error saying ‘loading failed for i386’ or similar, then try</p>
+<pre><code>options(devtools.install.args = &quot;--no-multiarch&quot;)</code></pre>
+<p>If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use</p>
+<pre><code>Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)</code></pre>
+<p>If R asks you to update packages, you don’t need to update (normally). If you do update, and it asks if you want to install from source, you can probably say ‘No’. It is very unlikely that the package you trying to install needs the most updated version of a package. If that were the case, the package writer could have explicitly stated a version dependency, like <code>forecast (&gt;=2.0)</code>.</p>
+<p>If R simply won’t install a package from GitHub/Lab (or CRAN even) because of a package dependency problem, something like <code>can't install because couldn't remove old installation</code> error. Then click on the Packages tab (lower right panel) and click Install. Look at where R is installing packages. There might be more than one place. Close all your RStudio windows (exit altogether) and go to those locations and delete the library folder(s) for the offending package. Then open RStudio and re-install that package.</p>
+<p>To limit the number of headaches that users face when trying to install your package from GitHub/Lab, use as few packages on your <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on <span class="citation">@Suggests</span>.</p>
+</div>
 </div>
 <div id="more-on-githublab" class="section level2">
 <h2>More on GitHub/Lab</h2>
@@ -748,44 +810,44 @@ Rprof()
 summaryRprof(tmp)</code></pre>
 <pre><code>## $by.self
 ##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            1.32    91.67       1.32     91.67
-## &quot;t.default&quot;      0.10     6.94       0.10      6.94
-## &quot;t&quot;              0.02     1.39       0.12      8.33
+## &quot;%*%&quot;            1.10    91.67       1.10     91.67
+## &quot;t&quot;              0.06     5.00       0.10      8.33
+## &quot;t.default&quot;      0.04     3.33       0.04      3.33
 ## 
 ## $by.total
 ##                          total.time total.pct self.time self.pct
-## &quot;block_exec&quot;                   1.44    100.00      0.00     0.00
-## &quot;call_block&quot;                   1.44    100.00      0.00     0.00
-## &quot;eval&quot;                         1.44    100.00      0.00     0.00
-## &quot;evaluate_call&quot;                1.44    100.00      0.00     0.00
-## &quot;evaluate::evaluate&quot;           1.44    100.00      0.00     0.00
-## &quot;evaluate&quot;                     1.44    100.00      0.00     0.00
-## &quot;FUN&quot;                          1.44    100.00      0.00     0.00
-## &quot;generator$render&quot;             1.44    100.00      0.00     0.00
-## &quot;handle&quot;                       1.44    100.00      0.00     0.00
-## &quot;in_dir&quot;                       1.44    100.00      0.00     0.00
-## &quot;knitr::knit&quot;                  1.44    100.00      0.00     0.00
-## &quot;lapply&quot;                       1.44    100.00      0.00     0.00
-## &quot;process_file&quot;                 1.44    100.00      0.00     0.00
-## &quot;process_group.block&quot;          1.44    100.00      0.00     0.00
-## &quot;process_group&quot;                1.44    100.00      0.00     0.00
-## &quot;render_one&quot;                   1.44    100.00      0.00     0.00
-## &quot;rmarkdown::render_site&quot;       1.44    100.00      0.00     0.00
-## &quot;rmarkdown::render&quot;            1.44    100.00      0.00     0.00
-## &quot;sapply&quot;                       1.44    100.00      0.00     0.00
-## &quot;suppressMessages&quot;             1.44    100.00      0.00     0.00
-## &quot;timing_fn&quot;                    1.44    100.00      0.00     0.00
-## &quot;withCallingHandlers&quot;          1.44    100.00      0.00     0.00
-## &quot;withVisible&quot;                  1.44    100.00      0.00     0.00
-## &quot;%*%&quot;                          1.32     91.67      1.32    91.67
-## &quot;t&quot;                            0.12      8.33      0.02     1.39
-## &quot;t.default&quot;                    0.10      6.94      0.10     6.94
+## &quot;block_exec&quot;                   1.20    100.00      0.00     0.00
+## &quot;call_block&quot;                   1.20    100.00      0.00     0.00
+## &quot;eval&quot;                         1.20    100.00      0.00     0.00
+## &quot;evaluate_call&quot;                1.20    100.00      0.00     0.00
+## &quot;evaluate::evaluate&quot;           1.20    100.00      0.00     0.00
+## &quot;evaluate&quot;                     1.20    100.00      0.00     0.00
+## &quot;FUN&quot;                          1.20    100.00      0.00     0.00
+## &quot;generator$render&quot;             1.20    100.00      0.00     0.00
+## &quot;handle&quot;                       1.20    100.00      0.00     0.00
+## &quot;in_dir&quot;                       1.20    100.00      0.00     0.00
+## &quot;knitr::knit&quot;                  1.20    100.00      0.00     0.00
+## &quot;lapply&quot;                       1.20    100.00      0.00     0.00
+## &quot;process_file&quot;                 1.20    100.00      0.00     0.00
+## &quot;process_group.block&quot;          1.20    100.00      0.00     0.00
+## &quot;process_group&quot;                1.20    100.00      0.00     0.00
+## &quot;render_one&quot;                   1.20    100.00      0.00     0.00
+## &quot;rmarkdown::render_site&quot;       1.20    100.00      0.00     0.00
+## &quot;rmarkdown::render&quot;            1.20    100.00      0.00     0.00
+## &quot;sapply&quot;                       1.20    100.00      0.00     0.00
+## &quot;suppressMessages&quot;             1.20    100.00      0.00     0.00
+## &quot;timing_fn&quot;                    1.20    100.00      0.00     0.00
+## &quot;withCallingHandlers&quot;          1.20    100.00      0.00     0.00
+## &quot;withVisible&quot;                  1.20    100.00      0.00     0.00
+## &quot;%*%&quot;                          1.10     91.67      1.10    91.67
+## &quot;t&quot;                            0.10      8.33      0.06     5.00
+## &quot;t.default&quot;                    0.04      3.33      0.04     3.33
 ## 
 ## $sample.interval
 ## [1] 0.02
 ## 
 ## $sampling.time
-## [1] 1.44</code></pre>
+## [1] 1.2</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <pre class="r"><code>library(microbenchmark)

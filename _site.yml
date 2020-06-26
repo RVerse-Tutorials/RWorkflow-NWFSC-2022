@@ -6,39 +6,58 @@ navbar:
   - text: Set-up
     icon: fa-clone
     href: set-up.html
-  - text: RStudio+Git
+  - text: Coding
     icon: fa-cogs
-    href: rstudio.html
-  - text: More Git+Coding
-    icon: fa-code
-    href: coding.html
-  - text: RMarkdown
-    icon: fa-file
-    href: RMarkdown.html
-  - text: R Packages
-    icon: fa-archive
-    href: packages.html
-  - text: Roxygen
-    icon: fa-question-circle
-    href: roxygen.html
-  - text: More Tools
     menu:
-    - text: Tutorials
-      href: links.html
-    - text: Websites
+    - text: Week 1 RStudio + Version Control
+      icon: fa-cogs
+      href: rstudio.html
+    - text: Week 2 Object oriented structure
+      icon: fa-code
+      href: coding.html
+  - text: Git
+    icon: fa-git
+    menu:
+    - text: Week 1 Intro to Git
+      icon: fa-cogs
+      href: rstudio.html
+    - text: Week 2 More Git + GitHub
+      icon: fa-github
+      href: coding.html
+    - text: Websites with GitHub
       icon: fa-chrome
       href: websites.html
-    - text: Jekyll
+    - text: Dynamic Websites with Jekyll and GitHub
       icon: fa-sitemap
       href: jekyll.html
+  - text: RMarkdown
+    icon: fa-file
+    menu:
+    - text: Week 3 R Markdown for Reports
+      icon: fa-file
+      href: RMarkdown.html
     - text: Bookdown
       icon: fa-book
       href: bookdown.html
-    - text: Shiny
+  - text: R Packages
+    icon: fa-archive
+    menu:
+    - text: Week 4 R Packaging with RStudio
+      icon: fa-archive
+      href: packages.html
+    - text: Week 5 Roxygen documentation
+      icon: fa-question-circle
+      href: roxygen.html
+    - text: Shiny GUIs
       icon: fa-gamepad
       href: shiny.html
+  - text: More
+    menu:
+    - text: Tutorials
+      href: links.html
   right:
-  - icon: fa-github
+  - text: Repo
+    icon: fa-github
     href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
     
 output:
