@@ -131,7 +131,7 @@ The easiest way to figure out how to customize Roxygen headers is to look at the
 
 ### Adding references
 
-If you use BibTex you can insert referenes by citation in your help files.
+If you use BibTex you can insert references by citation in your help files.
 
 1. Create the `inst` folder if you don't have one
 2. Within that, create `REFERENCES.bib`
