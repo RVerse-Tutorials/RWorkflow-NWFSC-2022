@@ -658,26 +658,6 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true</code></pre>
 <p>The packages on the <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines are required to be installed in order to install your package. If the user doesn’t have these packages, then they will be installed.</p>
-<p><strong><span class="citation">@Depends</span></strong> These packages that will be loaded when your package is loaded. So if you have <strong>gplot2</strong> in <span class="citation">@Depends</span>, like above, then the user automatically can use <strong>ggplot2</strong> functions without issuing the command <code>library(ggplot2)</code>.</p>
-<p><strong><span class="citation">@Imports</span></strong> Are required for the package functions, but the user will not have access to the functions without calling <code>library(...)</code>. In your package, you will use <code>::</code> to access the functions from the packages on the <span class="citation">@Imports</span> line. <em>Most of your package dependencies will be here.</em></p>
-<p>To limit the number of headaches that users face when trying to install your package, use as few packages on your <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on <span class="citation">@Suggests</span>.</p>
-<p>I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I’ll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command <code>library(SardineForecast)</code> a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won’t load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it’s a suffer-fest.</p>
-<p>For my MARSS package, I have only 3 non-base dependencies in the <span class="citation">@Imports</span> line and nothing on the <span class="citation">@Depends</span> line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the <span class="citation">@Suggests</span> line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).</p>
-<p><strong>What should you put on your Depends and Imports lines?</strong></p>
-<p>First off, when you are starting, don’t worry too much about this. Just add packages that are needed as you work on your functions.</p>
-<ol style="list-style-type: decimal">
-<li>ALWAYS use <code>::</code> to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for <code>xyzpackage::</code> to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like <code>ggplot()</code> which use functions within their calls and you have to use <code>::</code> everywhere. Like so</li>
-</ol>
-<pre><code>ggplot2::ggplot(df) +
-  ggplot2::geom_point(ggplot2::aes(gp, y))</code></pre>
-<p>Arg. Another example is say a GAM call:</p>
-<pre><code>mgcv::gam(a ~ mgcv::s(b), data=df)</code></pre>
-<p>But this is just for your package functions. In your scripts, you’d probably use a <code>library()</code> call. 2. However never ever use <code>library()</code> in a function! Use <code>xyzfunction::function</code>. Sure use <code>library()</code> in your scripts, but never in a package function. 3. Add those packages to <span class="citation">@Depends</span> or <span class="citation">@Imports</span> as you go along. 4. Every so often check that you don’t have packages on <span class="citation">@Depends</span> and <span class="citation">@Imports</span> that you don’t use. Just do a Edit &gt; Find in Files… search for <code>xyzpackage::</code> to find out if you are still using <code>xyzpackage</code>.</p>
-<p>How do you know if you forgot a dependency or forgot a <code>::</code> somewhere? Two ways:</p>
-<ol style="list-style-type: decimal">
-<li>Do Session &gt; Restart R to close all your loaded packages. Then load your package with <code>library(yourpackagename)</code> and try your functions. Things will fail if you have a package in <span class="citation">@Imports</span> but forgot a <code>::</code> somewhere.</li>
-<li>From the Build tab, use More &gt; Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).</li>
-</ol>
 </div>
 <div id="the-namespace-file" class="section level3">
 <h3>The NAMESPACE file</h3>
@@ -807,47 +787,12 @@ undebug(function)</code></pre>
 Rprof(tmp&lt;-tempfile())
 for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
-summaryRprof(tmp)</code></pre>
-<pre><code>## $by.self
-##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            1.10    91.67       1.10     91.67
-## &quot;t&quot;              0.06     5.00       0.10      8.33
-## &quot;t.default&quot;      0.04     3.33       0.04      3.33
-## 
-## $by.total
-##                          total.time total.pct self.time self.pct
-## &quot;block_exec&quot;                   1.20    100.00      0.00     0.00
-## &quot;call_block&quot;                   1.20    100.00      0.00     0.00
-## &quot;eval&quot;                         1.20    100.00      0.00     0.00
-## &quot;evaluate_call&quot;                1.20    100.00      0.00     0.00
-## &quot;evaluate::evaluate&quot;           1.20    100.00      0.00     0.00
-## &quot;evaluate&quot;                     1.20    100.00      0.00     0.00
-## &quot;FUN&quot;                          1.20    100.00      0.00     0.00
-## &quot;generator$render&quot;             1.20    100.00      0.00     0.00
-## &quot;handle&quot;                       1.20    100.00      0.00     0.00
-## &quot;in_dir&quot;                       1.20    100.00      0.00     0.00
-## &quot;knitr::knit&quot;                  1.20    100.00      0.00     0.00
-## &quot;lapply&quot;                       1.20    100.00      0.00     0.00
-## &quot;process_file&quot;                 1.20    100.00      0.00     0.00
-## &quot;process_group.block&quot;          1.20    100.00      0.00     0.00
-## &quot;process_group&quot;                1.20    100.00      0.00     0.00
-## &quot;render_one&quot;                   1.20    100.00      0.00     0.00
-## &quot;rmarkdown::render_site&quot;       1.20    100.00      0.00     0.00
-## &quot;rmarkdown::render&quot;            1.20    100.00      0.00     0.00
-## &quot;sapply&quot;                       1.20    100.00      0.00     0.00
-## &quot;suppressMessages&quot;             1.20    100.00      0.00     0.00
-## &quot;timing_fn&quot;                    1.20    100.00      0.00     0.00
-## &quot;withCallingHandlers&quot;          1.20    100.00      0.00     0.00
-## &quot;withVisible&quot;                  1.20    100.00      0.00     0.00
-## &quot;%*%&quot;                          1.10     91.67      1.10    91.67
-## &quot;t&quot;                            0.10      8.33      0.06     5.00
-## &quot;t.default&quot;                    0.04      3.33      0.04     3.33
-## 
-## $sample.interval
-## [1] 0.02
-## 
-## $sampling.time
-## [1] 1.2</code></pre>
+summaryRprof(tmp)$by.self</code></pre>
+<pre><code>##                   self.time self.pct total.time total.pct
+## &quot;%*%&quot;                  0.90    83.33       0.90     83.33
+## &quot;t&quot;                    0.08     7.41       0.16     14.81
+## &quot;t.default&quot;            0.08     7.41       0.08      7.41
+## &quot;lazyLoadDBfetch&quot;      0.02     1.85       0.02      1.85</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <pre class="r"><code>library(microbenchmark)
@@ -858,10 +803,39 @@ ggplot2::autoplot(res)</code></pre>
 <p><img src="packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 </div>
+<div id="dependsimports" class="section level2">
+<h2>Depends/Imports</h2>
+<p><strong><span class="citation">@Depends</span></strong> These packages that will be loaded when your package is loaded. So if you have <strong>gplot2</strong> in <span class="citation">@Depends</span>, like above, then the user automatically can use <strong>ggplot2</strong> functions without issuing the command <code>library(ggplot2)</code>.</p>
+<p><strong><span class="citation">@Imports</span></strong> Are required for the package functions, but the user will not have access to the functions without calling <code>library(...)</code>. In your package, you will use <code>::</code> to access the functions from the packages on the <span class="citation">@Imports</span> line. <em>Most of your package dependencies will be here.</em></p>
+<p>To limit the number of headaches that users face when trying to install your package, use as few packages on your <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on <span class="citation">@Suggests</span>.</p>
+<p>I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I’ll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command <code>library(SardineForecast)</code> a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won’t load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it’s a suffer-fest.</p>
+<p>For my MARSS package, I have only 3 non-base dependencies in the <span class="citation">@Imports</span> line and nothing on the <span class="citation">@Depends</span> line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the <span class="citation">@Suggests</span> line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).</p>
+<p><strong>What should you put on your Depends and Imports lines?</strong></p>
+<p>First off, when you are starting, don’t worry too much about this. Just add packages that are needed as you work on your functions.</p>
+<ul>
+<li><p>ALWAYS use <code>::</code> to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for <code>xyzpackage::</code> to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like <code>ggplot()</code> which use functions within their calls and you have to use <code>::</code> everywhere. Like so</p>
+<pre class="r"><code>ggplot2::ggplot(df) +
+   ggplot2::geom_point(ggplot2::aes(gp, y))</code></pre>
+<p>Arg. Another example is say a GAM call:</p>
+<pre class="r"><code>mgcv::gam(a ~ mgcv::s(b), data=df)</code></pre>
+<p>But this is just for your package functions. In your scripts, you’d probably use a <code>library()</code> call.</p></li>
+<li><p>Never ever use <code>library()</code> in a function! Use <code>xyzfunction::function</code>. Sure use <code>library()</code> in your scripts, but never in a package function. When you add a function from a new package to your function, add those packages to <span class="citation">@Depends</span> or <span class="citation">@Imports</span> in your DESCRIPTION file as you go along.</p></li>
+<li><p>Every so often check that you don’t have packages on <span class="citation">@Depends</span> and <span class="citation">@Imports</span> that you don’t use. Just do a Edit &gt; Find in Files… search for <code>xyzpackage::</code> to find out if you are still using <code>xyzpackage</code>.</p></li>
+<li><p>How do you know if you forgot a dependency or forgot a <code>::</code> somewhere? Two ways:</p>
+<ol style="list-style-type: decimal">
+<li>Do Session &gt; Restart R to close all your loaded packages. Then load your package with <code>library(yourpackagename)</code> and try your functions. Things will fail if you have a package in <span class="citation">@Imports</span> but forgot a <code>::</code> somewhere.</li>
+<li>From the Build tab, use More &gt; Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).</li>
+</ol></li>
+</ul>
+</div>
 <div id="styling-your-code" class="section level2">
 <h2>Styling your code</h2>
-<p><strong>styler</strong> package</p>
-<p>Has a plug-in for RStudio. Easy to style a whole file or even whole folder of files.</p>
+<p>You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the <a href="https://www.tidyverse.org/blog/2017/12/styler-1.0.0/"><strong>styler</strong> R package</a>. <strong>styler</strong> has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools &gt; Addins &gt; Browse Addins. Scroll down to styler, and select the file(s), you want to style.</p>
+</div>
+<div id="byte-compile" class="section level2">
+<h2>Byte Compile</h2>
+<p>Adding this line to your DESCRIPTION file can really speed up your code. This is one of the advantages of putting your functions in a package. It can actually make your functions faster.</p>
+<pre><code>ByteCompile: TRUE</code></pre>
 </div>
 
 <hr>

@@ -171,21 +171,5 @@ Add the citation to your Rd file with
 \insertRef{Waltonetal1998}{MyNewPackage}
 ```
 
-## Styling your code
-
-You should adopt a standardized style for your code. Choosing your own personal style is not good idea, just makes it harder for others to follow your code. I use, or more accurately try to ues, the [tidyverse style](https://style.tidyverse.org/). However I remembering all the rules uses up memory space better allotted differently.
-
-**styler** package
-
-Has a plug-in for RStudio. Easy to style a whole file or even whole folder of files.
-
-## Byte Compile
-
-Adding this line to your DESCRIPTION file can really speed up your code.
-
-```
-ByteCompile: TRUE
-```
-
 
 

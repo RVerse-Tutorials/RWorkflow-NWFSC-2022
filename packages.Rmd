@@ -157,38 +157,6 @@ LazyData: true
 
 The packages on the @Depends and @Imports lines are required to be installed in order to install your package. If the user doesn't have these packages, then they will be installed.
 
-**@Depends** These packages that will be loaded when your package is loaded. So if you have **gplot2** in @Depends, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. 
-
-**@Imports** Are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you will use `::` to access the functions from the packages on the @Imports line. *Most of your package dependencies will be here.*
-
-To limit the number of headaches that users face when trying to install your package, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
-
-I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
-
-For my MARSS package, I have only 3 non-base dependencies in the @Imports line and nothing on the @Depends line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the @Suggests line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
-
-**What should you put on your Depends and Imports lines?**
-
-First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
-
-1. ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
-```
-ggplot2::ggplot(df) +
-  ggplot2::geom_point(ggplot2::aes(gp, y))
-```
-Arg. Another example is say a GAM call:
-```
-mgcv::gam(a ~ mgcv::s(b), data=df)
-```
-But this is just for your package functions. In your scripts, you'd probably use a `library()` call.
-2. However never ever use `library()` in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.
-3. Add those packages to @Depends or @Imports as you go along.
-4. Every so often check that you don't have packages on @Depends and @Imports that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
-
-How do you know if you forgot a dependency or forgot a `::` somewhere? Two ways:
-
-1. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in @Imports but forgot a `::` somewhere.
-2. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
 
 ### The NAMESPACE file
 
@@ -213,8 +181,6 @@ functionname <- function(infofunctionneeds1, infofunctionneeds2, ...){
 return(<what you want to return to user>)
 }
 ```
-
-
 
 ## Sharing your package
 
@@ -322,7 +288,6 @@ To install the latest release
 install_github("youraccount/MyNewPackage@*release")
 ```
 
-
 ## Debugging Tools
 
 ### Entering functions
@@ -365,7 +330,7 @@ a=matrix(0,10,100)
 Rprof(tmp<-tempfile())
 for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
-summaryRprof(tmp)
+summaryRprof(tmp)$by.self
 Rprof(NULL) #stop profiling
 ```
 
@@ -378,11 +343,51 @@ res <- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)
 ```
 
+## Depends/Imports
+
+**@Depends** These packages that will be loaded when your package is loaded. So if you have **gplot2** in @Depends, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. 
+
+**@Imports** Are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you will use `::` to access the functions from the packages on the @Imports line. *Most of your package dependencies will be here.*
+
+To limit the number of headaches that users face when trying to install your package, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
+
+I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
+
+For my MARSS package, I have only 3 non-base dependencies in the @Imports line and nothing on the @Depends line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the @Suggests line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
+
+**What should you put on your Depends and Imports lines?**
+
+First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
+
+* ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
+    ```{r eval=FALSE}
+    ggplot2::ggplot(df) +
+       ggplot2::geom_point(ggplot2::aes(gp, y))
+    ```
+    Arg. Another example is say a GAM call:
+    ```{r eval=FALSE}
+    mgcv::gam(a ~ mgcv::s(b), data=df)
+    ```
+    But this is just for your package functions. In your scripts, you'd probably use a `library()` call.
+
+* Never ever use `library()` in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.  When you add a function from a new package to your function, add those packages to @Depends or @Imports in your DESCRIPTION file as you go along.
+
+* Every so often check that you don't have packages on @Depends and @Imports that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
+
+* How do you know if you forgot a dependency or forgot a `::` somewhere? Two ways:
+
+    1. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in @Imports but forgot a `::` somewhere.
+    2. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
 
 ## Styling your code
 
-**styler** package
+You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the [**styler** R package](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/). **styler** has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools > Addins > Browse Addins. Scroll down to styler, and select the file(s), you want to style.
 
-Has a plug-in for RStudio. Easy to style a whole file or even whole folder of files.
+## Byte Compile
 
+Adding this line to your DESCRIPTION file can really speed up your code. This is one of the advantages of putting your functions in a package. It can actually make your functions faster.
+
+```
+ByteCompile: TRUE
+```
 
