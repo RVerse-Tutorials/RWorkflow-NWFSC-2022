@@ -528,6 +528,9 @@ div.tocify {
     Repo
   </a>
 </li>
+<li>
+  <a href="search.html">Search</a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -809,20 +812,18 @@ Rprof(tmp&lt;-tempfile())
 for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
-<pre><code>##       self.time self.pct total.time total.pct
-## &quot;%*%&quot;      0.32    84.21       0.32     84.21
-## &quot;t&quot;        0.06    15.79       0.06     15.79</code></pre>
+<pre><code>##        self.time self.pct total.time total.pct
+## &quot;%*%&quot;       1.08    94.74       1.08     94.74
+## &quot;t&quot;         0.04     3.51       0.04      3.51
+## &quot;eval&quot;      0.02     1.75       1.14    100.00</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
-<pre class="r"><code>library(microbenchmark)</code></pre>
-<pre><code>## Warning: package &#39;microbenchmark&#39; was built under R version 3.6.3</code></pre>
-<pre class="r"><code>a &lt;- 2
+<pre class="r"><code>library(microbenchmark)
+a &lt;- 2
 res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 16 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week4-packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.</p>
 <pre class="r"><code>library(magrittr)

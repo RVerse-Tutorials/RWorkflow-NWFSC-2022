@@ -68,7 +68,9 @@ navbar:
   - text: Repo
     icon: fa-github
     href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
-    
+  - text: Search
+    href: search.html
+   
 output:
   html_document:
     theme: readable
