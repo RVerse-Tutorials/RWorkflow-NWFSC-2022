@@ -24,6 +24,9 @@ navbar:
     - text: Week 5 Roxygen
       icon: fa-question-circle
       href: week5-roxygen.html
+    - text: Week 6 More Packages
+      icon: fa-folder
+      href: week6-more-packages.html
   - text: Git
     icon: fa-git
     menu:

@@ -28,6 +28,136 @@ This week I will cover more advanced topics regarding R packages:
 
 If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
 
+## Checking your package
+
+Just use the RStudio Check in the Build tab.
+
+## Creating print and plot methods for your objects
+
+### Make your output an object
+
+```
+littleforecast <- function(data, nyears=10){
+  fit <- forecast::auto.arima(data)
+  fc <- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+  class(fit) <- c("foo", class(fit))
+  return(fit)
+}
+```
+
+### print method
+
+```
+#' Prints foo object
+#'
+#' prints a foo object returned from littlefunction().
+#'
+#' @param x foo object
+#' @param ... Not used
+#' @method print foo
+#' @export
+print.foo <- function(x, ...) {
+  cat("Hello there")
+}
+```
+
+### plot method
+
+```
+#' Plots foo object
+#'
+#' Plots foo object.
+#'
+#' @param x An foo object.
+#' @param ... Not used.
+#' @method plot foo
+#' @export
+plot.foo <- function(x, ...) {
+  plot(1:10)
+}
+```
+
+### Add your methods to your namespace
+
+```
+S3method(print,foo)
+S3method(plot,foo)
+```
+
+### Example
+
+Install and restart MyNewPackage.
+
+```
+fit=littleforecast(WWW2)
+fit
+plot(fit)
+```
+
+
+## Writing a vignette
+
+Doing this in RStudio is easy. See [rmarkdown vignette chapter](https://bookdown.org/yihui/rmarkdown-cookbook/package-vignette.html) and [Hadley's vignette chapter](http://r-pkgs.had.co.nz/vignettes.html) for more info.
+
+### Making the vignette
+
+RStudio > File > New > R Markdown > From Template > Vignette
+
+save in vignettes folder
+
+or do
+
+```
+devtools::use_vignette("my-vignette")
+```
+
+or 
+
+```
+usethis::use_vignette("MyNewPackage")
+```
+
+### Testing your vignette
+
+Just use knit button.
+
+### Getting your vignette to show up
+
+This is a disaster currently in RStudio. They'll probably fix eventually.
+
+Set the build options to make the vignettes. Tools > Project Options > Build Options
+
+But then when you Install and Restart, your vignettes don't show up.
+
+Supposedly this works:
+
+* Build to tar.gz
+* `install.packages("..location../MyNewPackage_0.1.0.tar.gz", repos = NULL, type = "source")`
+* But still `browseVignettes("MyNewPackage")` doesn't work
+
+Work around
+
+During development.
+
+```
+devtools::build_vignettes()
+devtools::load_all()
+browseVignettes("MyNewPackage")
+```
+
+When ready to push to GitHub or GitLab,
+
+```
+devtools::build_vignettes()
+```
+
+Creates `doc` and `Meta` at base. Move `doc` to `inst` folder and delete `Meta`.
+
+Now RStudio, Install and Restart works and build from source works on GitHub.
+
+**Careful, RStudio `Check` will trash the `inst/doc` folder and not recreate it. So always check that `inst/doc` not been trashed.
+
 
 ## **pkgdown**
 

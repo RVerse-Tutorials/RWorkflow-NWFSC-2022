@@ -409,6 +409,13 @@ div.tocify {
         Week 5 Roxygen
       </a>
     </li>
+    <li>
+      <a href="week6-more-packages.html">
+        <span class="fa fa-folder"></span>
+         
+        Week 6 More Packages
+      </a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -812,10 +819,10 @@ Rprof(tmp&lt;-tempfile())
 for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
-<pre><code>##        self.time self.pct total.time total.pct
-## &quot;%*%&quot;       1.08    94.74       1.08     94.74
-## &quot;t&quot;         0.04     3.51       0.04      3.51
-## &quot;eval&quot;      0.02     1.75       1.14    100.00</code></pre>
+<pre><code>##             self.time self.pct total.time total.pct
+## &quot;%*%&quot;            0.98    90.74       0.98     90.74
+## &quot;t.default&quot;      0.06     5.56       0.06      5.56
+## &quot;t&quot;              0.04     3.70       0.10      9.26</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>

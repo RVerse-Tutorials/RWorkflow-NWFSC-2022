@@ -11,7 +11,7 @@
 
 
 
-<title>Notes on Git and RStudio</title>
+<title>Week 6: Advanced package topics</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,6 +25,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -546,117 +547,173 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Notes on Git and RStudio</h1>
+<h1 class="title toc-ignore">Week 6: Advanced package topics</h1>
 
 </div>
 
 
-<div id="using-git-in-rstudio" class="section level1">
-<h1>Using Git in RStudio</h1>
-<p>You can read a whole book about Git and R <a href="http://happygitwithr.com/index.html">Happy Git with R</a>.</p>
-<p>Using Git in RStudio can be hard to set-up and hard to debug if you run into problems. If you want to use it, <a href="https://cfss.uchicago.edu/git07.html">read these instructions</a>.</p>
-<p>In particular, read the part about how to set-up so you don’t have to enter your username and password for every commmit.</p>
-<div id="creating-a-local-repository-and-then-getting-it-on-github-or-gitlab" class="section level2">
-<h2>Creating a local repository and then getting it on GitHub (or GitLab)</h2>
-<p>Note. Creating the repo locally first often leads to misery in my experience. Often safer to start by making a blank repo on GitHub or GitLab.</p>
-<div id="lets-create-a-local-repository" class="section level3">
-<h3>Let’s create a local repository</h3>
-<ol style="list-style-type: decimal">
-<li><p>Create a RStudio project (upper right with the blue cube with R). New project… &gt; New Directory &gt; New Project</p></li>
-<li><p>Check the box that says <code>Create a git repository</code>. You have made a local repository.</p></li>
-<li><p>Add a file. File &gt; New File &gt; R Script</p></li>
-<li><p>Type something and then save the file.</p></li>
-<li><p>Click the <code>Git</code> tab in the upper right.</p></li>
-<li><p>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</p></li>
-<li><p>Repeat 4-6 a few times.</p></li>
-<li><p>Now look at the history. The little clock-like icon (or History in the Git window).</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Compartmentalized
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Documented
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Extendible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Reproducible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Robust
+</td>
+</tr>
+</tbody>
+</table>
+<p>This week I will cover more advanced topics regarding R packages:</p>
 <ul>
-<li>Click on <code>filter by file</code> to see just the changes to one file.</li>
-<li>Do a search in the upper right.</li>
-<li>Click on an early commit and click <code>View file @...</code></li>
-</ul></li>
-</ol>
+<li>How to use the “check” feature to find problems in your package.</li>
+<li>How to write a vignette for your package.</li>
+<li>How to write print and plot functions for your objects.</li>
+<li>Using pkgdown to make a website for your package.</li>
+</ul>
+<p>If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>.</p>
+<div id="checking-your-package" class="section level2">
+<h2>Checking your package</h2>
+<p>Just use the RStudio Check in the Build tab.</p>
+</div>
+<div id="creating-print-and-plot-methods-for-your-objects" class="section level2">
+<h2>Creating print and plot methods for your objects</h2>
+<div id="make-your-output-an-object" class="section level3">
+<h3>Make your output an object</h3>
+<pre><code>littleforecast &lt;- function(data, nyears=10){
+  fit &lt;- forecast::auto.arima(data)
+  fc &lt;- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+  class(fit) &lt;- c(&quot;foo&quot;, class(fit))
+  return(fit)
+}</code></pre>
+</div>
+<div id="print-method" class="section level3">
+<h3>print method</h3>
+<pre><code>#&#39; Prints foo object
+#&#39;
+#&#39; prints a foo object returned from littlefunction().
+#&#39;
+#&#39; @param x foo object
+#&#39; @param ... Not used
+#&#39; @method print foo
+#&#39; @export
+print.foo &lt;- function(x, ...) {
+  cat(&quot;Hello there&quot;)
+}</code></pre>
+</div>
+<div id="plot-method" class="section level3">
+<h3>plot method</h3>
+<pre><code>#&#39; Plots foo object
+#&#39;
+#&#39; Plots foo object.
+#&#39;
+#&#39; @param x An foo object.
+#&#39; @param ... Not used.
+#&#39; @method plot foo
+#&#39; @export
+plot.foo &lt;- function(x, ...) {
+  plot(1:10)
+}</code></pre>
+</div>
+<div id="add-your-methods-to-your-namespace" class="section level3">
+<h3>Add your methods to your namespace</h3>
+<pre><code>S3method(print,foo)
+S3method(plot,foo)</code></pre>
+</div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>Install and restart MyNewPackage.</p>
+<pre><code>fit=littleforecast(WWW2)
+fit
+plot(fit)</code></pre>
 </div>
 </div>
-<div id="now-lets-get-this-on-github-similar-strategy-if-you-are-working-on-gitlab" class="section level2">
-<h2>Now let’s get this on GitHub (similar strategy if you are working on GitLab)</h2>
-<ol style="list-style-type: decimal">
-<li>Go to GitHub and create a repo with the same name</li>
-<li>Don’t select add Readme or anything</li>
-<li>A page that tells you how to get started should show up. Look for this code.</li>
-</ol>
-<p><strong>…or push an existing repository from the command line</strong></p>
-<pre><code>git remote add origin https://github.com/&lt;youraccount&gt;/&lt;reponame&gt;.git
-git push -u origin master</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Copy the code and go back to RStudio.</li>
-<li>Click the cog on the Git tab and click Shell</li>
-<li>Paste the code into the command line.</li>
-<li>If you see something about Keychain, try Deny. It will hopefully ask you for your GitHub account info on the command line.</li>
-<li>If it all works, you should now be able to push.</li>
-</ol>
+<div id="writing-a-vignette" class="section level2">
+<h2>Writing a vignette</h2>
+<p>Doing this in RStudio is easy. See <a href="https://bookdown.org/yihui/rmarkdown-cookbook/package-vignette.html">rmarkdown vignette chapter</a> and <a href="http://r-pkgs.had.co.nz/vignettes.html">Hadley’s vignette chapter</a> for more info.</p>
+<div id="making-the-vignette" class="section level3">
+<h3>Making the vignette</h3>
+<p>RStudio &gt; File &gt; New &gt; R Markdown &gt; From Template &gt; Vignette</p>
+<p>save in vignettes folder</p>
+<p>or do</p>
+<pre><code>devtools::use_vignette(&quot;my-vignette&quot;)</code></pre>
+<p>or</p>
+<pre><code>usethis::use_vignette(&quot;MyNewPackage&quot;)</code></pre>
 </div>
-<div id="methods-for-downloading-repositories" class="section level2">
-<h2>Methods for downloading repositories</h2>
-<p>If you want to copy someone’s repository on GitHub or make a copy of one of your own, there are a few approaches that you can take. I am going to use <code>https://github.com/RVerse-Tutorials/Test</code> as the repository that you want to copy and we will put the repository at <code>Documents/GitHub/Test</code>.</p>
-<div id="method-1-fork-it" class="section level3">
-<h3>Method #1 Fork it</h3>
-<ol style="list-style-type: decimal">
-<li>Navigate to <code>https://github.com/RVerse-Tutorials/Test</code> on GitHub and click the ‘fork’ button in the upper right. Follow the instructions.</li>
-</ol>
-<p>Now you need to get it on your computer.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Version Control”. Then choose “Git”. Then it asks for a “repository URL”. Supply this: <code>https://github.com/&lt;your github account&gt;/Test</code> and leave the “Project Directory Name” empty. And then choose a directory in which to put the new repository and click OK.</li>
-</ol>
-<p>If you are using GitHub Desktop, you need to add it to that too.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>From GitHub Desktop, go to the menu option ‘File-&gt;Add Local Repository’. Then navigate to <code>~/Documents/GitHub/Test</code> and add.</li>
-</ol>
-<p>The problem with forking is that you can’t fork your own repositories and if you fork someone else’s repository, your fork will always show theirs as a ‘parent’—which doesn’t really have a bad effect but I rarely want my copy of someone’s repo to be linked to theirs in any way. Normally forking is used when you are contributing to the parent repository and need a copy to work on.</p>
+<div id="testing-your-vignette" class="section level3">
+<h3>Testing your vignette</h3>
+<p>Just use knit button.</p>
 </div>
-<div id="method-2-copying-my-own-repos-not-someone-elses" class="section level3">
-<h3>Method #2 Copying my OWN repos (not someone else’s)</h3>
-<p>This method is pretty failsafe and I find easy to remember. This how I normally copy one of my own folders and make a new GitHub repo. I don’t use Git at the command line very often and rather than looking up how to do it, getting something wrong 3x and then researching how to debug the problem, and then finding I’ve spent the morning with a simple task…. I just do the following now.</p>
-<ol style="list-style-type: decimal">
-<li>Make a new repo (say <code>Test</code>) on GitHub and click the button to add a Readme.md file.</li>
-<li>Download and link to the new repo using Step 2 above (in Method #1).</li>
-<li>Add the repo to GitHub Desktop using Step 3 above (in Method #1)</li>
-<li>Copy the files (on my computer) from the repo I want to copy into the new folder. Note this works because I already have the files I want on my computer.</li>
-<li>Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).</li>
-</ol>
-</div>
-<div id="method-4" class="section level3">
-<h3>Method #4</h3>
-<ol style="list-style-type: decimal">
-<li>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Version Control”. Then choose “Git”. Then it asks for a “repository URL”. Supply this: <code>https://github.com/RVerse-Tutorials/Test</code> and leave the “Project Directory Name” empty. And then choose a directory in which to put it and click OK.</li>
-</ol>
-<p>This method will have your new repository associated with the repository from where you downloaded. If it is not your own GitHub repository, you don’t want this because you will not be able to push changes to GitHub.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Click on the ‘More’ link in the Git Window of RStudio, and click ‘Shell’. Then issue this command.</li>
-</ol>
-<pre><code>git remote rm origin</code></pre>
-<p>This detaches the cloned repository from the remote repository on GitHub from where you cloned it.</p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Add the new repository to GitHub Desktop and then publish to GitHub. From GitHub Desktop, go to File&gt;Add Local Repository and then navigate to <code>~/Documents/GitHub/Test</code> and add.</p></li>
-<li><p>Publish to GitHub. Once you do step 3, a ‘Publish to GitHub’ button will appear. Click that to publish to GitHub.</p></li>
-</ol>
-<p>Note, there are Git commands you could use to do steps 3 and 4, but in this workshop we are using GitHub Desktop.</p>
-</div>
-<div id="alternate-method-5" class="section level3">
-<h3>Alternate Method #5</h3>
-<p>Another way is to download the repository as a zip file and unzip. <a href="https://youtu.be/bYySjso7vRo">Watch a video that shows you how to do this</a></p>
-<p>Go to <a href="https://github.com/RVerse-Tutorials/Test" class="uri">https://github.com/RVerse-Tutorials/Test</a> and click ‘Clone or download’ and chose ‘Download Zip’. Unzip and you’ll probably want to remove ‘master’ added to the end of the repository name.</p>
-<p>If you chose, ‘Clone in Desktop’, you’ll need to open a terminal window, navigate to the new folder you just downloaded, and run the git code <code>git remote rm origin</code> from within the terminal to detach the repository from the RVerse-Tutorials GitHub account.</p>
-</div>
-</div>
-<div id="packages-with-c-code" class="section level2">
-<h2>Packages with C++ code</h2>
-<p>We will not be doing this in this short course, but often you will want to install packages with C++ code. To do that, you will need Rtools (Windows) or Xcode (Mac)</p>
+<div id="getting-your-vignette-to-show-up" class="section level3">
+<h3>Getting your vignette to show up</h3>
+<p>This is a disaster currently in RStudio. They’ll probably fix eventually.</p>
+<p>Set the build options to make the vignettes. Tools &gt; Project Options &gt; Build Options</p>
+<p>But then when you Install and Restart, your vignettes don’t show up.</p>
+<p>Supposedly this works:</p>
 <ul>
-<li><p><strong>Rtools</strong> Windows users <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> also so you can build packages with C++ code if needed. See comments here about changing path. <a href="http://stat545.com/packages01_system-prep.html#windows-system-prep">Rtools</a></p></li>
-<li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>
+<li>Build to tar.gz</li>
+<li><code>install.packages("..location../MyNewPackage_0.1.0.tar.gz", repos = NULL, type = "source")</code></li>
+<li>But still <code>browseVignettes("MyNewPackage")</code> doesn’t work</li>
+</ul>
+<p>Work around</p>
+<p>During development.</p>
+<pre><code>devtools::build_vignettes()
+devtools::load_all()
+browseVignettes(&quot;MyNewPackage&quot;)</code></pre>
+<p>When ready to push to GitHub or GitLab,</p>
+<pre><code>devtools::build_vignettes()</code></pre>
+<p>Creates <code>doc</code> and <code>Meta</code> at base. Move <code>doc</code> to <code>inst</code> folder and delete <code>Meta</code>.</p>
+<p>Now RStudio, Install and Restart works and build from source works on GitHub.</p>
+<p>**Careful, RStudio <code>Check</code> will trash the <code>inst/doc</code> folder and not recreate it. So always check that <code>inst/doc</code> not been trashed.</p>
+</div>
+</div>
+<div id="pkgdown" class="section level2">
+<h2><strong>pkgdown</strong></h2>
+<p><a href="https://pkgdown.r-lib.org/articles/pkgdown.html">pkgdown</a> makes it easy to make nice webpages for your packages.</p>
+</div>
+<div id="depends-versus-imports" class="section level2">
+<h2>Depends versus Imports</h2>
+<p><strong><span class="citation">@Depends</span></strong> These packages that will be loaded when your package is loaded. So if you have <strong>gplot2</strong> in <span class="citation">@Depends</span>, like above, then the user automatically can use <strong>ggplot2</strong> functions without issuing the command <code>library(ggplot2)</code>.</p>
+<p><strong><span class="citation">@Imports</span></strong> Are required for the package functions, but the user will not have access to the functions without calling <code>library(...)</code>. In your package, you will use <code>::</code> to access the functions from the packages on the <span class="citation">@Imports</span> line. <em>Most of your package dependencies will be here.</em></p>
+<p>To limit the number of headaches that users face when trying to install your package, use as few packages on your <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on <span class="citation">@Suggests</span>.</p>
+<p>I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I’ll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command <code>library(SardineForecast)</code> a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won’t load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it’s a suffer-fest.</p>
+<p>For my MARSS package, I have only 3 non-base dependencies in the <span class="citation">@Imports</span> line and nothing on the <span class="citation">@Depends</span> line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the <span class="citation">@Suggests</span> line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).</p>
+<p><strong>What should you put on your Depends and Imports lines?</strong></p>
+<p>First off, when you are starting, don’t worry too much about this. Just add packages that are needed as you work on your functions.</p>
+<ul>
+<li><p>ALWAYS use <code>::</code> to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for <code>xyzpackage::</code> to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like <code>ggplot()</code> which use functions within their calls and you have to use <code>::</code> everywhere. Like so</p>
+<pre class="r"><code>ggplot2::ggplot(df) +
+   ggplot2::geom_point(ggplot2::aes(gp, y))</code></pre>
+<p>Arg. Another example is say a GAM call:</p>
+<pre class="r"><code>mgcv::gam(a ~ mgcv::s(b), data=df)</code></pre>
+<p>But this is just for your package functions. In your scripts, you’d probably use a <code>library()</code> call.</p></li>
+<li><p>Never ever use <code>library()</code> in a function! Use <code>xyzfunction::function</code>. Sure use <code>library()</code> in your scripts, but never in a package function. When you add a function from a new package to your function, add those packages to <span class="citation">@Depends</span> or <span class="citation">@Imports</span> in your DESCRIPTION file as you go along.</p></li>
+<li><p>Every so often check that you don’t have packages on <span class="citation">@Depends</span> and <span class="citation">@Imports</span> that you don’t use. Just do a Edit &gt; Find in Files… search for <code>xyzpackage::</code> to find out if you are still using <code>xyzpackage</code>.</p></li>
+<li><p>How do you know if you forgot a dependency or forgot a <code>::</code> somewhere? Two ways:</p>
+<ol style="list-style-type: decimal">
+<li>Do Session &gt; Restart R to close all your loaded packages. Then load your package with <code>library(yourpackagename)</code> and try your functions. Things will fail if you have a package in <span class="citation">@Imports</span> but forgot a <code>::</code> somewhere.</li>
+<li>From the Build tab, use More &gt; Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).</li>
+</ol></li>
 </ul>
 </div>
+<div id="styling-your-code" class="section level2">
+<h2>Styling your code</h2>
+<p>You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the <a href="https://www.tidyverse.org/blog/2017/12/styler-1.0.0/"><strong>styler</strong> R package</a>. <strong>styler</strong> has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools &gt; Addins &gt; Browse Addins. Scroll down to styler, and select the file(s), you want to style.</p>
+</div>
+<div id="byte-compile" class="section level2">
+<h2>Byte Compile</h2>
+<p>Adding this line to your DESCRIPTION file can really speed up your code. This is one of the advantages of putting your functions in a package. It can actually make your functions faster.</p>
+<pre><code>ByteCompile: TRUE</code></pre>
 </div>
 
 <hr>
