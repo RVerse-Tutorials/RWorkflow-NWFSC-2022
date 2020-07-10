@@ -26,7 +26,7 @@ This week I will cover more advanced topics regarding R packages:
 * How to write print and plot functions for your objects.
 * Using pkgdown to make a website for your package.
 
-If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). Another new resource is this [R package workshop material](https://combine-australia.github.io/r-pkg-dev/).
+If/when you want to go into R packaging in more depth, work through the material from this [R package workshop material](https://combine-australia.github.io/r-pkg-dev/). You've seen much of this material so it should be somewhat familiar. See also Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). 
 
 ## Checking your package
 
@@ -145,39 +145,31 @@ Open your vignette file and click the Knit button.
 
 ### Getting your vignette to show up
 
-This is a disaster currently in RStudio. They'll probably fix eventually.
+Once you have your vignettes in the `vignettes` folder, you'l like to be able to build them and have them appear when you type `browseVignettes("MyNewPackage")`. This will not work. In fact, RStudio seems to actively hinders this workflow.
 
-Set the build options to make the vignettes. Tools > Project Options > Build Options
+Vignettes can take a long time to build and by default when R builds a package from source (which is what Install and Restart on the build tab does), it does not re-make your vignettes. You can make RStudio re-make your vignettes in the `vignettes` folder (if the Rmd file changes) using Tools > Project Options > Build Tools > Generate documentation with Roxygen > Configure and clicking the vignettes check-box. But this will not get your vignettes loaded when you click Install and Restart on the Build tab (`browseVignettes()` still won't work). 
 
-But then when you Install and Restart, your vignettes don't show up.
+So how does R know about your vignettes when it is building from source (i.e. from Install and Restart in the Build tab in RStudio)? It needs the vignette files (.Rmd, .R and .html) in the `inst/doc` folder. How do you get them there? You have to put them there. 
 
-Supposedly this works:
+That's easy. I'll just put them there whenever I change or add vignettes. Unfortunately, the default RStudio default behavior is to delete the whole `inst/doc` folder whenever you click Check (package) in the Build tab. It's happening because the default is to use `devtools::check()` and there is no way to set `devtools::check(vignettes=FALSE)`. To stop RStudio from deleting `inst/doc` on package checking, uncheck the `use devtools package functions if available` box. You may also want to add `--no-manual` to the R CMD Check options box since that is the default for `devtools::check()`.  
 
-* Build to tar.gz
-* `install.packages("..location../MyNewPackage_0.1.0.tar.gz", repos = NULL, type = "source")`
-* `browseVignettes("MyNewPackage")` should work... Works on my PC and not on my Mac.
 
-Work around
+This is my vignette workflow:
 
-During development.
-
-```
-devtools::build_vignettes()
-devtools::load_all()
-browseVignettes("MyNewPackage")
-```
-
-When ready to push to GitHub or GitLab,
+* Create the `vignette` folder and add vignette Rmds to it using the R Markdown vignette template in RStudio.
+* Create the `inst` folder in my package at the base level (same level as the R folder).
+* Edit my vignette Rmd and use the Knit button to preview.
+* When I am done, run the following code to update the vignette files and copy to the `inst/doc` folder.
 
 ```
-devtools::build_vignettes()
+tools::buildVignettes(dir = ".", tangle=TRUE)
+dir.create("inst/doc")
+file.copy(dir("vignettes", full.names=TRUE), "inst/doc", overwrite=TRUE)
 ```
 
-Creates `doc` and `Meta` at base. Move `doc` to `inst` folder and delete `Meta`.
+Once your vignette files are in `inst/doc`, Install and Restart button will add the vignettes to your package and `install_github()` will have them too.
 
-Now RStudio, Install and Restart works and build from source works on GitHub.
-
-**Careful, RStudio `Check` will trash the `inst/doc` folder and not recreate it. So always check that `inst/doc` not been trashed.
+**Careful, RStudio `Check` in the Build tab will delete the `inst/doc` folder and not recreate it.** So always check that `inst/doc` not been trashed and **uncheck** the `use devtools package functions` checkbox on the Build > More > Configure Build Tools... window. You will most likely also want to add `--no-manual` to the `R CMD check additional options` box.
 
 
 ## **pkgdown**

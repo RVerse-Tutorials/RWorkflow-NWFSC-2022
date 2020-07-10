@@ -580,7 +580,7 @@ Robust
 <li>How to write print and plot functions for your objects.</li>
 <li>Using pkgdown to make a website for your package.</li>
 </ul>
-<p>If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>. Another new resource is this <a href="https://combine-australia.github.io/r-pkg-dev/">R package workshop material</a>.</p>
+<p>If/when you want to go into R packaging in more depth, work through the material from this <a href="https://combine-australia.github.io/r-pkg-dev/">R package workshop material</a>. You’ve seen much of this material so it should be somewhat familiar. See also Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>.</p>
 <div id="checking-your-package" class="section level2">
 <h2>Checking your package</h2>
 <p>Just use the RStudio Check in the Build tab. You’ll have many issues (most likely). Plug away at each one until you pass with no errors or warnings. Don’t ignore Notes either. They are sometimes more serious than the errors and warnings.</p>
@@ -668,25 +668,22 @@ VignetteBuilder: knitr</code></pre>
 </div>
 <div id="getting-your-vignette-to-show-up" class="section level3">
 <h3>Getting your vignette to show up</h3>
-<p>This is a disaster currently in RStudio. They’ll probably fix eventually.</p>
-<p>Set the build options to make the vignettes. Tools &gt; Project Options &gt; Build Options</p>
-<p>But then when you Install and Restart, your vignettes don’t show up.</p>
-<p>Supposedly this works:</p>
+<p>Once you have your vignettes in the <code>vignettes</code> folder, you’l like to be able to build them and have them appear when you type <code>browseVignettes("MyNewPackage")</code>. This will not work. In fact, RStudio seems to actively hinders this workflow.</p>
+<p>Vignettes can take a long time to build and by default when R builds a package from source (which is what Install and Restart on the build tab does), it does not re-make your vignettes. You can make RStudio re-make your vignettes in the <code>vignettes</code> folder (if the Rmd file changes) using Tools &gt; Project Options &gt; Build Tools &gt; Generate documentation with Roxygen &gt; Configure and clicking the vignettes check-box. But this will not get your vignettes loaded when you click Install and Restart on the Build tab (<code>browseVignettes()</code> still won’t work).</p>
+<p>So how does R know about your vignettes when it is building from source (i.e. from Install and Restart in the Build tab in RStudio)? It needs the vignette files (.Rmd, .R and .html) in the <code>inst/doc</code> folder. How do you get them there? You have to put them there.</p>
+<p>That’s easy. I’ll just put them there whenever I change or add vignettes. Unfortunately, the default RStudio default behavior is to delete the whole <code>inst/doc</code> folder whenever you click Check (package) in the Build tab. It’s happening because the default is to use <code>devtools::check()</code> and there is no way to set <code>devtools::check(vignettes=FALSE)</code>. To stop RStudio from deleting <code>inst/doc</code> on package checking, uncheck the <code>use devtools package functions if available</code> box. You may also want to add <code>--no-manual</code> to the R CMD Check options box since that is the default for <code>devtools::check()</code>.</p>
+<p>This is my vignette workflow:</p>
 <ul>
-<li>Build to tar.gz</li>
-<li><code>install.packages("..location../MyNewPackage_0.1.0.tar.gz", repos = NULL, type = "source")</code></li>
-<li><code>browseVignettes("MyNewPackage")</code> should work… Works on my PC and not on my Mac.</li>
+<li>Create the <code>vignette</code> folder and add vignette Rmds to it using the R Markdown vignette template in RStudio.</li>
+<li>Create the <code>inst</code> folder in my package at the base level (same level as the R folder).</li>
+<li>Edit my vignette Rmd and use the Knit button to preview.</li>
+<li>When I am done, run the following code to update the vignette files and copy to the <code>inst/doc</code> folder.</li>
 </ul>
-<p>Work around</p>
-<p>During development.</p>
-<pre><code>devtools::build_vignettes()
-devtools::load_all()
-browseVignettes(&quot;MyNewPackage&quot;)</code></pre>
-<p>When ready to push to GitHub or GitLab,</p>
-<pre><code>devtools::build_vignettes()</code></pre>
-<p>Creates <code>doc</code> and <code>Meta</code> at base. Move <code>doc</code> to <code>inst</code> folder and delete <code>Meta</code>.</p>
-<p>Now RStudio, Install and Restart works and build from source works on GitHub.</p>
-<p>**Careful, RStudio <code>Check</code> will trash the <code>inst/doc</code> folder and not recreate it. So always check that <code>inst/doc</code> not been trashed.</p>
+<pre><code>tools::buildVignettes(dir = &quot;.&quot;, tangle=TRUE)
+dir.create(&quot;inst/doc&quot;)
+file.copy(dir(&quot;vignettes&quot;, full.names=TRUE), &quot;inst/doc&quot;, overwrite=TRUE)</code></pre>
+<p>Once your vignette files are in <code>inst/doc</code>, Install and Restart button will add the vignettes to your package and <code>install_github()</code> will have them too.</p>
+<p><strong>Careful, RStudio <code>Check</code> in the Build tab will delete the <code>inst/doc</code> folder and not recreate it.</strong> So always check that <code>inst/doc</code> not been trashed and <strong>uncheck</strong> the <code>use devtools package functions</code> checkbox on the Build &gt; More &gt; Configure Build Tools… window. You will most likely also want to add <code>--no-manual</code> to the <code>R CMD check additional options</code> box.</p>
 </div>
 </div>
 <div id="pkgdown" class="section level2">
