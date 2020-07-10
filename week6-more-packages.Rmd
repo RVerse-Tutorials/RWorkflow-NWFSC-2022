@@ -134,7 +134,7 @@ Supposedly this works:
 
 * Build to tar.gz
 * `install.packages("..location../MyNewPackage_0.1.0.tar.gz", repos = NULL, type = "source")`
-* But still `browseVignettes("MyNewPackage")` doesn't work
+* `browseVignettes("MyNewPackage")` should work... Works on my PC and not on my Mac.
 
 Work around
 
