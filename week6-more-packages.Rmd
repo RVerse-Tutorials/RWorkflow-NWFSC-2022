@@ -28,6 +28,9 @@ This week I will cover more advanced topics regarding R packages:
 
 If/when you want to go into R packaging in more depth, work through the material from this [R package workshop material](https://combine-australia.github.io/r-pkg-dev/). You've seen much of this material so it should be somewhat familiar. See also Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). 
 
+The repository that I used to demo these features is here:
+https://github.com/eeholmes/MyNewPackage
+
 ## Checking your package
 
 Just use the RStudio Check in the Build tab. You'll have many issues (most likely). Plug away at each one until you pass with no errors or warnings. Don't ignore Notes either. They are sometimes more serious than the errors and warnings.
