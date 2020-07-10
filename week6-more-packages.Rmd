@@ -26,7 +26,7 @@ This week I will cover more advanced topics regarding R packages:
 * How to write print and plot functions for your objects.
 * Using pkgdown to make a website for your package.
 
-If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
+If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). Another new resource is this [R package workshop material](https://combine-australia.github.io/r-pkg-dev/).
 
 ## Checking your package
 
