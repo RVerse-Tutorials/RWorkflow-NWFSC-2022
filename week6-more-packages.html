@@ -583,7 +583,9 @@ Robust
 <p>If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>. Another new resource is this <a href="https://combine-australia.github.io/r-pkg-dev/">R package workshop material</a>.</p>
 <div id="checking-your-package" class="section level2">
 <h2>Checking your package</h2>
-<p>Just use the RStudio Check in the Build tab.</p>
+<p>Just use the RStudio Check in the Build tab. You’ll have many issues (most likely). Plug away at each one until you pass with no errors or warnings. Don’t ignore Notes either. They are sometimes more serious than the errors and warnings.</p>
+<p>If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use</p>
+<pre><code>Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)</code></pre>
 </div>
 <div id="creating-print-and-plot-methods-for-your-objects" class="section level2">
 <h2>Creating print and plot methods for your objects</h2>
@@ -624,6 +626,8 @@ print.foo &lt;- function(x, ...) {
 plot.foo &lt;- function(x, ...) {
   plot(1:10)
 }</code></pre>
+<p>Note, <code>plot()</code> is part of the graphics package so you need to add that to Imports in your DESCRIPTION file. Our Imports line is now:</p>
+<pre><code>Imports: forecast, graphics</code></pre>
 </div>
 <div id="add-your-methods-to-your-namespace" class="section level3">
 <h3>Add your methods to your namespace</h3>
@@ -643,16 +647,24 @@ plot(fit)</code></pre>
 <p>Doing this in RStudio is easy. See <a href="https://bookdown.org/yihui/rmarkdown-cookbook/package-vignette.html">rmarkdown vignette chapter</a> and <a href="http://r-pkgs.had.co.nz/vignettes.html">Hadley’s vignette chapter</a> for more info.</p>
 <div id="making-the-vignette" class="section level3">
 <h3>Making the vignette</h3>
-<p>RStudio &gt; File &gt; New &gt; R Markdown &gt; From Template &gt; Vignette</p>
-<p>save in vignettes folder</p>
-<p>or do</p>
+<p>Manually</p>
+<ul>
+<li>Make a vignettes folder at the base level (same level as the R folder)</li>
+<li>Create a new vignette file from a template. RStudio &gt; File &gt; New &gt; R Markdown &gt; From Template &gt; Vignette</li>
+<li>Save in vignettes folder</li>
+<li>Change the title in the 2 places in the yaml at the top. ‘yaml’ is between the <code>---</code> fences.</li>
+<li>Add the following 2 lines to your DESCRIPTION file:</li>
+</ul>
+<pre><code>Suggests: knitr, rmarkdown
+VignetteBuilder: knitr</code></pre>
+<p>Or use a helper function:</p>
 <pre><code>devtools::use_vignette(&quot;my-vignette&quot;)</code></pre>
 <p>or</p>
 <pre><code>usethis::use_vignette(&quot;MyNewPackage&quot;)</code></pre>
 </div>
 <div id="testing-your-vignette" class="section level3">
 <h3>Testing your vignette</h3>
-<p>Just use knit button.</p>
+<p>Open your vignette file and click the Knit button.</p>
 </div>
 <div id="getting-your-vignette-to-show-up" class="section level3">
 <h3>Getting your vignette to show up</h3>

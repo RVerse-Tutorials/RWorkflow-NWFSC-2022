@@ -820,9 +820,8 @@ for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            1.02    92.73       1.02     92.73
-## &quot;t&quot;              0.04     3.64       0.08      7.27
-## &quot;t.default&quot;      0.04     3.64       0.04      3.64</code></pre>
+## &quot;%*%&quot;            1.22    96.83       1.22     96.83
+## &quot;t.default&quot;      0.04     3.17       0.04      3.17</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>

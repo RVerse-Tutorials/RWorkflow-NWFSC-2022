@@ -30,7 +30,13 @@ If/when you want to go into R packaging in more depth, see Hadley Wickham's book
 
 ## Checking your package
 
-Just use the RStudio Check in the Build tab.
+Just use the RStudio Check in the Build tab. You'll have many issues (most likely). Plug away at each one until you pass with no errors or warnings. Don't ignore Notes either. They are sometimes more serious than the errors and warnings.
+
+If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use
+```
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
+```
+
 
 ## Creating print and plot methods for your objects
 
@@ -78,6 +84,12 @@ plot.foo <- function(x, ...) {
 }
 ```
 
+Note, `plot()` is part of the graphics package so you need to add that to Imports in your DESCRIPTION file. Our Imports line is now:
+
+```
+Imports: forecast, graphics
+```
+
 ### Add your methods to your namespace
 
 ```
@@ -102,11 +114,20 @@ Doing this in RStudio is easy. See [rmarkdown vignette chapter](https://bookdown
 
 ### Making the vignette
 
-RStudio > File > New > R Markdown > From Template > Vignette
+Manually
 
-save in vignettes folder
+* Make a vignettes folder at the base level (same level as the R folder)
+* Create a new vignette file from a template. RStudio > File > New > R Markdown > From Template > Vignette
+* Save in vignettes folder
+* Change the title in the 2 places in the yaml at the top. 'yaml' is between the `---` fences.
+* Add the following 2 lines to your DESCRIPTION file:
 
-or do
+```
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+```
+
+Or use a helper function:
 
 ```
 devtools::use_vignette("my-vignette")
@@ -120,7 +141,7 @@ usethis::use_vignette("MyNewPackage")
 
 ### Testing your vignette
 
-Just use knit button.
+Open your vignette file and click the Knit button.
 
 ### Getting your vignette to show up
 
