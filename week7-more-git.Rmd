@@ -1,5 +1,5 @@
 ---
-title: "Week 6: Advanced package topics"
+title: "Week 7: More Git"
 output:
   html_document:
     toc: true
@@ -19,217 +19,69 @@ kable(dt, col.names=NULL) %>%
   row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
   column_spec(column = 1:5, width = "20%")
 ```
-This week I will cover more advanced topics regarding R packages:
+This week I will cover some more features of using Git, GitHub, and RStudio. Although I'll be using GitHub, the same workflow applies to GitLab. I am going to be using GitHub Desktop to interact with GitHub since I find that GitHub Desktop helps me deal with merge conflicts and reverts (getting rid of changes I have made).
 
-* How to use the "check" feature to find problems in your package.
-* How to write a vignette for your package.
-* How to write print and plot functions for your objects.
-* Using pkgdown to make a website for your package.
+* What's a merge conflict and how to fix it
+* How to use branches
+* How to do a pull request to pull a branch into your master repository
+* How to create a release in GitHub
+* A workflow to minimize headaches
+* How to 'go back in time' and get rid of changes
 
-If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). Another new resource is this [R package workshop material](https://combine-australia.github.io/r-pkg-dev/).
+## A workflow to minimize headaches
 
-## Checking your package
+### Starting out
 
-Just use the RStudio Check in the Build tab. You'll have many issues (most likely). Plug away at each one until you pass with no errors or warnings. Don't ignore Notes either. They are sometimes more serious than the errors and warnings.
+* Don't use branches when you are just starting. Get used to committing and pulling without creating merge conflicts.
+* Get in the habit of always doing a Pull/Push before you start work in your project.
 
-If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use
-```
-Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
-```
+### Once you are experienced with GitHub
 
+Once doing commits and push/pulls is familiar and you are no longer messing up your repository or making merge conflicts, 
 
-## Creating print and plot methods for your objects
+* Start using branches
+* Work on one branch at a time
+* Delete your branch when done
+* Once you start using multiple branches, be careful to keep them separate. Modifications to `file_xyz` should only be in one branch.
 
-### Make your output an object
+### Use releases and tags
 
-```
-littleforecast <- function(data, nyears=10){
-  fit <- forecast::auto.arima(data)
-  fc <- forecast::forecast(fit, h = nyears)
-  ggplot2::autoplot(fc)
-  class(fit) <- c("foo", class(fit))
-  return(fit)
-}
-```
+* The release or tag feature in GitHub will help you go back in time and document working states
+* Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It's really helpful for understanding what is happening with the code.
+* Use the Issues in GitHub to enter any issues (bugs, feature changes, notes). 
+* The Project feature can also be helpful on big projects and team projects.
 
-### print method
 
-```
-#' Prints foo object
-#'
-#' prints a foo object returned from littlefunction().
-#'
-#' @param x foo object
-#' @param ... Not used
-#' @method print foo
-#' @export
-print.foo <- function(x, ...) {
-  cat("Hello there")
-}
-```
+## Getting rid of changes you have made
 
-### plot method
+Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with `reset` and `revert` commands. Don't do this. Here are some strategies that will make this let prone to leaving your code a mess.
 
-```
-#' Plots foo object
-#'
-#' Plots foo object.
-#'
-#' @param x An foo object.
-#' @param ... Not used.
-#' @method plot foo
-#' @export
-plot.foo <- function(x, ...) {
-  plot(1:10)
-}
-```
+### Have you commited the changes yet?
 
-Note, `plot()` is part of the graphics package so you need to add that to Imports in your DESCRIPTION file. Our Imports line is now:
+**No?** Easy click on the file in the Git panel in RStudio, right click, and click 'Revert'. Not this will take things all the way back to your last commit!! If you have been making a bunch of changes without committing those, then you are out of luck.
 
-```
-Imports: forecast, graphics
-```
+**Yes?** Go to History in the GitHub Desktop window, click on the commit and click 'Revert'. This will get rid of all the changes that went with that commit. So if you changed multiple files, all those files will be reverted. If you have pushed the changes to GitHub, then you can push the revert and it'll show up on GitHub too.
 
-### Add your methods to your namespace
+**Yes but you just want to revert one file in a multi-file commit?** Ok, you can do this at the Git command line, but I find that to be a huge time suck and in my early Git days, I sometimes left my repository with a horrible problem that I could not fix and had to completely rebuild my repo. Since I don't need to be a Git wizard, this is what I do when I want to go 'back in time' for a since file.
 
-```
-S3method(print,foo)
-S3method(plot,foo)
-```
+Assuming you have already pushed the changes up to GitHub
 
-### Example
+* Go to the repo on GitHub
+* Click 'commits' It's a little icon above your code with a clock with a counter-clockwise arrow.
+* Scroll to the commit where the file was in the state you want (one before the last bad commit).
+* On the right click the `< >` to browse your repo at the state in time where your file was ok.
+* Click on the file and copy the text.
+* Go back to RStudio, open the file, and paste in the text from when it was good.
 
-Install and restart MyNewPackage.
+If you have not pushed the changes up to GitHub.
 
-```
-fit=littleforecast(WWW2)
-fit
-plot(fit)
-```
+* Now you have to go to the Git command line. Git tab in RStudio and then click the cog > Shell.
+* Note, in 9 times out of 10, I would push the commit to GitHub and then use the above copy/paste to avoid using the Git command line. I would find that much faster.
 
+Ok, here's the Git command to get a single file back. This works whether or not you have pushed to GitHub. The problem with this and why I don't do it is that I usually need to look at the file. So I am scrolling back through the status of my repo in the past until I find the status that I want. Then I stare a bit and think and think. Then get a coffee and think some more. Then I scroll back through the status of the repo in the past some more and THEN I do the copy and paste. It is rarely the case that I know exactly what commit that I need to get rid of---and even rarer that I want to go completely to a status in the past.
 
-## Writing a vignette
-
-Doing this in RStudio is easy. See [rmarkdown vignette chapter](https://bookdown.org/yihui/rmarkdown-cookbook/package-vignette.html) and [Hadley's vignette chapter](http://r-pkgs.had.co.nz/vignettes.html) for more info.
-
-### Making the vignette
-
-Manually
-
-* Make a vignettes folder at the base level (same level as the R folder)
-* Create a new vignette file from a template. RStudio > File > New > R Markdown > From Template > Vignette
-* Save in vignettes folder
-* Change the title in the 2 places in the yaml at the top. 'yaml' is between the `---` fences.
-* Add the following 2 lines to your DESCRIPTION file:
-
-```
-Suggests: knitr, rmarkdown
-VignetteBuilder: knitr
-```
-
-Or use a helper function:
-
-```
-devtools::use_vignette("my-vignette")
-```
-
-or 
-
-```
-usethis::use_vignette("MyNewPackage")
-```
-
-### Testing your vignette
-
-Open your vignette file and click the Knit button.
-
-### Getting your vignette to show up
-
-This is a disaster currently in RStudio. They'll probably fix eventually.
-
-Set the build options to make the vignettes. Tools > Project Options > Build Options
-
-But then when you Install and Restart, your vignettes don't show up.
-
-Supposedly this works:
-
-* Build to tar.gz
-* `install.packages("..location../MyNewPackage_0.1.0.tar.gz", repos = NULL, type = "source")`
-* `browseVignettes("MyNewPackage")` should work... Works on my PC and not on my Mac.
-
-Work around
-
-During development.
-
-```
-devtools::build_vignettes()
-devtools::load_all()
-browseVignettes("MyNewPackage")
-```
-
-When ready to push to GitHub or GitLab,
-
-```
-devtools::build_vignettes()
-```
-
-Creates `doc` and `Meta` at base. Move `doc` to `inst` folder and delete `Meta`.
-
-Now RStudio, Install and Restart works and build from source works on GitHub.
-
-**Careful, RStudio `Check` will trash the `inst/doc` folder and not recreate it. So always check that `inst/doc` not been trashed.
-
-
-## **pkgdown**
-
-[pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) makes it easy to make nice webpages for your packages.
-
-
-## Depends versus Imports
-
-**@Depends** These packages that will be loaded when your package is loaded. So if you have **gplot2** in @Depends, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. 
-
-**@Imports** Are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you will use `::` to access the functions from the packages on the @Imports line. *Most of your package dependencies will be here.*
-
-To limit the number of headaches that users face when trying to install your package, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
-
-I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
-
-For my MARSS package, I have only 3 non-base dependencies in the @Imports line and nothing on the @Depends line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the @Suggests line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
-
-**What should you put on your Depends and Imports lines?**
-
-First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
-
-* ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
-    ```{r eval=FALSE}
-    ggplot2::ggplot(df) +
-       ggplot2::geom_point(ggplot2::aes(gp, y))
-    ```
-    Arg. Another example is say a GAM call:
-    ```{r eval=FALSE}
-    mgcv::gam(a ~ mgcv::s(b), data=df)
-    ```
-    But this is just for your package functions. In your scripts, you'd probably use a `library()` call.
-
-* Never ever use `library()` in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.  When you add a function from a new package to your function, add those packages to @Depends or @Imports in your DESCRIPTION file as you go along.
-
-* Every so often check that you don't have packages on @Depends and @Imports that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
-
-* How do you know if you forgot a dependency or forgot a `::` somewhere? Two ways:
-
-    1. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in @Imports but forgot a `::` somewhere.
-    2. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
-
-## Styling your code
-
-You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the [**styler** R package](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/). **styler** has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools > Addins > Browse Addins. Scroll down to styler, and select the file(s), you want to style.
-
-## Byte Compile
-
-Adding this line to your DESCRIPTION file can really speed up your code. This is one of the advantages of putting your functions in a package. It can actually make your functions faster.
-
-```
-ByteCompile: TRUE
-```
-
+* Open the Git bash shell
+* `git log` to find the commit hash (the long number)
+* `git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R`  would reset test.R to one before that commit. This part `1d0f8c2eb4e66db0a7123588ae2fad26a6338303` is the bad commit hash and this part `~1` means what the file was like 1 commit before that.
+    
+If you accidentally leave off the file name and Git says you have a detached head, use `git checkout master` to reattach your head.
