@@ -11,7 +11,7 @@
 
 
 
-<title>Practical R Workflow for Scientists May-June 2020</title>
+<title>Week 7: More Git</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +19,13 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -252,6 +256,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -259,6 +332,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -464,46 +547,111 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Practical R Workflow for Scientists May-June 2020</h1>
+<h1 class="title toc-ignore">Week 7: More Git</h1>
 
 </div>
 
 
-<p><img style="float: right;" src="images/tools-logo-transparent.png" width=30%></p>
-<p>These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be <strong>faster, more efficient and organized</strong> in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on).</p>
-<p><strong>Target audience</strong>: You already code in R, maybe use RStudio too, but want to learn some tips about being more efficient from a seasoned NWFSC R programmer who does the kind of coding and work that you do.</p>
-<p><strong>About me</strong>: I am a modeler/applied mathematician and I am immersed in R. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research.</p>
-<div id="topics" class="section level2">
-<h2>Topics</h2>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Compartmentalized
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Documented
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Extendible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Reproducible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Robust
+</td>
+</tr>
+</tbody>
+</table>
+<p>This week I will cover some more features of using Git, GitHub, and RStudio. Although I’ll be using GitHub, the same workflow applies to GitLab. I am going to be using GitHub Desktop to interact with GitHub since I find that GitHub Desktop helps me deal with merge conflicts and reverts (getting rid of changes I have made).</p>
 <ul>
-<li><p><a href="week1-rstudio.html">Week 1</a>. Introduction to workflow using RStudio and Git/GitHub/GitLab <a href="https://www.youtube.com/watch?v=HxIpxVdQsDs">Video</a></p></li>
-<li><p><a href="week2-coding.html">Week 2</a>. More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code <a href="https://www.youtube.com/watch?v=k0P3e39qcA4">Video</a></p></li>
-<li><p><a href="week3-RMarkdown.html">Week 3</a>. Rmarkdown for reports: how to do big tables and export formats for Word docs <a href="https://www.youtube.com/watch?v=IGc2cgMFoPs">Video</a></p></li>
-<li><p><a href="week4-packages.html">Week 4</a>. Part 1. Organizing your R code into a package <a href="https://youtu.be/6d62KvS5v7Q">Video</a></p></li>
-<li><p><a href="week5-roxygen.html">Week 5</a>. Part 2. Documenting your code and data with Roxygen <a href="https://youtu.be/zHPSbhGtkz4">Video</a></p></li>
+<li>What’s a merge conflict and how to fix it</li>
+<li>How to use branches</li>
+<li>How to do a pull request to pull a branch into your master repository</li>
+<li>How to create a release in GitHub</li>
+<li>A workflow to minimize headaches</li>
+<li>How to ‘go back in time’ and get rid of changes</li>
 </ul>
-<p><em>Unfortunately at about 40min in, I managed to corrupt my R packages and could not demo any more so covered the material verbally. The problem demonstrates why I try to have few dependencies in my packages! One of the dependencies in my</em> <strong>SardineForecast</strong> <em>package had an install problem and corrupted the</em> <strong>pkgload</strong> <em>package.</em></p>
+<div id="a-workflow-to-minimize-headaches" class="section level2">
+<h2>A workflow to minimize headaches</h2>
+<div id="starting-out" class="section level3">
+<h3>Starting out</h3>
 <ul>
-<li><a href="week6-more-packages.html">Week 6</a>. Part 3. Vignettes and plot/print methods for your package.</li>
+<li>Don’t use branches when you are just starting. Get used to committing and pulling without creating merge conflicts.</li>
+<li>Get in the habit of always doing a Pull/Push before you start work in your project.</li>
 </ul>
-<!--
-Requests
+</div>
+<div id="once-you-are-experienced-with-github" class="section level3">
+<h3>Once you are experienced with GitHub</h3>
+<p>Once doing commits and push/pulls is familiar and you are no longer messing up your repository or making merge conflicts,</p>
+<ul>
+<li>Start using branches</li>
+<li>Work on one branch at a time</li>
+<li>Delete your branch when done</li>
+<li>Once you start using multiple branches, be careful to keep them separate. Modifications to <code>file_xyz</code> should only be in one branch.</li>
+</ul>
+</div>
+<div id="use-releases-and-tags" class="section level3">
+<h3>Use releases and tags</h3>
+<ul>
+<li>The release or tag feature in GitHub will help you go back in time and document working states</li>
+<li>Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It’s really helpful for understanding what is happening with the code.</li>
+<li>Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).</li>
+<li>The Project feature can also be helpful on big projects and team projects.</li>
+</ul>
+</div>
+</div>
+<div id="getting-rid-of-changes-you-have-made" class="section level2">
+<h2>Getting rid of changes you have made</h2>
+<p>Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with <code>reset</code> and <code>revert</code> commands. Don’t do this. Here are some strategies that will make this let prone to leaving your code a mess.</p>
+<div id="have-you-commited-the-changes-yet" class="section level3">
+<h3>Have you commited the changes yet?</h3>
+<p><strong>No?</strong> Easy click on the file in the Git panel in RStudio, right click, and click ‘Revert’. Not this will take things all the way back to your last commit!! If you have been making a bunch of changes without committing those, then you are out of luck.</p>
+<p><strong>Yes?</strong> Go to History in the GitHub Desktop window, click on the commit and click ‘Revert’. This will get rid of all the changes that went with that commit. So if you changed multiple files, all those files will be reverted. If you have pushed the changes to GitHub, then you can push the revert and it’ll show up on GitHub too.</p>
+<p><strong>Yes but you just want to revert one file in a multi-file commit?</strong> Ok, you can do this at the Git command line, but I find that to be a huge time suck and in my early Git days, I sometimes left my repository with a horrible problem that I could not fix and had to completely rebuild my repo. Since I don’t need to be a Git wizard, this is what I do when I want to go ‘back in time’ for a since file.</p>
+<p>Assuming you have already pushed the changes up to GitHub</p>
+<ul>
+<li>Go to the repo on GitHub</li>
+<li>Click ‘commits’ It’s a little icon above your code with a clock with a counter-clockwise arrow.</li>
+<li>Scroll to the commit where the file was in the state you want (one before the last bad commit).</li>
+<li>On the right click the <code>&lt; &gt;</code> to browse your repo at the state in time where your file was ok.</li>
+<li>Click on the file and copy the text.</li>
+<li>Go back to RStudio, open the file, and paste in the text from when it was good.</li>
+</ul>
+<p>If you have not pushed the changes up to GitHub.</p>
+<ul>
+<li>Now you have to go to the Git command line. Git tab in RStudio and then click the cog &gt; Shell.</li>
+<li>Note, in 9 times out of 10, I would push the commit to GitHub and then use the above copy/paste to avoid using the Git command line. I would find that much faster.</li>
+</ul>
+<p>Ok, here’s the Git command to get a single file back. This works whether or not you have pushed to GitHub. The problem with this and why I don’t do it is that I usually need to look at the file. So I am scrolling back through the status of my repo in the past until I find the status that I want. Then I stare a bit and think and think. Then get a coffee and think some more. Then I scroll back through the status of the repo in the past some more and THEN I do the copy and paste. It is rarely the case that I know exactly what commit that I need to get rid of—and even rarer that I want to go completely to a status in the past.</p>
+<ul>
+<li>Open the Git bash shell</li>
+<li><code>git log</code> to find the commit hash (the long number)</li>
+<li><code>git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R</code> would reset test.R to one before that commit. This part <code>1d0f8c2eb4e66db0a7123588ae2fad26a6338303</code> is the bad commit hash and this part <code>~1</code> means what the file was like 1 commit before that.</li>
+</ul>
+<p>If you accidentally leave off the file name and Git says you have a detached head, use <code>git checkout master</code> to reattach your head.</p>
+</div>
+</div>
 
-ggplot
-Bayesian stats
-tidyverse verbs
-collaboration with github/gitlab
-tidyverse world.
-
--->
 <hr>
+
 <div style="text-align: center">
-<p><i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i></p>
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
+</div>
+
+
 </div>
 </div>
-
-
-
 
 </div>
 
@@ -536,6 +684,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
