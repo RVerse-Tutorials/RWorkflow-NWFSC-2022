@@ -27,6 +27,9 @@ navbar:
     - text: Week 6 More Packages
       icon: fa-folder
       href: week6-more-packages.html
+    - text: Week 7 More Git
+      icon: fa-git
+      href: week7-more-git.html
   - text: Git
     icon: fa-git
     menu:
