@@ -586,9 +586,11 @@ Robust
 <li>How to use branches</li>
 <li>How to do a pull request to pull a branch into your master repository</li>
 <li>How to ‘go back in time’ and get rid of changes</li>
+<li>Working with issues in GitHub</li>
 <li>How to create a release in GitHub</li>
 <li>A workflow to minimize headaches</li>
 </ul>
+<p>I’ll be illustrating this with this repo: <a href="https://github.com/eeholmes/MyNewPackage" class="uri">https://github.com/eeholmes/MyNewPackage</a></p>
 <div id="merge-conflicts" class="section level2">
 <h2>Merge conflicts</h2>
 <p>Merge conflicts happen when there are changes to a file on your remote repository (GitHub or GitLab) but also changes to that same file on your local repository. Git doesn’t know how to resolve the conflicting changes and needs your help.</p>
@@ -661,6 +663,21 @@ Robust
 <p>You can do the same actions from GitHub.</p>
 </div>
 </div>
+<div id="issues" class="section level2">
+<h2>Issues</h2>
+<ul>
+<li>Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).</li>
+<li>You can reference issues in your commits with #<num of the issue></li>
+<li>Add code to your issue so you can easily recreate the problem</li>
+</ul>
+</div>
+<div id="releases" class="section level2">
+<h2>Releases</h2>
+<ul>
+<li>The release or tag feature in GitHub will help you go back in time and document working states</li>
+<li>Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It’s really helpful for understanding what is happening with the code.</li>
+</ul>
+</div>
 <div id="getting-rid-of-changes-you-have-made" class="section level2">
 <h2>Getting rid of changes you have made</h2>
 <p>Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with <code>reset</code> and <code>revert</code> commands. Don’t do this. Here are some strategies that will make this let prone to leaving your code a mess.</p>
@@ -709,15 +726,6 @@ Robust
 <li>Work on one branch at a time</li>
 <li>Delete your branch when done</li>
 <li>Once you start using multiple branches, be careful to keep them separate. Modifications to <code>file_xyz</code> should only be in one branch.</li>
-</ul>
-</div>
-<div id="use-releases-and-tags" class="section level3">
-<h3>Use releases and tags</h3>
-<ul>
-<li>The release or tag feature in GitHub will help you go back in time and document working states</li>
-<li>Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It’s really helpful for understanding what is happening with the code.</li>
-<li>Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).</li>
-<li>The Project feature can also be helpful on big projects and team projects.</li>
 </ul>
 </div>
 </div>

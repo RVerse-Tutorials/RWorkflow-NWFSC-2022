@@ -25,8 +25,11 @@ This week I will cover some more features of using Git, GitHub, and RStudio. Alt
 * How to use branches
 * How to do a pull request to pull a branch into your master repository
 * How to 'go back in time' and get rid of changes
+* Working with issues in GitHub
 * How to create a release in GitHub
 * A workflow to minimize headaches
+
+I'll be illustrating this with this repo: https://github.com/eeholmes/MyNewPackage
 
 ## Merge conflicts
 
@@ -107,6 +110,17 @@ This is similar to a pull request but happening locally. When a team is working 
 
 You can do the same actions from GitHub.
 
+## Issues
+
+* Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).
+* You can reference issues in your commits with #<num of the issue>
+* Add code to your issue so you can easily recreate the problem
+
+## Releases
+
+* The release or tag feature in GitHub will help you go back in time and document working states
+* Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It's really helpful for understanding what is happening with the code.
+
 ## Getting rid of changes you have made
 
 Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with `reset` and `revert` commands. Don't do this. Here are some strategies that will make this let prone to leaving your code a mess.
@@ -157,10 +171,5 @@ Once doing commits and push/pulls is familiar and you are no longer messing up y
 * Delete your branch when done
 * Once you start using multiple branches, be careful to keep them separate. Modifications to `file_xyz` should only be in one branch.
 
-### Use releases and tags
 
-* The release or tag feature in GitHub will help you go back in time and document working states
-* Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It's really helpful for understanding what is happening with the code.
-* Use the Issues in GitHub to enter any issues (bugs, feature changes, notes). 
-* The Project feature can also be helpful on big projects and team projects.
 
