@@ -24,7 +24,7 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 *Unfortunately at about 40min in, I managed to corrupt my R packages and could not demo any more so covered the material verbally. The problem demonstrates why I try to have few dependencies in my packages! One of the dependencies in my* **SardineForecast** *package had an install problem and corrupted the* **pkgload** *package.*
 
-* [Week 6](week6-more-packages.html). Part 3. Vignettes and plot/print methods for your package.
+* [Week 6](week6-more-packages.html). Part 3. Vignettes and plot/print methods for your package. [Video](https://youtu.be/O4rojT7aeb0)
 
 <!--
 Requests

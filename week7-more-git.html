@@ -416,6 +416,13 @@ div.tocify {
         Week 6 More Packages
       </a>
     </li>
+    <li>
+      <a href="week7-more-git.html">
+        <span class="fa fa-git"></span>
+         
+        Week 7 More Git
+      </a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -578,37 +585,80 @@ Robust
 <li>What’s a merge conflict and how to fix it</li>
 <li>How to use branches</li>
 <li>How to do a pull request to pull a branch into your master repository</li>
+<li>How to ‘go back in time’ and get rid of changes</li>
 <li>How to create a release in GitHub</li>
 <li>A workflow to minimize headaches</li>
-<li>How to ‘go back in time’ and get rid of changes</li>
 </ul>
-<div id="a-workflow-to-minimize-headaches" class="section level2">
-<h2>A workflow to minimize headaches</h2>
-<div id="starting-out" class="section level3">
-<h3>Starting out</h3>
+<div id="merge-conflicts" class="section level2">
+<h2>Merge conflicts</h2>
+<p>Merge conflicts happen when there are changes to a file on your remote repository (GitHub or GitLab) but also changes to that same file on your local repository. Git doesn’t know how to resolve the conflicting changes and needs your help.</p>
+<div id="resolving-these-with-github-desktop" class="section level3">
+<h3>Resolving these with GitHub Desktop</h3>
+<p>GitHub Desktop makes resolving these pretty easy.</p>
+<ol style="list-style-type: decimal">
+<li>If it tells you to fetch commits off GitHub, go ahead and do that.</li>
+<li>Now try to Pull. It’ll tell you that you have conflicts and give you options for what to do.</li>
+</ol>
+<p><img src="images/git-merge-conflict-gh.png" alt="GitHub Desktop merge conflict alert" /> * Clic the ‘x’ and Git will alter <code>hello.R</code> and show where the conflicts are. You then edit <code>hello.R</code> in RStudio to fix the conflicts. * If you know what file you want to use, use the little arrow dropdown to use the file on GitHub or on your local machine. * Use Abort Merge to abandon the merge. Your changes to <code>hello.R</code> are still there. * Click on History, right click the commit and revert to get rid of it. All file changes that are part of that commit will disappear! You can revert the revert if needed. * Go into <code>hello.R</code> and fix the conflict. Git won’t have marked it so it might be hard to find.</p>
+</div>
+<div id="resolving-these-with-git-in-rstudio" class="section level3">
+<h3>Resolving these with Git in RStudio</h3>
+<p>Unfortunately, when you hit ‘Push’ in the Git tab in RStudio, it will immediately change <code>hello.R</code> with the conflicts. RStudio won’t give you the chance to abandon the merge or pick one of the files.</p>
+<p>But you can fix and then merge.</p>
 <ul>
-<li>Don’t use branches when you are just starting. Get used to committing and pulling without creating merge conflicts.</li>
-<li>Get in the habit of always doing a Pull/Push before you start work in your project.</li>
+<li>Open <code>hello.R</code> and get rid of all the merge conflict code (denoted with the ============ and &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;).</li>
+<li>The file will appear in the Git tab.</li>
+<li>Click on the checkbox until a CHECK appears. Filled in square is not enough. You need the CHECK.</li>
+<li>Commit the change.</li>
+<li>Push.</li>
 </ul>
 </div>
-<div id="once-you-are-experienced-with-github" class="section level3">
-<h3>Once you are experienced with GitHub</h3>
-<p>Once doing commits and push/pulls is familiar and you are no longer messing up your repository or making merge conflicts,</p>
+</div>
+<div id="working-with-branches" class="section level2">
+<h2>Working with branches</h2>
+<p>When you start, keep it simple. Use a branch for one file. Work on the file and then merge it back into master. Then get rid of the branch.</p>
+<div id="make-a-new-branch-in-rstudio" class="section level3">
+<h3>Make a new branch in RStudio</h3>
+<p>Click the new branch icon and give your branch a name. Give it an INFORMATIVE name. <code>tmp</code>, <code>foo</code> are bad. <code>hello_branch</code> is good as it tells what this branch is for (working on the <code>hello.R</code> file). <img src="images/new-branch.png" alt="new branch" /></p>
+<p>Now that you have a branch, it is critical that you pay attention to the Git tab and know where you are working. RStudio will remember what branch you are on.</p>
+<p>Let’s make a change to <code>hello.R</code> on hello_branch, put to GitHub and see what the two branches look like.</p>
+</div>
+<div id="pull-request-merge-our-branch-with-master" class="section level3">
+<h3>Pull request, merge our branch with master</h3>
+<p>There are a few ways to do a pull request.</p>
 <ul>
-<li>Start using branches</li>
-<li>Work on one branch at a time</li>
-<li>Delete your branch when done</li>
-<li>Once you start using multiple branches, be careful to keep them separate. Modifications to <code>file_xyz</code> should only be in one branch.</li>
+<li><p>You can do it from GitHub Desktop. It’ll just redirect you to GitHub however.</p></li>
+<li><p>You can do it from GitHub.</p></li>
+</ul>
+<div class="figure">
+<img src="images/pull-request-github.png" alt="pull request from GitHub" />
+<p class="caption">pull request from GitHub</p>
+</div>
+<p>Once you have created the pull requests, you’ll see that the pull request tab (in GitHub) shows that there is a request.</p>
+<ul>
+<li><p>Click on the request. You have 2 options.</p>
+<ul>
+<li>Close it (don’t merge). If you close it, you can reopen it later.</li>
+<li>Merge the request.</li>
+</ul></li>
+<li><p>You have done the merge on GitHub. You still need to do a Pull to get that change into your local repository.</p></li>
+<li><p>Delete your branch when you are done with it. All the history is saved. There is no reason keep branches that you are done with.</p></li>
 </ul>
 </div>
-<div id="use-releases-and-tags" class="section level3">
-<h3>Use releases and tags</h3>
+<div id="branch-actions-from-github-desktop" class="section level3">
+<h3>Branch actions from GitHub Desktop</h3>
+<p>The branch toolbar in GitHub Desktop let’s keep branches up to date with each other.</p>
+<p>Let’s say I am working on <code>littleforecast.R</code> in the master branch while working on <code>hello.R</code> in the hello_branch. I want to keep these synced up.</p>
 <ul>
-<li>The release or tag feature in GitHub will help you go back in time and document working states</li>
-<li>Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It’s really helpful for understanding what is happening with the code.</li>
-<li>Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).</li>
-<li>The Project feature can also be helpful on big projects and team projects.</li>
+<li><strong>Compare</strong> I can compare branches and look at the differences.</li>
+<li><strong>Merge into current branch</strong> I can merge changes from one branch into another branch. It will let you see the changes before you decide to merge.</li>
+<li><strong>Update from master</strong> This immediately merge changes from master into your branch. It won’t ask you. So you need to revert the change if you don’t like it.</li>
 </ul>
+<p>This is similar to a pull request but happening locally. When a team is working on different branches, they would use pull requests.</p>
+</div>
+<div id="branch-actions-from-github" class="section level3">
+<h3>Branch actions from GitHub</h3>
+<p>You can do the same actions from GitHub.</p>
 </div>
 </div>
 <div id="getting-rid-of-changes-you-have-made" class="section level2">
@@ -640,6 +690,35 @@ Robust
 <li><code>git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R</code> would reset test.R to one before that commit. This part <code>1d0f8c2eb4e66db0a7123588ae2fad26a6338303</code> is the bad commit hash and this part <code>~1</code> means what the file was like 1 commit before that.</li>
 </ul>
 <p>If you accidentally leave off the file name and Git says you have a detached head, use <code>git checkout master</code> to reattach your head.</p>
+</div>
+</div>
+<div id="a-workflow-to-minimize-headaches" class="section level2">
+<h2>A workflow to minimize headaches</h2>
+<div id="starting-out" class="section level3">
+<h3>Starting out</h3>
+<ul>
+<li>Don’t use branches when you are just starting. Get used to committing and pulling without creating merge conflicts.</li>
+<li>Get in the habit of always doing a Pull/Push before you start work in your project.</li>
+</ul>
+</div>
+<div id="once-you-are-experienced-with-github" class="section level3">
+<h3>Once you are experienced with GitHub</h3>
+<p>Once doing commits and push/pulls is familiar and you are no longer messing up your repository or making merge conflicts,</p>
+<ul>
+<li>Start using branches</li>
+<li>Work on one branch at a time</li>
+<li>Delete your branch when done</li>
+<li>Once you start using multiple branches, be careful to keep them separate. Modifications to <code>file_xyz</code> should only be in one branch.</li>
+</ul>
+</div>
+<div id="use-releases-and-tags" class="section level3">
+<h3>Use releases and tags</h3>
+<ul>
+<li>The release or tag feature in GitHub will help you go back in time and document working states</li>
+<li>Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It’s really helpful for understanding what is happening with the code.</li>
+<li>Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).</li>
+<li>The Project feature can also be helpful on big projects and team projects.</li>
+</ul>
 </div>
 </div>
 
