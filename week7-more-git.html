@@ -601,7 +601,19 @@ Robust
 <li>If it tells you to fetch commits off GitHub, go ahead and do that.</li>
 <li>Now try to Pull. It’ll tell you that you have conflicts and give you options for what to do.</li>
 </ol>
-<p><img src="images/git-merge-conflict-gh.png" alt="GitHub Desktop merge conflict alert" /> * Clic the ‘x’ and Git will alter <code>hello.R</code> and show where the conflicts are. You then edit <code>hello.R</code> in RStudio to fix the conflicts. * If you know what file you want to use, use the little arrow dropdown to use the file on GitHub or on your local machine. * Use Abort Merge to abandon the merge. Your changes to <code>hello.R</code> are still there. * Click on History, right click the commit and revert to get rid of it. All file changes that are part of that commit will disappear! You can revert the revert if needed. * Go into <code>hello.R</code> and fix the conflict. Git won’t have marked it so it might be hard to find.</p>
+<div class="figure">
+<img src="images/git-merge-conflict-gh.png" alt="GitHub Desktop merge conflict alert" />
+<p class="caption">GitHub Desktop merge conflict alert</p>
+</div>
+<ul>
+<li>Click the ‘x’ and Git will alter <code>hello.R</code> and show where the conflicts are. You then edit <code>hello.R</code> in RStudio to fix the conflicts.</li>
+<li>If you know what file you want to use, use the little arrow dropdown to use the file on GitHub or on your local machine.</li>
+<li>Use Abort Merge to abandon the merge. Your changes to <code>hello.R</code> are still there.
+<ul>
+<li>Click on History, right click the commit and revert to get rid of it. All file changes that are part of that commit will disappear! You can revert the revert if needed.</li>
+<li>Go into <code>hello.R</code> and fix the conflict. Git won’t have marked it so it might be hard to find.</li>
+</ul></li>
+</ul>
 </div>
 <div id="resolving-these-with-git-in-rstudio" class="section level3">
 <h3>Resolving these with Git in RStudio</h3>

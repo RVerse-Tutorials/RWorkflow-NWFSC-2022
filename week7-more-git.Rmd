@@ -43,7 +43,8 @@ GitHub Desktop makes resolving these pretty easy.
 2. Now try to Pull. It'll tell you that you have conflicts and give you options for what to do.
 
 ![GitHub Desktop merge conflict alert](images/git-merge-conflict-gh.png)
-* Clic the 'x' and Git will alter `hello.R` and show where the conflicts are. You then edit `hello.R` in RStudio to fix the conflicts.
+
+* Click the 'x' and Git will alter `hello.R` and show where the conflicts are. You then edit `hello.R` in RStudio to fix the conflicts.
 * If you know what file you want to use, use the little arrow dropdown to use the file on GitHub or on your local machine.
 * Use Abort Merge to abandon the merge. Your changes to `hello.R` are still there.
     * Click on History, right click the commit and revert to get rid of it. All file changes that are part of that commit will disappear! You can revert the revert if needed.
