@@ -30,6 +30,8 @@ This week I will cover some more features of using Git, GitHub, and RStudio. Alt
 * A workflow to minimize headaches
 
 I'll be illustrating this with this repo: https://github.com/eeholmes/MyNewPackage
+You can see a real-world example of this here on my MARSS package repo:
+https://github.com/nwfsc-timeseries/MARSS
 
 ## Merge conflicts
 
