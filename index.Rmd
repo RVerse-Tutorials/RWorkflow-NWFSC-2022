@@ -26,6 +26,8 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 * [Week 6](week6-more-packages.html). Part 3. Vignettes and plot/print methods for your package. [Video](https://youtu.be/O4rojT7aeb0)
 
+* [Week 7](week7-more-git.html). More Git. Merge conflicts, branches, and reverting changes. [Video](https://noaanmfs-meets.webex.com/recordingservice/sites/noaanmfs-meets/recording/playback/9241a9b0494b45f4b200f10b0b4f847f) Recording password: 2KsJJWrz 
+
 <!--
 Requests
 
