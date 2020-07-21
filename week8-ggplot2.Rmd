@@ -1,5 +1,5 @@
 ---
-title: "Week 7: More Git"
+title: "Week 8: Intro to ggplot"
 output:
   html_document:
     toc: true
@@ -19,160 +19,282 @@ kable(dt, col.names=NULL) %>%
   row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
   column_spec(column = 1:5, width = "20%")
 ```
-This week I will cover some more features of using Git, GitHub, and RStudio. Although I'll be using GitHub, the same workflow applies to GitLab. I am going to be using GitHub Desktop to interact with GitHub since I find that GitHub Desktop helps me deal with merge conflicts and reverts (getting rid of changes I have made).
+This week I will give an introduction to plotting with **ggplot**. This is oriented to those with little or no experience using **ggplot** or those who have tried it and gotten frustrated. If you already use **ggplot**, you won't find this session very interesting.
 
-* What's a merge conflict and how to fix it
-* How to use branches
-* How to do a pull request to pull a branch into your master repository
-* How to 'go back in time' and get rid of changes
-* Working with issues in GitHub
-* How to create a release in GitHub
-* A workflow to minimize headaches
+You will need to install the **ggplot2** package for this session.
 
-I'll be illustrating this with this repo: https://github.com/eeholmes/MyNewPackage
-You can see a real-world example of this here on my MARSS package repo:
-https://github.com/nwfsc-timeseries/MARSS
+```{r message=FALSE}
+library(ggplot2)
+```
 
-## Merge conflicts
 
-Merge conflicts happen when there are changes to a file on your remote repository (GitHub or GitLab) but also changes to that same file on your local repository. Git doesn't know how to resolve the conflicting changes and needs your help.
+# Basic xy plot
 
-### Resolving these with GitHub Desktop
+## Workflow
 
-GitHub Desktop makes resolving these pretty easy.
+Let's say you wanted to make a simple xy plot with `plot()`. Here's your workflow.
 
-1. If it tells you to fetch commits off GitHub, go ahead and do that.
-2. Now try to Pull. It'll tell you that you have conflicts and give you options for what to do.
+* Decide on $x$ or use the default (1 to the number of data points).
+* Decide on $y$.
+* Plot with `plot(x,y)`
 
-![GitHub Desktop merge conflict alert](images/git-merge-conflict-gh.png)
+```{r}
+t <- 1:10
+val <- rnorm(10)
+plot(t, val, type="b")
+```
 
-* Click the 'x' and Git will alter `hello.R` and show where the conflicts are. You then edit `hello.R` in RStudio to fix the conflicts.
-* If you know what file you want to use, use the little arrow dropdown to use the file on GitHub or on your local machine.
-* Use Abort Merge to abandon the merge. Your changes to `hello.R` are still there.
-    * Click on History, right click the commit and revert to get rid of it. All file changes that are part of that commit will disappear! You can revert the revert if needed.
-    * Go into `hello.R` and fix the conflict. Git won't have marked it so it might be hard to find.
-    
-### Resolving these with Git in RStudio
 
-Unfortunately, when you hit 'Push' in the Git tab in RStudio, it will immediately change `hello.R` with the conflicts. RStudio won't give you the chance to abandon the merge or pick one of the files.
+Here's your `ggplot()` workflow.
 
-But you can fix and then merge.
+* Decide on $x$ or use the default (1 to the number of data points).
+* Decide on $y$.
+* Make a data frame with $x$ and $y$.
+* Create the plot object with a call to `ggplot()` to tell it the data frame and then what the $x$ and $y$ to use. The latter is with  `aes()` (aesthestics).
+* Add points or lines to the plot with `geom_line()` or `geom_point()`.
 
-* Open `hello.R` and get rid of all the merge conflict code (denoted with the ============ and >>>>>>>>>>>>>>>>).
-* The file will appear in the Git tab.
-* Click on the checkbox until a CHECK appears. Filled in square is not enough. You need the CHECK.
-* Commit the change.
-* Push.
+```{r}
+df <- data.frame(t=t, val=val)
+p1 <- ggplot(df, aes(x=t, y=val)) #set up data and x and y
+p2 <- p1 + geom_point() # Tell it what to do with that (add a line)
+p2 # plot it
+```
 
-## Working with branches
+Typically you'd just write the call like so
+```
+ggplot(df, aes(x=t, y=val)) + geom_point()
+```
+But I assigned the calls to objects `p1` and `p2` so you can see that both are **ggplot** objects.
+```{r}
+class(p1)
+class(p2)
+```
+That feature is going to be super helpful because it means you can easily add elements to a ggplot without worrying about $y$ axis limits or figure sizing.
+```{r}
+p2 + geom_line()
+```
 
-When you start, keep it simple. Use a branch for one file. Work on the file and then merge it back into master. Then get rid of the branch.
+## Modifying your points and lines
 
-### Make a new branch in RStudio
+With `plot()`, you alter the points and lines with arguments passed to `plot()`.
 
-Click the new branch icon and give your branch a name. Give it an INFORMATIVE name. `tmp`, `foo` are bad. `hello_branch` is good as it tells what this branch is for (working on the `hello.R` file).
-![new branch](images/new-branch.png)
+* `pch` (point type), `lty` (linetype), `type` ("l", "b", "p"), `lwd` (line width), `cex` (point size)
 
-Now that you have a branch, it is critical that you pay attention to the Git tab and know where you are working. RStudio will remember what branch you are on.
+```{r}
+plot(t, val, type="b", lwd=2, lty=2,
+     pch=21, col="red", cex=4, bg="blue")
+```
 
-Let's make a change to `hello.R` on hello_branch, put to GitHub and see what the two branches look like.
+With `ggplot()`, the approach is quite different and the names are mostly totally different. A cheatsheet of things you commonly use will be helpful when start (I still use one).
 
-### Pull request, merge our branch with master
+There are two different workflows that you need to decide on.
 
-There are a few ways to do a pull request. 
+1. *Dynamic colors etc*: Let `ggplot()` pick your colors, points, line widths etc.
+2. *Fixed colors etc*: Manually choose your colors, points, line widths etc, aka use a fixed value.
 
-* You can do it from GitHub Desktop. It'll just redirect you to GitHub however.
+Gravitating to option 1 will make your life with `ggplot()` easier, but let's start with option 2.
 
-* You can do it from GitHub.
+![Important](images/Emblem-important-red.svg.png)
+*Fixed* lines, points attributes go *outside* of `aes()` in a `geom_...()` call. *Dynamic* attributes go *inside* of `aes()`.
 
-![pull request from GitHub](images/pull-request-github.png)
 
-    Once you have created the pull requests, you'll see that the pull request tab (in GitHub) shows that there is a request.
+Look at `?geom_point` to see the attributes that you can pass in.
+```{r}
+ggplot(df, aes(x=t, y=val)) + geom_point(col="black")
+```
 
-* Click on the request. You have 2 options.
-    * Close it (don't merge). If you close it, you can reopen it later.
-    * Merge the request.
-    
-* You have done the merge on GitHub. You still need to do a Pull to get that change into your local repository.
-    
-* Delete your branch when you are done with it. All the history is saved. There is no reason keep branches that you are done with.
+The length of the fixed attribute must be 1 or the length of the data.
+```{r}
+ggplot(df, aes(x=t, y=val)) + 
+  geom_point(shape=21, fill="blue", col=rep(1:2,5), size=6, alpha=.5, stroke=2)
+```
 
-### Branch actions from GitHub Desktop
+Ways to set attributes that won't work as you think:
 
-The branch toolbar in GitHub Desktop let's keep branches up to date with each other.
+Putting color outside of `aes()` in `ggplot()` does nothing. `ggplot()` sets up the data to use, but information outside `aes()` doesn't flow to the plotting functions like `geom_point()`.
+```{r}
+ggplot(df, aes(x=t, y=val), col="blue") + geom_point()
+```
 
-Let's say I am working on `littleforecast.R` in the master branch while working on `hello.R` in the hello_branch. I want to keep these synced up.
+Putting color inside of `aes()` in `ggplot()` has a non-intuitive effect. Plot attributes, like color, in `aes()` are converted to factors and the colors (etc) will be choosen dynamically. The name "blue" is not a color is the a factor and `ggplot()` gives the first factor the color red in this case. Information in `aes()` will *flow* to the rest of the plot unless you tell the `geom_point()` otherwise).
 
-* **Compare** I can compare branches and look at the differences.
-* **Merge into current branch** I can merge changes from one branch into another branch. It will let you see the changes before you decide to merge.
-* **Update from master** This immediately merge changes from master into your branch. It won't ask you. So you need to revert the change if you don't like it.
+```{r}
+ggplot(df, aes(x=t, y=val, color="blue")) + geom_point()
+```
 
-This is similar to a pull request but happening locally. When a team is working on different branches, they would use pull requests.
+How do we *tell* `geom_point()` not to use the color value in `aes()` in `ggplot()`?  Tell it to use a fixed value by putting `col="blue"` outside of an `aes()` call (in `geom_poin()`).
+```{r}
+ggplot(df, aes(x=t, y=val, col="blue")) + geom_point(col="blue")
+```
 
-### Branch actions from GitHub
+What happens if we put the color in `aes()` in `geom_point()`?
+```{r}
+ggplot(df, aes(x=t, y=val)) + geom_point(aes(color="blue"))
+```
 
-You can do the same actions from GitHub.
+Let's make a plot with big red points and a thick blue line.
+```{r}
+p1 <- ggplot(df, aes(x=t, y=val)) + 
+  geom_line(col="blue", size=2) +
+  geom_point(col="red", size=3)
+p1
+```
 
-## Issues
+Let's add a column plot to that. I pass in `alpha` to add some transparency to the columns so they don't wipe out the line.
+```{r}
+p1 + geom_col(alpha=0.5)
+```
 
-* Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).
-* You can reference issues in your commits with #<num of the issue>
-* Add code to your issue so you can easily recreate the problem
+## Modifying your labels and limits
 
-## Releases
+With `plot()`, you alter the labels and limits with arguments passed to `plot()`.
 
-* The release or tag feature in GitHub will help you go back in time and document working states
-* Use a NEWS file to keep a notebook of all your changes. I use a standard format with BUGS, DOCUMENTATION, ENHANCEMENTS. It's really helpful for understanding what is happening with the code.
+* `xlab` and `ylab` (labels), `mail` (title), `ylim` and `xlim` (limits)
 
-## Getting rid of changes you have made
+```{r}
+plot(t, val, type="p", xlab="time", ylab="value",
+     xlim=c(-10,10), ylim=c(-5,5), main="plot plot")
+```
 
-Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with `reset` and `revert` commands. Don't do this. Here are some strategies that will make this let prone to leaving your code a mess.
+With `ggplot`, it's pretty similar but you use functions.
+```{r}
+ggplot(df, aes(x=t, y=val)) +
+  geom_point() +
+  xlab("time") + ylab("value") +
+  ggtitle("ggplot plot") +
+  xlim(c(-10,10)) + ylim(c(-5,5))
+```
 
-### Have you commited the changes yet?
+## Changing the whole look of your plot
 
-**No?** Easy click on the file in the Git panel in RStudio, right click, and click 'Revert'. Note this will take things all the way back to your last commit!! If you have been making a bunch of changes without committing those, then you are out of luck.
+**ggplot** uses themes to set the look of your plot and you can change the whole look by setting a different theme. You can also just tweak one element of the plot's existing theme. Note because we fixed the line and point colors, we override some theme elements (eg, line colors). See `?theme_bw` to see all the themes. See `?theme` to learn how to change one element of your plot design.
 
-**Yes?** Go to History in the GitHub Desktop window, click on the commit and click 'Revert'. This will get rid of all the changes that went with that commit. So if you changed multiple files, all those files will be reverted. If you have pushed the changes to GitHub, then you can push the revert and it'll show up on GitHub too.
+```{r}
+p1 + theme_classic()
+```
 
-**Yes but you just want to revert one file in a multi-file commit?** Ok, you can do this at the Git command line, but I find that to be a huge time suck and in my early Git days, I sometimes left my repository with a horrible problem that I could not fix and had to completely rebuild my repo. Since I don't need to be a Git wizard, this is what I do when I want to go 'back in time' for a since file.
+# Adding data to your plot
 
-Assuming you have already pushed the changes up to GitHub
+Let's say you want to plot 2 lines.
 
-* Go to the repo on GitHub
-* Click 'commits' It's a little icon above your code with a clock with a counter-clockwise arrow.
-* Scroll to the commit where the file was in the state you want (one before the last bad commit).
-* On the right click the `< >` to browse your repo at the state in time where your file was ok.
-* Click on the file and copy the text.
-* Go back to RStudio, open the file, and paste in the text from when it was good.
+## Workflow similar to `plot()`
 
-If you have not pushed the changes up to GitHub.
+In `plot()` your workflow is
 
-* Now you have to go to the Git command line. Git tab in RStudio and then click the cog > Shell.
-* Note, in 9 times out of 10, I would push the commit to GitHub and then use the above copy/paste to avoid using the Git command line. I would find that much faster.
+* Define $x1$ and $x2$ (if different)
+* Define $y1$ and $y2$
+* Plot $y1$ *with limits adjusted for the data we are adding*.
+* Add $y2$ to the plot.
 
-Ok, here's the Git command to get a single file back. This works whether or not you have pushed to GitHub. The problem with this and why I don't do it is that I usually need to look at the file. So I am scrolling back through the status of my repo in the past until I find the status that I want. Then I stare a bit and think and think. Then get a coffee and think some more. Then I scroll back through the status of the repo in the past some more and THEN I do the copy and paste. It is rarely the case that I know exactly what commit that I need to get rid of---and even rarer that I want to go completely to a status in the past.
+```{r}
+val2 <- val+1
+plot(t, val, ylim=c(-3,3))
+lines(t, val2)
+```
 
-* Open the Git bash shell
-* `git log` to find the commit hash (the long number)
-* `git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R`  would reset test.R to one before that commit. This part `1d0f8c2eb4e66db0a7123588ae2fad26a6338303` is the bad commit hash and this part `~1` means what the file was like 1 commit before that.
-    
-If you accidentally leave off the file name and Git says you have a detached head, use `git checkout master` to reattach your head.
+In `ggplot()` you have two possible workflows. First one could be like the `plot()` workflow. This will cause you problems if you later want to arrange these data into separate plots, but lets go ahead and do this. Sometimes this is the easiest way to get done what you need to do.
 
-## A workflow to minimize headaches
+* Define $x1$ and $x2$ (if different)
+* Define $y1$ and $y2$
+* Make data frames $df$ and $df2$ for both.
+* Set up the plot with `ggplot()` and $df$
+* Add points with `geom_point()`
+* Add $df2$ using `geom_line()` with $df2$ passed in and `aes()` call.
 
-### Starting out
+How `aes()` is working. `aes()` information is flowing rightward. Everything to the right will inherit the data frame and `aes()` info unless you specifiy new data or new `aes()`.
 
-* Don't use branches when you are just starting. Get used to committing and pulling without creating merge conflicts.
-* Get in the habit of always doing a Pull/Push before you start work in your project.
+```{r}
+df2 <- data.frame(t=t+2, val2=val+1)
+ggplot(data=df, aes(x=t, y=val)) +
+  geom_point() +
+  geom_line(data=df2, aes(x=t, y=val2))
+```
 
-### Once you are experienced with GitHub
+This *inheriting* feature of `aes()` is great but can get you mixed up when you are layering data like this. Here I made a typo and used `val` instead of `val2` for y in the line. `ggplot` *helped* me out by using the data from `df` instead.
+```{r}
+ggplot(data=df, aes(x=t, y=val)) +
+  geom_point() +
+  geom_line(data=df2, aes(x=t, y=val))
+```
 
-Once doing commits and push/pulls is familiar and you are no longer messing up your repository or making merge conflicts, 
+Sometimes it is clearer if you keep the data and `aes()` with the points and lines. Note data and `aes()` will still inherit rightward.
+```{r}
+ggplot() +
+  geom_point(data=df, aes(x=t, y=val)) +
+  geom_line(data=df2, aes(x=t, y=val2))
+```
 
-* Start using branches
-* Work on one branch at a time
-* Delete your branch when done
-* Once you start using multiple branches, be careful to keep them separate. Modifications to `file_xyz` should only be in one branch.
+## Adding and modifying the legend
 
+**ggplot** makes it rather hard to modify your legend if you create a plot this way. Creating a manual legend can be quite hacky. First thing to know is that the color, linestyle, and/or shape must be in `aes()` to appear in the legend. If it's not there you can't control it in the legend.
+
+```{r}
+ggplot() +
+  geom_point(data=df, aes(x=t, y=val, col="df", linetype="df")) +
+  geom_line(data=df2, aes(x=t, y=val2, col="df2", linetype="df2")) +
+  scale_color_manual("name", values=c("blue", "black")) +
+  scale_linetype_manual("name",values=c(0,1))
+```
+
+## Better **ggplot** workflow
+
+This is how `ggplot()` is intended to be used
+
+* Make data frames with $df$ and $df2$ data and a "name" column.
+* Set up the plot with `ggplot()`
+* Make points or line different using the "name" column
+
+```{r}
+df1 <- data.frame(t=t, val=val, name="df1")
+df2 <- data.frame(t=t+5, val=val+1, name="df2")
+df <- rbind(df1, df2)
+ggplot(df, aes(x=t, y=val, col=name, shape=name)) + 
+  geom_line() +
+  geom_point()
+```
+
+Things to remember
+
+* If the color, shape, linetype is not in an `aes()` it won't appear in the legend. 
+* `aes()` info in `ggplot()` flows to the other elements. Put the `aes()` info in the individual `geom_...()` calls if you don't want that.
+* Want to mix points and lines? You need to use `scale_..._manual()` to manually turn-off points of lines for some of the data.
+* You can always force colors, shapes, linetypes by passing in color, shape, size etc outside of `aes()` but it won't appear in the legend.
+
+Example, points are all black since the `aes(col=name)` only appears in the `geom_line()` call.
+```{r}
+ggplot(df, aes(x=t, y=val)) + 
+  geom_line(aes(col=name)) +
+  geom_point(aes(shape=name))
+```
+
+### Modifying the legend
+
+You can control all aspects of the legend. Read up on it [here](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/).
+
+Making some data points and other lines will require `scale_...()` and gets hacky.
+
+```{r}
+ggplot(df, aes(x=t, y=val)) + 
+  geom_line(aes(col=name, linetype=name)) +
+  geom_point(aes(shape=name)) +
+  scale_color_manual("name", values=c("blue", "black")) +
+  scale_shape_manual("name",values=c(NA,1)) +
+  scale_linetype_manual("name",values=c(1,0))
+```
+
+Ack all those NA warnings!
+```{r}
+df <- data.frame(x=1:10, y=c(1,NA,NA,4:10), name=rep(c("a","b"),5))
+ggplot(df, aes(x=x, y=y, col=name)) + 
+  geom_point()
+```
+
+Get rid of them using `na.rm=TRUE`.
+```{r}
+ggplot(df, aes(x=x, y=y, col=name)) + 
+  geom_point(na.rm=TRUE)
+```
+
+# Arranging plots into grids
 
 

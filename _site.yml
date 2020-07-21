@@ -30,6 +30,9 @@ navbar:
     - text: Week 7 More Git
       icon: fa-git
       href: week7-more-git.html
+    - text: Week 8 ggplot2
+      icon: fa-plot
+      href: week8-ggplot2.html
   - text: Git
     icon: fa-git
     menu:

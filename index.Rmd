@@ -28,6 +28,8 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 * [Week 7](week7-more-git.html). More Git. Merge conflicts, branches, and reverting changes. [Video](https://noaanmfs-meets.webex.com/recordingservice/sites/noaanmfs-meets/recording/playback/9241a9b0494b45f4b200f10b0b4f847f) Recording password: 2KsJJWrz 
 
+* [Week 8](week8-ggplot2.html). Introduction to plotting with **ggplot**.
+
 <!--
 Requests
 
