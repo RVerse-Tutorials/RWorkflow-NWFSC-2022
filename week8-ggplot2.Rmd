@@ -118,7 +118,7 @@ Putting color inside of `aes()` in `ggplot()` has a non-intuitive effect. Plot a
 ggplot(df, aes(x=x, y=val, color="blue")) + geom_point()
 ```
 
-How do we *tell* `geom_point()` not to use the color value in `aes()` in `ggplot()`?  Tell it to use a fixed value by putting `col="blue"` outside of an `aes()` call (in `geom_poin()`).
+How do we *tell* `geom_point()` not to use the color value in `aes()` in `ggplot()`?  Tell it to use a fixed value by putting `col="blue"` outside of an `aes()` call in `geom_point()`.
 ```{r}
 ggplot(df, aes(x=x, y=val)) + geom_point(col="blue")
 ```
@@ -152,7 +152,7 @@ plot(x, val, type="p", xlab="time", ylab="value",
      xlim=c(100,200), ylim=c(0,40), main="plot plot")
 ```
 
-With `ggplot`, it's pretty similar but you use functions.
+With `ggplot`, it's pretty similar but you use functions. Ignore the NA warning. I'll show how to stop that later. ggplot likes to gives warnings about things that it knows how to deal with.
 ```{r}
 ggplot(df, aes(x=x, y=val)) +
   geom_point() +
@@ -213,17 +213,29 @@ ggplot(data=df, aes(x=x, y=val)) +
   geom_line(data=df2, aes(x=x, y=val))
 ```
 
-Sometimes it is clearer if you keep the data and `aes()` with the points and lines. Note data and `aes()` will still inherit rightward.
+Usually it is clearer if you keep the data and `aes()` with the points and lines. Note data and `aes()` will still inherit rightward.
 ```{r}
 ggplot() +
   geom_point(data=df, aes(x=x, y=val)) +
   geom_line(data=df2, aes(x=x, y=val2))
 ```
 
+Here is another example of plotting data from two different data frames:
+```{r}
+ggplot() +
+  geom_line(data=iris, aes(x = Sepal.Length, y=Petal.Length)) +
+  geom_bar(data=mtcars, aes(x=cyl), alpha=0.3) +
+  ylab("y") + xlab("x")
+```
+
+
 ## Adding a legend
 
-ggplot makes it rather hard to modify your legend if you create a plot this way. Creating a manual legend can be quite hacky. First thing to know is that the color, linestyle, and/or shape must be in `aes()` to appear in the legend. If it's not there you can't control it in the legend. *This is really hacky and not the way ggplot is intended to be used.*
+ggplot makes it rather hard to modify your legend if you create a plot this way. Creating a manual legend, as opposed to dynamically as ggplot is supposed to work, can be quite hacky. First thing to know is that the color, linestyle, and/or shape must be in `aes()` to appear in the legend. If it's not there you can't control it in the legend. 
 
+Note: What I am about to show *is really hacky and not the way ggplot is intended to be used,* but it comes up so often for new ggplot users that I want you to see a solution so you don't give up on ggplot because of legends. Jump ahead to the correct ggplot workflow with long-form data frames to see how to avoid this.
+
+This works. Ignore the warning about unknown aesthetics. Once again ggplot loves to warn about non-problems.
 ```{r}
 ggplot() +
   geom_point(data=df, aes(x=x, y=val, col="df", linetype="df")) +
@@ -369,7 +381,7 @@ We can add some things to our plot and free the scales.
 pc + facet_wrap(~class, scales="free") + geom_smooth(method="lm")
 ```
 
-Another nice feature is that we can combine these wrapped figures into a grid because they are ggplot objects. Making this plot in base R would take you forever and another 2 forever is you wanted to changed it around or change the number of classes in your data changed.
+Another nice feature is that we can combine these wrapped figures into a grid because they are ggplot objects. Making this plot in base R would take you forever and another 2 forever is you wanted to change it around or if the number of classes in your data changed.
 
 ```{r}
 pf <- pc + facet_wrap(~class)
@@ -406,3 +418,5 @@ A good set of basic ggplot commands when you are starting:
 * `gridExtra::grid.arrange(..., nrow, ncol)`
 * `facet_wrap()`
 * Changing the color, line, and points manually is a bit painful, but often unavoidable. Get to know the `scale_xyz_manual()` functions when you need to do that. `?scale_color_manual` to find them all.
+
+ggplot's main downside for me is the lack of a manual legend function like `plot()`'s `legend()` and the amount of work needed to customize legends. But this is made up for in ggplot's other great features. 
