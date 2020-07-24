@@ -885,8 +885,23 @@ grid.arrange(
 </ul>
 </div>
 </div>
-<div id="summary" class="section level1">
-<h1>Summary</h1>
+<div id="creating-plot-templates" class="section level1">
+<h1>Creating plot templates</h1>
+<p>If you are creating plots with the same features over and over, you can hold the features in a list and add that on to your plot.</p>
+<p>Example where I want all my plots to have red points and a regression line:</p>
+<pre class="r"><code>p3 &lt;- geom_point(col=&quot;red&quot;)
+p2 &lt;- geom_smooth(method=&quot;lm&quot;)
+p4 &lt;- xlab(&quot;MPG&quot;)
+p5 &lt;- ylab(&quot;HP&quot;)
+# pt is my template
+pt &lt;- list(p2, p3, p4, p5)
+
+p1 &lt;- ggplot(mtcars, aes(x=mpg, y=hp)) + pt
+p2 &lt;- ggplot(mpg, aes(x=hwy,y=cyl)) + pt
+grid.arrange(p1, p2)</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" /> # Summary</p>
 <p>ggplot can make your plotting workflow more efficient and much much faster. No more hassling with layouts. It takes a little while to get the hang of, but you do not need to be a ggplot wizard. Just the basics here will take you a long way. Google will answer any other questions that you have.</p>
 <p>A good set of basic ggplot commands when you are starting:</p>
 <ul>

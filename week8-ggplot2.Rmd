@@ -403,6 +403,23 @@ grid.arrange(
     * needs a column in your data frame factors (or characters it can coerce into factors). Might work with multiple data frames in your plot as long as each data frame has the same "name" column.
     * wants all the data frame to be the same length. This is only when you use different data frames. Fine if you have all data in one data frame.
 
+# Creating plot templates
+
+If you are creating plots with the same features over and over, you can hold the features in a list and add that on to your plot.
+
+Example where I want all my plots to have red points and a regression line:
+```{r}
+p3 <- geom_point(col="red")
+p2 <- geom_smooth(method="lm")
+p4 <- xlab("MPG")
+p5 <- ylab("HP")
+# pt is my template
+pt <- list(p2, p3, p4, p5)
+
+p1 <- ggplot(mtcars, aes(x=mpg, y=hp)) + pt
+p2 <- ggplot(mpg, aes(x=hwy,y=cyl)) + pt
+grid.arrange(p1, p2)
+```
 # Summary
 
 ggplot can make your plotting workflow more efficient and much much faster. No more hassling with layouts. It takes a little while to get the hang of, but you do not need to be a ggplot wizard. Just the basics here will take you a long way. Google will answer any other questions that you have.
