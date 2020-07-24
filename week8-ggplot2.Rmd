@@ -11,15 +11,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(kableExtra)
-dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
-kable(dt, col.names=NULL) %>%
-  kable_styling(full_width = TRUE) %>%
-  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
-  column_spec(column = 1:5, width = "20%")
-```
-This week I will give an introduction to plotting with **ggplot**. This is oriented to those with little or no experience using **ggplot** or those who have tried it and gotten frustrated. If you already use **ggplot**, you won't find this session very interesting.
+This week I will give an introduction to plotting with **ggplot**. Getting a basic familiarity with **ggplot** will really save you a lot of time that you spend futzing with plots. 
+
+This is oriented to those with little or no experience using **ggplot** or those who have tried it and gotten frustrated. If you already use **ggplot**, you won't find this session very interesting.  The goal of this session is to get you started. Once you have the basics, there are a gazillion **ggplot** tutorials online (though personally the basics are all I need).
 
 You will need to install the **ggplot2** package for this session.
 
@@ -39,9 +33,9 @@ Let's say you wanted to make a simple xy plot with `plot()`. Here's your workflo
 * Plot with `plot(x,y)`
 
 ```{r}
-t <- 1:10
-val <- rnorm(10)
-plot(t, val, type="b")
+val <- mtcars$mpg
+x <- mtcars$hp
+plot(x, val, type="p")
 ```
 
 
@@ -54,15 +48,15 @@ Here's your `ggplot()` workflow.
 * Add points or lines to the plot with `geom_line()` or `geom_point()`.
 
 ```{r}
-df <- data.frame(t=t, val=val)
-p1 <- ggplot(df, aes(x=t, y=val)) #set up data and x and y
+df <- data.frame(x=mtcars$hp, val=mtcars$mpg)
+p1 <- ggplot(df, aes(x=x, y=val)) #set up data and x and y
 p2 <- p1 + geom_point() # Tell it what to do with that (add a line)
 p2 # plot it
 ```
 
 Typically you'd just write the call like so
 ```
-ggplot(df, aes(x=t, y=val)) + geom_point()
+ggplot(df, aes(x=x, y=val)) + geom_point()
 ```
 But I assigned the calls to objects `p1` and `p2` so you can see that both are **ggplot** objects.
 ```{r}
@@ -74,14 +68,16 @@ That feature is going to be super helpful because it means you can easily add el
 p2 + geom_line()
 ```
 
-## Modifying your points and lines
+# Modifying your plot
+
+## Points and lines
 
 With `plot()`, you alter the points and lines with arguments passed to `plot()`.
 
 * `pch` (point type), `lty` (linetype), `type` ("l", "b", "p"), `lwd` (line width), `cex` (point size)
 
 ```{r}
-plot(t, val, type="b", lwd=2, lty=2,
+plot(x, val, type="b", lwd=2, lty=2,
      pch=21, col="red", cex=4, bg="blue")
 ```
 
@@ -100,41 +96,41 @@ Gravitating to option 1 will make your life with `ggplot()` easier, but let's st
 
 Look at `?geom_point` to see the attributes that you can pass in.
 ```{r}
-ggplot(df, aes(x=t, y=val)) + geom_point(col="black")
+ggplot(df, aes(x=x, y=val)) + geom_point(col="blue")
 ```
 
 The length of the fixed attribute must be 1 or the length of the data.
 ```{r}
-ggplot(df, aes(x=t, y=val)) + 
-  geom_point(shape=21, fill="blue", col=rep(1:2,5), size=6, alpha=.5, stroke=2)
+ggplot(df, aes(x=x, y=val)) + 
+  geom_point(shape=21, col="blue", fill=mtcars$carb, size=6, alpha=.5, stroke=2)
 ```
 
 Ways to set attributes that won't work as you think:
 
 Putting color outside of `aes()` in `ggplot()` does nothing. `ggplot()` sets up the data to use, but information outside `aes()` doesn't flow to the plotting functions like `geom_point()`.
 ```{r}
-ggplot(df, aes(x=t, y=val), col="blue") + geom_point()
+ggplot(df, aes(x=x, y=val), col="blue") + geom_point()
 ```
 
 Putting color inside of `aes()` in `ggplot()` has a non-intuitive effect. Plot attributes, like color, in `aes()` are converted to factors and the colors (etc) will be choosen dynamically. The name "blue" is not a color is the a factor and `ggplot()` gives the first factor the color red in this case. Information in `aes()` will *flow* to the rest of the plot unless you tell the `geom_point()` otherwise).
 
 ```{r}
-ggplot(df, aes(x=t, y=val, color="blue")) + geom_point()
+ggplot(df, aes(x=x, y=val, color="blue")) + geom_point()
 ```
 
 How do we *tell* `geom_point()` not to use the color value in `aes()` in `ggplot()`?  Tell it to use a fixed value by putting `col="blue"` outside of an `aes()` call (in `geom_poin()`).
 ```{r}
-ggplot(df, aes(x=t, y=val, col="blue")) + geom_point(col="blue")
+ggplot(df, aes(x=x, y=val, col="blue")) + geom_point(col="blue")
 ```
 
 What happens if we put the color in `aes()` in `geom_point()`?
 ```{r}
-ggplot(df, aes(x=t, y=val)) + geom_point(aes(color="blue"))
+ggplot(df, aes(x=x, y=val)) + geom_point(aes(color="blue"))
 ```
 
 Let's make a plot with big red points and a thick blue line.
 ```{r}
-p1 <- ggplot(df, aes(x=t, y=val)) + 
+p1 <- ggplot(df, aes(x=x, y=val)) + 
   geom_line(col="blue", size=2) +
   geom_point(col="red", size=3)
 p1
@@ -145,27 +141,27 @@ Let's add a column plot to that. I pass in `alpha` to add some transparency to t
 p1 + geom_col(alpha=0.5)
 ```
 
-## Modifying your labels and limits
+## Labels and limits
 
 With `plot()`, you alter the labels and limits with arguments passed to `plot()`.
 
 * `xlab` and `ylab` (labels), `mail` (title), `ylim` and `xlim` (limits)
 
 ```{r}
-plot(t, val, type="p", xlab="time", ylab="value",
-     xlim=c(-10,10), ylim=c(-5,5), main="plot plot")
+plot(x, val, type="p", xlab="time", ylab="value",
+     xlim=c(100,200), ylim=c(0,40), main="plot plot")
 ```
 
 With `ggplot`, it's pretty similar but you use functions.
 ```{r}
-ggplot(df, aes(x=t, y=val)) +
+ggplot(df, aes(x=x, y=val)) +
   geom_point() +
   xlab("time") + ylab("value") +
   ggtitle("ggplot plot") +
-  xlim(c(-10,10)) + ylim(c(-5,5))
+  xlim(c(100,200)) + ylim(c(0,40))
 ```
 
-## Changing the whole look of your plot
+# Changing the whole look of your plot
 
 **ggplot** uses themes to set the look of your plot and you can change the whole look by setting a different theme. You can also just tweak one element of the plot's existing theme. Note because we fixed the line and point colors, we override some theme elements (eg, line colors). See `?theme_bw` to see all the themes. See `?theme` to learn how to change one element of your plot design.
 
@@ -177,7 +173,7 @@ p1 + theme_classic()
 
 Let's say you want to plot 2 lines.
 
-## Workflow similar to `plot()`
+## Workflow
 
 In `plot()` your workflow is
 
@@ -187,9 +183,9 @@ In `plot()` your workflow is
 * Add $y2$ to the plot.
 
 ```{r}
-val2 <- val+1
-plot(t, val, ylim=c(-3,3))
-lines(t, val2)
+val2 <- val+10
+plot(x, val, ylim=c(0,50))
+lines(x[order(x)], val2[order(x)])
 ```
 
 In `ggplot()` you have two possible workflows. First one could be like the `plot()` workflow. This will cause you problems if you later want to arrange these data into separate plots, but lets go ahead and do this. Sometimes this is the easiest way to get done what you need to do.
@@ -204,24 +200,24 @@ In `ggplot()` you have two possible workflows. First one could be like the `plot
 How `aes()` is working. `aes()` information is flowing rightward. Everything to the right will inherit the data frame and `aes()` info unless you specifiy new data or new `aes()`.
 
 ```{r}
-df2 <- data.frame(t=t+2, val2=val+1)
-ggplot(data=df, aes(x=t, y=val)) +
+df2 <- data.frame(x=x, val2=val+10)
+ggplot(data=df, aes(x=x, y=val)) +
   geom_point() +
-  geom_line(data=df2, aes(x=t, y=val2))
+  geom_line(data=df2, aes(x=x, y=val2))
 ```
 
 This *inheriting* feature of `aes()` is great but can get you mixed up when you are layering data like this. Here I made a typo and used `val` instead of `val2` for y in the line. `ggplot` *helped* me out by using the data from `df` instead.
 ```{r}
-ggplot(data=df, aes(x=t, y=val)) +
+ggplot(data=df, aes(x=x, y=val)) +
   geom_point() +
-  geom_line(data=df2, aes(x=t, y=val))
+  geom_line(data=df2, aes(x=x, y=val))
 ```
 
 Sometimes it is clearer if you keep the data and `aes()` with the points and lines. Note data and `aes()` will still inherit rightward.
 ```{r}
 ggplot() +
-  geom_point(data=df, aes(x=t, y=val)) +
-  geom_line(data=df2, aes(x=t, y=val2))
+  geom_point(data=df, aes(x=x, y=val)) +
+  geom_line(data=df2, aes(x=x, y=val2))
 ```
 
 ## Adding and modifying the legend
@@ -230,13 +226,13 @@ ggplot() +
 
 ```{r}
 ggplot() +
-  geom_point(data=df, aes(x=t, y=val, col="df", linetype="df")) +
-  geom_line(data=df2, aes(x=t, y=val2, col="df2", linetype="df2")) +
+  geom_point(data=df, aes(x=x, y=val, col="df", linetype="df")) +
+  geom_line(data=df2, aes(x=x, y=val2, col="df2", linetype="df2")) +
   scale_color_manual("name", values=c("blue", "black")) +
   scale_linetype_manual("name",values=c(0,1))
 ```
 
-## Better **ggplot** workflow
+# Better **ggplot** workflow
 
 This is how `ggplot()` is intended to be used
 
@@ -245,15 +241,15 @@ This is how `ggplot()` is intended to be used
 * Make points or line different using the "name" column
 
 ```{r}
-df1 <- data.frame(t=t, val=val, name="df1")
-df2 <- data.frame(t=t+5, val=val+1, name="df2")
-df <- rbind(df1, df2)
-ggplot(df, aes(x=t, y=val, col=name, shape=name)) + 
+df1 <- data.frame(x=x, val=val, name="df1")
+df2 <- data.frame(x=x, val=val+10, name="df2")
+df3 <- rbind(df1, df2)
+ggplot(df3, aes(x=x, y=val, col=name, shape=name)) + 
   geom_line() +
   geom_point()
 ```
 
-Things to remember
+## Things to remember
 
 * If the color, shape, linetype is not in an `aes()` it won't appear in the legend. 
 * `aes()` info in `ggplot()` flows to the other elements. Put the `aes()` info in the individual `geom_...()` calls if you don't want that.
@@ -262,19 +258,19 @@ Things to remember
 
 Example, points are all black since the `aes(col=name)` only appears in the `geom_line()` call.
 ```{r}
-ggplot(df, aes(x=t, y=val)) + 
+ggplot(df3, aes(x=x, y=val)) + 
   geom_line(aes(col=name)) +
   geom_point(aes(shape=name))
 ```
 
-### Modifying the legend
+## Modifying the legend
 
 You can control all aspects of the legend. Read up on it [here](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/).
 
 Making some data points and other lines will require `scale_...()` and gets hacky.
 
 ```{r}
-ggplot(df, aes(x=t, y=val)) + 
+ggplot(df3, aes(x=x, y=val)) + 
   geom_line(aes(col=name, linetype=name)) +
   geom_point(aes(shape=name)) +
   scale_color_manual("name", values=c("blue", "black")) +
@@ -282,19 +278,125 @@ ggplot(df, aes(x=t, y=val)) +
   scale_linetype_manual("name",values=c(1,0))
 ```
 
+## NA warnings
+
 Ack all those NA warnings!
 ```{r}
-df <- data.frame(x=1:10, y=c(1,NA,NA,4:10), name=rep(c("a","b"),5))
-ggplot(df, aes(x=x, y=y, col=name)) + 
+df4 <- data.frame(x=1:10, y=c(1,NA,NA,4:10), name=rep(c("a","b"),5))
+ggplot(df4, aes(x=x, y=y, col=name)) + 
   geom_point()
 ```
 
 Get rid of them using `na.rm=TRUE`.
 ```{r}
-ggplot(df, aes(x=x, y=y, col=name)) + 
+ggplot(df4, aes(x=x, y=y, col=name)) + 
   geom_point(na.rm=TRUE)
 ```
 
 # Arranging plots into grids
 
+## Manually
 
+Let's do a 4x4 grid of plots with `plot()`.
+
+```{r}
+par(mfrow=c(2,2))
+t <- 1:10
+val <- rnorm(10)
+plot(t, val, type="b")
+plot(t, val+100, type="l")
+plot(t, 100*val, type="p")
+barplot(1:4, 1:4, type="b")
+```
+
+Now let's do this in with `ggplot()` in a similar workflow. The difference with `ggplot()` is that we save the plots and then arrange them into a grid.
+
+Let's do a 4x4 grid of plots with `plot()`.
+
+```{r}
+library(gridExtra)
+df <- data.frame(t = 1:10, val = rnorm(10))
+p1 <- ggplot(df, aes(x=t, y=val)) + geom_line() + geom_point()
+p2 <- ggplot(df, aes(x=t, y=val+100)) + geom_line()
+p3 <- ggplot(df, aes(x=t, y=100*val)) + geom_point()
+df2 <- data.frame(t = 1:4, val = 1:4, se=.1*(1:4))
+p4 <- ggplot(df2, aes(x=t, y=val)) + geom_col()
+gridExtra::grid.arrange(p1, p2, p3, p4)
+```
+
+Let's do two plots in one column but add new info to plot 1.
+
+```{r}
+gridExtra::grid.arrange(p1+geom_smooth(method="lm"), 
+                        p4+geom_errorbar(aes(ymin=val-se, ymax=val+se), width=0.3), ncol=1)
+```
+
+## Dynamically
+
+**ggplot** will also dynamically break your data into plots for you.
+
+```{r}
+df1 <- data.frame(t=t, val=val, name="df1")
+df2 <- data.frame(t=t, val=val+1, name="df2")
+df <- rbind(df1, df2)
+p1 <- ggplot(df, aes(x=t, y=val, col=name)) + geom_line()
+p1
+```
+
+```{r}
+p1 + facet_wrap(~name)
+```
+
+```{r}
+head(mpg)
+```
+
+Let's plot city mpg versus number of cylinders.
+```{r}
+pc <- ggplot(mpg, aes(x=cyl, y=cty)) + geom_point()
+pc
+```
+
+Now we can divide this up by different factors in our the mpg data frame.
+
+```{r}
+pc + facet_wrap(~class)
+```
+
+We can add some things to our plot and free the scales.
+
+```{r}
+pc + facet_wrap(~class, scales="free") + geom_smooth(method="lm")
+```
+
+Another nice feature is that we can combine these wrapped figures into a grid because they are ggplot objects. Making this plot in base R would take you forever and another 2 forever is you wanted to changed it around or change the number of classes in your data changed.
+
+```{r}
+pf <- pc + facet_wrap(~class)
+grid.arrange( p1, pf, ncol=2)
+```
+
+And I can add features to the plots right in the `grid.arrange()` call.
+```{r}
+pf <- pc + facet_wrap(~class)
+grid.arrange(
+  p1+ggtitle("All the classes"), 
+  pf+theme_bw()+ylab("City mpg"),
+  ncol=2)
+```
+
+# Summary
+
+**ggplot** can make your plotting workflow more efficient and much much faster. No more hassling with layouts. It takes a little while to get the hang of, but you do not need to be a **ggplot** wizard. Just the basics here will take you a long way. Google will answer any other questions that you have.
+
+A good set of basic *ggplot** commands when you are starting:
+
+* `ggplot`
+* `geom_line()`
+* `geom_point()`
+* `geom_col()`
+* `ggtitle()`, `xlab()`, `ylab()`, `xlim()`, `ylim()`
+* Themes. Use `?theme_bw` to see them.
+* `gridExtra::grid.arrange(..., nrow, ncol)`
+* `facet_wrap()`
+* Changing the color, line, and points manually is a bit painful, but often unavoidable. Get to know the `scale_xyz_manual()` functions when you need to do that. `?scale_color_manual` to find them all.

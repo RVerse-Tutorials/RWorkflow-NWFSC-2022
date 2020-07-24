@@ -609,7 +609,7 @@ Robust
 <li>Now try to Pull. It’ll tell you that you have conflicts and give you options for what to do.</li>
 </ol>
 <div class="figure">
-<img src="images/git-merge-conflict-gh.png" alt="GitHub Desktop merge conflict alert" />
+<img src="images/git-merge-conflict-gh.png" alt="" />
 <p class="caption">GitHub Desktop merge conflict alert</p>
 </div>
 <ul>
@@ -637,7 +637,14 @@ Robust
 </div>
 <div id="working-with-branches" class="section level2">
 <h2>Working with branches</h2>
-<p>When you start, keep it simple. Use a branch for one file. Work on the file and then merge it back into master. Then get rid of the branch.</p>
+<p>Why use branches?</p>
+<ul>
+<li>Let’s say you have a function that works fine and you want to make a bunch of changes but don’t want to break the old version. Work on a branch to sandbox your changes and merge back into master when done.</li>
+<li>Let’s say you want to try out an idea or new feature. Develop on a branch and merge into master when done.</li>
+<li>Let’s say you want to do a major revamp of your code, but you are worried that you might want to abandon this. Work on a branch. If you decide against the change, you just delete the branch.</li>
+<li>Will your work break code? Make a branch.</li>
+</ul>
+<p>When you start, keep it simple. Use a branch for one file or two. Work on the file and then merge it back into master. Then get rid of the branch. It’s not necessary to use branches but if you do a lot of coding or work on packages, then getting comfortable with them will help you out.</p>
 <div id="make-a-new-branch-in-rstudio" class="section level3">
 <h3>Make a new branch in RStudio</h3>
 <p>Click the new branch icon and give your branch a name. Give it an INFORMATIVE name. <code>tmp</code>, <code>foo</code> are bad. <code>hello_branch</code> is good as it tells what this branch is for (working on the <code>hello.R</code> file). <img src="images/new-branch.png" alt="new branch" /></p>
@@ -652,7 +659,7 @@ Robust
 <li><p>You can do it from GitHub.</p></li>
 </ul>
 <div class="figure">
-<img src="images/pull-request-github.png" alt="pull request from GitHub" />
+<img src="images/pull-request-github.png" alt="" />
 <p class="caption">pull request from GitHub</p>
 </div>
 <p>Once you have created the pull requests, you’ll see that the pull request tab (in GitHub) shows that there is a request.</p>

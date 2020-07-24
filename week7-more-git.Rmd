@@ -66,7 +66,14 @@ But you can fix and then merge.
 
 ## Working with branches
 
-When you start, keep it simple. Use a branch for one file. Work on the file and then merge it back into master. Then get rid of the branch.
+Why use branches? 
+
+* Let's say you have a function that works fine and you want to make a bunch of changes but don't want to break the old version. Work on a branch to sandbox your changes and merge back into master when done.
+* Let's say you want to try out an idea or new feature. Develop on a branch and merge into master when done.
+* Let's say you want to do a major revamp of your code, but you are worried that you might want to abandon this. Work on a branch. If you decide against the change, you just delete the branch.
+* Will your work break code? Make a branch.
+
+When you start, keep it simple. Use a branch for one file or two. Work on the file and then merge it back into master. Then get rid of the branch. It's not necessary to use branches but if you do a lot of coding or work on packages, then getting comfortable with them will help you out.
 
 ### Make a new branch in RStudio
 
