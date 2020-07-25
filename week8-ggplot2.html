@@ -567,8 +567,9 @@ div.tocify {
 
 <p>This week I will give an introduction to plotting with ggplot. Getting a basic familiarity with ggplot will really save you a lot of time that you spend futzing with plots.</p>
 <p>This is oriented to those with little or no experience using ggplot or those who have tried it and gotten frustrated. If you already use ggplot, you won’t find this session very interesting. The goal of this session is to get you started. Once you have the basics, there are a gazillion ggplot tutorials online (though personally the basics are all I need).</p>
-<p>You will need to install the <strong>ggplot2</strong> package for this session.</p>
-<pre class="r"><code>library(ggplot2)</code></pre>
+<p>You will need to install the ggplot2 and gridExtra packages for this session.</p>
+<pre class="r"><code>library(ggplot2)
+library(gridExtra)</code></pre>
 <div id="basic-xy-plot" class="section level1">
 <h1>Basic xy plot</h1>
 <div id="workflow" class="section level2">
@@ -813,7 +814,7 @@ plot(t, val+100, type=&quot;l&quot;)
 plot(t, 100*val, type=&quot;p&quot;)
 barplot(1:4, 1:4, type=&quot;b&quot;)</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<p>Now let’s do this in with <code>ggplot()</code> in a similar workflow. The difference with <code>ggplot()</code> is that we save the plots and then arrange them into a grid.</p>
+<p>Now let’s do this in with <code>ggplot()</code> in a similar workflow. The difference with <code>ggplot()</code> is that we save the plots and then arrange them into a grid with <code>gridExtra::grid.arrange()</code> (from the gridExtra package).</p>
 <p>Let’s do a 4x4 grid of plots with <code>plot()</code>.</p>
 <pre class="r"><code>library(gridExtra)
 df &lt;- data.frame(t = 1:10, val = rnorm(10))
@@ -901,7 +902,10 @@ p2 &lt;- ggplot(mpg, aes(x=hwy,y=cyl)) + pt
 grid.arrange(p1, p2)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" /> # Summary</p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
 <p>ggplot can make your plotting workflow more efficient and much much faster. No more hassling with layouts. It takes a little while to get the hang of, but you do not need to be a ggplot wizard. Just the basics here will take you a long way. Google will answer any other questions that you have.</p>
 <p>A good set of basic ggplot commands when you are starting:</p>
 <ul>
