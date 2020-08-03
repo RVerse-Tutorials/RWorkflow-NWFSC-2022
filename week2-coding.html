@@ -691,7 +691,7 @@ class(fit)</code></pre>
 <div id="do-a-little-planning-on-a-piece-of-paper.-example-data" class="section level3">
 <h3>1. Do a little planning on a piece of paper. Example, <strong>data</strong>:</h3>
 <div class="figure">
-<img src="images/data-planning.jpg" alt="data planning" />
+<img src="images/data-planning.jpg" alt="" />
 <p class="caption">data planning</p>
 </div>
 </div>
@@ -770,7 +770,6 @@ plot1(b, ylims=ylims)</code></pre>
 <pre class="r"><code>auto.arima &lt;- function(x){x}</code></pre>
 <p>Then in your code, you call the <code>auto.arima()</code> function in the <strong>forecast</strong> package. Because <code>auto.arima()</code> exists in the user’s working directory (global environment), your code fails. <code>auto.arima()</code> should fit a model but it doesn’t since it is overwritten by the user’s function.</p>
 <pre class="r"><code>library(forecast)</code></pre>
-<pre><code>## Warning: package &#39;forecast&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
 ##   method            from
 ##   as.zoo.data.frame zoo</code></pre>
@@ -896,12 +895,11 @@ T==TRUE</code></pre>
 <li><a href="https://r4ds.had.co.nz/pipes.html">Piping</a> means compact code, less memory consumption…. and can be terribly slow computationally. Avoid in simulations.</li>
 </ul>
 <p>What’s piping? It’s a function <code>%&gt;%</code> in the <strong>magrittr</strong> that allows you to string operations together.</p>
-<pre class="r"><code>library(magrittr)</code></pre>
-<pre><code>## Warning: package &#39;magrittr&#39; was built under R version 3.6.3</code></pre>
-<pre class="r"><code>rnorm(100) %&gt;%
+<pre class="r"><code>library(magrittr)
+rnorm(100) %&gt;%
   matrix(ncol = 2) %&gt;%
   apply(2,mean)</code></pre>
-<pre><code>## [1]  0.02643573 -0.12310457</code></pre>
+<pre><code>## [1] -0.28702457  0.07572301</code></pre>
 <ul>
 <li>Gravitate towards a standard coding style.</li>
 </ul>
