@@ -167,23 +167,24 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
    
 3. Push changes up the GitHub or GitLab
 
-## Copy someone's else rep
+## Copy someone's else repo
 
-1. In a browser, https://github.com/RVerse-Tutorials/Test.
+Don't Fork. That would be if you are contributing to their repo. If you just want to copy it and then adapt it for your purposes, do this.
+
+1. In a browser, navigate to the repository that you want to copy. For example: https://github.com/RVerse-Tutorials/Test.
 2. Copy its url.
-3. Open GitHub or GitLab.  
+3. Open GitHub or GitLab and go to your account. So for me, I would go to github.com/eeholmes because my account is eeholmes. 
 4. If using GitHub, click the `+` in top right and click `import repository`. Paste in the url and give your repo a name.
 4. If using GitLab, click `New Project` on right, then `Import Repository` tab, then click `Repo by URL`. Paste in url and give repo a name.
 5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Version Control` and paste in the url of **your** repository's url.  For example, `https://github.com/<youraccount>/Test` or 
 `https://gitlab.com/<youraccount>/Test` or 
-
 6. Add the new repo to GitHub Desktop. Open GitHub Desktop, select File>Add Local Repository and navigate to the folder with the new repository.
 
 ## Key tips
 
 1. Do not make changes on GitHub or GitLab directly.
 
-  * Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, Google is your friend.
+  * Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the Week 7 material to learn how to deal with merge conflicts.
   
 2. Do not use branches (wait till you are friends with Git).
 
