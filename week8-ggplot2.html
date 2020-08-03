@@ -565,18 +565,19 @@ div.tocify {
 </div>
 
 
-<p>This week I will give an introduction to plotting with <strong>ggplot</strong>. Getting a basic familiarity with <strong>ggplot</strong> will really save you a lot of time that you spend futzing with plots.</p>
-<p>This is oriented to those with little or no experience using <strong>ggplot</strong> or those who have tried it and gotten frustrated. If you already use <strong>ggplot</strong>, you won’t find this session very interesting. The goal of this session is to get you started. Once you have the basics, there are a gazillion <strong>ggplot</strong> tutorials online (though personally the basics are all I need).</p>
-<p>You will need to install the <strong>ggplot2</strong> package for this session.</p>
-<pre class="r"><code>library(ggplot2)</code></pre>
+<p>This week I will give an introduction to plotting with ggplot. Getting a basic familiarity with ggplot will really save you a lot of time that you spend futzing with plots.</p>
+<p>This is oriented to those with little or no experience using ggplot or those who have tried it and gotten frustrated. If you already use ggplot, you won’t find this session very interesting. The goal of this session is to get you started. Once you have the basics, there are a gazillion ggplot tutorials online (though personally the basics are all I need).</p>
+<p>You will need to install the ggplot2 and gridExtra packages for this session.</p>
+<pre class="r"><code>library(ggplot2)
+library(gridExtra)</code></pre>
 <div id="basic-xy-plot" class="section level1">
 <h1>Basic xy plot</h1>
 <div id="workflow" class="section level2">
 <h2>Workflow</h2>
 <p>Let’s say you wanted to make a simple xy plot with <code>plot()</code>. Here’s your workflow.</p>
 <ul>
-<li>Decide on <span class="math inline">\(x\)</span> or use the default (1 to the number of data points).</li>
-<li>Decide on <span class="math inline">\(y\)</span>.</li>
+<li>Decide on <code>x</code> or use the default (1 to the number of data points).</li>
+<li>Decide on <code>y</code>.</li>
 <li>Plot with <code>plot(x,y)</code></li>
 </ul>
 <pre class="r"><code>val &lt;- mtcars$mpg
@@ -585,10 +586,10 @@ plot(x, val, type=&quot;p&quot;)</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Here’s your <code>ggplot()</code> workflow.</p>
 <ul>
-<li>Decide on <span class="math inline">\(x\)</span> or use the default (1 to the number of data points).</li>
-<li>Decide on <span class="math inline">\(y\)</span>.</li>
-<li>Make a data frame with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
-<li>Create the plot object with a call to <code>ggplot()</code> to tell it the data frame and then what the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> to use. The latter is with <code>aes()</code> (aesthestics).</li>
+<li>Decide on <code>x</code> or use the default (1 to the number of data points).</li>
+<li>Decide on <code>y</code>.</li>
+<li>Make a data frame with <code>x</code> and <code>y</code>.</li>
+<li>Create the plot object with a call to <code>ggplot()</code> to tell it the data frame and then what the <code>x</code> and <code>y</code> to use. The latter is with <code>aes()</code> (aesthestics).</li>
 <li>Add points or lines to the plot with <code>geom_line()</code> or <code>geom_point()</code>.</li>
 </ul>
 <pre class="r"><code>df &lt;- data.frame(x=mtcars$hp, val=mtcars$mpg)
@@ -598,12 +599,12 @@ p2 # plot it</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Typically you’d just write the call like so</p>
 <pre><code>ggplot(df, aes(x=x, y=val)) + geom_point()</code></pre>
-<p>But I assigned the calls to objects <code>p1</code> and <code>p2</code> so you can see that both are <strong>ggplot</strong> objects.</p>
+<p>But I assigned the calls to objects <code>p1</code> and <code>p2</code> so you can see that both are ggplot objects.</p>
 <pre class="r"><code>class(p1)</code></pre>
 <pre><code>## [1] &quot;gg&quot;     &quot;ggplot&quot;</code></pre>
 <pre class="r"><code>class(p2)</code></pre>
 <pre><code>## [1] &quot;gg&quot;     &quot;ggplot&quot;</code></pre>
-<p>That feature is going to be super helpful because it means you can easily add elements to a ggplot without worrying about <span class="math inline">\(y\)</span> axis limits or figure sizing.</p>
+<p>That feature is going to be super helpful because it means you can easily add elements to a ggplot without worrying about <code>y</code> axis limits or figure sizing.</p>
 <pre class="r"><code>p2 + geom_line()</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
@@ -641,8 +642,8 @@ p2 # plot it</code></pre>
 <p>Putting color inside of <code>aes()</code> in <code>ggplot()</code> has a non-intuitive effect. Plot attributes, like color, in <code>aes()</code> are converted to factors and the colors (etc) will be choosen dynamically. The name “blue” is not a color is the a factor and <code>ggplot()</code> gives the first factor the color red in this case. Information in <code>aes()</code> will <em>flow</em> to the rest of the plot unless you tell the <code>geom_point()</code> otherwise).</p>
 <pre class="r"><code>ggplot(df, aes(x=x, y=val, color=&quot;blue&quot;)) + geom_point()</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>How do we <em>tell</em> <code>geom_point()</code> not to use the color value in <code>aes()</code> in <code>ggplot()</code>? Tell it to use a fixed value by putting <code>col="blue"</code> outside of an <code>aes()</code> call (in <code>geom_poin()</code>).</p>
-<pre class="r"><code>ggplot(df, aes(x=x, y=val, col=&quot;blue&quot;)) + geom_point(col=&quot;blue&quot;)</code></pre>
+<p>How do we <em>tell</em> <code>geom_point()</code> not to use the color value in <code>aes()</code> in <code>ggplot()</code>? Tell it to use a fixed value by putting <code>col="blue"</code> outside of an <code>aes()</code> call in <code>geom_point()</code>.</p>
+<pre class="r"><code>ggplot(df, aes(x=x, y=val)) + geom_point(col=&quot;blue&quot;)</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>What happens if we put the color in <code>aes()</code> in <code>geom_point()</code>?</p>
 <pre class="r"><code>ggplot(df, aes(x=x, y=val)) + geom_point(aes(color=&quot;blue&quot;))</code></pre>
@@ -654,7 +655,7 @@ p2 # plot it</code></pre>
 p1</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Let’s add a column plot to that. I pass in <code>alpha</code> to add some transparency to the columns so they don’t wipe out the line.</p>
-<pre class="r"><code>p1 + geom_col(alpha=0.5)</code></pre>
+<pre class="r"><code>p1 + geom_col(alpha=0.5, position=&quot;dodge&quot;)</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 <div id="labels-and-limits" class="section level2">
@@ -666,7 +667,7 @@ p1</code></pre>
 <pre class="r"><code>plot(x, val, type=&quot;p&quot;, xlab=&quot;time&quot;, ylab=&quot;value&quot;,
      xlim=c(100,200), ylim=c(0,40), main=&quot;plot plot&quot;)</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>With <code>ggplot</code>, it’s pretty similar but you use functions.</p>
+<p>With <code>ggplot</code>, it’s pretty similar but you use functions. Ignore the NA warning. I’ll show how to stop that later. ggplot likes to gives warnings about things that it knows how to deal with.</p>
 <pre class="r"><code>ggplot(df, aes(x=x, y=val)) +
   geom_point() +
   xlab(&quot;time&quot;) + ylab(&quot;value&quot;) +
@@ -676,23 +677,23 @@ p1</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 </div>
-<div id="changing-the-whole-look-of-your-plot" class="section level1">
-<h1>Changing the whole look of your plot</h1>
-<p><strong>ggplot</strong> uses themes to set the look of your plot and you can change the whole look by setting a different theme. You can also just tweak one element of the plot’s existing theme. Note because we fixed the line and point colors, we override some theme elements (eg, line colors). See <code>?theme_bw</code> to see all the themes. See <code>?theme</code> to learn how to change one element of your plot design.</p>
+<div id="changing-the-whole-look" class="section level1">
+<h1>Changing the whole look</h1>
+<p>ggplot uses themes to set the look of your plot and you can change the whole look by setting a different theme. You can also just tweak one element of the plot’s existing theme. Note because we fixed the line and point colors, we override some theme elements (eg, line colors). See <code>?theme_bw</code> to see all the themes. See <code>?theme</code> to learn how to change one element of your plot design.</p>
 <pre class="r"><code>p1 + theme_classic()</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
-<div id="adding-data-to-your-plot" class="section level1">
-<h1>Adding data to your plot</h1>
+<div id="adding-lines-or-points" class="section level1">
+<h1>Adding lines or points</h1>
 <p>Let’s say you want to plot 2 lines.</p>
 <div id="workflow-1" class="section level2">
 <h2>Workflow</h2>
 <p>In <code>plot()</code> your workflow is</p>
 <ul>
-<li>Define <span class="math inline">\(x1\)</span> and <span class="math inline">\(x2\)</span> (if different)</li>
-<li>Define <span class="math inline">\(y1\)</span> and <span class="math inline">\(y2\)</span></li>
-<li>Plot <span class="math inline">\(y1\)</span> <em>with limits adjusted for the data we are adding</em>.</li>
-<li>Add <span class="math inline">\(y2\)</span> to the plot.</li>
+<li>Define <code>x1</code> and <code>x2</code> (if different)</li>
+<li>Define <code>y1</code> and <code>y2</code></li>
+<li>Plot <code>y1</code> <em>with limits adjusted for the data we are adding</em>.</li>
+<li>Add <code>y2</code> to the plot.</li>
 </ul>
 <pre class="r"><code>val2 &lt;- val+10
 plot(x, val, ylim=c(0,50))
@@ -700,12 +701,12 @@ lines(x[order(x)], val2[order(x)])</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>In <code>ggplot()</code> you have two possible workflows. First one could be like the <code>plot()</code> workflow. This will cause you problems if you later want to arrange these data into separate plots, but lets go ahead and do this. Sometimes this is the easiest way to get done what you need to do.</p>
 <ul>
-<li>Define <span class="math inline">\(x1\)</span> and <span class="math inline">\(x2\)</span> (if different)</li>
-<li>Define <span class="math inline">\(y1\)</span> and <span class="math inline">\(y2\)</span></li>
-<li>Make data frames <span class="math inline">\(df\)</span> and <span class="math inline">\(df2\)</span> for both.</li>
-<li>Set up the plot with <code>ggplot()</code> and <span class="math inline">\(df\)</span></li>
+<li>Define <code>x1</code> and <code>x2</code> (if different)</li>
+<li>Define <code>y1</code> and <code>y2</code></li>
+<li>Make data frames <code>df</code> and <code>df2</code> for both.</li>
+<li>Set up the plot with <code>ggplot()</code> and <code>df</code></li>
 <li>Add points with <code>geom_point()</code></li>
-<li>Add <span class="math inline">\(df2\)</span> using <code>geom_line()</code> with <span class="math inline">\(df2\)</span> passed in and <code>aes()</code> call.</li>
+<li>Add <code>df2</code> using <code>geom_line()</code> with <code>df2</code> passed in and <code>aes()</code> call.</li>
 </ul>
 <p>How <code>aes()</code> is working. <code>aes()</code> information is flowing rightward. Everything to the right will inherit the data frame and <code>aes()</code> info unless you specifiy new data or new <code>aes()</code>.</p>
 <pre class="r"><code>df2 &lt;- data.frame(x=x, val2=val+10)
@@ -718,29 +719,37 @@ ggplot(data=df, aes(x=x, y=val)) +
   geom_point() +
   geom_line(data=df2, aes(x=x, y=val))</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<p>Sometimes it is clearer if you keep the data and <code>aes()</code> with the points and lines. Note data and <code>aes()</code> will still inherit rightward.</p>
+<p>Usually it is clearer if you keep the data and <code>aes()</code> with the points and lines. Note data and <code>aes()</code> will still inherit rightward.</p>
 <pre class="r"><code>ggplot() +
   geom_point(data=df, aes(x=x, y=val)) +
   geom_line(data=df2, aes(x=x, y=val2))</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Here is another example of plotting data from two different data frames:</p>
+<pre class="r"><code>ggplot() +
+  geom_line(data=iris, aes(x = Sepal.Length, y=Petal.Length)) +
+  geom_bar(data=mtcars, aes(x=cyl), alpha=0.3) +
+  ylab(&quot;y&quot;) + xlab(&quot;x&quot;)</code></pre>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
-<div id="adding-and-modifying-the-legend" class="section level2">
-<h2>Adding and modifying the legend</h2>
-<p><strong>ggplot</strong> makes it rather hard to modify your legend if you create a plot this way. Creating a manual legend can be quite hacky. First thing to know is that the color, linestyle, and/or shape must be in <code>aes()</code> to appear in the legend. If it’s not there you can’t control it in the legend.</p>
+<div id="adding-a-legend" class="section level2">
+<h2>Adding a legend</h2>
+<p>ggplot makes it rather hard to modify your legend if you create a plot this way. Creating a manual legend, as opposed to dynamically as ggplot is supposed to work, can be quite hacky. First thing to know is that the color, linestyle, and/or shape must be in <code>aes()</code> to appear in the legend. If it’s not there you can’t control it in the legend.</p>
+<p>Note: What I am about to show <em>is really hacky and not the way ggplot is intended to be used,</em> but it comes up so often for new ggplot users that I want you to see a solution so you don’t give up on ggplot because of legends. Jump ahead to the correct ggplot workflow with long-form data frames to see how to avoid this.</p>
+<p>This works. Ignore the warning about unknown aesthetics. Once again ggplot loves to warn about non-problems.</p>
 <pre class="r"><code>ggplot() +
   geom_point(data=df, aes(x=x, y=val, col=&quot;df&quot;, linetype=&quot;df&quot;)) +
   geom_line(data=df2, aes(x=x, y=val2, col=&quot;df2&quot;, linetype=&quot;df2&quot;)) +
   scale_color_manual(&quot;name&quot;, values=c(&quot;blue&quot;, &quot;black&quot;)) +
   scale_linetype_manual(&quot;name&quot;,values=c(0,1))</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: linetype</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 </div>
 <div id="better-ggplot-workflow" class="section level1">
-<h1>Better <strong>ggplot</strong> workflow</h1>
+<h1>Better ggplot workflow</h1>
 <p>This is how <code>ggplot()</code> is intended to be used</p>
 <ul>
-<li>Make data frames with <span class="math inline">\(df\)</span> and <span class="math inline">\(df2\)</span> data and a “name” column.</li>
+<li>Make data frames with <code>df</code> and <code>df2</code> data and a “name” column.</li>
 <li>Set up the plot with <code>ggplot()</code></li>
 <li>Make points or line different using the “name” column</li>
 </ul>
@@ -750,9 +759,9 @@ df3 &lt;- rbind(df1, df2)
 ggplot(df3, aes(x=x, y=val, col=name, shape=name)) + 
   geom_line() +
   geom_point()</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-<div id="things-to-remember" class="section level2">
-<h2>Things to remember</h2>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
 <ul>
 <li>If the color, shape, linetype is not in an <code>aes()</code> it won’t appear in the legend.</li>
 <li><code>aes()</code> info in <code>ggplot()</code> flows to the other elements. Put the <code>aes()</code> info in the individual <code>geom_...()</code> calls if you don’t want that.</li>
@@ -763,7 +772,7 @@ ggplot(df3, aes(x=x, y=val, col=name, shape=name)) +
 <pre class="r"><code>ggplot(df3, aes(x=x, y=val)) + 
   geom_line(aes(col=name)) +
   geom_point(aes(shape=name))</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 <div id="modifying-the-legend" class="section level2">
 <h2>Modifying the legend</h2>
@@ -776,7 +785,7 @@ ggplot(df3, aes(x=x, y=val, col=name, shape=name)) +
   scale_shape_manual(&quot;name&quot;,values=c(NA,1)) +
   scale_linetype_manual(&quot;name&quot;,values=c(1,0))</code></pre>
 <pre><code>## Warning: Removed 32 rows containing missing values (geom_point).</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 <div id="na-warnings" class="section level2">
 <h2>NA warnings</h2>
@@ -785,11 +794,11 @@ ggplot(df3, aes(x=x, y=val, col=name, shape=name)) +
 ggplot(df4, aes(x=x, y=y, col=name)) + 
   geom_point()</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>Get rid of them using <code>na.rm=TRUE</code>.</p>
 <pre class="r"><code>ggplot(df4, aes(x=x, y=y, col=name)) + 
   geom_point(na.rm=TRUE)</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 </div>
 </div>
 <div id="arranging-plots-into-grids" class="section level1">
@@ -804,14 +813,8 @@ plot(t, val, type=&quot;b&quot;)
 plot(t, val+100, type=&quot;l&quot;)
 plot(t, 100*val, type=&quot;p&quot;)
 barplot(1:4, 1:4, type=&quot;b&quot;)</code></pre>
-<pre><code>## Warning in plot.window(xlim, ylim, log = log, ...): graphical parameter &quot;type&quot;
-## is obsolete</code></pre>
-<pre><code>## Warning in title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...):
-## graphical parameter &quot;type&quot; is obsolete</code></pre>
-<pre><code>## Warning in axis(if (horiz) 1 else 2, cex.axis = cex.axis, ...): graphical
-## parameter &quot;type&quot; is obsolete</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<p>Now let’s do this in with <code>ggplot()</code> in a similar workflow. The difference with <code>ggplot()</code> is that we save the plots and then arrange them into a grid.</p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>Now let’s do this in with <code>ggplot()</code> in a similar workflow. The difference with <code>ggplot()</code> is that we save the plots and then arrange them into a grid with <code>gridExtra::grid.arrange()</code> (from the gridExtra package).</p>
 <p>Let’s do a 4x4 grid of plots with <code>plot()</code>.</p>
 <pre class="r"><code>library(gridExtra)
 df &lt;- data.frame(t = 1:10, val = rnorm(10))
@@ -821,62 +824,90 @@ p3 &lt;- ggplot(df, aes(x=t, y=100*val)) + geom_point()
 df2 &lt;- data.frame(t = 1:4, val = 1:4, se=.1*(1:4))
 p4 &lt;- ggplot(df2, aes(x=t, y=val)) + geom_col()
 gridExtra::grid.arrange(p1, p2, p3, p4)</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>Let’s do two plots in one column but add new info to plot 1.</p>
 <pre class="r"><code>gridExtra::grid.arrange(p1+geom_smooth(method=&quot;lm&quot;), 
                         p4+geom_errorbar(aes(ymin=val-se, ymax=val+se), width=0.3), ncol=1)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
 <div id="dynamically" class="section level2">
 <h2>Dynamically</h2>
-<p><strong>ggplot</strong> will also dynamically break your data into plots for you.</p>
+<p>ggplot will also dynamically break your data into plots for you.</p>
 <pre class="r"><code>df1 &lt;- data.frame(t=t, val=val, name=&quot;df1&quot;)
 df2 &lt;- data.frame(t=t, val=val+1, name=&quot;df2&quot;)
 df &lt;- rbind(df1, df2)
 p1 &lt;- ggplot(df, aes(x=t, y=val, col=name)) + geom_line()
 p1</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
-<pre class="r"><code>p1 + facet_wrap(~name)</code></pre>
 <p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<pre class="r"><code>p1 + facet_wrap(~name)</code></pre>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <pre class="r"><code>head(mpg)</code></pre>
 <pre><code>## # A tibble: 6 x 11
 ##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
 ##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
-## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
-## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
-## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
-## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
-## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…</code></pre>
+## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa~
+## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa~
+## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa~
+## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa~
+## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa~
+## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa~</code></pre>
 <p>Let’s plot city mpg versus number of cylinders.</p>
 <pre class="r"><code>pc &lt;- ggplot(mpg, aes(x=cyl, y=cty)) + geom_point()
 pc</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>Now we can divide this up by different factors in our the mpg data frame.</p>
 <pre class="r"><code>pc + facet_wrap(~class)</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>We can add some things to our plot and free the scales.</p>
 <pre class="r"><code>pc + facet_wrap(~class, scales=&quot;free&quot;) + geom_smooth(method=&quot;lm&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<p>Another nice feature is that we can combine these wrapped figures into a grid because they are ggplot objects. Making this plot in base R would take you forever and another 2 forever is you wanted to changed it around or change the number of classes in your data changed.</p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>Another nice feature is that we can combine these wrapped figures into a grid because they are ggplot objects. Making this plot in base R would take you forever and another 2 forever is you wanted to change it around or if the number of classes in your data changed.</p>
 <pre class="r"><code>pf &lt;- pc + facet_wrap(~class)
 grid.arrange( p1, pf, ncol=2)</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <p>And I can add features to the plots right in the <code>grid.arrange()</code> call.</p>
 <pre class="r"><code>pf &lt;- pc + facet_wrap(~class)
 grid.arrange(
   p1+ggtitle(&quot;All the classes&quot;), 
   pf+theme_bw()+ylab(&quot;City mpg&quot;),
   ncol=2)</code></pre>
-<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 </div>
+<div id="notes-1" class="section level2">
+<h2>Notes</h2>
+<ul>
+<li><code>facet_wrap()</code> often balks if you use different data frames in your plot construction, i.e. you doing something kind of hacky.
+<ul>
+<li>needs a column in your data frame factors (or characters it can coerce into factors). Might work with multiple data frames in your plot as long as each data frame has the same “name” column.</li>
+<li>wants all the data frame to be the same length. This is only when you use different data frames. Fine if you have all data in one data frame.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="creating-plot-templates" class="section level1">
+<h1>Creating plot templates</h1>
+<p>If you are creating plots with the same features over and over, you can hold the features in a list and add that on to your plot.</p>
+<p>Example where I want all my plots to have red points and a regression line:</p>
+<pre class="r"><code>p3 &lt;- geom_point(col=&quot;red&quot;)
+p2 &lt;- geom_smooth(method=&quot;lm&quot;)
+p4 &lt;- xlab(&quot;MPG&quot;)
+p5 &lt;- ylab(&quot;HP&quot;)
+# pt is my template
+pt &lt;- list(p2, p3, p4, p5)
+
+p1 &lt;- ggplot(mtcars, aes(x=mpg, y=hp)) + pt
+p2 &lt;- ggplot(mpg, aes(x=hwy,y=cyl)) + pt
+grid.arrange(p1, p2)</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="week8-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 </div>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p><strong>ggplot</strong> can make your plotting workflow more efficient and much much faster. No more hassling with layouts. It takes a little while to get the hang of, but you do not need to be a <strong>ggplot</strong> wizard. Just the basics here will take you a long way. Google will answer any other questions that you have.</p>
-<p>A good set of basic *ggplot** commands when you are starting:</p>
+<p>ggplot can make your plotting workflow more efficient and much much faster. No more hassling with layouts. It takes a little while to get the hang of, but you do not need to be a ggplot wizard. Just the basics here will take you a long way. Google will answer any other questions that you have.</p>
+<p>A good set of basic ggplot commands when you are starting:</p>
 <ul>
 <li><code>ggplot</code></li>
 <li><code>geom_line()</code></li>
@@ -888,6 +919,7 @@ grid.arrange(
 <li><code>facet_wrap()</code></li>
 <li>Changing the color, line, and points manually is a bit painful, but often unavoidable. Get to know the <code>scale_xyz_manual()</code> functions when you need to do that. <code>?scale_color_manual</code> to find them all.</li>
 </ul>
+<p>ggplot’s main downside for me is the lack of a manual legend function like <code>plot()</code>’s <code>legend()</code> and the amount of work needed to customize legends. But this is made up for in ggplot’s other great features.</p>
 </div>
 
 <hr>
