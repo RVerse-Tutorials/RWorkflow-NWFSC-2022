@@ -1,5 +1,5 @@
 ---
-title: "Practical R Workflow for Scientists May-June 2020"
+title: "Practical R Workflow for Scientists Summer 2020"
 ---
 
 <img style="float: right;" src="images/tools-logo-transparent.png" width=30%>
@@ -12,23 +12,25 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 ## Topics
 
-* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub/GitLab [Video](https://www.youtube.com/watch?v=HxIpxVdQsDs)
+* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub/GitLab [Video](https://www.youtube.com/watch?v=HxIpxVdQsDs) <!-- 135 -->
 
-* [Week 2](week2-coding.html). More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code [Video](https://www.youtube.com/watch?v=k0P3e39qcA4)
+* [Week 2](week2-coding.html). More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code [Video](https://www.youtube.com/watch?v=k0P3e39qcA4) <!-- 100 -->
 
-* [Week 3](week3-RMarkdown.html). Rmarkdown for reports: how to do big tables and export formats for Word docs [Video](https://www.youtube.com/watch?v=IGc2cgMFoPs)
+* [Week 3](week3-RMarkdown.html). Rmarkdown for reports: how to do big tables and export formats for Word docs [Video](https://www.youtube.com/watch?v=IGc2cgMFoPs) <!-- 70 -->
 
-* [Week 4](week4-packages.html). Part 1. Organizing your R code into a package [Video](https://youtu.be/6d62KvS5v7Q)
+* [Week 4](week4-packages.html). Part 1. Organizing your R code into a package [Video](https://youtu.be/6d62KvS5v7Q) <!-- 62 -->
 
-* [Week 5](week5-roxygen.html). Part 2. Documenting your code and data with Roxygen [Video](https://youtu.be/zHPSbhGtkz4)
+* [Week 5](week5-roxygen.html). Part 2. Documenting your code and data with Roxygen [Video](https://youtu.be/zHPSbhGtkz4) <!-- 41 -->
 
 *Unfortunately at about 40min in, I managed to corrupt my R packages and could not demo any more so covered the material verbally. The problem demonstrates why I try to have few dependencies in my packages! One of the dependencies in my* **SardineForecast** *package had an install problem and corrupted the* **pkgload** *package.*
 
-* [Week 6](week6-more-packages.html). Part 3. Vignettes and plot/print methods for your package. [Video](https://youtu.be/O4rojT7aeb0)
+* [Week 6](week6-more-packages.html). Part 3. Vignettes and plot/print methods for your package. [Video](https://youtu.be/O4rojT7aeb0) <!-- 35 -->
 
 * [Week 7](week7-more-git.html). More Git. Merge conflicts, branches, and reverting changes. [Video](https://youtu.be/ZoB3dsZId9U )
 
-* [Week 8](week8-ggplot2.html). Introduction to plotting with ggplot. [Video](https://youtu.be/odCam8JxvKI)
+* [Week 8](week8-ggplot2.html). Introduction to plotting with ggplot. [Video](https://youtu.be/odCam8JxvKI) <!-- 28 -->
+
+* [Week 9](week9-data-wrangling.html). Introduction to Tidyverse verbs.  <!-- 22 -->
 
 <!--
 Requests
