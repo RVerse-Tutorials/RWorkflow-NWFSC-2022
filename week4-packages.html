@@ -425,9 +425,16 @@ div.tocify {
     </li>
     <li>
       <a href="week8-ggplot2.html">
-        <span class="fa fa-plot"></span>
+        <span class="fa fa-image"></span>
          
         Week 8 ggplot2
+      </a>
+    </li>
+    <li>
+      <a href="week9-data-wrangling.html">
+        <span class="fa fa-broom"></span>
+         
+        Week 9 tidyverse
       </a>
     </li>
   </ul>
@@ -834,9 +841,8 @@ for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            1.02    92.73       1.02     92.73
-## &quot;t.default&quot;      0.06     5.45       0.06      5.45
-## &quot;eval&quot;           0.02     1.82       1.10    100.00</code></pre>
+## &quot;%*%&quot;            1.06    94.64       1.06     94.64
+## &quot;t.default&quot;      0.06     5.36       0.06      5.36</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
