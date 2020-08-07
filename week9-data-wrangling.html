@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Week 9: Intro to piping and tidyverse data wrangling</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 66px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h2 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h3 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h4 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h5 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h6 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-calendar"></span>
+     
+    Workshop Weekly Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1-rstudio.html">
+        <span class="fa fa-cogs"></span>
+         
+        Week 1 RStudio + Version Control
+      </a>
+    </li>
+    <li>
+      <a href="week2-coding.html">
+        <span class="fa fa-code"></span>
+         
+        Week 2 More Git + Code Organization
+      </a>
+    </li>
+    <li>
+      <a href="week3-RMarkdown.html">
+        <span class="fa fa-file"></span>
+         
+        Week 3 R Markdown
+      </a>
+    </li>
+    <li>
+      <a href="week4-packages.html">
+        <span class="fa fa-archive"></span>
+         
+        Week 4 R Packages
+      </a>
+    </li>
+    <li>
+      <a href="week5-roxygen.html">
+        <span class="fa fa-question-circle"></span>
+         
+        Week 5 Roxygen
+      </a>
+    </li>
+    <li>
+      <a href="week6-more-packages.html">
+        <span class="fa fa-folder"></span>
+         
+        Week 6 More Packages
+      </a>
+    </li>
+    <li>
+      <a href="week7-more-git.html">
+        <span class="fa fa-git"></span>
+         
+        Week 7 More Git
+      </a>
+    </li>
+    <li>
+      <a href="week8-ggplot2.html">
+        <span class="fa fa-plot"></span>
+         
+        Week 8 ggplot2
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-git"></span>
+     
+    Git
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro-git.html">
+        <span class="fa fa-cogs"></span>
+         
+        Intro to Git + GitHub/Lab
+      </a>
+    </li>
+    <li>
+      <a href="more-git.html">
+        <span class="fa fa-github"></span>
+         
+        More Git + GitHub
+      </a>
+    </li>
+    <li>
+      <a href="websites.html">
+        <span class="fa fa-chrome"></span>
+         
+        Websites with GitHub
+      </a>
+    </li>
+    <li>
+      <a href="jekyll.html">
+        <span class="fa fa-sitemap"></span>
+         
+        Dynamic Websites with Jekyll and GitHub
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file"></span>
+     
+    RMarkdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week3-RMarkdown.html">
+        <span class="fa fa-file"></span>
+         
+        R Markdown for Reports
+      </a>
+    </li>
+    <li>
+      <a href="bookdown.html">
+        <span class="fa fa-book"></span>
+         
+        Bookdown
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-archive"></span>
+     
+    R Packages
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week4-packages.html">
+        <span class="fa fa-archive"></span>
+         
+        R Packaging with RStudio
+      </a>
+    </li>
+    <li>
+      <a href="week5-roxygen.html">
+        <span class="fa fa-question-circle"></span>
+         
+        Roxygen documentation
+      </a>
+    </li>
+    <li>
+      <a href="shiny.html">
+        <span class="fa fa-gamepad"></span>
+         
+        Shiny GUIs
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="links.html">Tutorials</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
+    <span class="fa fa-github"></span>
+     
+    Repo
+  </a>
+</li>
+<li>
+  <a href="search.html">Search</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Week 9: Intro to piping and tidyverse data wrangling</h1>
+
+</div>
+
+
+<p>This week I will give a brief introduction to piping and data wrangling with tidyr and tidyverse verbs. I’ll compare how to do different data-wrangles with tidyverse versus <code>apply()</code> or a <code>for</code> loop.</p>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+library(ggplot2)</code></pre>
+<div id="piping" class="section level1">
+<h1>Piping</h1>
+<p>You already use the concept of piping, but you do it with parentheses. Your pipe in this case goes from inside to outside.</p>
+<pre><code>fun4(fun3(fun2(fun1(x))))</code></pre>
+<p><code>x</code> is our initial object. We apply <code>fun1()</code> to that. Then we apply <code>fun2()</code> to <code>fun1(x)</code>. Then we apply <code>fun3()</code> to <code>fun2(fun1(x))</code>. etc.</p>
+<p>This has many problems.</p>
+<ul>
+<li>You will lose track of your parentheses and waste much time sorting out where you lost one of your parentheses.</li>
+<li>You are limited in how many levels you can add without your code being unreadable as it stretches quickly to multiple lines.</li>
+<li>We don’t read inside to outside though from our math education, we are used to that (sort of).</li>
+</ul>
+<p>Piping is just a different way to write the same thing but left to right like we read (in English).</p>
+<pre><code>x %&gt;% fun1() %&gt;% fun2() %&gt;% fun3() %&gt;% fun4()</code></pre>
+<p>Example:</p>
+<pre class="r"><code>1:10 %&gt;% sqrt() %&gt;% mean() %&gt;% round(digits=1) </code></pre>
+<pre><code>## [1] 2.2</code></pre>
+<p>That’s the same as</p>
+<pre class="r"><code>round(mean(sqrt(1:10)),digits=1) </code></pre>
+<pre><code>## [1] 2.2</code></pre>
+<div id="upsides" class="section level2">
+<h2>Upsides</h2>
+<ul>
+<li>It is used a lot in the tidyverse so you should be aware of how it works.</li>
+<li>It works well in the tidyverse.</li>
+<li>Can be more readable</li>
+<li>Makes it easy to avoid intermediate variables (<code>tmp</code> and <code>foo</code>)</li>
+</ul>
+</div>
+<div id="downsides" class="section level2">
+<h2>Downsides</h2>
+<ul>
+<li>It’s is easy to write code that is hard to understand. It tends to hide where the object on the left is going to in the function on the right.</li>
+</ul>
+<p>So you see code like this</p>
+<pre class="r"><code>fun &lt;- function(a=1, b=10){c(max(a), min(b))}
+a &lt;- 1:10
+a %&gt;% fun(a^2)</code></pre>
+<pre><code>## [1] 10  1</code></pre>
+<p>and you have to go research <code>fun</code> to discover that this is <code>fun(a=a^2, b=a)</code>.</p>
+<ul>
+<li><p>You can spend hours trying to solve your piping issue when you could immediately write down code using intermediate values.</p></li>
+<li><p>It’s really slow.</p></li>
+</ul>
+<pre class="r"><code>library(microbenchmark)
+bm &lt;- microbenchmark(1:10 %&gt;% sqrt() %&gt;% mean() %&gt;% round(digits=1), round(mean(sqrt(1:10)),digits=1) )
+ggplot2::autoplot(bm)</code></pre>
+<p><img src="week9-data-wrangling_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<ul>
+<li>You must stay hyper-alert as to the names in the data frame you are working with. You might not have created this data frame. This may be a function you wrote to take any data frame from a user…. Otherwise, bad things like this can happen.</li>
+</ul>
+<pre class="r"><code>fun &lt;- function(x, cyl=1){
+x %&gt;% transform(new = mpg^cyl) %&gt;% select(mpg, new)
+}</code></pre>
+<p>Works great!</p>
+<pre class="r"><code>df &lt;- data.frame(mpg=runif(10, 10, 30))
+fun(df, cyl=0.5)</code></pre>
+<pre><code>##         mpg      new
+## 1  27.22645 5.217897
+## 2  29.24771 5.408115
+## 3  14.14723 3.761280
+## 4  19.42818 4.407741
+## 5  11.22577 3.350488
+## 6  23.91743 4.890545
+## 7  25.27650 5.027574
+## 8  19.50322 4.416245
+## 9  12.60077 3.549756
+## 10 24.47181 4.946899</code></pre>
+<p>Why, why? It didn’t complain but this is wrong!</p>
+<pre class="r"><code>fun(mtcars, cyl=0.5)</code></pre>
+<pre><code>##                      mpg          new
+## Mazda RX4           21.0 8.576612e+07
+## Mazda RX4 Wag       21.0 8.576612e+07
+## Datsun 710          22.8 2.702336e+05
+## Hornet 4 Drive      21.4 9.604674e+07
+## Hornet Sportabout   18.7 1.495316e+10
+## Valiant             18.1 3.516183e+07
+## Duster 360          14.3 1.748591e+09
+## Merc 240D           24.4 3.544535e+05
+## Merc 230            22.8 2.702336e+05
+## Merc 280            19.2 5.009650e+07
+## Merc 280C           17.8 3.180680e+07
+## Merc 450SE          16.4 5.233001e+09
+## Merc 450SL          17.3 8.023592e+09
+## Merc 450SLC         15.2 2.849369e+09
+## Cadillac Fleetwood  10.4 1.368569e+08
+## Lincoln Continental 10.4 1.368569e+08
+## Chrysler Imperial   14.7 2.180413e+09
+## Fiat 128            32.4 1.101996e+06
+## Honda Civic         30.4 8.540717e+05
+## Toyota Corolla      33.9 1.320684e+06
+## Toyota Corona       21.5 2.136751e+05
+## Dodge Challenger    15.5 3.331606e+09
+## AMC Javelin         15.2 2.849369e+09
+## Camaro Z28          13.3 9.790686e+08
+## Pontiac Firebird    19.2 1.846757e+10
+## Fiat X1-9           27.3 5.554572e+05
+## Porsche 914-2       26.0 4.569760e+05
+## Lotus Europa        30.4 8.540717e+05
+## Ford Pantera L      15.8 3.883799e+09
+## Ferrari Dino        19.7 5.845173e+07
+## Maserati Bora       15.0 2.562891e+09
+## Volvo 142E          21.4 2.097274e+05</code></pre>
+</div>
+</div>
+<div id="data-wrangling" class="section level1">
+<h1>Data Wrangling</h1>
+<p>Lots of resources on the web if this is something you need to know in depth. See <a href="https://dcl-wrangle.stanford.edu/">this course book</a>, <a href="https://cengel.github.io/R-data-wrangling/">this course</a>, <a href="https://r4ds.had.co.nz/wrangle-intro.html">Hadley book</a> (though I like the courses better), and many more.</p>
+<p>I’m going to cover two topics which come up often when using ggplot and also fitting models.</p>
+<div id="long-and-wide-data-frames" class="section level2">
+<h2>Long and wide data frames</h2>
+<p>Wide is what you need for say <code>lm()</code>. You have your response variable in one column and then your predictor variables in other columns.</p>
+<pre class="r"><code>df &lt;- subset(mtcars, select=c(mpg, wt, hp, carb))
+df$model &lt;- rownames(mtcars)
+head(df)</code></pre>
+<pre><code>##                    mpg    wt  hp carb             model
+## Mazda RX4         21.0 2.620 110    4         Mazda RX4
+## Mazda RX4 Wag     21.0 2.875 110    4     Mazda RX4 Wag
+## Datsun 710        22.8 2.320  93    1        Datsun 710
+## Hornet 4 Drive    21.4 3.215 110    1    Hornet 4 Drive
+## Hornet Sportabout 18.7 3.440 175    2 Hornet Sportabout
+## Valiant           18.1 3.460 105    1           Valiant</code></pre>
+<p>Fit with <code>lm()</code>.</p>
+<pre class="r"><code>fit &lt;- lm(mpg ~ wt + hp, data=df)
+summary(fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ wt + hp, data = df)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.941 -1.600 -0.182  1.050  5.854 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 37.22727    1.59879  23.285  &lt; 2e-16 ***
+## wt          -3.87783    0.63273  -6.129 1.12e-06 ***
+## hp          -0.03177    0.00903  -3.519  0.00145 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.593 on 29 degrees of freedom
+## Multiple R-squared:  0.8268, Adjusted R-squared:  0.8148 
+## F-statistic: 69.21 on 2 and 29 DF,  p-value: 9.109e-12</code></pre>
+<p>Long form is what ggplot wants. Usually I have to ponder a bit before I decide how to make my long form data frame. There is not just “one” that you could make from your wide form data frame.</p>
+<p>Let’s make a plot of the red, green and blue columns. We want the points to be red, green or blue.</p>
+<pre class="r"><code>plot(df$mpg, col=&quot;red&quot;, ylim=c(0,200))
+points(df$wt, col=&quot;green&quot;)
+points(df$hp, col=&quot;blue&quot;)</code></pre>
+<p><img src="week9-data-wrangling_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Same idea but let’s plot versus the carburator number. Let’s make a plot of the red, green and blue columns. We want the points to be red, green or blue.</p>
+<pre class="r"><code>plot(df$carb, df$mpg, col=&quot;red&quot;, ylim=c(0,200))
+points(df$carb, df$wt, col=&quot;green&quot;)
+points(df$carb, df$hp, col=&quot;blue&quot;)</code></pre>
+<p><img src="week9-data-wrangling_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Now let’s do this in ggplot. What values do we want in the <code>aes()</code> function? Those need to be columns. <code>aes(x=..., y=..., col=....)</code></p>
+<pre><code>data.frame(col=name.of.thing.we.plot, y=value.of.thing.we.plot, x=x.value)</code></pre>
+<p>So we’ll have a column of x (carb or model or 1:n), a column for our y (mpg,wt,hp) and a column for names (“mpg”,“wt”,“hb”).</p>
+<pre class="r"><code>df.long &lt;- data.frame()
+a &lt;- data.frame(model=df$model, val=df$mpg, name=&quot;mpg&quot;, carb=df$carb)
+df.long &lt;- rbind(df.long, a)
+a &lt;- data.frame(model=df$model, val=df$wt, name=&quot;wt&quot;, carb=df$carb)
+df.long &lt;- rbind(df.long, a)
+a &lt;- data.frame(model=df$model, val=df$hp, name=&quot;hp&quot;, carb=df$carb)
+df.long &lt;- rbind(df.long, a)
+df.long</code></pre>
+<pre><code>##                  model     val name carb
+## 1            Mazda RX4  21.000  mpg    4
+## 2        Mazda RX4 Wag  21.000  mpg    4
+## 3           Datsun 710  22.800  mpg    1
+## 4       Hornet 4 Drive  21.400  mpg    1
+## 5    Hornet Sportabout  18.700  mpg    2
+## 6              Valiant  18.100  mpg    1
+## 7           Duster 360  14.300  mpg    4
+## 8            Merc 240D  24.400  mpg    2
+## 9             Merc 230  22.800  mpg    2
+## 10            Merc 280  19.200  mpg    4
+## 11           Merc 280C  17.800  mpg    4
+## 12          Merc 450SE  16.400  mpg    3
+## 13          Merc 450SL  17.300  mpg    3
+## 14         Merc 450SLC  15.200  mpg    3
+## 15  Cadillac Fleetwood  10.400  mpg    4
+## 16 Lincoln Continental  10.400  mpg    4
+## 17   Chrysler Imperial  14.700  mpg    4
+## 18            Fiat 128  32.400  mpg    1
+## 19         Honda Civic  30.400  mpg    2
+## 20      Toyota Corolla  33.900  mpg    1
+## 21       Toyota Corona  21.500  mpg    1
+## 22    Dodge Challenger  15.500  mpg    2
+## 23         AMC Javelin  15.200  mpg    2
+## 24          Camaro Z28  13.300  mpg    4
+## 25    Pontiac Firebird  19.200  mpg    2
+## 26           Fiat X1-9  27.300  mpg    1
+## 27       Porsche 914-2  26.000  mpg    2
+## 28        Lotus Europa  30.400  mpg    2
+## 29      Ford Pantera L  15.800  mpg    4
+## 30        Ferrari Dino  19.700  mpg    6
+## 31       Maserati Bora  15.000  mpg    8
+## 32          Volvo 142E  21.400  mpg    2
+## 33           Mazda RX4   2.620   wt    4
+## 34       Mazda RX4 Wag   2.875   wt    4
+## 35          Datsun 710   2.320   wt    1
+## 36      Hornet 4 Drive   3.215   wt    1
+## 37   Hornet Sportabout   3.440   wt    2
+## 38             Valiant   3.460   wt    1
+## 39          Duster 360   3.570   wt    4
+## 40           Merc 240D   3.190   wt    2
+## 41            Merc 230   3.150   wt    2
+## 42            Merc 280   3.440   wt    4
+## 43           Merc 280C   3.440   wt    4
+## 44          Merc 450SE   4.070   wt    3
+## 45          Merc 450SL   3.730   wt    3
+## 46         Merc 450SLC   3.780   wt    3
+## 47  Cadillac Fleetwood   5.250   wt    4
+## 48 Lincoln Continental   5.424   wt    4
+## 49   Chrysler Imperial   5.345   wt    4
+## 50            Fiat 128   2.200   wt    1
+## 51         Honda Civic   1.615   wt    2
+## 52      Toyota Corolla   1.835   wt    1
+## 53       Toyota Corona   2.465   wt    1
+## 54    Dodge Challenger   3.520   wt    2
+## 55         AMC Javelin   3.435   wt    2
+## 56          Camaro Z28   3.840   wt    4
+## 57    Pontiac Firebird   3.845   wt    2
+## 58           Fiat X1-9   1.935   wt    1
+## 59       Porsche 914-2   2.140   wt    2
+## 60        Lotus Europa   1.513   wt    2
+## 61      Ford Pantera L   3.170   wt    4
+## 62        Ferrari Dino   2.770   wt    6
+## 63       Maserati Bora   3.570   wt    8
+## 64          Volvo 142E   2.780   wt    2
+## 65           Mazda RX4 110.000   hp    4
+## 66       Mazda RX4 Wag 110.000   hp    4
+## 67          Datsun 710  93.000   hp    1
+## 68      Hornet 4 Drive 110.000   hp    1
+## 69   Hornet Sportabout 175.000   hp    2
+## 70             Valiant 105.000   hp    1
+## 71          Duster 360 245.000   hp    4
+## 72           Merc 240D  62.000   hp    2
+## 73            Merc 230  95.000   hp    2
+## 74            Merc 280 123.000   hp    4
+## 75           Merc 280C 123.000   hp    4
+## 76          Merc 450SE 180.000   hp    3
+## 77          Merc 450SL 180.000   hp    3
+## 78         Merc 450SLC 180.000   hp    3
+## 79  Cadillac Fleetwood 205.000   hp    4
+## 80 Lincoln Continental 215.000   hp    4
+## 81   Chrysler Imperial 230.000   hp    4
+## 82            Fiat 128  66.000   hp    1
+## 83         Honda Civic  52.000   hp    2
+## 84      Toyota Corolla  65.000   hp    1
+## 85       Toyota Corona  97.000   hp    1
+## 86    Dodge Challenger 150.000   hp    2
+## 87         AMC Javelin 150.000   hp    2
+## 88          Camaro Z28 245.000   hp    4
+## 89    Pontiac Firebird 175.000   hp    2
+## 90           Fiat X1-9  66.000   hp    1
+## 91       Porsche 914-2  91.000   hp    2
+## 92        Lotus Europa 113.000   hp    2
+## 93      Ford Pantera L 264.000   hp    4
+## 94        Ferrari Dino 175.000   hp    6
+## 95       Maserati Bora 335.000   hp    8
+## 96          Volvo 142E 109.000   hp    2</code></pre>
+<p>Now we can plot with ggplot.</p>
+<pre class="r"><code>ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point()</code></pre>
+<p><img src="week9-data-wrangling_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>And we can easily do panels.</p>
+<pre class="r"><code>ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point() +
+  facet_wrap(~name)</code></pre>
+<p><img src="week9-data-wrangling_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="pivoting" class="section level2">
+<h2>Pivoting</h2>
+<p>So creating your long data frames like that would get tidieous and inefficient. The tidyr package has <a href="https://dcl-wrangle.stanford.edu/pivot-basic.html">functions to make this easier</a>.</p>
+<div id="pivot_longer" class="section level3">
+<h3><code>pivot_longer</code></h3>
+<pre><code>pivot_longer(
+    data frame name,
+    cols = what columns will you stack or pivot,
+    names_to = colname for the column with the column names that your stacked,
+    values_to = colname for the column with the values
+  )</code></pre>
+<pre class="r"><code>df.long2 &lt;- 
+  pivot_longer(
+    df,
+    cols = c(&quot;mpg&quot;, &quot;wt&quot;, &quot;hp&quot;),
+    names_to = &quot;name&quot;,
+    values_to = &quot;val&quot;
+  )</code></pre>
+<pre class="r"><code>df.long2</code></pre>
+<pre><code>## # A tibble: 96 x 4
+##     carb model          name     val
+##    &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;dbl&gt;
+##  1     4 Mazda RX4      mpg    21   
+##  2     4 Mazda RX4      wt      2.62
+##  3     4 Mazda RX4      hp    110   
+##  4     4 Mazda RX4 Wag  mpg    21   
+##  5     4 Mazda RX4 Wag  wt      2.88
+##  6     4 Mazda RX4 Wag  hp    110   
+##  7     1 Datsun 710     mpg    22.8 
+##  8     1 Datsun 710     wt      2.32
+##  9     1 Datsun 710     hp     93   
+## 10     1 Hornet 4 Drive mpg    21.4 
+## # … with 86 more rows</code></pre>
+<p>It changed the order our names but that’s ok. We can fix that if needed.</p>
+<pre class="r"><code>ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point() +
+  facet_wrap(~name)</code></pre>
+<p><img src="week9-data-wrangling_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>It changed the order our names but that’s ok. We can fix that if needed.</p>
+<pre class="r"><code>df.long$name &lt;- factor(df.long$name, levels=c(&quot;mpg&quot;, &quot;wt&quot;, &quot;hp&quot;))
+ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point() +
+  facet_wrap(~name) +
+  theme(axis.text.x=element_blank())</code></pre>
+<p><img src="week9-data-wrangling_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Read <code>?tidyr::pivot_longer</code> to learn more options but this will be all you need most of the time.</p>
+</div>
+<div id="pivot_wider" class="section level3">
+<h3><code>pivot_wider</code></h3>
+<pre><code>  pivot_wider( 
+    data frame name,
+    names_from = what column has the column names
+    values_from = what column has the values
+  )</code></pre>
+<pre class="r"><code>  pivot_wider( 
+    df.long,
+    names_from = &quot;name&quot;, 
+    values_from = &quot;val&quot;
+  )</code></pre>
+<pre><code>## # A tibble: 32 x 5
+##    model              carb   mpg    wt    hp
+##    &lt;fct&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Mazda RX4             4  21    2.62   110
+##  2 Mazda RX4 Wag         4  21    2.88   110
+##  3 Datsun 710            1  22.8  2.32    93
+##  4 Hornet 4 Drive        1  21.4  3.22   110
+##  5 Hornet Sportabout     2  18.7  3.44   175
+##  6 Valiant               1  18.1  3.46   105
+##  7 Duster 360            4  14.3  3.57   245
+##  8 Merc 240D             2  24.4  3.19    62
+##  9 Merc 230              2  22.8  3.15    95
+## 10 Merc 280              4  19.2  3.44   123
+## # … with 22 more rows</code></pre>
+<p>BTW, you will normally see the function called with piping.</p>
+<pre class="r"><code>df.long %&gt;%
+  pivot_wider( 
+    names_from = &quot;name&quot;, 
+    values_from = &quot;val&quot;
+  )</code></pre>
+</div>
+</div>
+<div id="tidyverse-verbs" class="section level2">
+<h2>Tidyverse verbs</h2>
+<p>Read up on tidyverse verbs <a href="https://dplyr.tidyverse.org/">here</a>.</p>
+</div>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>ggplot can make your plotting workflow more efficient and much much faster. No more hassling with layouts. It takes a little while to get the hang of, but you do not need to be a ggplot wizard. Just the basics here will take you a long way. Google will answer any other questions that you have.</p>
+<p>A good set of basic commands:</p>
+<ul>
+<li><code>tidyr::pivot_longer</code></li>
+<li><code>tidyr::pivot_wider</code></li>
+</ul>
+<div id="comments" class="section level2">
+<h2>Comments</h2>
+<p>I rarely use piping. Why?</p>
+<ul>
+<li>Piping is fine but is super slow. Also I develop packages and the R package checks often through errors with piping or any type of implicit reference to data columns in data frames. So like <code>subset(df, x==1)</code> is implicit because it is implying that there is an <code>x</code> column in <code>df</code> but that code will actually work if <code>x</code> is not in <code>df</code>. If you are a package writer, the check will complain about that vagueness.</li>
+<li>I have a hard time following long strings of pipes and lose track of what’s going on.</li>
+</ul>
+<p>And I rarely use dplyr, tidyr, or tidyverse verbs.</p>
+<ul>
+<li>tidyverse is “maturing” which means the functions keep changing…which means my code rots quickly.</li>
+<li>I often have to do something that takes me a long time to figure out how to do with tidyverse.</li>
+</ul>
+<p>Whereas learning ggplot2 has made my plotting much, much faster, I can’t say the same with data-wrangling with tidyverse except for a few functions that I use to help out with ggplot.</p>
+</div>
+</div>
+
+<hr>
+
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

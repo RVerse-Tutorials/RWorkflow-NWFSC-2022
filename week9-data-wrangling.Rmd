@@ -1,0 +1,520 @@
+---
+title: "Week 9: Intro to piping and tidyverse data wrangling"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This week I will give a brief introduction to piping and data wrangling with tidyr and tidyverse verbs. If you want to learn more, this is a nice intro
+
+Lots of resources on the web if this is something you need to know in depth.  See [this course book](https://dcl-wrangle.stanford.edu/), [this course](https://cengel.github.io/R-data-wrangling/), [R for Data Science](https://r4ds.had.co.nz/), and many more.
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+
+# Piping
+
+You already use the concept of piping, but you do it with parentheses. Your pipe in this case goes from inside to outside.
+
+```
+fun4(fun3(fun2(fun1(x))))
+```
+
+`x` is our initial object. We apply `fun1()` to that. Then we apply `fun2()` to `fun1(x)`. Then we apply `fun3()` to `fun2(fun1(x))`. etc. 
+
+This has many problems.
+
+* You will lose track of your parentheses and waste much time sorting out where you lost one of your parentheses.
+* You are limited in how many levels you can add without your code being unreadable as it stretches quickly to multiple lines.
+* We don't read inside to outside though from our math education, we are used to that (sort of).
+
+Piping is just a different way to write the same thing but left to right like we read (in English).
+
+```
+x %>% fun1() %>% fun2() %>% fun3() %>% fun4()
+```
+
+Example:
+```{r}
+1:10 %>% sqrt() %>% mean() %>% round(digits=1) 
+```
+That's the same as
+```{r}
+round(mean(sqrt(1:10)),digits=1) 
+```
+
+## Upsides
+
+* It is used a lot in the tidyverse so you should be aware of how it works.
+* It works well in the tidyverse.
+* Can be more readable
+* Makes it easy to avoid intermediate variables (`tmp` and `foo`)
+
+## Downsides
+
+* It's is easy to write code that is hard to understand. It tends to hide where the object on the left is going to in the function on the right.
+
+So you see code like this
+```{r}
+fun <- function(a=1, b=10){c(max(a), min(b))}
+a <- 1:10
+a %>% fun(a^2)
+```
+and you have to go research `fun` to discover that this is `fun(a=a^2, b=a)`.
+
+* You can spend hours trying to solve your piping issue when you could immediately write down code using intermediate values.
+
+* It's really slow.
+```{r message=FALSE}
+library(microbenchmark)
+bm <- microbenchmark(1:10 %>% sqrt() %>% mean() %>% round(digits=1), round(mean(sqrt(1:10)),digits=1) )
+ggplot2::autoplot(bm)
+```
+
+* You must stay hyper-alert as to the names in the data frame you are working with. You might not have created this data frame. This may be a function you wrote to take any data frame from a user.... Otherwise, bad things like this can happen.
+```{r}
+fun <- function(x, cyl=1){
+x %>% transform(new = mpg^cyl) %>% select(mpg, new)
+}
+```
+Works great!
+```{r}
+df <- data.frame(mpg=runif(10, 10, 30))
+fun(df, cyl=0.5)
+```
+Why, why? It didn't complain but this is wrong!
+```{r}
+fun(mtcars[1:5,], cyl=0.5)
+```
+
+
+
+  
+## Tidyverse verbs
+
+Read up on tidyverse verbs [here](https://dplyr.tidyverse.org/).
+
+### Two workflows to learn today
+
+```
+data.frame %>%
+  Step 1 select columns or filter rows %>%
+  Step 2 verb to apply
+```
+
+```
+data.frame %>%
+  Step 1 grouping %>%
+  Step 2 verb to apply
+```
+
+Verbs that we will learn:
+
+* `select()` select columns
+* `filter()` select columns
+* `group_by()` apply the function differently within groups.
+* `summarize()` apply function over columns -> fewer rows. Like `apply(df,2,function)`
+* `mutate()` apply function to columns and make new column. Like `apply(df,1,function)`
+
+What we won't learn. See ?across to learn about that.
+
+```
+data.frame %>%
+  Step 1 grouping
+  Step 2 select a range of columns
+  Step 2 verb to apply
+```
+
+## Selecting columns or Filtering rows
+
+### `select()`
+
+Select columns.
+
+```{r}
+head(mtcars)
+```
+
+```{r}
+mtcars %>% select(mpg)
+```
+
+```{r}
+mtcars %>% select(-mpg, -qsec, -gear, -cyl)
+```
+```{r}
+mtcars %>% select(disp:qsec)
+```
+
+```{r}
+mtcars %>% select(!disp:qsec)
+```
+```{r}
+df %>% select(where(is.numeric))
+```
+
+### `filter()`
+
+Select rows.
+
+
+```{r}
+mtcars %>% filter(cyl==4)
+```
+
+```{r}
+mtcars %>% filter(cyl==4, hp>90)
+```
+## `summarize()`
+
+`summarize()` summarizes down columns and leads to fewer rows.
+
+Apply a function to columns.
+```{r}
+df %>% 
+  summarize(mean.wt=mean(wt) %>% round(digits=2))
+```
+Same as
+```{r}
+round(mean(df$wt), digits=2)
+```
+
+You can specify columns. You have to put in `c()` in this case.
+```{r}
+df %>% 
+  summarize(mean.wt=mean(c(mpg, hp)) %>% round(digits=2))
+```
+Same as
+```{r}
+round(mean(c(df$mpg, df$hp)), digits=2)
+```
+
+Sadly this does NOT work for specifying a range. It computes something but not what you'd think. This is the  `apply across columns` case. Read up on that in ?across.
+```{r}
+df %>% 
+  summarize(mean.wt=mean(mpg:hp) %>% round(digits=2))
+```
+This is what that computes.
+```{r}
+round(mean(df[1,1]:df[1,3]), digits=2)
+```
+
+### `summarize()` by column
+
+
+`summarize_all()` and `summarize_at()`
+
+Apply to a range of columns or all columns. Note the `_at()` and `_all()` functions have been superceded with `across()` but I find `across()` really cumbersome. I personally would use `select()` and `summarize_all()`.
+```{r}
+df %>% summarize_at(vars(mpg:hp), mean)
+```
+
+```
+data.frame %>%
+  ==> Step 1 select columns %>%
+  ==> Step 2 use summarize_all() verb to apply
+```
+
+```{r}
+df %>% 
+  select(mpg:hp) %>% 
+  summarize_all(mean)
+```
+```{r}
+apply(df[,1:3],2,mean)
+```
+
+```
+data.frame %>%
+  ==> Step 1 select rows %>%
+  ==> Step 2 select columns %>%
+  ==> Step 3 use summarize_all() verb to apply
+```
+
+```{r}
+df %>% 
+  filter(cyl==4) %>% 
+  select(mpg:hp) %>% 
+  summarize_all(mean)
+```
+
+### `summarize()` by group
+
+```
+data.frame %>%
+  ==> Step 1 grouping %>%
+  ==> Step 2 verb to apply
+```
+
+```{r}
+df2 <- data.frame(id=paste0(rep("s",8),1:2),
+                  pop=paste0(rep("r",8),rep(1:2,each=4)),
+                  Week1=rnorm(8), Week2=rnorm(8), Week3=rnorm(8), Week4=rnorm(8))
+head(df2)
+```
+
+
+The `group_by()` function allows you to do more complicated things. Take the mean by carb value.
+```{r}
+df2 %>% group_by(pop) %>% summarize(mean=mean(c(Week1,Week2)))
+```
+
+```{r}
+mean(c(df2$Week1[df2$pop=="r1"], df2$Week2[df2$pop=="r1"]))
+mean(c(df2$Week1[df2$pop=="r2"], df2$Week2[df2$pop=="r2"]))
+```
+
+
+Take the mean for Week1 and Week2.
+```{r}
+df2 %>% 
+  group_by(pop, id) %>% 
+  summarize(mean=mean(c(Week1,Week2)))
+```
+
+### `summarize()` by group across a range of columns
+
+```
+data.frame %>%
+  ==> Step 1 grouping %>%
+  ==> Step 2 select columns %>%
+  ==> Step 3 verb to apply
+```
+
+Take the mean for all weeks.
+```{r}
+df2 %>% 
+  group_by(pop, id) %>%
+  summarize(mean=mean(c(Week1, Week2, Week3, Week4)))
+```
+
+```{r}
+df2 %>% 
+  mutate(
+    mean=mean(c_across(Week1:Week4))
+    )
+```
+
+
+Using `select()` instead.
+```{r}
+df %>% group_by(carb) %>% 
+  select(mpg:hp) %>% 
+  summarize_all(mean)
+```
+
+Select based on properties. For some reason you have to wrap in `where()`.
+```{r}
+df %>% group_by(carb) %>% 
+  select(where(is.numeric)) %>% 
+  summarize_all(mean)
+```
+
+```{r}
+df %>% 
+  mutate(max.wt.hp=max(wt,hp)) %>%
+  group_by(carb, name) %>% 
+  summarize(max.wt.hp2=round(max.wt.hp, digits=2))
+```
+
+Careful the scope of the actions can be non-intuitive.
+
+```{r}
+df %>% mutate(wt.hp = (wt+hp)/2, sum=mean(c(wt,hp)))
+```
+Add a factor for row and group by that and it works.
+```{r}
+df$i <- as.factor(1:nrow(df))
+df %>% group_by(i) %>% mutate(wt.hp = (wt+hp)/2, sum=mean(c(wt,hp)))
+```
+
+You can write custom functions to apply to the groups.
+```{r}
+fun <- function(x,y){fit <- lm(y~x); coef(fit)[1]}
+df %>% group_by(carb) %>% mutate(lmm=fun(mpg,hp))
+```
+
+```{r}
+fun <- function(x,y){fit <- lm(y~x); coef(fit)[1]}
+df %>% group_by(carb) %>% summarize(lmm=fun(mpg,hp))
+```
+
+```{r}
+fun <- function(x,y){fit <- lm(y~x); coef(fit)}
+df %>% group_by(carb) %>% summarize(lmm=fun(mpg,hp))
+```
+
+```{r}
+df %>% group_by(carb) %>% summarize(lmm=lm(mpg~hp) %>% coef()[1])
+```
+
+## Long and wide data frames
+
+Wide is what you need for say `lm()`. You have your response variable in one column and then your predictor variables in other columns.
+
+```{r}
+df <- subset(mtcars, select=c(mpg, wt, hp, carb))
+df$model <- rownames(mtcars)
+head(df)
+```
+Fit with `lm()`.
+```{r}
+fit <- lm(mpg ~ wt + hp, data=df)
+summary(fit)
+```
+
+Long form is what ggplot wants. Usually I have to ponder a bit before I decide how to make my long form data frame. There is not just "one" that you could make from your wide form data frame.
+
+Let's make a plot of the red, green and blue columns. We want the points to be red, green or blue.
+```{r}
+plot(df$mpg, col="red", ylim=c(0,200))
+points(df$wt, col="green")
+points(df$hp, col="blue")
+```
+
+Same idea but let's plot versus the carburator number.
+Let's make a plot of the red, green and blue columns. We want the points to be red, green or blue.
+```{r}
+plot(df$carb, df$mpg, col="red", ylim=c(0,200))
+points(df$carb, df$wt, col="green")
+points(df$carb, df$hp, col="blue")
+```
+
+Now let's do this in ggplot. What values do we want in the `aes()` function? Those need to be columns. `aes(x=..., y=..., col=....)`
+```
+data.frame(
+   col=name.of.thing.we.plot, 
+   y=value.of.thing.we.plot, 
+   x=x.value
+   )
+```
+
+So we'll have a column of x (carb or model or 1:n), a column for our y (mpg,wt,hp) and a column for names ("mpg","wt","hb").
+```{r}
+df.long <- data.frame()
+a <- data.frame(model=df$model, val=df$mpg, name="mpg", carb=df$carb)
+df.long <- rbind(df.long, a)
+a <- data.frame(model=df$model, val=df$wt, name="wt", carb=df$carb)
+df.long <- rbind(df.long, a)
+a <- data.frame(model=df$model, val=df$hp, name="hp", carb=df$carb)
+df.long <- rbind(df.long, a)
+df.long
+```
+
+Now we can plot with ggplot.
+```{r}
+ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point()
+```
+
+And we can easily do panels.
+```{r}
+ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point() +
+  facet_wrap(~name)
+```
+
+## Pivoting
+
+So creating your long data frames like that would get tidieous and inefficient.
+The tidyr package has [functions to make this easier](https://dcl-wrangle.stanford.edu/pivot-basic.html).
+
+### `pivot_longer`
+
+```
+pivot_longer(
+    data frame name,
+    cols = what columns will you stack or pivot,
+    names_to = colname for the column with the column names that your stacked,
+    values_to = colname for the column with the values
+  )
+```
+
+```{r}
+df.long2 <- 
+  pivot_longer(
+    df,
+    cols = c("mpg", "wt", "hp"),
+    names_to = "name",
+    values_to = "val"
+  )
+```
+
+```{r}
+df.long2
+```
+
+It changed the order our names but that's ok. We can fix that if needed.
+```{r}
+ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point() +
+  facet_wrap(~name)
+```
+
+It changed the order our names but that's ok. We can fix that if needed.
+```{r}
+df.long$name <- factor(df.long$name, levels=c("mpg", "wt", "hp"))
+ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point() +
+  facet_wrap(~name) +
+  theme(axis.text.x=element_blank())
+```
+
+Read `?tidyr::pivot_longer` to learn more options but this will be all you need most of the time.
+
+### `pivot_wider`
+
+```
+pivot_wider( 
+    data frame name,
+    names_from = what column has the column names
+    values_from = what column has the values
+  )
+```
+
+
+```{r}
+pivot_wider( 
+    df.long,
+    names_from = "name", 
+    values_from = "val"
+  )
+```
+BTW, you will normally see the function called with piping.
+
+```{r results="hide"}
+df.long %>%
+  pivot_wider( 
+    names_from = "name", 
+    values_from = "val"
+  )
+```
+
+
+# Summary
+
+
+A good set of basic commands:
+
+* `tidyr::pivot_longer`
+* `tidyr::pivot_wider`
+
+## Comments
+
+I rarely use piping. Why?
+
+* Piping is fine but is super slow. Also I develop packages and the R package checks often through errors with piping or any type of implicit reference to data columns in data frames.  So like `subset(df, x==1)` is implicit because it is implying that there is an `x` column in `df` but that code will actually work if `x` is not in `df`. If you are a package writer, the check will complain about that vagueness.
+* I have a hard time following long strings of pipes and lose track of what's going on.
+
+And I rarely use dplyr, tidyr, or tidyverse verbs.
+
+* tidyverse is "maturing" which means the functions keep changing...which means my code rots quickly.
+* I often have to do something that takes me a long time to figure out how to do with tidyverse.
+
+Whereas learning ggplot2 has made my plotting much, much faster, I can't say the same with data-wrangling with tidyverse except for a few functions that I use to help out with ggplot.
