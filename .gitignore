@@ -46,3 +46,4 @@ vignettes/*.pdf
 Rprof.out
 Rprof.out
 *.out
+.DS_Store
