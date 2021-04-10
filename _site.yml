@@ -45,6 +45,9 @@ navbar:
     - text: More Git + GitHub
       icon: fa-github
       href: more-git.html
+    - text: GitLab to GitHub
+      icon: fa-truck-moving
+      href: gitlab-to-github.html
     - text: Websites with GitHub
       icon: fa-chrome
       href: websites.html

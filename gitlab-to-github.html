@@ -11,7 +11,7 @@
 
 
 
-<title>Week 1. Introduction to workflow using RStudio and Git</title>
+<title>Migrating from GitLab to GitHub</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -546,7 +546,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 1. Introduction to workflow using RStudio and Git</h1>
+<h1 class="title toc-ignore">Migrating from GitLab to GitHub</h1>
 
 </div>
 
@@ -572,215 +572,124 @@ Robust
 </tr>
 </tbody>
 </table>
-<div id="overview" class="section level1">
-<h1>Overview</h1>
-<p>I will introduce you to RStudio and GitHub/GitLab I will show you a variety of approaches for organizing your projects that involve code and show you how to use GitHub/GitLab without having to learn Git. If you already use RStudio and Git, skip this week as this will be introductory level. If you have tried RStudio or Git and gotten frustrated or thought ‘I don’t have time to learn this’, this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.</p>
-<p>I’m going to show you how to work with Git/GitHub/GitLab with no command-line interface. The goal is to futz with Git as little as possible. See the Links tab above for a nice online workshop on Git/GitHub if you want to learn more.</p>
-</div>
-<div id="rstudio" class="section level1">
-<h1>RStudio</h1>
-<p>When you open RStudio you will see 4 panels:</p>
-<div class="figure">
-<img src="images/RStudio-screenshot.png" alt="" />
-<p class="caption">RStudio-panels</p>
-</div>
-<div id="create-an-rstudio-project" class="section level2">
-<h2>Create an RStudio Project</h2>
+<div id="gitlab-to-github-migration" class="section level1">
+<h1>GitLab to GitHub Migration</h1>
+<p>This if for migrating repos from one INTERNAL GitLab server to another. This is geared to RStudio users.</p>
+<p>Although this is long, that is because I went into every single step in detail. It’s actually quite easy.</p>
 <ol style="list-style-type: decimal">
-<li>In RStudio, choose “File-&gt;New Project…”</li>
-<li>Then choose “New Directory” and then choose “Empty Project”</li>
-<li>In the next dialog, choose a name (<em>it is best to use only letters, numbers, dashes, and underscores, and include no spaces in the name</em>).<br />
-</li>
-<li>Then click “Create Project”.</li>
+<li>Make the blank repo on</li>
+<li>In RStudio, update the .git/config file with the new github url</li>
+<li>Click Push</li>
 </ol>
-<p>That should give you a new project.</p>
-<div id="add-a-new-script-file" class="section level3">
-<h3>Add a new script file</h3>
-<ol style="list-style-type: decimal">
-<li>Add a new file using ‘File &gt; New File &gt; R Script’</li>
-<li>Or you can click the new icon in top left corner.</li>
-<li>Add some code to that file. Copy and paste in:</li>
-</ol>
-<pre><code>require(graphics)
-## Annette Dobson (1990) &quot;An Introduction to Generalized Linear Models&quot;.
-## Page 9: Plant Weight Data.
-ctl &lt;- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
-trt &lt;- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
-group &lt;- gl(2, 10, 20, labels = c(&quot;Ctl&quot;,&quot;Trt&quot;))
-weight &lt;- c(ctl, trt)
-lm.D9 &lt;- lm(weight ~ group)
-opar &lt;- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
-plot(lm.D9, las = 1)      # Residuals, Fitted, ...
-par(opar)</code></pre>
-</div>
-<div id="run-the-code" class="section level3">
-<h3>Run the code</h3>
-<ol style="list-style-type: decimal">
-<li>Select all the lines of code and select ‘Run’</li>
-<li>Run all the code by selecting ‘Source’</li>
-</ol>
-</div>
-</div>
-<div id="project-organization" class="section level2">
-<h2>Project organization</h2>
-<p>Keep your projects in separate folders with a uniform set of folder names. For example,</p>
+<p>Let’s give the URL for the internal GitHub and GitLab the following names:</p>
 <ul>
-<li>R - your functions</li>
-<li>scripts - scripts (so not functions)</li>
-<li>data - your RData files</li>
-<li>output -</li>
-<li>inst - random stuff</li>
-<li>notes -</li>
+<li>Internal GitHub URL: <a href="https://github.XYZ.local" class="uri">https://github.XYZ.local</a></li>
+<li>Internal GitLab URL: <a href="https://gitlab.XYZ.local" class="uri">https://gitlab.XYZ.local</a></li>
 </ul>
-<p>The top right corner allows you to create projects and switch between projects.</p>
-<div class="figure">
-<img src="images/RStudio-screenshot.png" alt="" />
-<p class="caption">RStudio-panels</p>
-</div>
-<div id="project-settings" class="section level3">
-<h3>Project settings</h3>
-<p>Key one is to <strong>not</strong> save your <code>.Rdata</code> (your environment) when your are done for the day. Under Tools &gt; Project Options… &gt; General</p>
-</div>
-</div>
-<div id="super-helpful-features" class="section level2">
-<h2>Super helpful features</h2>
-<ul>
-<li>Edit &gt; Find in Files…</li>
-<li>Code &gt; Comment</li>
-<li>Code &gt; Reindent Lines</li>
-<li>File &gt; New (templates)</li>
-<li>History tab</li>
-<li>Help tab (index at bottom)</li>
-<li>Help &gt; Markdown quick reference</li>
-</ul>
-</div>
-<div id="more-exercises" class="section level2">
-<h2>More exercises</h2>
-<p>R for Data Science is a great book to introduce you to working with data in R. Read through the following sections of the R for Data Science book and work through the examples.</p>
-<ul>
-<li><a href="http://r4ds.had.co.nz/workflow-basics.html">Workflow basics</a>: super basic review on how R works.</li>
-<li><a href="http://r4ds.had.co.nz/workflow-projects.html">Workflow: projects</a>: info about organizing RStudio projects.</li>
-<li><a href="http://r4ds.had.co.nz/workflow-scripts.html">Workflow: scripts</a>: how to evaluate code in scripts.</li>
-</ul>
-</div>
-</div>
-<div id="git-githubgitlab" class="section level1">
-<h1>Git (GitHub/GitLab)</h1>
-<p>Tracking your code (and project) changes. I am focusing on Git for individuals <strong>not teams</strong>. If you aren’t using a change tracker (version control), then start just with a personal project and track only your changes. I will not cover <em>branches</em>.</p>
-<p>For NOAA staff, GitHub can be used for publishing public projects: <a href="https://github.com/NOAAGov/NOAA-Affiliated-Projects">NOAA GitHub</a> and a NWFSC example <a href="https://nwfsc-timeseries.github.io/">NWFSC Timeseries</a>. NWFSC has a GitLab server if you want a repository server for your non-public projects and for internal collaboration.</p>
-<div id="basics" class="section level2">
-<h2>Basics</h2>
-<ul>
-<li>Repo: Repository. It is your code and the record of your changes. In a hidden folder called <code>.git</code> (so if you wanted to get rid of the history and other Git info, you could delete that folder). You have a local repo and a remote repo (on GitHub/GitLab).</li>
-<li>Actions: Commit, Push, Pull</li>
-<li>Git: The program that keeps track of the changes on local and remote repo.</li>
-<li>Git GUIs: A graphical interface for Git (which is command line). There are <a href="https://git-scm.com/downloads/guis">many</a>. I am teaching an easy-entry one, GitHub Desktop.</li>
-</ul>
-<p>Workflow (to get started):</p>
-<ul>
-<li>Make local changes to code.</li>
-<li>Record what those changes were about and commit to the code change record (history).</li>
-<li>Push those changes to your remote copy (aka your backup)</li>
-</ul>
-<div class="figure">
-<img src="images/git-intro.png" alt="" />
-<p class="caption">First foray into Git/GitHub/GitLab</p>
-</div>
-<p>Goals today:</p>
+<p>Obviously replace with the real URLs. It won’t be anything like that.</p>
+<div id="initial-set-up" class="section level2">
+<h2>Initial set-up</h2>
 <ol style="list-style-type: decimal">
-<li>Get you started.</li>
-<li>Show you a simple workflow.</li>
-<li>Show some simple GitHub/GitLab features.</li>
+<li>VPN into into your local network.</li>
+<li>Go to <a href="https://github.XYZ.local" class="uri">https://github.XYZ.local</a> and login.</li>
+<li>In another tab on your browser, login to <a href="https://gitlab.XYZ.local" class="uri">https://gitlab.XYZ.local</a></li>
 </ol>
 </div>
-<div id="lets-get-started" class="section level2">
-<h2>Let’s get started!</h2>
-<p>I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub (or GitLab) is a source of much misery, and in my experience <strong>creating the repo on GitHub (or GitLab) first</strong> eliminates the problems. This really important for the first time you connect your computer to the remote repository server (GitHub or GitLab). Start with a new repo created on GitHub or GitLab.</p>
-<div id="make-a-github-or-gitlab-repo" class="section level3">
-<h3>Make a GitHub or GitLab Repo</h3>
-<ol style="list-style-type: decimal">
-<li>Go to GitHub or GitLab and create a new repository (the + in the top right or New Project)</li>
-<li>Click add Readme.md and add .gitignore (type R to get the R .gitignore)</li>
-<li>Copy the url of your new repo</li>
-</ol>
-</div>
-<div id="add-to-rstudio" class="section level3">
-<h3>Add to RStudio</h3>
-<ol style="list-style-type: decimal">
-<li>Open RStudio and click <code>New Project</code> (upper right, blue cube with R)</li>
-<li>Click New Project… &gt; Version Control &gt; Git and paste in the url. Give your project a name and make sure the directory is where you want the project.</li>
-<li>Done!</li>
-</ol>
-</div>
-<div id="make-some-changes-and-commit" class="section level3">
-<h3>Make some changes and commit</h3>
-<ol style="list-style-type: decimal">
-<li>Add a file. File &gt; New File &gt; R Script</li>
-<li>Type something and then save the file.</li>
-<li>Click the <code>Git</code> tab in the upper right.</li>
-<li>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</li>
-<li>Click the Green up arrow to Push to GitHub or GitLab.</li>
-</ol>
-</div>
-<div id="make-some-changes-and-look-at-the-history" class="section level3">
-<h3>Make some changes and look at the history</h3>
-<ol style="list-style-type: decimal">
-<li><p>Repeat 1-4 a few times.</p></li>
-<li><p>Now look at the history. The little clock-like icon (or History in the Git window).</p>
+<div id="make-a-blank-repo-on-github" class="section level2">
+<h2>Make a blank repo on GitHub</h2>
 <ul>
-<li>Click on <code>filter by file</code> to see just the changes to one file.</li>
-<li>Do a search in the upper right.</li>
-<li>Click on an early commit and click <code>View file @...</code></li>
+<li>Let’s say my repo on GitLab is TestPackage1.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Look in upper right for the + sign. Click that and click New Repository.</li>
+<li>Give the new repo the same name as the GitLab repo. So I will call it TestPackage on github.nwfsc2.noaa.gov</li>
+<li>Click Create Repository. Private/Public doesn’t matter. DO NOT click the boxes to add a README or .gitignore!</li>
+<li>Ignore the page that comes up saying ‘Quick Set-up’ etc. Just stop there and go to the next step below.</li>
+</ol>
+</div>
+<div id="leave-the-browser-and-go-to-rstudio." class="section level2">
+<h2>Leave the browser and go to RStudio.</h2>
+<ol style="list-style-type: decimal">
+<li>Open up the project with the files that are in your GitLab repo. So I open my TestPackage project in RStudio.
+<ul>
+<li>Don’t have those files locally? See instructions below to get those to get a copy locally and as a project in RStudio.</li>
 </ul></li>
-<li><p>Push changes up the GitHub or GitLab</p></li>
+<li>In RStudio, look for the ‘More’ cog in the Files pane, Click that and make sure is shows ‘Show Hidden Files’</li>
+<li>Open the .git folder in the Files pane. Click on ‘config’ to open that file.</li>
+<li>Look for the line that says ’url = <a href="https://gitlab.XYZ.local" class="uri">https://gitlab.XYZ.local</a></li>
+<li>Change <a href="https://gitlab.XYZ.local" class="uri">https://gitlab.XYZ.local</a> to <a href="https://github.XYZ.local" class="uri">https://github.XYZ.local</a>. Everything else stays the same.</li>
+</ol>
+<p>So for me that line changes from</p>
+<p>url = <a href="https://gitlab.XYZ.local/eholmes/TestPackage" class="uri">https://gitlab.XYZ.local/eholmes/TestPackage</a> to</p>
+<p>url = <a href="https://github.XYZ.local/eholmes/TestPackage" class="uri">https://github.XYZ.local/eholmes/TestPackage</a></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Save.</li>
+<li>Click the Git tab (just above the File pane), and click the upward Green arrow.</li>
+<li>It’ll ask you for a password the first time you do this. You’ll see a pop-up window, but it won’t tell you that it is done.</li>
 </ol>
 </div>
-</div>
-<div id="copy-someones-else-repo" class="section level2">
-<h2>Copy someone’s else repo</h2>
-<p>Don’t Fork. That would be if you are contributing to their repo. If you just want to copy it and then adapt it for your purposes, do this.</p>
-<ol style="list-style-type: decimal">
-<li>In a browser, navigate to the repository that you want to copy. For example: <a href="https://github.com/RVerse-Tutorials/Test" class="uri">https://github.com/RVerse-Tutorials/Test</a>.</li>
-<li>Copy its url.</li>
-<li>Open GitHub or GitLab and go to your account. So for me, I would go to github.com/eeholmes because my account is eeholmes.</li>
-<li>If using GitHub, click the <code>+</code> in top right and click <code>import repository</code>. Paste in the url and give your repo a name.</li>
-<li>If using GitLab, click <code>New Project</code> on right, then <code>Import Repository</code> tab, then click <code>Repo by URL</code>. Paste in url and give repo a name.</li>
-<li>Open RStudio and click the project tab in the top right and select, <code>New Project</code>. Then select <code>Version Control</code> and paste in the url of <strong>your</strong> repository’s url. For example, <code>https://github.com/&lt;youraccount&gt;/Test</code> or <code>https://gitlab.com/&lt;youraccount&gt;/Test</code> or</li>
-<li>Add the new repo to GitHub Desktop. Open GitHub Desktop, select File&gt;Add Local Repository and navigate to the folder with the new repository.</li>
-</ol>
-</div>
-<div id="key-tips" class="section level2">
-<h2>Key tips</h2>
-<ol style="list-style-type: decimal">
-<li>Do not make changes on GitHub or GitLab directly.</li>
-</ol>
+<div id="back-to-the-github-server" class="section level2">
+<h2>Back to the GitHub server</h2>
 <ul>
-<li>Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the Week 7 material to learn how to deal with merge conflicts.</li>
+<li>Go back to the browser to <a href="https://github.XYZ.local" class="uri">https://github.XYZ.local</a> and refresh the page. Voila your files are there.</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Do not use branches (wait till you are friends with Git).</p></li>
-<li><p>Do not use Git at the command line.</p></li>
-<li><p>If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don’t put your Git repos in those folders.</p></li>
-<li><p>The Git info is in the hidden folder <code>.git</code>. If you need to get rid of the repository data (like history), delete that. Don’t copy that folder into another repo.</p></li>
-<li><p>Start by making a blank repo on GitHub or GitLab and select the box to add a Readme file. Then clone that with RStudio or GitHub Desktop.</p></li>
-</ol>
 </div>
-</div>
-<div id="github-desktop" class="section level1">
-<h1>GitHub Desktop</h1>
-<p>Despite the name, it works with GitLab too.</p>
-<p>You can commit your changes and push them with RStudio only, but many people use a Git GUI to interact with Git and their remote repository. GitHub Desktop is simple and works well. Why not just use RStudio? If you are happy with that, fine. Many people prefer a separate Git GUI, though Git with RStudio has improved and serves many just fine.</p>
-<div class="figure">
-<img src="images/GitHub-Desktop.png" alt="" />
-<p class="caption">GitHub Desktop</p>
-</div>
-<div id="adding-your-local-repository" class="section level2">
-<h2>Adding your local repository</h2>
-<p>To use your local repository with GitHub Desktop, you need to add it.</p>
+<div id="troubleshooting" class="section level2">
+<h2>Troubleshooting</h2>
+<div id="dont-have-your-gitlab-repo-on-your-computer" class="section level3">
+<h3>Don’t have your GitLab repo on your computer?</h3>
 <ol style="list-style-type: decimal">
-<li>File &gt; Add Local Repository.</li>
+<li>Copy the url of the repo. So like <a href="https://gitlab.XYZ.local/eholmes/TestPackage" class="uri">https://gitlab.XYZ.local/eholmes/TestPackage</a></li>
+<li>Open RStudio and click File &gt; New Project &gt; Version Control &gt; Git and paste the URL into Repository URL.
+<ul>
+<li>Note give some thought to where you keep repos on your local computer. I keep all of mine in one folder called GitHub in my Documents folder. You might lose track of them if you don’t keep them in the same spot.</li>
+</ul></li>
+<li>Click Create Project</li>
 </ol>
-<p>How does it know what the remote repository (GitHub/GitLab) is? It is stored in the .git information which was set when you cloned the repo from GitHub/GitLab.</p>
+</div>
+<div id="you-have-the-gitlab-repo-on-your-computer-but-it-is-not-an-rstudio-project." class="section level3">
+<h3>You have the GitLab repo on your computer but it is not an RStudio project.</h3>
+<ol style="list-style-type: decimal">
+<li>Open RStudio and click File &gt; New Project &gt; Existing Folder &gt; Git and paste the URL into Repository URL.</li>
+<li>Click Create Project &gt; Existing Directory then navigate to the folder with the repo on your computer.</li>
+</ol>
+</div>
+<div id="when-i-click-push-i-get-an-error-that-rstudio-doesnt-know-how-to-get-my-github-credentials.-sorry-thats-a-pain.-you-need-to-tell-rstudio-how-to-get-that-info." class="section level3">
+<h3>When I click Push, I get an error that RStudio doesn’t know how to get my GitHub credentials. Sorry, that’s a pain. You need to tell RStudio how to get that info.</h3>
+<ul>
+<li><a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git" class="uri">https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git</a></li>
+</ul>
+</div>
+<div id="i-got-the-error-repo-not-found-when-i-clicked-push" class="section level3">
+<h3>I got the error ‘Repo not found’ when I clicked push</h3>
+<ul>
+<li>Either you misspelled the url in the .git/config file or you forgot to make the repo on <a href="https://github.XYZ.local" class="uri">https://github.XYZ.local</a></li>
+</ul>
+</div>
+<div id="i-got-an-error-saying-cannot-merge-because-of-conflicting-histories-or-something-like-that" class="section level3">
+<h3>I got an error saying cannot merge because of conflicting histories (or something like that)</h3>
+<ul>
+<li>You clicked the boxes and created a ReadME or .gitignore file when you created the repo on github.nwfsc2.noaa.gov.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Go back to the repo on <a href="https://github.XYZ.local" class="uri">https://github.XYZ.local</a>.</li>
+<li>Click Settings (nav bar just above the big green Code button)</li>
+<li>Scroll down and delete the repo</li>
+<li>Create it again and this time don’t click one of those check boxes that makes a Readme or .gitignore file</li>
+</ol>
+</div>
+<div id="i-did-what-you-said-but-when-i-go-to-httpsgithub.xyz.local-i-dont-see-the-files.-it-still-shows-the-quick-set-up-instructions." class="section level3">
+<h3>I did what you said but when I go to <a href="https://github.XYZ.local" class="uri">https://github.XYZ.local</a>, I don’t see the files. It still shows the Quick Set-up instructions.</h3>
+<ul>
+<li>Refresh the page</li>
+</ul>
+</div>
+<div id="more-help-on-working-with-github-is-here" class="section level3">
+<h3>More help on working with GitHub is here</h3>
+<ul>
+<li><a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/week1-rstudio.html#Git_(GitHubGitLab)" class="uri">https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/week1-rstudio.html#Git_(GitHubGitLab)</a></li>
+</ul>
+</div>
 </div>
 </div>
 
