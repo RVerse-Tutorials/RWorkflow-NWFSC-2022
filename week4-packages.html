@@ -352,62 +352,6 @@ div.tocify {
         Week 1 RStudio + Version Control
       </a>
     </li>
-    <li>
-      <a href="week2-coding.html">
-        <span class="fas fa-code"></span>
-         
-        Week 2 More Git + Code Organization
-      </a>
-    </li>
-    <li>
-      <a href="week3-RMarkdown.html">
-        <span class="fas fa-file"></span>
-         
-        Week 3 R Markdown
-      </a>
-    </li>
-    <li>
-      <a href="week4-packages.html">
-        <span class="fas fa-archive"></span>
-         
-        Week 4 R Packages
-      </a>
-    </li>
-    <li>
-      <a href="week5-roxygen.html">
-        <span class="fas fa-question-circle"></span>
-         
-        Week 5 Roxygen
-      </a>
-    </li>
-    <li>
-      <a href="week6-more-packages.html">
-        <span class="fas fa-folder"></span>
-         
-        Week 6 More Packages
-      </a>
-    </li>
-    <li>
-      <a href="week7-more-git.html">
-        <span class="fas fa-git"></span>
-         
-        Week 7 More Git
-      </a>
-    </li>
-    <li>
-      <a href="week8-ggplot2.html">
-        <span class="fas fa-image"></span>
-         
-        Week 8 ggplot2
-      </a>
-    </li>
-    <li>
-      <a href="week9-data-wrangling.html">
-        <span class="fas fa-broom"></span>
-         
-        Week 9 tidyverse
-      </a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -528,7 +472,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2021">
     <span class="fas fa-github"></span>
      
     Repo
@@ -819,8 +763,8 @@ for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            0.56    93.33       0.56     93.33
-## &quot;t.default&quot;      0.04     6.67       0.04      6.67</code></pre>
+## &quot;%*%&quot;            0.54     93.1       0.54      93.1
+## &quot;t.default&quot;      0.04      6.9       0.04       6.9</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
@@ -830,7 +774,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 15 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 12 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week4-packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.</p>
 <pre class="r"><code>library(magrittr)

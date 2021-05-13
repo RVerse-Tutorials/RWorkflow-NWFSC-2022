@@ -1,10 +1,10 @@
 ---
-title: "Practical R Workflow for Scientists Summer 2020"
+title: "Practical R Workflow for Scientists Summer 2021"
 ---
 
 <img style="float: right;" src="images/tools-logo-transparent.png" width=30%>
 
-These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be **faster, more efficient and organized** in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on).
+These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be **faster, more efficient and organized** in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on). Two sessions will duplicates of the [2020](https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020) sessions, but the rest are new topics or cover the same topics in different ways.
 
 **Target audience**: You already code in R, maybe use RStudio too, but want to learn some tips about being more efficient from a seasoned NWFSC R programmer who does the kind of coding and work that you do.
 
@@ -12,25 +12,22 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 ## Topics
 
-* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub/GitLab [Video](https://www.youtube.com/watch?v=HxIpxVdQsDs) <!-- 135 -->
+* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub/GitLab 
 
-* [Week 2](week2-coding.html). More Git/GitHub/GitLab + Basic coding practices for reproducible and extendible code [Video](https://www.youtube.com/watch?v=k0P3e39qcA4) <!-- 100 -->
+* Week 2. More Git/GitHub/GitLab. How to use issues, releases and project boards to be more efficient either working alone or in a team.
 
-* [Week 3](week3-RMarkdown.html). Rmarkdown for reports: how to do big tables and export formats for Word docs [Video](https://www.youtube.com/watch?v=IGc2cgMFoPs) <!-- 70 -->
+* Week 3. Rmarkdown for reports. Let's make a report that updates when our data change.
 
-* [Week 4](week4-packages.html). Part 1. Organizing your R code into a package [Video](https://youtu.be/6d62KvS5v7Q) <!-- 62 -->
+* Week 4. Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
 
-* [Week 5](week5-roxygen.html). Part 2. Documenting your code and data with Roxygen [Video](https://youtu.be/zHPSbhGtkz4) <!-- 41 -->
+* Week 5. Making raster plots with the raster and tmap packages. Working with spatial data is a huge area. We are going to start gently by making raster plots and using the tmap package. You'll see how easy it easy to make maps of data on a grid.
 
-*Unfortunately at about 40min in, I managed to corrupt my R packages and could not demo any more so covered the material verbally. The problem demonstrates why I try to have few dependencies in my packages! One of the dependencies in my* **SardineForecast** *package had an install problem and corrupted the* **pkgload** *package.*
+* Week 6. Creating a data R package. I show you how to make a basic data package that allows you to version and document your data.
 
-* [Week 6](week6-more-packages.html). Part 3. Vignettes and plot/print methods for your package. [Video](https://youtu.be/O4rojT7aeb0) <!-- 35 -->
+* Week 7. Clustering tools in R
 
-* [Week 7](week7-more-git.html). More Git. Merge conflicts, branches, and reverting changes. [Video](https://youtu.be/ZoB3dsZId9U )
+* Week 8. Introduction to benchmarking and debugging your code
 
-* [Week 8](week8-ggplot2.html). Introduction to plotting with ggplot. [Video](https://youtu.be/odCam8JxvKI) <!-- 28 -->
-
-* [Week 9](week9-data-wrangling.html). Introduction to Tidyverse verbs.  <!-- 22 -->
 
 <!--
 Requests

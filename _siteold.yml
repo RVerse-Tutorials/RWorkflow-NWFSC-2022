@@ -12,6 +12,30 @@ navbar:
     - text: Week 1 RStudio + Version Control
       icon: fa-cogs
       href: week1-rstudio.html
+    - text: Week 2 More Git + Code Organization
+      icon: fa-code
+      href: week2-coding.html
+    - text: Week 3 R Markdown
+      icon: fa-file
+      href: week3-RMarkdown.html
+    - text: Week 4 R Packages
+      icon: fa-archive
+      href: week4-packages.html
+    - text: Week 5 Roxygen
+      icon: fa-question-circle
+      href: week5-roxygen.html
+    - text: Week 6 More Packages
+      icon: fa-folder
+      href: week6-more-packages.html
+    - text: Week 7 More Git
+      icon: fa-git
+      href: week7-more-git.html
+    - text: Week 8 ggplot2
+      icon: fa-image
+      href: week8-ggplot2.html
+    - text: Week 9 tidyverse
+      icon: fa-broom
+      href: week9-data-wrangling.html
   - text: Git
     icon: fa-git
     menu:
@@ -58,7 +82,7 @@ navbar:
   right:
   - text: Repo
     icon: fa-github
-    href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2021
+    href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
   - text: Search
     href: search.html
    
