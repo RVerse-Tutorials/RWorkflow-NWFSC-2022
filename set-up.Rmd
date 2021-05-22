@@ -11,11 +11,24 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-If you want to follow along with the presentations, you will need R, RStudio, a GitHub or GitLab account, and GitHub Desktop or Git+GitHub Desktop. Note GitHub Desktop works with both GitHub and GitLab and I will illustrate both.
+# Overview
+
+Everything you'll be using is free. You will need a GitHub (free) account. Sign up here [GitHub](https://github.com/).
+
+To follow along with the material on your own computer, install the following:
+
+* Install [R](https://cran.r-project.org/)
+* Install [RStudio](https://www.rstudio.com/products/rstudio/download/)
+* Install [GitHub Desktop](https://desktop.github.com/)
+
+To follow along with RStudio Cloud (with a browser) instead of installing programs (or if you following along on a phone or tablet): Sign up for an [RStudio Cloud](https://rstudio.cloud/) account.
+
+
+# Summary
 
 Summary of the set-up steps. You can also consult this [great online reference](https://happygitwithr.com/).
 
-# Git from RStudio
+## Git from RStudio
 
 For the class, I am showing Git within RStudio, but it can be a real headache to get working for beginners. The following set-up is most likely to work. 
 
@@ -27,50 +40,29 @@ For the class, I am showing Git within RStudio, but it can be a real headache to
 6. Tell Git how to store and get your GitHub/GitLab username and password
 7. Do your first Push from the shell to store your username and password.
 
-# Git from GitHub Desktop
+## Git from GitHub Desktop
 
 I normally work with Git from GitHub Desktop only. It tends not to have the authentication headaches that Git in RStudio has. However, for the class I am going to work with Git from RStudio but I will also show GitHub Desktop. GitHub Desktop doesn't have the authentication headaches that Git in RStudio has.
 
-1. Get a GitHub or GitLab account
-2. Install Git for your operating system
-3. Install GitHub Desktop
-4. Install R (if needed)
-5. Install RStudio (if needed)
-
-Next steps depend if you are a GitHub user or GitLab user:
-
-GitHub: Login to GitHub from GitHub Desktop
-
-GitLab:
-
-1. Create a PUBLIC repo on GitLab.
-2. Copy its URL.
-3. Open GitHub Desktop. Click File > Clone Repository > URL. Then paste in the URL of the GitLab repo. Pick a directory to save the repo in.
-4. Open the new repo in RStudio and make a change to a file. Save.
-5. Go back to GitHub Desktop. Commit the change.
-6. Push. A window will popup asking for your username and password. 
-7. You're done. Next time it won't need to ask.
-
-
-To use both, do both sets of steps above.
+1. Get a [GitHub](https://github.com/) account
+2. Install [GitHub Desktop](https://desktop.github.com/)
+3. Open GitHub Desktop, go to Preferences, and login to GitHub.
 
 # Details
-
-## GitHub and GitLab
 
 ### NWFSC staff
 
 **GitHub** If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I'll show a few examples. There is paperwork to fill out [info](https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view) and [checklist](https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view). Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub. 
 
-**GitLab** If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitLab server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed. Note it is easy to import back and forth between GitHub and GitLab.
+**GitHub internal server** If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitHub server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed.
 
-### Non-NOAA participants or those using GitHub/GitLab purely for non-NOAA work
+### Non-NOAA participants or those using GitHub purely for non-NOAA work
 
-If you don't already have an account on GitHub, go to [github.com](https://github.com) and click the "sign up" link near upper right of the page.  It is pretty self-explanatory.  Go ahead and get a **free** account. The free GitHub account does not have private repositories.  Everything is public and viewable.  You can upgrade (for money) and get private repositories.
-
-[GitLab](gitlab.com) is quite similar to GitHub as a platform but is missing some of the nice features of creating a website for your repos. You can do it but just not as integrated. But GitLab's free account gives you unlimited private repos.
+If you don't already have an account on GitHub, go to [github.com](https://github.com) and click the "sign up" link near upper right of the page.  It is pretty self-explanatory.  Go ahead and get a **free** account. The free GitHub account allows you to have unlimited public and private repositories. 
 
 ## Git for your OS
+
+You shouldn't need this...
 
   * Windows https://gitforwindows.org/ [Read notes here](https://happygitwithr.com/install-git.html#install-git-windows)
   * Mac It should be installed. Open a terminal window and type, `git --version`. If it asks to install XCode, say Yes. [Read notes here](https://happygitwithr.com/install-git.html#macos)
@@ -83,16 +75,6 @@ GitHub Desktop is a nice Git interface for basic work. Despite the name, GitHub 
 2. Open GitHub Desktop, go to 'GitHub Desktop > Preferences' menu.  
 3. Under 'Accounts', sign into your GitHub account.
 4. Under 'Git', enter your name (or initials) and the email you used for your GitHub account.
-
-If you are using GitLab:
-
-1. Create a PUBLIC repo on GitLab.
-2. Copy its URL.
-3. Open GitHub Desktop. Click File > Clone Repository > URL. Then paste in the URL of the GitLab repo. Pick a directory to save the repo in.
-4. Open the new repo in RStudio and make a change to a file. Save.
-5. Go back to GitHub Desktop. Commit the change.
-6. Push. A window will popup asking for your username and password. 
-7. You're done. Next time it won't need to ask.
 
 ## R and RStudio
 
@@ -111,7 +93,7 @@ If you want to use Git within RStudio, do these steps. Note it is not necessary 
 4. Click Enable version control interface for RStudio projects
 5. You will need the location of the git executible. On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe`. If you install Git for Windows locally, it may be at `C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe`.
 
-Tell Git how to get your username and password for GitHub/GitLab
+Tell Git how to get your username and password for GitHub
 
 1. Open a terminal window.
 2. Type `git config --get credential.helper`
@@ -128,30 +110,15 @@ There is one more step that comes up on your first push to the remote. You'll ne
 4. Type `git push`
 5. It should ask for your GitHub or GitLab username and password.
 
-## GitLab and SSH keys and SSL tokens
-
-In order to connect to GitLab, you will need to make an SSH key. GitLab will ask you for this. Note, I am not 100% sure GitLab actually needs this. If it let's you, you can try skipping this.
-
-Windows users: The txt file with the public token will be xxx.pub and Windows sees that as a MSPublisher file. Don't double-click the file to open. Use Open With, and select a text editor.
-
-1. Open a terminal
-2. Type this  `ssh-keygen -t ed25519 -C "gitlab"`
-3. Hit 'return' at each prompt (for filename and for password). Don't enter anything.
-4. Ignore what is printed out. Navigate to Users/yourname/.ssh/id_ed25519
-5. Open with an editor (like Notepad or TextEdit)
-6. Copy the key. It's long and begins with ssh-ed25519.
-7. Paste into the page where GitHub asks for it. Lost that place? It's in Settings>SSH keys
-
-
 # Help! 
 
-Can't get Git, GitHub/GitLab, and RStudio to connect?
+Can't get Git, GitHub and RStudio to connect?
 
 First off, can you get GitHub Desktop to work? If so, I would say just use that for awhile. You don't need to use Git in RStudio.
 
 If you want to use Git in RStudio, read on. You can also consult this [great online resource](https://happygitwithr.com/).
 
-There are two typical problems. 1. Git doesn't know how to ask you for your username and password. 2. Your repo is pointing to the wrong GitHub/GitLab account. This can happen when you try to copy someone else's account.
+There are two typical problems. 1. Git doesn't know how to ask you for your username and password. 2. Your repo is pointing to the wrong GitHub account. This can happen when you try to copy someone else's account.
 
 ### Does RStudio or GitHub Desktop complain about no SSL tokens when you try to Push?
 
@@ -161,7 +128,7 @@ There are two typical problems. 1. Git doesn't know how to ask you for your user
 ### Does RStudio complain about needing access to your credentials?
 
 * First, you should have a fairly recent version of RStudio because the Git integration has gotten better.
-* If you have a pop-up window, click 'Deny'. Hopefully a terminal window pops up and asks for your GitHub or GitLab username and password.
+* If you have a pop-up window, click 'Deny'. Hopefully a terminal window pops up and asks for your GitHub username and password.
 
 ### Does RStudio say it cannot find bash.exe?
 
@@ -228,7 +195,7 @@ devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
 -->
 
 
-## Week 2: Installing packages from GitHub/GitLab
+## Week 2: Installing packages from GitHub
 
 Windows people: You will need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html). 
 
@@ -238,16 +205,10 @@ Run this code to confirm that you can install packages from GitHub:
 devtools::install_github("RVerse-Tutorials/TestPackage")
 ```
 
-To install from the `gitlab.com` the command is similar. `<gitlab account>` is a dummy. Replace with the real values.
-
-```{r get-packages-from-gitlab, eval=FALSE}
-devtools::install_gitlab("<gitlab account>/repo name")
-```
-
-To install from an internal GitLab server, like the NWFSC GitLab, use this. Note for the NWFSC GitLab, you need to be on the network since this is an internal (not public) server. Again, replace the dummy variables with the real values.
+To install from an internal GitHub server, like the NWFSC GitHub, use this. Note for the NWFSC GitHub, you need to be on the network since this is an internal (not public) server. Again, replace the dummy variables with the real values.
 
 ```{r get-packages-from-gitlab2, eval=FALSE}
-devtools::install_gitlab("<gitlab account>/repo name", host="<url of the server>")
+devtools::install_github("<github account>/repo name", host="<url of the server>")
 ```
 
 ## (Optional) Packages with C++ code
