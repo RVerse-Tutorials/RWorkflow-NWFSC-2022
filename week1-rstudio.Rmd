@@ -22,9 +22,9 @@ kable(dt, col.names=NULL) %>%
 
 # Overview
 
-I will introduce you to RStudio and GitHub I will show you a variety of approaches for organizing your projects that involve code and show you how to use GitHub without having to learn Git. If you already use RStudio and Git, skip this week as this will be introductory level. If you have tried RStudio or Git and gotten frustrated or thought 'I don't have time to learn this', this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.
+I will introduce you to RStudio and GitHub and show you how to use GitHub without having to learn Git. If you already use RStudio and Git, you can skip this week as this will be introductory level. If you have tried RStudio or Git and gotten frustrated or thought 'I don't have time to learn this', this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.
 
-I'm going to show you how to work with Git/GitHub with no command-line interface. See the Links tab above for a nice online workshop on Git/GitHub if you want to learn more.
+I'm going to show you how to work with Git/GitHub with no command-line interface using [GitHub Desktop](https://desktop.github.com/). See the [More Resources](links.html) tab above for a [nice online workshop](https://happygitwithr.com/) on Git/GitHub if you want to learn more. If you want to learn to use Git with RStudio, see the same workshop or my [2020 set-up info](https://rverse-tutorials.github.io/RWorkflow/set-up.html#Git_from_RStudio).
 
 # RStudio
 
@@ -82,7 +82,7 @@ par(opar)
 Keep your projects in separate folders with a uniform set of folder names. For example,
 
 * R - your R code
-* data - your RData files
+* data - your data files
 * output -
 * inst - random stuff
 * notes -
@@ -117,14 +117,14 @@ Tracking your code (and project) changes. Today, I am focusing on Git for indivi
 
 * Repo: Repository. It is your code and the record of your changes. In a hidden folder called `.git` (so if you wanted to get rid of the history and other Git info, you could delete that folder). You have a local repo and a remote repo (on GitHub/GitLab).
 * Actions: Commit, Push, Pull
-* Git: The program that keeps track of the changes on local and remote repo.
+* Git: The program that keeps track of the changes on local and remote("origin") repo.
 * Git GUIs: A graphical interface for Git (which is command line). There are [many](https://git-scm.com/downloads/guis). I am teaching an easy-entry one, [GitHub Desktop](https://desktop.github.com/).
 
-Workflow (to get started):
+One-person Workflow (to get started):
 
 * Make local changes to code.
 * Record what those changes were about and commit to the code change record (history).
-* Push those changes to your remote copy (aka your backup)
+* Push those changes to your remote repository (aka origin)
 
 ![First foray into Git](images/git-intro.png)
 

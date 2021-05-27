@@ -13,12 +13,11 @@ navbar:
       icon: fa-cogs
       href: week1-rstudio.html
   - text: Archive
-    icon: fab fa-folder
+    icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
-  - text: More
-    menu:
-    - text: Tutorials
-      href: links.html
+  - text: More resources
+    icon: fa-info
+    href: links.html
   right:
   - text: Repo
     icon: fab fa-github
