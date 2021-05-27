@@ -140,9 +140,17 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
 
 ### Make a GitHub Repo
 
+**New repo**
+
 1. Go to GitHub and create a new repository (the + in the top right)
 2. Click add Readme.md and add .gitignore (type R to get the R .gitignore)
 3. Copy the url of your new repo
+
+**GitHub Classroom**
+
+1. Click here for assignment #1 (don't click if you have already done this): https://classroom.github.com/a/dBZRHuJY
+2. Click here to see your repo: https://github.com/RWorkflow-Workshop-2021
+3. Copy the url of YOUR new repo url
 
 ### Add the new repo to RStudio
 
@@ -150,23 +158,37 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
 
 1. Open RStudio and click `New Project` (upper right, blue cube with R)
 2. Click New Project... > Version Control > Git and paste in the url. Give your project a name and make sure the directory is where you want the project.
-3. Done!
+3. Open GitHub Desktop: File > Add Local Repository.
+4. Done!
 
 **On the RStudio Cloud**
 
 1. Click 'Your Workspace' on left
 2. Click New Project > New Project from Git Repository. Paste in the url.
-3. Done!
+3. In your project, click the Terminal tab. Type
+    ```
+    git config --global user.email "you@email.com"
+    git config --global user.name "your name"
+    ```
+    I think you only do this once.
+4. Done!
 
 ### Make some changes and commit
 
 1. Add a file. File > New File > R Script
 2. Type something and then save the file.
-3. Click the `Git` tab in the upper right.
+
+Now add a note about those changes to your history and push to GitHub.
+
+**On the RStudio desktop**
+
+3. Switch to GitHub Desktop.
 4. Click the changes that you want to commit (do all). And click `Commit`. Add a comment: first line is subject, newline, description (options).
 5. Click the Green up arrow to Push to GitHub.
 
-**Giving Git your email and name**
+**On the RStudio Cloud**
+
+You need to tell Git your GitHub user name and password the first time you push a change.
 
 1. Click the Terminal tab in the lower left panel (R Studio Cloud) or click the blue cog below the Git tab in the upper right panel (R Studio Desktop).
 2. Type in this with your info
@@ -174,22 +196,22 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
 git config --global user.email "<your email>"
 git config --global user.name "<your name>"
 ```
-3. You only have to do this once
-
-**If it asks for your GitHub user name and password**
-
-Enter. Hopefully you only have to do this once. *Note: you may get an email from GitHub complaining about accessing GitHub via password. Ignore but accessing GitHub from RStudio may stop working in the future.*
+3. Click the Git tab.
+4. Click Commit.
+5. Click Push, It will ask for your your GitHub user name and password. Hopefully you only have to do this once. *Note: you may get an email from GitHub complaining about accessing GitHub via password. Ignore but accessing GitHub from RStudio may stop working in the future.*
 
 ### Make some changes and look at the history
 
 1. Repeat 1-4 a few times.
-2. Now look at the history. The little clock-like icon (or History in the Git window). 
-   
-   * Click on `filter by file` to see just the changes to one file.
-   * Do a search in the upper right.
-   * Click on an early commit and click `View file @...`
-   
+2. Now look at the history. History in GitHub Desktop. The little clock-like icon in the RStudio Git tab.
 3. Push changes up the GitHub
+
+### Go to GitHub to see your changes there
+
+## Using Git to track personal changes w/o posting to remote repo
+
+1. In GitHub Desktop, click File > Add local repository. Choose 'create repository' when it asks.
+2. Don't publish to GitHub.
 
 ## Copy someone's else repo to your GitHub account
 
@@ -207,7 +229,7 @@ Don't Fork. That would be if you are contributing to their repo. If you just wan
 
 1. Avoid making changes on GitHub  directly.
 
-  * Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the advanced Git material in the tab above to learn how to deal with merge conflicts.
+  * Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the advanced Git material in the Archive tab above to learn how to deal with merge conflicts.
   
 2. Do not use branches (wait till you are friends with Git).
 
@@ -215,17 +237,8 @@ Don't Fork. That would be if you are contributing to their repo. If you just wan
 
 4. If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don't put your GitHub repos in those folders.
 
-5. The Git info is in the hidden folder `.git`. If you need to get rid of the repository data (like history), delete that. Don't copy that folder into another repo.
+5. The Git info is in the hidden folder `.git`. If you need to get rid of the repository data (like history), delete that. Don't copy that folder into another repo. The remote url is in `.git/config`.
 
-6. Start by making a blank repo on GitHub and select the box to add a Readme file. Then clone that with RStudio or GitHub Desktop.
- 
-# GitHub Desktop
-
-Despite the name, it works with GitLab too.
-
-You can commit your changes and push them with RStudio only, but many people use a Git GUI to interact with Git and their remote repository. GitHub Desktop is simple and works well.  Why not just use RStudio? If you are happy with that, fine. Many people prefer a separate Git GUI, though Git with RStudio has improved and serves many just fine.
-
-![GitHub Desktop](images/GitHub-Desktop.png)
 
 ## Adding your local repository
 
@@ -239,9 +252,9 @@ How does it know what the remote repository (GitHub/GitLab) is? It is stored in 
 
 If you have a repository on GitHub that you want to add to your local computer:
 
-1. File > Clone Repository.
+1. In GitHub Desktop, File > Clone Repository.
 
-You'll see a window with 3 tabs. The first one is GitHub and shows you your own repositories. The 3rd one is URL and don't use that until you know your way around Git quite well. Use the instructions I gave above on cloning to GitHub and then pulling in your own repo to your local computer.
+You'll see a window with 3 tabs. The first one is GitHub and shows you **your own** repositories. The 3rd one is URL and don't use that until you know your way around Git quite well. Use the instructions I gave above on cloning to GitHub and then pulling in **your own** repo to your local computer.
 
 ## NOAA Info
 
