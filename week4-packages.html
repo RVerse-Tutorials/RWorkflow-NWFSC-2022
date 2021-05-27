@@ -356,22 +356,17 @@ div.tocify {
 </li>
 <li>
   <a href="https://rverse-tutorials.github.io/RWorkflow/">
-    <span class="fab fa-folder"></span>
+    <span class="fas fa-folder"></span>
      
     Archive
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    More
+<li>
+  <a href="links.html">
+    <span class="fas fa-info"></span>
      
-    <span class="caret"></span>
+    More resources
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="links.html">Tutorials</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -667,8 +662,8 @@ for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            0.50    89.29       0.50     89.29
-## &quot;t.default&quot;      0.06    10.71       0.06     10.71</code></pre>
+## &quot;%*%&quot;            0.56    96.55       0.56     96.55
+## &quot;t.default&quot;      0.02     3.45       0.02      3.45</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
@@ -678,7 +673,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 11 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 16 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week4-packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.</p>
 <pre class="r"><code>library(magrittr)

@@ -356,22 +356,17 @@ div.tocify {
 </li>
 <li>
   <a href="https://rverse-tutorials.github.io/RWorkflow/">
-    <span class="fab fa-folder"></span>
+    <span class="fas fa-folder"></span>
      
     Archive
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    More
+<li>
+  <a href="links.html">
+    <span class="fas fa-info"></span>
      
-    <span class="caret"></span>
+    More resources
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="links.html">Tutorials</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -422,8 +417,8 @@ Robust
 </table>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
-<p>I will introduce you to RStudio and GitHub I will show you a variety of approaches for organizing your projects that involve code and show you how to use GitHub without having to learn Git. If you already use RStudio and Git, skip this week as this will be introductory level. If you have tried RStudio or Git and gotten frustrated or thought ‘I don’t have time to learn this’, this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.</p>
-<p>I’m going to show you how to work with Git/GitHub with no command-line interface. See the Links tab above for a nice online workshop on Git/GitHub if you want to learn more.</p>
+<p>I will introduce you to RStudio and GitHub and show you how to use GitHub without having to learn Git. If you already use RStudio and Git, you can skip this week as this will be introductory level. If you have tried RStudio or Git and gotten frustrated or thought ‘I don’t have time to learn this’, this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.</p>
+<p>I’m going to show you how to work with Git/GitHub with no command-line interface using <a href="https://desktop.github.com/">GitHub Desktop</a>. See the <a href="links.html">More Resources</a> tab above for a <a href="https://happygitwithr.com/">nice online workshop</a> on Git/GitHub if you want to learn more. If you want to learn to use Git with RStudio, see the same workshop or my <a href="https://rverse-tutorials.github.io/RWorkflow/set-up.html#Git_from_RStudio">2020 set-up info</a>.</p>
 </div>
 <div id="rstudio" class="section level1">
 <h1>RStudio</h1>
@@ -488,7 +483,7 @@ par(opar)</code></pre>
 <p>Keep your projects in separate folders with a uniform set of folder names. For example,</p>
 <ul>
 <li>R - your R code</li>
-<li>data - your RData files</li>
+<li>data - your data files</li>
 <li>output -</li>
 <li>inst - random stuff</li>
 <li>notes -</li>
@@ -528,14 +523,14 @@ par(opar)</code></pre>
 <ul>
 <li>Repo: Repository. It is your code and the record of your changes. In a hidden folder called <code>.git</code> (so if you wanted to get rid of the history and other Git info, you could delete that folder). You have a local repo and a remote repo (on GitHub/GitLab).</li>
 <li>Actions: Commit, Push, Pull</li>
-<li>Git: The program that keeps track of the changes on local and remote repo.</li>
+<li>Git: The program that keeps track of the changes on local and remote(“origin”) repo.</li>
 <li>Git GUIs: A graphical interface for Git (which is command line). There are <a href="https://git-scm.com/downloads/guis">many</a>. I am teaching an easy-entry one, <a href="https://desktop.github.com/">GitHub Desktop</a>.</li>
 </ul>
-<p>Workflow (to get started):</p>
+<p>One-person Workflow (to get started):</p>
 <ul>
 <li>Make local changes to code.</li>
 <li>Record what those changes were about and commit to the code change record (history).</li>
-<li>Push those changes to your remote copy (aka your backup)</li>
+<li>Push those changes to your remote repository (aka origin)</li>
 </ul>
 <div class="figure">
 <img src="images/git-intro.png" alt="" />
@@ -553,10 +548,17 @@ par(opar)</code></pre>
 <p>I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub is a source of much misery, and in my experience <strong>creating the repo on GitHub first</strong> eliminates the problems. This really important for the first time you connect your computer to the remote repository server (GitHub).</p>
 <div id="make-a-github-repo" class="section level3">
 <h3>Make a GitHub Repo</h3>
+<p><strong>New repo</strong></p>
 <ol style="list-style-type: decimal">
 <li>Go to GitHub and create a new repository (the + in the top right)</li>
 <li>Click add Readme.md and add .gitignore (type R to get the R .gitignore)</li>
 <li>Copy the url of your new repo</li>
+</ol>
+<p><strong>GitHub Classroom</strong></p>
+<ol style="list-style-type: decimal">
+<li>Click here for assignment #1 (don’t click if you have already done this): <a href="https://classroom.github.com/a/dBZRHuJY" class="uri">https://classroom.github.com/a/dBZRHuJY</a></li>
+<li>Click here to see your repo: <a href="https://github.com/RWorkflow-Workshop-2021" class="uri">https://github.com/RWorkflow-Workshop-2021</a></li>
+<li>Copy the url of YOUR new repo url</li>
 </ol>
 </div>
 <div id="add-the-new-repo-to-rstudio" class="section level3">
@@ -565,12 +567,14 @@ par(opar)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Open RStudio and click <code>New Project</code> (upper right, blue cube with R)</li>
 <li>Click New Project… &gt; Version Control &gt; Git and paste in the url. Give your project a name and make sure the directory is where you want the project.</li>
+<li>Open GitHub Desktop: File &gt; Add Local Repository.</li>
 <li>Done!</li>
 </ol>
 <p><strong>On the RStudio Cloud</strong></p>
 <ol style="list-style-type: decimal">
 <li>Click ‘Your Workspace’ on left</li>
 <li>Click New Project &gt; New Project from Git Repository. Paste in the url.</li>
+<li>In your project, click the Terminal tab. Type <code>git config --global user.email "you@email.com"     git config --global user.name "your name"</code> I think you only do this once.</li>
 <li>Done!</li>
 </ol>
 </div>
@@ -579,11 +583,16 @@ par(opar)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Add a file. File &gt; New File &gt; R Script</li>
 <li>Type something and then save the file.</li>
-<li>Click the <code>Git</code> tab in the upper right.</li>
+</ol>
+<p>Now add a note about those changes to your history and push to GitHub.</p>
+<p><strong>On the RStudio desktop</strong></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Switch to GitHub Desktop.</li>
 <li>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</li>
 <li>Click the Green up arrow to Push to GitHub.</li>
 </ol>
-<p><strong>Giving Git your email and name</strong></p>
+<p><strong>On the RStudio Cloud</strong></p>
+<p>You need to tell Git your GitHub user name and password the first time you push a change.</p>
 <ol style="list-style-type: decimal">
 <li>Click the Terminal tab in the lower left panel (R Studio Cloud) or click the blue cog below the Git tab in the upper right panel (R Studio Desktop).</li>
 <li>Type in this with your info</li>
@@ -591,24 +600,29 @@ par(opar)</code></pre>
 <pre><code>git config --global user.email &quot;&lt;your email&gt;&quot;
 git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>You only have to do this once</li>
+<li>Click the Git tab.</li>
+<li>Click Commit.</li>
+<li>Click Push, It will ask for your your GitHub user name and password. Hopefully you only have to do this once. <em>Note: you may get an email from GitHub complaining about accessing GitHub via password. Ignore but accessing GitHub from RStudio may stop working in the future.</em></li>
 </ol>
-<p><strong>If it asks for your GitHub user name and password</strong></p>
-<p>Enter. Hopefully you only have to do this once. <em>Note: you may get an email from GitHub complaining about accessing GitHub via password. Ignore but accessing GitHub from RStudio may stop working in the future.</em></p>
 </div>
 <div id="make-some-changes-and-look-at-the-history" class="section level3">
 <h3>Make some changes and look at the history</h3>
 <ol style="list-style-type: decimal">
-<li><p>Repeat 1-4 a few times.</p></li>
-<li><p>Now look at the history. The little clock-like icon (or History in the Git window).</p>
-<ul>
-<li>Click on <code>filter by file</code> to see just the changes to one file.</li>
-<li>Do a search in the upper right.</li>
-<li>Click on an early commit and click <code>View file @...</code></li>
-</ul></li>
-<li><p>Push changes up the GitHub</p></li>
+<li>Repeat 1-4 a few times.</li>
+<li>Now look at the history. History in GitHub Desktop. The little clock-like icon in the RStudio Git tab.</li>
+<li>Push changes up the GitHub</li>
 </ol>
 </div>
+<div id="go-to-github-to-see-your-changes-there" class="section level3">
+<h3>Go to GitHub to see your changes there</h3>
+</div>
+</div>
+<div id="using-git-to-track-personal-changes-wo-posting-to-remote-repo" class="section level2">
+<h2>Using Git to track personal changes w/o posting to remote repo</h2>
+<ol style="list-style-type: decimal">
+<li>In GitHub Desktop, click File &gt; Add local repository. Choose ‘create repository’ when it asks.</li>
+<li>Don’t publish to GitHub.</li>
+</ol>
 </div>
 <div id="copy-someones-else-repo-to-your-github-account" class="section level2">
 <h2>Copy someone’s else repo to your GitHub account</h2>
@@ -628,24 +642,14 @@ git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 <li>Avoid making changes on GitHub directly.</li>
 </ol>
 <ul>
-<li>Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the advanced Git material in the tab above to learn how to deal with merge conflicts.</li>
+<li>Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the advanced Git material in the Archive tab above to learn how to deal with merge conflicts.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Do not use branches (wait till you are friends with Git).</p></li>
 <li><p>Do not use Git at the command line.</p></li>
 <li><p>If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don’t put your GitHub repos in those folders.</p></li>
-<li><p>The Git info is in the hidden folder <code>.git</code>. If you need to get rid of the repository data (like history), delete that. Don’t copy that folder into another repo.</p></li>
-<li><p>Start by making a blank repo on GitHub and select the box to add a Readme file. Then clone that with RStudio or GitHub Desktop.</p></li>
+<li><p>The Git info is in the hidden folder <code>.git</code>. If you need to get rid of the repository data (like history), delete that. Don’t copy that folder into another repo. The remote url is in <code>.git/config</code>.</p></li>
 </ol>
-</div>
-</div>
-<div id="github-desktop" class="section level1">
-<h1>GitHub Desktop</h1>
-<p>Despite the name, it works with GitLab too.</p>
-<p>You can commit your changes and push them with RStudio only, but many people use a Git GUI to interact with Git and their remote repository. GitHub Desktop is simple and works well. Why not just use RStudio? If you are happy with that, fine. Many people prefer a separate Git GUI, though Git with RStudio has improved and serves many just fine.</p>
-<div class="figure">
-<img src="images/GitHub-Desktop.png" alt="" />
-<p class="caption">GitHub Desktop</p>
 </div>
 <div id="adding-your-local-repository" class="section level2">
 <h2>Adding your local repository</h2>
@@ -659,9 +663,9 @@ git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 <h2>Adding your GitHub repository</h2>
 <p>If you have a repository on GitHub that you want to add to your local computer:</p>
 <ol style="list-style-type: decimal">
-<li>File &gt; Clone Repository.</li>
+<li>In GitHub Desktop, File &gt; Clone Repository.</li>
 </ol>
-<p>You’ll see a window with 3 tabs. The first one is GitHub and shows you your own repositories. The 3rd one is URL and don’t use that until you know your way around Git quite well. Use the instructions I gave above on cloning to GitHub and then pulling in your own repo to your local computer.</p>
+<p>You’ll see a window with 3 tabs. The first one is GitHub and shows you <strong>your own</strong> repositories. The 3rd one is URL and don’t use that until you know your way around Git quite well. Use the instructions I gave above on cloning to GitHub and then pulling in <strong>your own</strong> repo to your local computer.</p>
 </div>
 <div id="noaa-info" class="section level2">
 <h2>NOAA Info</h2>
