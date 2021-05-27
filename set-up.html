@@ -352,108 +352,12 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-git"></span>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow/">
+    <span class="fab fa-folder"></span>
      
-    Git
-     
-    <span class="caret"></span>
+    Archive
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="intro-git.html">
-        <span class="fas fa-cogs"></span>
-         
-        Intro to Git + GitHub/Lab
-      </a>
-    </li>
-    <li>
-      <a href="more-git.html">
-        <span class="fas fa-github"></span>
-         
-        More Git + GitHub
-      </a>
-    </li>
-    <li>
-      <a href="gitlab-to-github.html">
-        <span class="fas fa-truck-moving"></span>
-         
-        GitLab to GitHub
-      </a>
-    </li>
-    <li>
-      <a href="websites.html">
-        <span class="fas fa-chrome"></span>
-         
-        Websites with GitHub
-      </a>
-    </li>
-    <li>
-      <a href="jekyll.html">
-        <span class="fas fa-sitemap"></span>
-         
-        Dynamic Websites with Jekyll and GitHub
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-file"></span>
-     
-    RMarkdown
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week3-RMarkdown.html">
-        <span class="fas fa-file"></span>
-         
-        R Markdown for Reports
-      </a>
-    </li>
-    <li>
-      <a href="bookdown.html">
-        <span class="fas fa-book"></span>
-         
-        Bookdown
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-archive"></span>
-     
-    R Packages
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week4-packages.html">
-        <span class="fas fa-archive"></span>
-         
-        R Packaging with RStudio
-      </a>
-    </li>
-    <li>
-      <a href="week5-roxygen.html">
-        <span class="fas fa-question-circle"></span>
-         
-        Roxygen documentation
-      </a>
-    </li>
-    <li>
-      <a href="shiny.html">
-        <span class="fas fa-gamepad"></span>
-         
-        Shiny GUIs
-      </a>
-    </li>
-  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -471,7 +375,7 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2021">
-    <span class="fas fa-github"></span>
+    <span class="fab fa-github"></span>
      
     Repo
   </a>
@@ -493,8 +397,8 @@ div.tocify {
 </div>
 
 
-<div id="overview" class="section level1">
-<h1>Overview</h1>
+<div id="set-up" class="section level1">
+<h1>Set-up</h1>
 <p>Everything you’ll be using is free. You will need a GitHub (free) account. Sign up here <a href="https://github.com/">GitHub</a>.</p>
 <p>To follow along with the material on your own computer, install the following:</p>
 <ul>
@@ -504,29 +408,29 @@ div.tocify {
 </ul>
 <p>To follow along with RStudio Cloud (with a browser) instead of installing programs (or if you following along on a phone or tablet): Sign up for an <a href="https://rstudio.cloud/">RStudio Cloud</a> account.</p>
 </div>
-<div id="summary" class="section level1">
-<h1>Summary</h1>
+<div id="git-set-up-summary" class="section level1">
+<h1>Git Set-up Summary</h1>
 <p>Summary of the set-up steps. You can also consult this <a href="https://happygitwithr.com/">great online reference</a>.</p>
+<div id="git-using-github-desktop" class="section level2">
+<h2>Git using GitHub Desktop</h2>
+<p>For the class, I am going to focus on using Git from GitHub Desktop as it tends not to have the authentication headaches that Git in RStudio has.</p>
+<ol style="list-style-type: decimal">
+<li>Get a <a href="https://github.com/">GitHub</a> account</li>
+<li>Install <a href="https://desktop.github.com/">GitHub Desktop</a></li>
+<li>Open GitHub Desktop, go to Preferences, and login to your GitHub account.</li>
+</ol>
+</div>
 <div id="git-from-rstudio" class="section level2">
 <h2>Git from RStudio</h2>
-<p>For the class, I am showing Git within RStudio, but it can be a real headache to get working for beginners. The following set-up is most likely to work.</p>
+<p>If you want to use Git within RStudio, here are the instructions. It can be a real headache to get working for beginners. The following set-up is most likely to work.</p>
 <ol style="list-style-type: decimal">
-<li>Get a GitHub or GitLab account</li>
+<li>Get a GitHub account</li>
 <li>Install Git for your operating system</li>
 <li>Install R (if needed)</li>
 <li>Install RStudio (if needed)</li>
 <li>Tell RStudio where git.exe is located</li>
 <li>Tell Git how to store and get your GitHub/GitLab username and password</li>
 <li>Do your first Push from the shell to store your username and password.</li>
-</ol>
-</div>
-<div id="git-from-github-desktop" class="section level2">
-<h2>Git from GitHub Desktop</h2>
-<p>I normally work with Git from GitHub Desktop only. It tends not to have the authentication headaches that Git in RStudio has. However, for the class I am going to work with Git from RStudio but I will also show GitHub Desktop. GitHub Desktop doesn’t have the authentication headaches that Git in RStudio has.</p>
-<ol style="list-style-type: decimal">
-<li>Get a <a href="https://github.com/">GitHub</a> account</li>
-<li>Install <a href="https://desktop.github.com/">GitHub Desktop</a></li>
-<li>Open GitHub Desktop, go to Preferences, and login to GitHub.</li>
 </ol>
 </div>
 </div>
@@ -543,7 +447,7 @@ div.tocify {
 </div>
 <div id="git-for-your-os" class="section level2">
 <h2>Git for your OS</h2>
-<p>You shouldn’t need this…</p>
+<p>If you install GitHub Desktop, you shouldn’t need this…</p>
 <ul>
 <li>Windows <a href="https://gitforwindows.org/" class="uri">https://gitforwindows.org/</a> <a href="https://happygitwithr.com/install-git.html#install-git-windows">Read notes here</a></li>
 <li>Mac It should be installed. Open a terminal window and type, <code>git --version</code>. If it asks to install XCode, say Yes. <a href="https://happygitwithr.com/install-git.html#macos">Read notes here</a></li>

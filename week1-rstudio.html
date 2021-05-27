@@ -354,108 +354,12 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-git"></span>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow/">
+    <span class="fab fa-folder"></span>
      
-    Git
-     
-    <span class="caret"></span>
+    Archive
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="intro-git.html">
-        <span class="fas fa-cogs"></span>
-         
-        Intro to Git + GitHub/Lab
-      </a>
-    </li>
-    <li>
-      <a href="more-git.html">
-        <span class="fas fa-github"></span>
-         
-        More Git + GitHub
-      </a>
-    </li>
-    <li>
-      <a href="gitlab-to-github.html">
-        <span class="fas fa-truck-moving"></span>
-         
-        GitLab to GitHub
-      </a>
-    </li>
-    <li>
-      <a href="websites.html">
-        <span class="fas fa-chrome"></span>
-         
-        Websites with GitHub
-      </a>
-    </li>
-    <li>
-      <a href="jekyll.html">
-        <span class="fas fa-sitemap"></span>
-         
-        Dynamic Websites with Jekyll and GitHub
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-file"></span>
-     
-    RMarkdown
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week3-RMarkdown.html">
-        <span class="fas fa-file"></span>
-         
-        R Markdown for Reports
-      </a>
-    </li>
-    <li>
-      <a href="bookdown.html">
-        <span class="fas fa-book"></span>
-         
-        Bookdown
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-archive"></span>
-     
-    R Packages
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week4-packages.html">
-        <span class="fas fa-archive"></span>
-         
-        R Packaging with RStudio
-      </a>
-    </li>
-    <li>
-      <a href="week5-roxygen.html">
-        <span class="fas fa-question-circle"></span>
-         
-        Roxygen documentation
-      </a>
-    </li>
-    <li>
-      <a href="shiny.html">
-        <span class="fas fa-gamepad"></span>
-         
-        Shiny GUIs
-      </a>
-    </li>
-  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -473,7 +377,7 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2021">
-    <span class="fas fa-github"></span>
+    <span class="fab fa-github"></span>
      
     Repo
   </a>
@@ -523,6 +427,7 @@ Robust
 </div>
 <div id="rstudio" class="section level1">
 <h1>RStudio</h1>
+<p>Open RStudio on your computer or on RStudio Cloud. To do the latter, click this link: <a href="https://rstudio.cloud/project/2574104" class="uri">https://rstudio.cloud/project/2574104</a></p>
 <p>When you open RStudio you will see 4 panels:</p>
 <div class="figure">
 <img src="images/RStudio-screenshot.png" alt="" />
@@ -538,11 +443,19 @@ Robust
 </li>
 <li>Then click “Create Project”.</li>
 </ol>
+<div class="figure">
+<img src="images/RStudio-screenshot.png" alt="" />
+<p class="caption">RStudio-panels</p>
+</div>
 <p><strong>On RStudio Cloud</strong></p>
 <ol style="list-style-type: decimal">
 <li>On left, click ’Your Workspace"</li>
 <li>Then click New Project (blue button on right)</li>
 </ol>
+<div class="figure">
+<img src="images/RStudio-Cloud-screenshot.png" alt="" />
+<p class="caption">RStudio-panels</p>
+</div>
 <div id="add-a-new-script-file" class="section level3">
 <h3>Add a new script file</h3>
 <ol style="list-style-type: decimal">
@@ -574,18 +487,12 @@ par(opar)</code></pre>
 <h2>Project organization</h2>
 <p>Keep your projects in separate folders with a uniform set of folder names. For example,</p>
 <ul>
-<li>R - your functions</li>
-<li>scripts - scripts (so not functions)</li>
+<li>R - your R code</li>
 <li>data - your RData files</li>
 <li>output -</li>
 <li>inst - random stuff</li>
 <li>notes -</li>
 </ul>
-<p>In desktop app: The top right corner allows you to create projects and switch between projects.</p>
-<div class="figure">
-<img src="images/RStudio-screenshot.png" alt="" />
-<p class="caption">RStudio-panels</p>
-</div>
 <div id="project-settings" class="section level3">
 <h3>Project settings</h3>
 <p>One tip is to <strong>not</strong> save your <code>.Rdata</code> (your environment) when your are done for the day. Under Tools &gt; Project Options… &gt; General</p>

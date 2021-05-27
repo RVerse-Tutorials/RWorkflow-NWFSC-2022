@@ -1,5 +1,5 @@
 ---
-title: "Practical R Workflow for Scientists Summer 2021"
+title: "Practical R Workflow for Scientists June-July 2021"
 ---
 
 <img style="float: right;" src="images/tools-logo-transparent.png" width=30%>

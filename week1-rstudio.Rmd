@@ -28,6 +28,8 @@ I'm going to show you how to work with Git/GitHub with no command-line interface
 
 # RStudio
 
+Open RStudio on your computer or on RStudio Cloud. To do the latter, click this link: https://rstudio.cloud/project/2574104
+
 When you open RStudio you will see 4 panels:
 
 ![RStudio-panels](images/RStudio-screenshot.png)
@@ -41,11 +43,14 @@ When you open RStudio you will see 4 panels:
 1. In the next dialog, choose a name (_it is best to  use only letters, numbers, dashes, and underscores, and include no spaces in the name_).  
 1. Then click "Create Project".
 
+![RStudio-panels](images/RStudio-screenshot.png)
+
 **On RStudio Cloud**
 
 1. On left, click 'Your Workspace"
 1. Then click New Project (blue button on right)
 
+![RStudio-panels](images/RStudio-Cloud-screenshot.png)
 
 ### Add a new script file
 
@@ -76,16 +81,11 @@ par(opar)
 
 Keep your projects in separate folders with a uniform set of folder names. For example,
 
-* R - your functions
-* scripts - scripts (so not functions)
+* R - your R code
 * data - your RData files
 * output -
 * inst - random stuff
 * notes -
-
-In desktop app: The top right corner allows you to create projects and switch between projects.
-
-![RStudio-panels](images/RStudio-screenshot.png)
 
 ### Project settings
 

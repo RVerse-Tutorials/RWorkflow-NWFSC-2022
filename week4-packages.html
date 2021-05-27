@@ -354,108 +354,12 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-git"></span>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow/">
+    <span class="fab fa-folder"></span>
      
-    Git
-     
-    <span class="caret"></span>
+    Archive
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="intro-git.html">
-        <span class="fas fa-cogs"></span>
-         
-        Intro to Git + GitHub/Lab
-      </a>
-    </li>
-    <li>
-      <a href="more-git.html">
-        <span class="fas fa-github"></span>
-         
-        More Git + GitHub
-      </a>
-    </li>
-    <li>
-      <a href="gitlab-to-github.html">
-        <span class="fas fa-truck-moving"></span>
-         
-        GitLab to GitHub
-      </a>
-    </li>
-    <li>
-      <a href="websites.html">
-        <span class="fas fa-chrome"></span>
-         
-        Websites with GitHub
-      </a>
-    </li>
-    <li>
-      <a href="jekyll.html">
-        <span class="fas fa-sitemap"></span>
-         
-        Dynamic Websites with Jekyll and GitHub
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-file"></span>
-     
-    RMarkdown
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week3-RMarkdown.html">
-        <span class="fas fa-file"></span>
-         
-        R Markdown for Reports
-      </a>
-    </li>
-    <li>
-      <a href="bookdown.html">
-        <span class="fas fa-book"></span>
-         
-        Bookdown
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-archive"></span>
-     
-    R Packages
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week4-packages.html">
-        <span class="fas fa-archive"></span>
-         
-        R Packaging with RStudio
-      </a>
-    </li>
-    <li>
-      <a href="week5-roxygen.html">
-        <span class="fas fa-question-circle"></span>
-         
-        Roxygen documentation
-      </a>
-    </li>
-    <li>
-      <a href="shiny.html">
-        <span class="fas fa-gamepad"></span>
-         
-        Shiny GUIs
-      </a>
-    </li>
-  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -473,7 +377,7 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2021">
-    <span class="fas fa-github"></span>
+    <span class="fab fa-github"></span>
      
     Repo
   </a>
@@ -763,10 +667,8 @@ for(i in 1:10000){ b=t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            0.46    88.46       0.46     88.46
-## &quot;eval&quot;           0.02     3.85       0.52    100.00
-## &quot;t&quot;              0.02     3.85       0.04      7.69
-## &quot;t.default&quot;      0.02     3.85       0.02      3.85</code></pre>
+## &quot;%*%&quot;            0.50    89.29       0.50     89.29
+## &quot;t.default&quot;      0.06    10.71       0.06     10.71</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
@@ -776,7 +678,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 12 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 11 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week4-packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.</p>
 <pre class="r"><code>library(magrittr)

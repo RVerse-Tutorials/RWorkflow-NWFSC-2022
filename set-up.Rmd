@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Overview
+# Set-up
 
 Everything you'll be using is free. You will need a GitHub (free) account. Sign up here [GitHub](https://github.com/).
 
@@ -23,30 +23,29 @@ To follow along with the material on your own computer, install the following:
 
 To follow along with RStudio Cloud (with a browser) instead of installing programs (or if you following along on a phone or tablet): Sign up for an [RStudio Cloud](https://rstudio.cloud/) account.
 
-
-# Summary
+# Git Set-up Summary
 
 Summary of the set-up steps. You can also consult this [great online reference](https://happygitwithr.com/).
 
+## Git using GitHub Desktop
+
+For the class, I am going to focus on using Git from GitHub Desktop as it tends not to have the authentication headaches that Git in RStudio has. 
+
+1. Get a [GitHub](https://github.com/) account
+2. Install [GitHub Desktop](https://desktop.github.com/)
+3. Open GitHub Desktop, go to Preferences, and login to your GitHub account.
+
 ## Git from RStudio
 
-For the class, I am showing Git within RStudio, but it can be a real headache to get working for beginners. The following set-up is most likely to work. 
+If you want to use Git within RStudio, here are the instructions. It can be a real headache to get working for beginners. The following set-up is most likely to work. 
 
-1. Get a GitHub or GitLab account
+1. Get a GitHub account
 2. Install Git for your operating system
 3. Install R (if needed)
 4. Install RStudio (if needed)
 5. Tell RStudio where git.exe is located
 6. Tell Git how to store and get your GitHub/GitLab username and password
 7. Do your first Push from the shell to store your username and password.
-
-## Git from GitHub Desktop
-
-I normally work with Git from GitHub Desktop only. It tends not to have the authentication headaches that Git in RStudio has. However, for the class I am going to work with Git from RStudio but I will also show GitHub Desktop. GitHub Desktop doesn't have the authentication headaches that Git in RStudio has.
-
-1. Get a [GitHub](https://github.com/) account
-2. Install [GitHub Desktop](https://desktop.github.com/)
-3. Open GitHub Desktop, go to Preferences, and login to GitHub.
 
 # Details
 
@@ -62,7 +61,7 @@ If you don't already have an account on GitHub, go to [github.com](https://githu
 
 ## Git for your OS
 
-You shouldn't need this...
+If you install GitHub Desktop, you shouldn't need this...
 
   * Windows https://gitforwindows.org/ [Read notes here](https://happygitwithr.com/install-git.html#install-git-windows)
   * Mac It should be installed. Open a terminal window and type, `git --version`. If it asks to install XCode, say Yes. [Read notes here](https://happygitwithr.com/install-git.html#macos)
