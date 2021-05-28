@@ -23,31 +23,35 @@ To follow along with the material on your own computer, install the following:
 
 To follow along with RStudio Cloud (with a browser) instead of installing programs (or if you following along on a phone or tablet): Sign up for an [RStudio Cloud](https://rstudio.cloud/) account.
 
-# Git Set-up Summary
-
-Summary of the set-up steps. You can also consult this [great online reference](https://happygitwithr.com/).
-
 ## Git using GitHub Desktop
 
-For the class, I am going to focus on using Git from GitHub Desktop as it tends not to have the authentication headaches that Git in RStudio has. 
+For the class, I am going to focus on using Git from GitHub Desktop as it is easy to use and does not have the headaches of Git using RStudio.
 
 1. Get a [GitHub](https://github.com/) account
 2. Install [GitHub Desktop](https://desktop.github.com/)
-3. Open GitHub Desktop, go to Preferences, and login to your GitHub account.
+3. Open GitHub Desktop, go to Preferences, click Accounts and login to your GitHub account.
+4. Still in Preferences, click Git and enter your name and email.
+
+## Git in RStudio Cloud
+
+1. Tell RStudio Cloud you want use Git. Open your project then Click Tools > Global Options > Git/SVN (left nav) and check 'Enable version control for RStudio projects'
+![Tools tab is on your project page](images/RStudio-Cloud-Tools.png){25%}
+
+2. Click the Terminal tab in the lower left panel or click the blue cog below the Git tab in the upper right panel.
+![Terminal location](images/RStudio-Cloud-Terminal.png){25%}
+
+3. Type in this with your info
+```
+git config --global user.email "<your email>"
+
+git config --global user.name "<your name>"
+```
 
 ## Git from RStudio
 
-If you want to use Git within RStudio, here are the instructions. It can be a real headache to get working for beginners. The following set-up is most likely to work. 
+If you want to use Git within RStudio, see the [2020 Set-up instructions](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git). I won't be covering that in 2021.
 
-1. Get a GitHub account
-2. Install Git for your operating system
-3. Install R (if needed)
-4. Install RStudio (if needed)
-5. Tell RStudio where git.exe is located
-6. Tell Git how to store and get your GitHub/GitLab username and password
-7. Do your first Push from the shell to store your username and password.
-
-# Details
+<!--
 
 ### NWFSC staff
 
@@ -59,142 +63,8 @@ If you want to use Git within RStudio, here are the instructions. It can be a re
 
 If you don't already have an account on GitHub, go to [github.com](https://github.com) and click the "sign up" link near upper right of the page.  It is pretty self-explanatory.  Go ahead and get a **free** account. The free GitHub account allows you to have unlimited public and private repositories. 
 
-## Git for your OS
 
-If you install GitHub Desktop, you shouldn't need this...
-
-  * Windows https://gitforwindows.org/ [Read notes here](https://happygitwithr.com/install-git.html#install-git-windows)
-  * Mac It should be installed. Open a terminal window and type, `git --version`. If it asks to install XCode, say Yes. [Read notes here](https://happygitwithr.com/install-git.html#macos)
-
-## GitHub Desktop
-
-GitHub Desktop is a nice Git interface for basic work. Despite the name, GitHub Desktop works just as well with GitLab.
-
-1. Go to [desktop.github.com](https://desktop.github.com/) and install.
-2. Open GitHub Desktop, go to 'GitHub Desktop > Preferences' menu.  
-3. Under 'Accounts', sign into your GitHub account.
-4. Under 'Git', enter your name (or initials) and the email you used for your GitHub account.
-
-## R and RStudio
-
-* **R:**  Make sure you have a fairly recent version of R.  
-Go to [CRAN](https://cran.r-project.org/) and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.
-
-* **RStudio:** Install the latest version of RStudio.  Get it from [RStudio](https://www.rstudio.com/products/rstudio/download) and install the appropriate one for your operating system (Windows or Mac). Again contact IT to help install if you are on a NOAA computer.
-
-## Set up RStudio to use Git
-
-If you want to use Git within RStudio, do these steps. Note it is not necessary to use Git in RStudio. You can use GitHub Desktop (or any other Git GUI or the terminal command line).
-
-1. Open RStudio
-2. Go to Global Options (from the Tools menu)
-3. Click Git/SVN
-4. Click Enable version control interface for RStudio projects
-5. You will need the location of the git executible. On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe`. If you install Git for Windows locally, it may be at `C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe`.
-
-Tell Git how to get your username and password for GitHub
-
-1. Open a terminal window.
-2. Type `git config --get credential.helper`
-3. If you are on a PC, you should see `manager` and if on a mac, `osxkeychain`
-4. If not type,
-Mac: `git config --global credential.helper osxkeychain`
-Windows: `git config --global credential.helper manager`
-
-There is one more step that comes up on your first push to the remote. You'll need to do your very first Push from the Shell within RStudio so that it knows your username and password.
-
-1. Open up your local repo in RStudio.
-2. Make a change to a file and commit the change.
-3. Click on the Git tab, click the cog icon and click `Shell...`
-4. Type `git push`
-5. It should ask for your GitHub or GitLab username and password.
-
-# Help! 
-
-Can't get Git, GitHub and RStudio to connect?
-
-First off, can you get GitHub Desktop to work? If so, I would say just use that for awhile. You don't need to use Git in RStudio.
-
-If you want to use Git in RStudio, read on. You can also consult this [great online resource](https://happygitwithr.com/).
-
-There are two typical problems. 1. Git doesn't know how to ask you for your username and password. 2. Your repo is pointing to the wrong GitHub account. This can happen when you try to copy someone else's account.
-
-### Does RStudio or GitHub Desktop complain about no SSL tokens when you try to Push?
-
-1. Open a terminal window.
-2. Paste in this code `git config --global http.sslVerify false`
-
-### Does RStudio complain about needing access to your credentials?
-
-* First, you should have a fairly recent version of RStudio because the Git integration has gotten better.
-* If you have a pop-up window, click 'Deny'. Hopefully a terminal window pops up and asks for your GitHub username and password.
-
-### Does RStudio say it cannot find bash.exe?
-
-RStudio doesn't know where `git.exe` is. First, have you installed Git yet?
-
-If you are on Windows and you have not installed Git, install [Git for Windows](https://gitforwindows.org/). Mac users should have it already. Mac It should be installed. Open a terminal window and type, git --version. If it asks to install XCode, say Yes.
-
-Next, tell RStudio where to find `git.exe`. You need to tell it under Tools > Global Options > Git/SVN > Git executible.  On my mac the value in the `Git executible` box is `/usr/bin/git`. On my PC, it is `C:/Program Files/Git/bin/git.exe` but IT installed it for me and installed for all users (so with admin). If you install Git for Windows locally (meaning you install it just for your account instead of for all users on your computer), it should be at `C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe`
-
-
-### Does RStudio ask for your username and password every time you try to push?
-
-You need to do a push from the terminal to store your username/password.
-
-1. Open up your project in RStudio and click the Git tab.
-2. Click on the cog icon and click `Shell...`
-3. Type `git config --get credential.helper` and make sure you see `manager` (or `wincred`) if on Windows and `osxkeychain` if on Mac.
-4. If not, look above for the `git` command to add those credential helpers.
-
-### When you try to push with RStudio do you get an error with `askpass`?
-
-RStudio doesn't know how to open a terminal to ask for your username and password. You'll need to push from the shell the first time.
-
-So what's going on is that Git (within RStudio) doesn't know how to ask you for your GitHub username and password.
-
-1. Open up RStudio and make sure your project is showing in the top right with the blue cube with R in it (meaning you have that RStudio project loaded).
-2. Make a change to a file in your project and save.
-3. Click on the Git tab in the upper right window.
-4. Commit that change by clicking on the little box next to the change (in the Git window), adding a comment and clicking Commit.
-5. Click on the little cog and select Shell...
-6. Type `git config --list`. You should see `credentials.helper=manager` (if on Windows) or `credentials.helper=osxkeychain` (if on Mac). If not type, one of these commands. 
-Mac: `git config --global credential.helper osxkeychain` Windows: `git config --global credential.helper manager`.
-7. Now Type `git push`. You should be asked for your GitHub username and password.
-8. Now make another change to a file, commit the change, and try to Push with the Green arrow.
-
-### Still no luck authenticating? 
-
-Git might have the wrong remote.
-
-1. Open up your project in RStudio.
-2. Click the Git tab. Then click on the cog icon and click `Shell...`
-3. Type `git remote -v` and see if what is listed looks correct.
-4. If not, the command to set the new remote is
-`git remote set-url origin URL` Replace `URL` with the URL of your repository!!
-
-
-
-<!--
-## Install R packages
-
-From the command line in R Studio
-
-1. **devtools** package.  Enter the following code at the command line (`>`).
-
-```{r get-devtools, eval=FALSE}
-install.packages("devtools")  
-```
-
-2. Install the **packages** that we are going to be need. I have created a package on GitHub that will install the packages you need.
-
-```{r get-packages, eval=FALSE}
-devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
-```
--->
-
-
-## Week 2: Installing packages from GitHub
+## Week 3: Installing packages from GitHub
 
 Windows people: You will need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html). 
 
@@ -217,5 +87,7 @@ We will not be doing this, but often you will want to install packages with C++ 
 * **Rtools** Windows users  [Rtools](https://cran.r-project.org/bin/windows/Rtools/) also so you can build packages with C++ code if needed.  See comments here about changing path. [Rtools](http://stat545.com/packages01_system-prep.html#windows-system-prep)
 
 * **Xcode** Mac users Open terminal and type the following command `xcode-select --install`
+
+-->
 
 

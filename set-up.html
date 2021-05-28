@@ -409,193 +409,70 @@ div.tocify {
 <li>Install <a href="https://desktop.github.com/">GitHub Desktop</a></li>
 </ul>
 <p>To follow along with RStudio Cloud (with a browser) instead of installing programs (or if you following along on a phone or tablet): Sign up for an <a href="https://rstudio.cloud/">RStudio Cloud</a> account.</p>
-</div>
-<div id="git-set-up-summary" class="section level1">
-<h1>Git Set-up Summary</h1>
-<p>Summary of the set-up steps. You can also consult this <a href="https://happygitwithr.com/">great online reference</a>.</p>
 <div id="git-using-github-desktop" class="section level2">
 <h2>Git using GitHub Desktop</h2>
-<p>For the class, I am going to focus on using Git from GitHub Desktop as it tends not to have the authentication headaches that Git in RStudio has.</p>
+<p>For the class, I am going to focus on using Git from GitHub Desktop as it is easy to use and does not have the headaches of Git using RStudio.</p>
 <ol style="list-style-type: decimal">
 <li>Get a <a href="https://github.com/">GitHub</a> account</li>
 <li>Install <a href="https://desktop.github.com/">GitHub Desktop</a></li>
-<li>Open GitHub Desktop, go to Preferences, and login to your GitHub account.</li>
+<li>Open GitHub Desktop, go to Preferences, click Accounts and login to your GitHub account.</li>
+<li>Still in Preferences, click Git and enter your name and email.</li>
 </ol>
+</div>
+<div id="git-in-rstudio-cloud" class="section level2">
+<h2>Git in RStudio Cloud</h2>
+<ol style="list-style-type: decimal">
+<li><p>Tell RStudio Cloud you want use Git. Open your project then Click Tools &gt; Global Options &gt; Git/SVN (left nav) and check ‘Enable version control for RStudio projects’ <img src="images/RStudio-Cloud-Tools.png" alt="Tools tab is on your project page" />{25%}</p></li>
+<li><p>Click the Terminal tab in the lower left panel or click the blue cog below the Git tab in the upper right panel. <img src="images/RStudio-Cloud-Terminal.png" alt="Terminal location" />{25%}</p></li>
+<li><p>Type in this with your info</p></li>
+</ol>
+<pre><code>git config --global user.email &quot;&lt;your email&gt;&quot;
+
+git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 </div>
 <div id="git-from-rstudio" class="section level2">
 <h2>Git from RStudio</h2>
-<p>If you want to use Git within RStudio, here are the instructions. It can be a real headache to get working for beginners. The following set-up is most likely to work.</p>
-<ol style="list-style-type: decimal">
-<li>Get a GitHub account</li>
-<li>Install Git for your operating system</li>
-<li>Install R (if needed)</li>
-<li>Install RStudio (if needed)</li>
-<li>Tell RStudio where git.exe is located</li>
-<li>Tell Git how to store and get your GitHub/GitLab username and password</li>
-<li>Do your first Push from the shell to store your username and password.</li>
-</ol>
-</div>
-</div>
-<div id="details" class="section level1">
-<h1>Details</h1>
-<div id="nwfsc-staff" class="section level3">
-<h3>NWFSC staff</h3>
-<p><strong>GitHub</strong> If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I’ll show a few examples. There is paperwork to fill out <a href="https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view">info</a> and <a href="https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view">checklist</a>. Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub.</p>
-<p><strong>GitHub internal server</strong> If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitHub server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed.</p>
-</div>
-<div id="non-noaa-participants-or-those-using-github-purely-for-non-noaa-work" class="section level3">
-<h3>Non-NOAA participants or those using GitHub purely for non-NOAA work</h3>
-<p>If you don’t already have an account on GitHub, go to <a href="https://github.com">github.com</a> and click the “sign up” link near upper right of the page. It is pretty self-explanatory. Go ahead and get a <strong>free</strong> account. The free GitHub account allows you to have unlimited public and private repositories.</p>
-</div>
-<div id="git-for-your-os" class="section level2">
-<h2>Git for your OS</h2>
-<p>If you install GitHub Desktop, you shouldn’t need this…</p>
-<ul>
-<li>Windows <a href="https://gitforwindows.org/" class="uri">https://gitforwindows.org/</a> <a href="https://happygitwithr.com/install-git.html#install-git-windows">Read notes here</a></li>
-<li>Mac It should be installed. Open a terminal window and type, <code>git --version</code>. If it asks to install XCode, say Yes. <a href="https://happygitwithr.com/install-git.html#macos">Read notes here</a></li>
-</ul>
-</div>
-<div id="github-desktop" class="section level2">
-<h2>GitHub Desktop</h2>
-<p>GitHub Desktop is a nice Git interface for basic work. Despite the name, GitHub Desktop works just as well with GitLab.</p>
-<ol style="list-style-type: decimal">
-<li>Go to <a href="https://desktop.github.com/">desktop.github.com</a> and install.</li>
-<li>Open GitHub Desktop, go to ‘GitHub Desktop &gt; Preferences’ menu.<br />
-</li>
-<li>Under ‘Accounts’, sign into your GitHub account.</li>
-<li>Under ‘Git’, enter your name (or initials) and the email you used for your GitHub account.</li>
-</ol>
-</div>
-<div id="r-and-rstudio" class="section level2">
-<h2>R and RStudio</h2>
-<ul>
-<li><p><strong>R:</strong> Make sure you have a fairly recent version of R.<br />
-Go to <a href="https://cran.r-project.org/">CRAN</a> and find the download link for your computer system. Those using a NOAA computer, contact IT to help you update/install.</p></li>
-<li><p><strong>RStudio:</strong> Install the latest version of RStudio. Get it from <a href="https://www.rstudio.com/products/rstudio/download">RStudio</a> and install the appropriate one for your operating system (Windows or Mac). Again contact IT to help install if you are on a NOAA computer.</p></li>
-</ul>
-</div>
-<div id="set-up-rstudio-to-use-git" class="section level2">
-<h2>Set up RStudio to use Git</h2>
-<p>If you want to use Git within RStudio, do these steps. Note it is not necessary to use Git in RStudio. You can use GitHub Desktop (or any other Git GUI or the terminal command line).</p>
-<ol style="list-style-type: decimal">
-<li>Open RStudio</li>
-<li>Go to Global Options (from the Tools menu)</li>
-<li>Click Git/SVN</li>
-<li>Click Enable version control interface for RStudio projects</li>
-<li>You will need the location of the git executible. On my mac the value in the <code>Git executible</code> box is <code>/usr/bin/git</code>. On my PC, it is <code>C:/Program Files/Git/bin/git.exe</code>. If you install Git for Windows locally, it may be at <code>C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe</code>.</li>
-</ol>
-<p>Tell Git how to get your username and password for GitHub</p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal window.</li>
-<li>Type <code>git config --get credential.helper</code></li>
-<li>If you are on a PC, you should see <code>manager</code> and if on a mac, <code>osxkeychain</code></li>
-<li>If not type, Mac: <code>git config --global credential.helper osxkeychain</code> Windows: <code>git config --global credential.helper manager</code></li>
-</ol>
-<p>There is one more step that comes up on your first push to the remote. You’ll need to do your very first Push from the Shell within RStudio so that it knows your username and password.</p>
-<ol style="list-style-type: decimal">
-<li>Open up your local repo in RStudio.</li>
-<li>Make a change to a file and commit the change.</li>
-<li>Click on the Git tab, click the cog icon and click <code>Shell...</code></li>
-<li>Type <code>git push</code></li>
-<li>It should ask for your GitHub or GitLab username and password.</li>
-</ol>
-</div>
-</div>
-<div id="help" class="section level1">
-<h1>Help!</h1>
-<p>Can’t get Git, GitHub and RStudio to connect?</p>
-<p>First off, can you get GitHub Desktop to work? If so, I would say just use that for awhile. You don’t need to use Git in RStudio.</p>
-<p>If you want to use Git in RStudio, read on. You can also consult this <a href="https://happygitwithr.com/">great online resource</a>.</p>
-<p>There are two typical problems. 1. Git doesn’t know how to ask you for your username and password. 2. Your repo is pointing to the wrong GitHub account. This can happen when you try to copy someone else’s account.</p>
-<div id="does-rstudio-or-github-desktop-complain-about-no-ssl-tokens-when-you-try-to-push" class="section level3">
-<h3>Does RStudio or GitHub Desktop complain about no SSL tokens when you try to Push?</h3>
-<ol style="list-style-type: decimal">
-<li>Open a terminal window.</li>
-<li>Paste in this code <code>git config --global http.sslVerify false</code></li>
-</ol>
-</div>
-<div id="does-rstudio-complain-about-needing-access-to-your-credentials" class="section level3">
-<h3>Does RStudio complain about needing access to your credentials?</h3>
-<ul>
-<li>First, you should have a fairly recent version of RStudio because the Git integration has gotten better.</li>
-<li>If you have a pop-up window, click ‘Deny’. Hopefully a terminal window pops up and asks for your GitHub username and password.</li>
-</ul>
-</div>
-<div id="does-rstudio-say-it-cannot-find-bash.exe" class="section level3">
-<h3>Does RStudio say it cannot find bash.exe?</h3>
-<p>RStudio doesn’t know where <code>git.exe</code> is. First, have you installed Git yet?</p>
-<p>If you are on Windows and you have not installed Git, install <a href="https://gitforwindows.org/">Git for Windows</a>. Mac users should have it already. Mac It should be installed. Open a terminal window and type, git –version. If it asks to install XCode, say Yes.</p>
-<p>Next, tell RStudio where to find <code>git.exe</code>. You need to tell it under Tools &gt; Global Options &gt; Git/SVN &gt; Git executible. On my mac the value in the <code>Git executible</code> box is <code>/usr/bin/git</code>. On my PC, it is <code>C:/Program Files/Git/bin/git.exe</code> but IT installed it for me and installed for all users (so with admin). If you install Git for Windows locally (meaning you install it just for your account instead of for all users on your computer), it should be at <code>C:\Users\your.username\AppData\Local\Programs\Git\bin\git.exe</code></p>
-</div>
-<div id="does-rstudio-ask-for-your-username-and-password-every-time-you-try-to-push" class="section level3">
-<h3>Does RStudio ask for your username and password every time you try to push?</h3>
-<p>You need to do a push from the terminal to store your username/password.</p>
-<ol style="list-style-type: decimal">
-<li>Open up your project in RStudio and click the Git tab.</li>
-<li>Click on the cog icon and click <code>Shell...</code></li>
-<li>Type <code>git config --get credential.helper</code> and make sure you see <code>manager</code> (or <code>wincred</code>) if on Windows and <code>osxkeychain</code> if on Mac.</li>
-<li>If not, look above for the <code>git</code> command to add those credential helpers.</li>
-</ol>
-</div>
-<div id="when-you-try-to-push-with-rstudio-do-you-get-an-error-with-askpass" class="section level3">
-<h3>When you try to push with RStudio do you get an error with <code>askpass</code>?</h3>
-<p>RStudio doesn’t know how to open a terminal to ask for your username and password. You’ll need to push from the shell the first time.</p>
-<p>So what’s going on is that Git (within RStudio) doesn’t know how to ask you for your GitHub username and password.</p>
-<ol style="list-style-type: decimal">
-<li>Open up RStudio and make sure your project is showing in the top right with the blue cube with R in it (meaning you have that RStudio project loaded).</li>
-<li>Make a change to a file in your project and save.</li>
-<li>Click on the Git tab in the upper right window.</li>
-<li>Commit that change by clicking on the little box next to the change (in the Git window), adding a comment and clicking Commit.</li>
-<li>Click on the little cog and select Shell…</li>
-<li>Type <code>git config --list</code>. You should see <code>credentials.helper=manager</code> (if on Windows) or <code>credentials.helper=osxkeychain</code> (if on Mac). If not type, one of these commands. Mac: <code>git config --global credential.helper osxkeychain</code> Windows: <code>git config --global credential.helper manager</code>.</li>
-<li>Now Type <code>git push</code>. You should be asked for your GitHub username and password.</li>
-<li>Now make another change to a file, commit the change, and try to Push with the Green arrow.</li>
-</ol>
-</div>
-<div id="still-no-luck-authenticating" class="section level3">
-<h3>Still no luck authenticating?</h3>
-<p>Git might have the wrong remote.</p>
-<ol style="list-style-type: decimal">
-<li>Open up your project in RStudio.</li>
-<li>Click the Git tab. Then click on the cog icon and click <code>Shell...</code></li>
-<li>Type <code>git remote -v</code> and see if what is listed looks correct.</li>
-<li>If not, the command to set the new remote is <code>git remote set-url origin URL</code> Replace <code>URL</code> with the URL of your repository!!</li>
-</ol>
+<p>If you want to use Git within RStudio, see the <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git">2020 Set-up instructions</a>. I won’t be covering that in 2021.</p>
 <!--
-## Install R packages
 
-From the command line in R Studio
+### NWFSC staff
 
-1. **devtools** package.  Enter the following code at the command line (`>`).
+**GitHub** If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I'll show a few examples. There is paperwork to fill out [info](https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view) and [checklist](https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view). Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub. 
+
+**GitHub internal server** If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitHub server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed.
+
+### Non-NOAA participants or those using GitHub purely for non-NOAA work
+
+If you don't already have an account on GitHub, go to [github.com](https://github.com) and click the "sign up" link near upper right of the page.  It is pretty self-explanatory.  Go ahead and get a **free** account. The free GitHub account allows you to have unlimited public and private repositories. 
+
+
+## Week 3: Installing packages from GitHub
+
+Windows people: You will need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html). 
+
+Run this code to confirm that you can install packages from GitHub:
 
 
 ```r
-install.packages("devtools")  
+devtools::install_github("RVerse-Tutorials/TestPackage")
 ```
 
-2. Install the **packages** that we are going to be need. I have created a package on GitHub that will install the packages you need.
+To install from an internal GitHub server, like the NWFSC GitHub, use this. Note for the NWFSC GitHub, you need to be on the network since this is an internal (not public) server. Again, replace the dummy variables with the real values.
 
 
 ```r
-devtools::install_github("RVerse-Tutorials/RWorkflowsetup")
+devtools::install_github("<github account>/repo name", host="<url of the server>")
 ```
+
+## (Optional) Packages with C++ code
+
+We will not be doing this, but often you will want to install packages with C++ code.  To do that, you will need Rtools (Windows) or Xcode (Mac)
+
+* **Rtools** Windows users  [Rtools](https://cran.r-project.org/bin/windows/Rtools/) also so you can build packages with C++ code if needed.  See comments here about changing path. [Rtools](http://stat545.com/packages01_system-prep.html#windows-system-prep)
+
+* **Xcode** Mac users Open terminal and type the following command `xcode-select --install`
+
 -->
-</div>
-<div id="week-2-installing-packages-from-github" class="section level2">
-<h2>Week 2: Installing packages from GitHub</h2>
-<p>Windows people: You will need to install <a href="https://cran.r-project.org/bin/windows/Rtools/history.html">Rtools</a>.</p>
-<p>Run this code to confirm that you can install packages from GitHub:</p>
-<pre class="r"><code>devtools::install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
-<p>To install from an internal GitHub server, like the NWFSC GitHub, use this. Note for the NWFSC GitHub, you need to be on the network since this is an internal (not public) server. Again, replace the dummy variables with the real values.</p>
-<pre class="r"><code>devtools::install_github(&quot;&lt;github account&gt;/repo name&quot;, host=&quot;&lt;url of the server&gt;&quot;)</code></pre>
-</div>
-<div id="optional-packages-with-c-code" class="section level2">
-<h2>(Optional) Packages with C++ code</h2>
-<p>We will not be doing this, but often you will want to install packages with C++ code. To do that, you will need Rtools (Windows) or Xcode (Mac)</p>
-<ul>
-<li><p><strong>Rtools</strong> Windows users <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> also so you can build packages with C++ code if needed. See comments here about changing path. <a href="http://stat545.com/packages01_system-prep.html#windows-system-prep">Rtools</a></p></li>
-<li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>
-</ul>
 </div>
 </div>
 

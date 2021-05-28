@@ -192,19 +192,9 @@ Now add a note about those changes to your history and push to GitHub.
 
 **On the RStudio Cloud**
 
-0. Tell RStudio Cloud you want use Git. Open your project then Click Tools > Global Options > Git/SVN (left nav) and check 'Enable version control for RStudio projects'
-![Tools tab is on your project page](images/RStudio-Cloud-Tools.png){25%}
-1. Click the Terminal tab in the lower left panel or click the blue cog below the Git tab in the upper right panel.
-![Terminal location](images/RStudio-Cloud-Terminal.png){25%}
-2. Type in this with your info
-```
-git config --global user.email "<your email>"
-
-git config --global user.name "<your name>"
-```
-3. Click the Git tab.
-4. Click Commit.
-5. Click Push, It will ask for your your GitHub user name and password. Hopefully you only have to do this once. *Note: you may get an email from GitHub complaining about accessing GitHub via password. Ignore but accessing GitHub from RStudio may stop working in the future.*
+1. Click the Git tab.
+2. Click Commit.
+4. Click Push, the first time you do this, it will ask for your your GitHub user name and password. Hopefully you only have to do this once. *Note: you may get an email from GitHub complaining about accessing GitHub via password. Ignore but accessing GitHub from RStudio may stop working in the future.*
 
 ### Make some changes and look at the history
 
