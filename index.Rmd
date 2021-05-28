@@ -14,9 +14,16 @@ These short sessions (45min to 1hr) will be focused on tools and practices for N
 
 Before the workshops, go to [Set-up](set-up.html) for instructions. Unless you will only be listening, you'll need a [GitHub](https://github.com/) account. To actively participate in the activities, you'll want either R, RStudio and GitHub Desktop installed on your computer or you can use [RStudio Cloud](https://rstudio.cloud/). If you do the latter, you don't need to install any software.
 
+## Video and GitHub Organization links for the sessions
+
+Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you the WebEx links and link to the GitHub Classroom. It is the same link for each session.
+
 ## Topics
 
-* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub
+* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub. The session video will be posted June 2nd. Here are some shorter videos of the instructions.
+    * Connecting GitHub Desktop to your GitHub account. [Video](https://youtu.be/AiRrSwQte5k)
+    * Making a repo on GitHub and getting that into RStudio and GitHub Desktop [Video]()
+    * Connecting Git and RStudio. You can use Git inside RStudio (I do sometimes) but for 25% of people there is much suffering going this route while the set-up using GitHub Desktop is fast and easy for most people. Here are the instructions if you want to go that route. [Notes](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git), [Tutorial](https://happygitwithr.com/install-intro.html), [Video overview of the steps](https://youtu.be/2QJQ6pNroVM).
 
 * Week 2. More Git/GitHub/GitLab. How to use issues, releases and project boards to be more efficient either working alone or in a team.
 
