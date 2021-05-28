@@ -15,7 +15,7 @@ navbar:
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
-  - text: Workflow 2020 website
+  - text: 2020 website
     icon: fa-clock
     href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
   - text: More resources
