@@ -9,6 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}

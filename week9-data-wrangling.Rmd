@@ -9,6 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
 ```
 
 This week I will give a brief introduction to piping and data wrangling with tidyr and tidyverse verbs. If you want to learn more, there are many resources on the web.  I like [this course book](https://dcl-wrangle.stanford.edu/) as a beginning, [this course](https://cengel.github.io/R-data-wrangling/) goes into more depth, and [R for Data Science](https://r4ds.had.co.nz/) has much more.
