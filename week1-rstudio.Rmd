@@ -192,6 +192,8 @@ Now add a note about those changes to your history and push to GitHub.
 
 **On the RStudio Cloud**
 
+Make sure you have RStudio Cloud [set up to use Git](set-up.html#Git_in_RStudio_Cloud).
+
 1. Click the Git tab.
 2. Click Commit.
 4. Click Push, the first time you do this, it will ask for your your GitHub user name and password. Hopefully you only have to do this once. *Note: you may get an email from GitHub complaining about accessing GitHub via password. Ignore but accessing GitHub from RStudio may stop working in the future.*

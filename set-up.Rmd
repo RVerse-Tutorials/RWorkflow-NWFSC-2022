@@ -11,8 +11,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Set-up
-
 Everything you'll be using is free. You will need a GitHub (free) account. Sign up here [GitHub](https://github.com/).
 
 To follow along with the material on your own computer, install the following:
