@@ -100,6 +100,7 @@ One tip is to **not** save your `.Rdata` (your environment) when your are done f
 * History tab
 * Help tab (index at bottom)
 * Help > Markdown quick reference
+* Tools > addins Use with the stylr and spelling package
 
 ## More exercises
 
@@ -146,11 +147,13 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
 2. Click add Readme.md and add .gitignore (type R to get the R .gitignore)
 3. Copy the url of your new repo
 
+<!--
 **GitHub Classroom**
 
 1. Click here for assignment #1 (don't click if you have already done this): https://classroom.github.com/a/dBZRHuJY
 2. Click here to see your repo: https://github.com/RWorkflow-Workshop-2021
 3. Copy the url of YOUR new repo url
+-->
 
 ### Add the new repo to RStudio
 
@@ -168,6 +171,7 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
 3. In your project, click the Terminal tab. Type
     ```
     git config --global user.email "you@email.com"
+    
     git config --global user.name "your name"
     ```
     I think you only do this once.
@@ -183,17 +187,19 @@ Now add a note about those changes to your history and push to GitHub.
 **On the RStudio desktop**
 
 3. Switch to GitHub Desktop.
-4. Click the changes that you want to commit (do all). And click `Commit`. Add a comment: first line is subject, newline, description (options).
+4. Click the changes that you want to commit. And click `Commit`. Add a comment: first line is subject, newline, description (options).
 5. Click the Green up arrow to Push to GitHub.
 
 **On the RStudio Cloud**
 
-You need to tell Git your GitHub user name and password the first time you push a change.
-
-1. Click the Terminal tab in the lower left panel (R Studio Cloud) or click the blue cog below the Git tab in the upper right panel (R Studio Desktop).
+0. Tell RStudio Cloud you want use Git. Open your project then Click Tools > Global Options > Git/SVN (left nav) and check 'Enable version control for RStudio projects'
+![Tools tab is on your project page](images/RStudio-Cloud-Tools.png){25%}
+1. Click the Terminal tab in the lower left panel or click the blue cog below the Git tab in the upper right panel.
+![Terminal location](images/RStudio-Cloud-Terminal.png){25%}
 2. Type in this with your info
 ```
 git config --global user.email "<your email>"
+
 git config --global user.name "<your name>"
 ```
 3. Click the Git tab.
@@ -229,7 +235,7 @@ Don't Fork. That would be if you are contributing to their repo. If you just wan
 
 1. Avoid making changes on GitHub  directly.
 
-  * Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the advanced Git material in the Archive tab above to learn how to deal with merge conflicts.
+  * Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? Go to the advanced Git material in the Archive tab above to learn how to deal with merge conflicts.
   
 2. Do not use branches (wait till you are friends with Git).
 

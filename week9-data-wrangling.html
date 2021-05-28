@@ -13,7 +13,7 @@
 
 <title>Week 9: Intro to piping and tidyverse data wrangling</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -305,12 +305,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -360,6 +360,13 @@ div.tocify {
   </a>
 </li>
 <li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
+    <span class="fas fa-clock"></span>
+     
+    Workflow 2020 website
+  </a>
+</li>
+<li>
   <a href="links.html">
     <span class="fas fa-info"></span>
      
@@ -376,7 +383,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="search.html">Search</a>
+  <a href="https://github.com/orgs/RWorkflow-Workshop-2021">Org</a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -439,9 +446,9 @@ a %&gt;% fun(a^2)</code></pre>
 <p>This kind of mistake is so easy to make. You want say, <code>rnorm(n=a)</code>, and accidentally write that in your pipe.</p>
 <pre class="r"><code>a &lt;- 3
 a %&gt;% rnorm(n=a)</code></pre>
-<pre><code>## [1] 4.244112 3.552068 2.269599</code></pre>
+<pre><code>## [1] 4.682373 5.245378 3.431636</code></pre>
 <pre class="r"><code>a %&gt;% rnorm()</code></pre>
-<pre><code>## [1] 0.0163732 1.0161440 0.7731860</code></pre>
+<pre><code>## [1] -1.893283 -1.447802 -1.417677</code></pre>
 <p>The left flows into the first function spot, UNLESS you specified that and then it flows to the second or third or whatever is “open”.</p>
 <ul>
 <li><p>You can spend hours trying to solve your piping issue when you could immediately write down code using intermediate values.</p></li>
@@ -461,16 +468,16 @@ x %&gt;% transform(new = mpg^cyl) %&gt;% select(mpg, new)
 <pre class="r"><code>df &lt;- data.frame(mpg=runif(10, 10, 30))
 fun(df, cyl=0.5)</code></pre>
 <pre><code>##         mpg      new
-## 1  14.28271 3.779247
-## 2  20.15747 4.489707
-## 3  28.35464 5.324907
-## 4  13.92477 3.731591
-## 5  25.52151 5.051882
-## 6  17.29356 4.158553
-## 7  29.25302 5.408606
-## 8  17.79730 4.218684
-## 9  29.38325 5.420632
-## 10 12.02884 3.468261</code></pre>
+## 1  12.55884 3.543845
+## 2  12.48529 3.533453
+## 3  24.03330 4.902377
+## 4  10.79689 3.285862
+## 5  24.23508 4.922914
+## 6  24.97003 4.997002
+## 7  20.15025 4.488903
+## 8  21.49679 4.636463
+## 9  29.30445 5.413359
+## 10 11.01106 3.318291</code></pre>
 <p>Why, why? It didn’t complain but this is wrong!</p>
 <pre class="r"><code>fun(mtcars[1:5,], cyl=0.5)</code></pre>
 <pre><code>##                    mpg          new
@@ -661,16 +668,16 @@ fun(df, cyl=0.5)</code></pre>
 ## Volvo 142E          21.4   4  1  1    4    2</code></pre>
 <pre class="r"><code>df %&gt;% select(where(is.numeric))</code></pre>
 <pre><code>##         mpg
-## 1  14.28271
-## 2  20.15747
-## 3  28.35464
-## 4  13.92477
-## 5  25.52151
-## 6  17.29356
-## 7  29.25302
-## 8  17.79730
-## 9  29.38325
-## 10 12.02884</code></pre>
+## 1  12.55884
+## 2  12.48529
+## 3  24.03330
+## 4  10.79689
+## 5  24.23508
+## 6  24.97003
+## 7  20.15025
+## 8  21.49679
+## 9  29.30445
+## 10 11.01106</code></pre>
 </div>
 <div id="filter" class="section level3">
 <h3><code>filter()</code></h3>
@@ -808,26 +815,26 @@ df %&gt;% summarize_all(mean)</code></pre>
                   pop=paste0(rep(&quot;r&quot;,8),rep(1:2,each=4)),
                   Week1=rnorm(8), Week2=rnorm(8), Week3=rnorm(8), Week4=rnorm(8))
 head(df2)</code></pre>
-<pre><code>##   id pop      Week1      Week2      Week3       Week4
-## 1 s1  r1 -0.9416076  2.3579838 -1.2180299 -0.09496734
-## 2 s2  r1 -0.1960642  1.5519986  0.2310045  0.11660148
-## 3 s1  r1 -1.0213187 -1.9929804  2.4956030  1.73203856
-## 4 s2  r1 -1.6089545  1.2042802  0.2567949 -0.51494139
-## 5 s1  r2 -1.1179266 -0.2501800  1.8545290 -1.57472421
-## 6 s2  r2  0.8699906  0.9205889  0.2586725 -0.58205110</code></pre>
+<pre><code>##   id pop       Week1      Week2      Week3      Week4
+## 1 s1  r1  0.05488223 -0.3058673  1.2331810 -0.2590167
+## 2 s2  r1 -1.62049622  1.9834196 -1.5256993  0.6581021
+## 3 s1  r1 -0.34140733  2.0664399  0.7942609 -1.3082840
+## 4 s2  r1 -0.08236069 -2.1452083  0.2221935 -0.4185374
+## 5 s1  r2  0.36827517  0.8224679 -0.2132522  0.1630187
+## 6 s2  r2  0.10585323  1.3613683 -1.1561481  1.2095704</code></pre>
 <p>The <code>group_by()</code> function allows you to do more complicated things. Take the mean by pop.</p>
 <pre class="r"><code>df2 %&gt;% group_by(pop) %&gt;% summarize_all(mean)</code></pre>
 <pre><code>## Warning in mean.default(id): argument is not numeric or logical: returning NA
 
 ## Warning in mean.default(id): argument is not numeric or logical: returning NA</code></pre>
 <pre><code>## # A tibble: 2 x 6
-##   pop      id  Week1 Week2 Week3  Week4
-## * &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1 r1       NA -0.942 0.780 0.441  0.310
-## 2 r2       NA -0.210 0.932 0.539 -0.378</code></pre>
+##   pop      id  Week1 Week2  Week3  Week4
+##   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 r1       NA -0.497 0.400  0.181 -0.332
+## 2 r2       NA -0.340 0.745 -0.555  0.463</code></pre>
 <pre class="r"><code>apply(df2[df2$pop==&quot;r1&quot;,3:6],2,mean)</code></pre>
 <pre><code>##      Week1      Week2      Week3      Week4 
-## -0.9419863  0.7803206  0.4413431  0.3096828</code></pre>
+## -0.4973455  0.3996960  0.1809840 -0.3319340</code></pre>
 <p>Take the mean for all weeks by pop and id. Notice that I have to specify columns for <code>summarize()</code>.</p>
 <pre class="r"><code>df2 %&gt;% 
   group_by(pop, id) %&gt;%
@@ -835,12 +842,12 @@ head(df2)</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;pop&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 4 x 3
 ## # Groups:   pop [2]
-##   pop   id      mean
-##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1 r1    s1     0.165
-## 2 r1    s2     0.130
-## 3 r2    s1    -0.111
-## 4 r2    s2     0.553</code></pre>
+##   pop   id       mean
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 r1    s1     0.242 
+## 2 r1    s2    -0.366 
+## 3 r2    s1     0.184 
+## 4 r2    s2    -0.0271</code></pre>
 </div>
 <div id="combine-group-and-select" class="section level2">
 <h2>Combine group and select</h2>
@@ -850,10 +857,10 @@ head(df2)</code></pre>
   summarize_all(mean)</code></pre>
 <pre><code>## Adding missing grouping variables: `pop`</code></pre>
 <pre><code>## # A tibble: 2 x 5
-##   pop    Week1 Week2 Week3  Week4
-## * &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1 r1    -0.942 0.780 0.441  0.310
-## 2 r2    -0.210 0.932 0.539 -0.378</code></pre>
+##   pop    Week1 Week2  Week3  Week4
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 r1    -0.497 0.400  0.181 -0.332
+## 2 r2    -0.340 0.745 -0.555  0.463</code></pre>
 <p>Select based on name.</p>
 <pre class="r"><code>df2 %&gt;% group_by(pop) %&gt;% 
   select(ends_with(&quot;2&quot;)) %&gt;% 
@@ -861,9 +868,9 @@ head(df2)</code></pre>
 <pre><code>## Adding missing grouping variables: `pop`</code></pre>
 <pre><code>## # A tibble: 2 x 2
 ##   pop   Week2
-## * &lt;chr&gt; &lt;dbl&gt;
-## 1 r1    0.780
-## 2 r2    0.932</code></pre>
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 r1    0.400
+## 2 r2    0.745</code></pre>
 </div>
 <div id="mutate" class="section level2">
 <h2><code>mutate()</code></h2>
@@ -911,10 +918,10 @@ mtcars %&gt;%
   summarize(lmm=fun(mpg,hp))</code></pre>
 <pre><code>## # A tibble: 6 x 2
 ##    carb   lmm
-## * &lt;dbl&gt; &lt;dbl&gt;
+##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1  162.
 ## 2     2  252.
-## 3     3  180.
+## 3     3  180 
 ## 4     4  379.
 ## 5     6  175 
 ## 6     8  335</code></pre>

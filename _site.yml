@@ -15,6 +15,9 @@ navbar:
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
+  - text: Workflow 2020 website
+    icon: fa-clock
+    href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
   - text: More resources
     icon: fa-info
     href: links.html
@@ -22,8 +25,8 @@ navbar:
   - text: Repo
     icon: fab fa-github
     href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2021
-  - text: Search
-    href: search.html
+  - text: Org
+    href: https://github.com/orgs/RWorkflow-Workshop-2021
    
 output:
   html_document:

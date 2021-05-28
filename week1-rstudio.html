@@ -13,7 +13,7 @@
 
 <title>Week 1. Introduction to workflow using RStudio and Git</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -307,12 +307,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -362,6 +362,13 @@ div.tocify {
   </a>
 </li>
 <li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020">
+    <span class="fas fa-clock"></span>
+     
+    Workflow 2020 website
+  </a>
+</li>
+<li>
   <a href="links.html">
     <span class="fas fa-info"></span>
      
@@ -378,7 +385,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="search.html">Search</a>
+  <a href="https://github.com/orgs/RWorkflow-Workshop-2021">Org</a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -503,6 +510,7 @@ par(opar)</code></pre>
 <li>History tab</li>
 <li>Help tab (index at bottom)</li>
 <li>Help &gt; Markdown quick reference</li>
+<li>Tools &gt; addins Use with the stylr and spelling package</li>
 </ul>
 </div>
 <div id="more-exercises" class="section level2">
@@ -554,12 +562,13 @@ par(opar)</code></pre>
 <li>Click add Readme.md and add .gitignore (type R to get the R .gitignore)</li>
 <li>Copy the url of your new repo</li>
 </ol>
-<p><strong>GitHub Classroom</strong></p>
-<ol style="list-style-type: decimal">
-<li>Click here for assignment #1 (don’t click if you have already done this): <a href="https://classroom.github.com/a/dBZRHuJY" class="uri">https://classroom.github.com/a/dBZRHuJY</a></li>
-<li>Click here to see your repo: <a href="https://github.com/RWorkflow-Workshop-2021" class="uri">https://github.com/RWorkflow-Workshop-2021</a></li>
-<li>Copy the url of YOUR new repo url</li>
-</ol>
+<!--
+**GitHub Classroom**
+
+1. Click here for assignment #1 (don't click if you have already done this): https://classroom.github.com/a/dBZRHuJY
+2. Click here to see your repo: https://github.com/RWorkflow-Workshop-2021
+3. Copy the url of YOUR new repo url
+-->
 </div>
 <div id="add-the-new-repo-to-rstudio" class="section level3">
 <h3>Add the new repo to RStudio</h3>
@@ -572,10 +581,11 @@ par(opar)</code></pre>
 </ol>
 <p><strong>On the RStudio Cloud</strong></p>
 <ol style="list-style-type: decimal">
-<li>Click ‘Your Workspace’ on left</li>
-<li>Click New Project &gt; New Project from Git Repository. Paste in the url.</li>
-<li>In your project, click the Terminal tab. Type <code>git config --global user.email "you@email.com"     git config --global user.name "your name"</code> I think you only do this once.</li>
-<li>Done!</li>
+<li><p>Click ‘Your Workspace’ on left</p></li>
+<li><p>Click New Project &gt; New Project from Git Repository. Paste in the url.</p></li>
+<li><p>In your project, click the Terminal tab. Type ``` git config –global user.email “<a href="mailto:you@email.com" class="email">you@email.com</a>”</p>
+<p>git config –global user.name “your name” ``` I think you only do this once.</p></li>
+<li><p>Done!</p></li>
 </ol>
 </div>
 <div id="make-some-changes-and-commit" class="section level3">
@@ -588,16 +598,17 @@ par(opar)</code></pre>
 <p><strong>On the RStudio desktop</strong></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Switch to GitHub Desktop.</li>
-<li>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</li>
+<li>Click the changes that you want to commit. And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</li>
 <li>Click the Green up arrow to Push to GitHub.</li>
 </ol>
 <p><strong>On the RStudio Cloud</strong></p>
-<p>You need to tell Git your GitHub user name and password the first time you push a change.</p>
-<ol style="list-style-type: decimal">
-<li>Click the Terminal tab in the lower left panel (R Studio Cloud) or click the blue cog below the Git tab in the upper right panel (R Studio Desktop).</li>
+<ol start="0" style="list-style-type: decimal">
+<li>Tell RStudio Cloud you want use Git. Open your project then Click Tools &gt; Global Options &gt; Git/SVN (left nav) and check ‘Enable version control for RStudio projects’ <img src="images/RStudio-Cloud-Tools.png" alt="Tools tab is on your project page" />{25%}</li>
+<li>Click the Terminal tab in the lower left panel or click the blue cog below the Git tab in the upper right panel. <img src="images/RStudio-Cloud-Terminal.png" alt="Terminal location" />{25%}</li>
 <li>Type in this with your info</li>
 </ol>
 <pre><code>git config --global user.email &quot;&lt;your email&gt;&quot;
+
 git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Click the Git tab.</li>
@@ -642,7 +653,7 @@ git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 <li>Avoid making changes on GitHub directly.</li>
 </ol>
 <ul>
-<li>Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, go to the advanced Git material in the Archive tab above to learn how to deal with merge conflicts.</li>
+<li>Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? Go to the advanced Git material in the Archive tab above to learn how to deal with merge conflicts.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Do not use branches (wait till you are friends with Git).</p></li>
