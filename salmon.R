@@ -1,6 +1,6 @@
 #Set your working directory
-setwd('~/GitHub/RWorkflow-NWFSC-2020/')
-#setwd('C:Users/Eli.Holmes/Workshops/RWorkflow-NWFSC-2020/')
+setwd('~/Documents/GitHub/RWorkflow-NWFSC-2021/')
+#setwd('C:Users/Eli.Holmes/Workshops/RWorkflow-NWFSC-2021/')
 
 #-----Read in salmon data----
 fil <- "data/salmon.csv"

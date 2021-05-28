@@ -16,7 +16,7 @@ Before the workshops, go to [Set-up](set-up.html) for instructions. Unless you w
 
 ## Topics
 
-* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub/GitLab 
+* [Week 1](week1-rstudio.html). Introduction to workflow using RStudio and Git/GitHub
 
 * Week 2. More Git/GitHub/GitLab. How to use issues, releases and project boards to be more efficient either working alone or in a team.
 
