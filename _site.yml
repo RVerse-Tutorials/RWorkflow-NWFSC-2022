@@ -11,7 +11,7 @@ navbar:
     menu:
     - text: Week 1 RStudio + Version Control
       icon: fa-cogs
-      href: week1-rstudio.html
+      href: week1.html
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
