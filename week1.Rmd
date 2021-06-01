@@ -21,4 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
     * Getting a repo on GitHub into RStudio Cloud. Watch the first part of the previous video if you need to see how to create a repo on GitHub. [Video](https://youtu.be/w6fivjMGZVo)
     * Connecting Git and RStudio Desktop. You can use Git inside RStudio (I do sometimes) but for 25 to 50% of people there is much suffering going this route while the set-up using GitHub Desktop is fast and easy.  [Notes](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git), [Tutorial](https://happygitwithr.com/install-intro.html), [Video overview of the steps](https://youtu.be/2QJQ6pNroVM).
     * Real workflow. This is a quick video of me working on the workshop webpage via RStudio. [Videl](https://youtu.be/8aHOrfoQICk)
-
+    * Connecting GitHub and GitKraken. I downloaded [GitKraken](https://www.gitkraken.com/) and this shows how to connect it to GitHub. [Video](https://youtu.be/_plekl0y8Rk)
+    * Clone a repo from GitHub using GitKraken. [Video](https://youtu.be/axXwBEc4g0U)
+    * Open a repo on your computer using GitKraken. [Video](https://youtu.be/sBxya8FjK7w)
+    
