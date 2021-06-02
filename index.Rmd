@@ -20,7 +20,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 ## Topics
 
-* [Week 1](week1.html) Introduction to workflow using RStudio and Git/GitHub. The session video will be posted June 2nd but the link has my lectures notes and short videos of the skills. [Lecture notes and video](week1.html)
+* [Week 1](week1.html) Introduction to workflow using RStudio and Git/GitHub. The session video will be posted June 2nd but the link has my lectures notes and short videos of the skills. [Lecture notes and video link](week1.html)
 
 * Week 2. More Git/GitHub/GitLab. How to use issues, releases and project boards to be more efficient either working alone or in a team.
 
