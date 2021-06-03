@@ -277,7 +277,7 @@ Why? It looks nicer and conveys the needed info to users. This is for GitHub. I 
 
 ### **pkgdown**
 
-I am actually switching to [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) for my landing pages for more developed products.
+I am actually switching to [pkgdown](https://pkgdown.r-lib.org/articles/pkgdown.html) for my landing pages for more developed products. Here is an example of pkgdown being used in the Fisheries Intergrated Toolbox [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/index.html).
 
 ### Making releases
 

@@ -34,7 +34,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * Week 7. Clustering tools in R
 
-* Week 8. Introduction to benchmarking and debugging your code
+* Week 8. Creating landing pages using RStudio/R Markdown/GitHub and R packages landing pages using pkgdown.
 
 
 <!--

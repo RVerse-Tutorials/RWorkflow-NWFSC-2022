@@ -1,0 +1,94 @@
+---
+title: "Week 2. More Git"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
+
+
+# Branches
+
+A copy of your repository that you can work on without changing the main repository. Once you are done, you incorporate the changes into the main repository. **Most of you should steer clear of branches** because they are incompatible with our common workflows!! I maintain 40+ repositories and use branches on only 2 of them.
+
+When your switch to a branch, i.e. `checkout` a branch, it changes the files in that folder to the state of the branch. The info to restore the files to the main branch state is in the `.git` folder.
+
+Let's say you have a repository (folder) for all your common functions, `common` and in that a folder called `R` with a function `basicplot.R`. You decide to create a branch to play around with some other options for `basicplot.R`. So you switch branches to branch `temp` and make some sandboxy changes to `basicplot.R`. Those changes are in your file system, not on some magic separate 'branch'. Any call to like this in your other code is reading that sandboxy `basicplot.R`.
+
+* `source(`~/Documents/common/R/basicplot.R`)
+
+Let's say you have you hard drive on an automatic backup system. It will backup the branch `temp`. The main branch info is in the `.git` folder but this will be pretty confusing if someone looks at the files.
+
+For this reason, switching branches will reset the time stamp of `basicplot.R` when you switch back to the main branch.
+
+## Working with branches
+
+Why use branches? 
+
+* Let's say you have a function that works fine and you want to make a bunch of changes but don't want to break the old version. Work on a branch to sandbox your changes and merge back into master when done.
+* Let's say you want to try out an idea or new feature. Develop on a branch and merge into master when done.
+* Let's say you want to do a major revamp of your code, but you are worried that you might want to abandon this. Work on a branch. If you decide against the change, you just delete the branch.
+* Will your work break code? Make a branch.
+
+When you start, keep it simple. Use a branch for one file or two. Work on the file and then merge it back into master. Then get rid of the branch. It's not necessary to use branches but if you do a lot of coding or work on packages, then getting comfortable with them will help you out.
+
+### Make a new branch in RStudio
+
+Click the new branch icon and give your branch a name. Give it an INFORMATIVE name. `tmp`, `foo` are bad. `hello_branch` is good as it tells what this branch is for (working on the `hello.R` file).
+![new branch](images/new-branch.png)
+
+Now that you have a branch, it is critical that you pay attention to the Git tab and know where you are working. RStudio will remember what branch you are on.
+
+Let's make a change to `hello.R` on hello_branch, put to GitHub and see what the two branches look like.
+
+### Pull request, merge our branch with master
+
+There are a few ways to do a pull request. 
+
+* You can do it from GitHub Desktop. It'll just redirect you to GitHub however.
+
+* You can do it from GitHub.
+
+![pull request from GitHub](images/pull-request-github.png)
+
+    Once you have created the pull requests, you'll see that the pull request tab (in GitHub) shows that there is a request.
+
+* Click on the request. You have 2 options.
+    * Close it (don't merge). If you close it, you can reopen it later.
+    * Merge the request.
+    
+* You have done the merge on GitHub. You still need to do a Pull to get that change into your local repository.
+    
+* Delete your branch when you are done with it. All the history is saved. There is no reason keep branches that you are done with.
+
+### Branch actions from GitHub Desktop
+
+The branch toolbar in GitHub Desktop let's keep branches up to date with each other.
+
+Let's say I am working on `littleforecast.R` in the master branch while working on `hello.R` in the hello_branch. I want to keep these synced up.
+
+* **Compare** I can compare branches and look at the differences.
+* **Merge into current branch** I can merge changes from one branch into another branch. It will let you see the changes before you decide to merge.
+* **Update from master** This immediately merge changes from master into your branch. It won't ask you. So you need to revert the change if you don't like it.
+
+This is similar to a pull request but happening locally. When a team is working on different branches, they would use pull requests.
+
+### Branch actions from GitHub
+
+You can do the same actions from GitHub.
+
