@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This [video](https://youtu.be/4TUZEQdaZGM) shows a basic workflow using branches.
 
-In the lecture, I cautioned against using branches when you are beginning with Git. Even through I work on many Git repositories and develop public R packages, it is rare that I need to use branches. Normal scientific workflow does not involve branches and for most scientists, and IMO most scientists won't gain anything by adding that to your workflow. The GitHub features I talked about so far are things that are already part of our workflow (taking notes on what we are doing, saving copies along the way, reviewing work with collaborators, sharing our work) but Git/GitHub allows us to do it more efficiently and better.
+In the lecture, I cautioned against using branches when you are beginning with Git. Even through I work on many Git repositories and develop public R packages, it is rare that I need to use branches. Normal scientific workflow does not involve branches and IMO most scientists won't gain much by adding that to their workflow. The GitHub features I talked about so far are things that are already part of our workflow (taking notes on what we are doing, saving copies along the way, reviewing work with collaborators, sharing our work) but Git/GitHub allows us to do it more efficiently, better and faster.
 
 I do use branches regularly with certain R package projects and when I use them, it is in very specific ways
 
@@ -42,13 +42,12 @@ But usually other features of GitHub are sufficient and more appropriate.
    * Using Releases to create the stable version and using the main as the development.
    * Releases also effectively create an 'archive' version of the repository at key states: draft 1, draft 2, etc.
    * Using issues to create concrete small chunks of work.
-   * Using a fork of a repository and a pull request (if I am collaborating on something)
+   * Using a fork of a repository and a pull request (if I am collaborating with someone)
    
-Before you start working with branches make sure think through some of the aspects of how they affect your file system and how that will affect your current workflow and the workflow of any users of your repository.
+That said, they are definitely helpful in certain situations. Before you start working with branches make sure think through some of the aspects of how they affect your file system and how that will affect your current workflow and the workflow of any users of your repository.
     
    * Switching branches changes your file system state. A branch is not a separate 'space'. When you switch branches, you tell Git to change your files to reflect the branch state. Do you have any code that 'sources' the folder/repository with branches? For example, do you have any code in other folders with lines like `source("Documents/myrepowithbranches/plot.R")`. Do you do things like that in practice? That kind of workflow will cause problems because they will reference the branch state when you switch branches. Your file system state will remain in the branch state until you switch back to the main branch.
-   * File time stamps. [Video](https://youtu.be/_WXHp6uRmAI) Because switching branches on your computer causes Git to change your file system to that branch state, the file time stamps of any files that differ between branches will update to the time that you switched branches.
-   * It is possible to change the file time stamps back to the last modification time. This [video](https://youtu.be/WbP9B_jfxPU) shows how.
+   * File time stamps. [Video](https://youtu.be/_WXHp6uRmAI) Because switching branches on your computer causes Git to change your file system to that branch state, the file time stamps of any files that differ between branches will update to the time that you switched branches. It is possible to make Git change the file time stamps back to the last modification time. This [video](https://youtu.be/WbP9B_jfxPU) shows how.
    * Are you working in a team with users who are not Git-saavy but will need to access branches? If you only have them access branches on GitHub, then it is probably fine but if you will have them switches branches using RStudio or GitHub Desktop on their computer then they are likely to get confused when they accidentally leave their file system in a branch state.
    * Pulling and Pushing work a bit differently when you have branches. When you do a pull from GitHub, you will get the changes across all branches, but when you push, the push is branch specific. So if you have changes on the main branch and another branch, you need to push from main then switch to the other branch(es) and push from them too. [Video](https://youtu.be/uJxk2l5PEKQ)
    * Are you using a cloud backup system that syncs across devices/computers? Dropbox and iCloud are examples. Syncing repositories outside of Git (so not using the push/pull system) can definitely cause problems especially if you are using branches. If your backup system is linear, one computer being backed up, with no syncing across devices then you are probably ok.
