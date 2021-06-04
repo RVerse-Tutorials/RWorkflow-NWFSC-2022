@@ -1,0 +1,17 @@
+---
+title: "Week 2"
+output:
+  html_document:
+    toc: false
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Key Git/GitHub Skills
+
+* [The lecture notes](week2-moregit.html)
+
