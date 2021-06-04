@@ -711,7 +711,22 @@ Robust
 <li>Open <code>post-checkout.sample</code>. Save as <code>post-checkout</code></li>
 <li>Copy this into that file</li>
 </ol>
-<pre><code>git ls-tree -r --name-only HEAD &gt; .git_ls-tree_r_name-only_HEAD
+<pre><code>#!/bin/sh -e
+
+OS=${OS:-`uname`}
+
+if [ &quot;$OS&quot; = &#39;Darwin&#39; ]; then
+  get_touch_time() {
+    date -r ${unixtime} &#39;+%Y%m%d%H%M.%S&#39;
+  }
+else
+  get_touch_time() {
+    date -d @${unixtime} &#39;+%Y%m%d%H%M.%S&#39;
+  }
+fi
+
+# all git files
+git ls-tree -r --name-only HEAD &gt; .git_ls-tree_r_name-only_HEAD
 
 # modified git files
 git diff --name-only &gt; .git_diff_name-only
@@ -720,7 +735,7 @@ git diff --name-only &gt; .git_diff_name-only
 comm -2 -3 .git_ls-tree_r_name-only_HEAD .git_diff_name-only | while read filename; do
   unixtime=$(git log -1 --format=&quot;%at&quot; -- &quot;${filename}&quot;)
   touchtime=$(get_touch_time)
-  echo ${touchtime} &quot;${filename}&quot;
+  # echo ${touchtime} &quot;${filename}&quot;
   touch -t ${touchtime} &quot;${filename}&quot;
 done
 

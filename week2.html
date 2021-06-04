@@ -330,6 +330,69 @@ $(document).ready(function () {
 <li><a href="week2-moregit.html">The lecture notes</a></li>
 </ul>
 </div>
+<div id="questions-from-the-post-lecture-chat" class="section level2">
+<h2>Questions from the post-lecture chat</h2>
+<ul>
+<li>Difference between forking and cloning
+<ul>
+<li>This <a href="https://youtu.be/uuti1G48yhY">video</a> shows how to fork and some of the features you’ll see on GitHub when you do that.</li>
+<li>This <a href="https://youtu.be/0-5LiuxNnbM">video</a> shows how to clone the same repository and the difference between what you see when you fork.</li>
+</ul></li>
+<li>Discussion of alternatives to using branches as repository ‘versions’. <a href="https://youtu.be/t2YqepzFSYc">Video</a>. Branches are not mean for versioning your repository. They are for breaking off a copy to work on something and then merging those changes back in (or deleting). Branches might have a long life, e.g. a Development branch, but are not for ‘versioning’ (2020 data, 2021 data). It is tempting to use them that way, but there are better alternatives, e.g. releases, separate repositories, separate folders. A unique exception might be if you have a branch that say uses C++ versus pure R but they are otherwise the same code base.</li>
+</ul>
+</div>
+<div id="branches" class="section level2">
+<h2>Branches</h2>
+<p>This <a href="https://youtu.be/4TUZEQdaZGM">video</a> shows a basic workflow using branches.</p>
+<p>In the lecture, I cautioned against using branches when you are beginning with Git. Even through I work on many Git repositories and develop public R packages, it is rare that I need to use branches. When I use them, it is in very specific ways</p>
+<pre><code>* work on a file or set of files, finish work, merge into main, delete the branch. 
+* sandbox an idea. If I am really uncertain about an idea/change or about to make a major revamp, I&#39;ll make a branch while working on the idea, once I decide yeah/neah, I merge the branch into main and delete the branch.
+* When working on a branch, I stay off other branches and my main branch as much as possible.
+* I create a timeline (mentally) for a branch before I create it. The branch has a concrete purpose and end state (i.e. when xyz plot functions are done or when documentation for xyz files is done). Vague branches like &#39;development&#39; are too amorphous.</code></pre>
+<p>Usually other features of GitHub are sufficient and more appropriate.</p>
+<pre><code>* Using the revert feature to get rid of a change that I made.
+* Using Releases to create the stable version and using the main as the development.
+* Releases also effectively create an &#39;archive&#39; version of the repository at key states: draft 1, draft 2, etc.
+* Using issues to create concrete small chunks of work.</code></pre>
+<p>Before you start working with branches make sure think through some of the aspects of how they affect your file system and how that will affect your current workflow and the workflow of any users of your repository.</p>
+<ul>
+<li><p>Switching branches changes your file system state. A branch is not a separate ‘space’. When you switch branches, you tell Git to change your files to reflect the branch state. Do you have any code that ‘sources’ the folder/repository with branches? For example, do you have any code in other folders with lines like <code>source("Documents/myrepowithbranches/plot.R")</code>. Do you do things like that in practice? That kind of workflow will cause problems because they will reference the branch state when you switch branches. Your file system state will remain in the branch state until you switch back to the main branch. * File time stamps. <a href="https://youtu.be/_WXHp6uRmAI">Video</a> Because switching branches on your computer causes Git to change your file system to that branch state, the file time stamps of any files that differ between branches will update to the time that you switched branches. * It is possible to change the file time stamps back to the last modification time. This <a href="https://youtu.be/WbP9B_jfxPU">video</a> shows how. * Are you working in a team with users who are not Git-saavy but will need to access branches? If you only have them access branches on GitHub, then it is probably fine but if you will have them switches branches using RStudio or GitHub Desktop on their computer then they are likely to get confused when they accidentally leave their file system in a branch state. * Pulling and Pushing work a bit differently when you have branches. When you do a pull from GitHub, you will get the changes across all branches, but when you push, the push is branch specific. So if you have changes on the main branch and another branch, you need to push from main then switch to the other branch(es) and push from them too. <a href="https://youtu.be/uJxk2l5PEKQ">Video</a> * Are you using a cloud backup system that syncs across devices/computers? Dropbox and iCloud are examples. Syncing repositories outside of Git (so not using the push/pull system) can definitely cause problems especially if you are using branches. If your backup system is linear, one computer being backed up, with no syncing across devices then you are probably ok.</p></li>
+<li><p>How to I clone just one branch? For this you will use Git from the command line. Open a terminal window, change to the directory where you keep repositories (e.g. <code>cd Documents/GitHub</code>). Then issue the command <code>git clone -b &lt;branchname&gt; --single-branch &lt;remote-repo-url&gt;</code></p>
+<p>You can add the name of the folder optionally at the end. So the command I issued in the video was</p>
+<pre><code>git clone -b test --single-branch https://github.com/eeholmes/Week2 Week2-test</code></pre>
+<p>Here’s a screen recording of this <a href="https://youtu.be/CNZh9L2qwCc">Video</a>.</p></li>
+</ul>
+<p>Here is the post-checkout code used in this <a href="https://youtu.be/WbP9B_jfxPU">video</a> to show you how to fix time stamps when you switch branches.</p>
+<pre><code>#!/bin/sh -e
+
+OS=${OS:-`uname`}
+
+if [ &quot;$OS&quot; = &#39;Darwin&#39; ]; then
+  get_touch_time() {
+    date -r ${unixtime} &#39;+%Y%m%d%H%M.%S&#39;
+  }
+else
+  get_touch_time() {
+    date -d @${unixtime} &#39;+%Y%m%d%H%M.%S&#39;
+  }
+fi
+
+# all git files
+git ls-tree -r --name-only HEAD &gt; .git_ls-tree_r_name-only_HEAD
+
+# modified git files
+git diff --name-only &gt; .git_diff_name-only
+
+# only restore files not modified
+comm -2 -3 .git_ls-tree_r_name-only_HEAD .git_diff_name-only | while read filename; do
+  unixtime=$(git log -1 --format=&quot;%at&quot; -- &quot;${filename}&quot;)
+  touchtime=$(get_touch_time)
+  echo ${touchtime} &quot;${filename}&quot;
+  touch -t ${touchtime} &quot;${filename}&quot;
+done
+
+rm .git_ls-tree_r_name-only_HEAD .git_diff_name-only</code></pre>
+</div>
 
 <hr>
 

@@ -295,7 +295,23 @@ To fix time stamps when you use `git checkout` (i.e. switch branches), you can u
 
 1. Open `post-checkout.sample`. Save as `post-checkout`
 2. Copy this into that file
+
 ```
+#!/bin/sh -e
+
+OS=${OS:-`uname`}
+
+if [ "$OS" = 'Darwin' ]; then
+  get_touch_time() {
+    date -r ${unixtime} '+%Y%m%d%H%M.%S'
+  }
+else
+  get_touch_time() {
+    date -d @${unixtime} '+%Y%m%d%H%M.%S'
+  }
+fi
+
+# all git files
 git ls-tree -r --name-only HEAD > .git_ls-tree_r_name-only_HEAD
 
 # modified git files
@@ -305,7 +321,7 @@ git diff --name-only > .git_diff_name-only
 comm -2 -3 .git_ls-tree_r_name-only_HEAD .git_diff_name-only | while read filename; do
   unixtime=$(git log -1 --format="%at" -- "${filename}")
   touchtime=$(get_touch_time)
-  echo ${touchtime} "${filename}"
+  # echo ${touchtime} "${filename}"
   touch -t ${touchtime} "${filename}"
 done
 
