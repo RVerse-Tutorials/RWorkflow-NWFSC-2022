@@ -12,6 +12,9 @@ navbar:
     - text: Week 1 RStudio + Version Control
       icon: fa-cogs
       href: week1.html
+    - text: Week 2 More Git/GitHub
+      icon: gab fa-github
+      href: week2.html
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
