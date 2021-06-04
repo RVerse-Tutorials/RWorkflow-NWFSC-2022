@@ -54,7 +54,7 @@ Tips to be aware of:
 
 Topics I won't cover:
 
-* **Branches**. Very few NMFS scientists need this and working with branches is a recipe for headaches for most. I will add a video to the Week 2 notes if you need/want to know this. I do use branches but only on 2-3 repositories from the 40 or so that I maintain. Also I need to show you how Git trashes all your time stamps when working with branches and what to do about that.
+* **Branches**. Very few NMFS scientists need this and working with branches is a recipe for headaches for most. I will add a video to the Week 2 notes if you need/want to know this. I do use branches but only on 2-3 repositories from the 40 or so that I maintain. 
 * Working with Git from the **command line**. For most of you, you have no need for this and this is just a good way to mess up your repository. The exception is a few unique cases where you do need to issue a Git command (like `git push` first time you need to give RStudio your GitHub login).
 * How to do a **pull requests**. I'll post a video. Most of you won't need this.
 
