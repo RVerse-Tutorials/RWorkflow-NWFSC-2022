@@ -24,4 +24,5 @@ knitr::opts_chunk$set(echo = TRUE)
     * Connecting GitHub and GitKraken. I downloaded [GitKraken](https://www.gitkraken.com/) and this shows how to connect it to GitHub. [Video](https://youtu.be/_plekl0y8Rk)
     * Clone a repo from GitHub using GitKraken. [Video](https://youtu.be/axXwBEc4g0U)
     * Open a repo on your computer using GitKraken. [Video](https://youtu.be/sBxya8FjK7w)
+* There was a question about how to get started organizing your code into projects when you have just a bunch of scripts. [This lecture](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/week2-coding.html) from 2020 discusses that. Skip the GitHub stuff at the start.
     

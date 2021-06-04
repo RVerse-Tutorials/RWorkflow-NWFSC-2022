@@ -20,7 +20,7 @@ navbar:
     href: https://rverse-tutorials.github.io/RWorkflow/
   - text: 2020 website
     icon: fa-clock
-    href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020
+    href: https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020
   - text: More resources
     icon: fa-info
     href: links.html
