@@ -24,7 +24,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [Week 2](week2.html). More Git skills. The 3 key Git skills. These 3 basic skills are all you need for 95% of your work with Git repositories. [The lecture notes and videos](week2.html)
 
-* Week 3. GitHub skills. We'll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I'll show you how I use organizations to organize my repositories and some of the nice 'landing page' features of GitHub.
+* Week 3. GitHub skills. We'll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I'll show you how I use organizations to organize my repositories and some of the nice 'landing page' features of GitHub. For those curious about GitHub Actions, I give you a short demo on that too.
 
 * Week 4. Rmarkdown for reports. Let's make a report that updates when our data change and post that to GitHub.
 

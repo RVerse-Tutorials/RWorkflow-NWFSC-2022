@@ -197,5 +197,17 @@ Another option is to have R Markdown save the figures, and use LaTeX:
 
 Automatic figures and table numbering for a paper or a report is a hassle with R Markdown. Here is my [solution](https://stackoverflow.com/a/47298632/10947238). The Journal Article repo uses this method.
 
+## Automatic updates
+
+First install the `usethis` R package. Then issue this command to set up your repository.
+
+```
+usethis::use_github_actions()
+```
+
+
+https://fromthebottomoftheheap.net/2020/04/30/rendering-your-readme-with-github-actions/
+
+
 
 

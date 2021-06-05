@@ -35,6 +35,7 @@ I do use branches regularly with certain R package projects and when I use them,
    * sandbox an idea. If I am really uncertain about an idea/change or about to make a major revamp, I'll make a branch while working on the idea, once I decide yeah/neah, I merge the branch into main and delete the branch.
    * When working on a branch, I stay off other branches and my main branch as much as possible.
    * I create a timeline (mentally) for a branch before I create it. The branch has a concrete purpose and end state (i.e. when xyz plot functions are done or when documentation for xyz files is done). Vague branches like 'development' are too amorphous.
+   * When I am using GitHub Pages, and need the `gh-pages` branch to serve that up.
     
 But usually other features of GitHub are sufficient and more appropriate.
 
