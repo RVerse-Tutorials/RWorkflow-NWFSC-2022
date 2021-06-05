@@ -22,19 +22,28 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [Week 1](week1.html) Introduction to workflow using RStudio and Git/GitHub. The session video will be posted June 2nd but the link has my lectures notes and short videos of the skills. [Lecture notes and video links](week1.html)
 
-* [Week 2](week2.html). More Git/GitHub/GitLab. The key Git skills plus how to use issues and releases on GitHub to be more efficient either working alone or in a team. [The lecture notes](week2-moregit.html)
+* [Week 2](week2.html). More Git skills. The 3 key Git skills. These 3 basic skills are all you need for 95% of your work with Git repositories. [The lecture notes and videos](week2.html)
 
-* Week 3. Rmarkdown for reports. Let's make a report that updates when our data change.
+* Week 3. GitHub skills. We'll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I'll show you how I use organizations to organize my repositories and some of the nice 'landing page' features of GitHub.
 
-* Week 4. Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
+* Week 4. Rmarkdown for reports. Let's make a report that updates when our data change and post that to GitHub.
 
-* Week 5. Making raster plots with the raster and tmap packages. Working with spatial data is a huge area. We are going to start gently by making raster plots and using the tmap package. You'll see how easy it easy to make maps of data on a grid.
+* Week 5. Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
 
-* Week 6. Creating a data R package. I show you how to make a basic data package that allows you to version and document your data.
+* Week 6. Creating a R package. I show you how to make a basic data package that allows you to version and document your data. The same info will apply to code R packages.
 
-* Week 7. Clustering tools in R
+* Week 7. Documentation for R packages using Roxygen.
 
 * Week 8. Creating landing pages using RStudio/R Markdown/GitHub and R packages landing pages using pkgdown.
+
+## Video only
+
+I will make videos of this material.
+
+* Handy clustering tools in R
+
+* Making raster plots with the raster and tmap packages. Working with spatial data is a huge area. We are going to start gently by making raster plots and using the tmap package. You'll see how easy it easy to make maps of data on a grid.
+
 
 
 <!--
