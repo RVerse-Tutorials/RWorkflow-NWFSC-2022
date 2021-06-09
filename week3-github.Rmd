@@ -24,7 +24,7 @@ kable(dt, col.names=NULL) %>%
 
 # Overview
 
-This week I will the basic GitHub skills
+This week I will the basic GitHub skills plus a few more Git skills.
 
 A few more Git skills
 
@@ -42,30 +42,20 @@ Tips to be aware of:
 * How to issue a Git command in a terminal window.
 * Where the Git info is hidden in a repository.
 
+Getting started collaborating using Git and GitHub
+
+* How to set things up in your shared repository.
+
 Topics I won't cover:
 
 * Working with Git from the **command line**. For most of you, you have no need for this and this is just a good way to mess up your repository. The exception is a few unique cases where you do need to issue a Git command (like `git push` first time you need to give RStudio your GitHub login).
 * How to do a **pull requests**. I'll post a video. Most of you won't need this.
 
-# Examples
+# Some comments based on last week
 
-## College Scorecard
 
-[College Scorecard](https://collegescorecard.ed.gov/)
 
-This is not a bespoke website. It is a Jekyll site being generated from GitHub. All the data driving the College Scorescard is available on the GitHub repository maintained by the Department of Education.
 
-## NMFS Fish Tools
-
-[https://nmfs-fish-tools.github.io/](https://nmfs-fish-tools.github.io/)
-
-Here is an example of one of the tools: [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/index.html)
-
-Again this is not a bespoke website. In this case, r4MASS is an R package and a tool called pkgdown was used to create this site which GitHub shows as webpage in your browser.
-
-# Schematic
-
-![](images/git-intro-2.jpg)
 
 # Key GitHub skills
 

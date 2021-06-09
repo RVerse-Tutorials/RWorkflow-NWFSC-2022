@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Key Git/GitHub Skills
 
 * [The lecture notes](week2-moregit.html)
+* [Lecture video](https://youtu.be/TiII9trsArk)
 
 ## Questions from the post-lecture chat
 
@@ -51,7 +52,9 @@ That said, they are definitely helpful in certain situations. Before you start w
    * File time stamps. [Video](https://youtu.be/_WXHp6uRmAI) Because switching branches on your computer causes Git to change your file system to that branch state, the file time stamps of any files that differ between branches will update to the time that you switched branches. It is possible to make Git change the file time stamps back to the last modification time. This [video](https://youtu.be/WbP9B_jfxPU) shows how.
    * Are you working in a team with users who are not Git-saavy but will need to access branches? If you only have them access branches on GitHub, then it is probably fine but if you will have them switches branches using RStudio or GitHub Desktop on their computer then they are likely to get confused when they accidentally leave their file system in a branch state.
    * Pulling and Pushing work a bit differently when you have branches. When you do a pull from GitHub, you will get the changes across all branches, but when you push, the push is branch specific. So if you have changes on the main branch and another branch, you need to push from main then switch to the other branch(es) and push from them too. [Video](https://youtu.be/uJxk2l5PEKQ)
-   * Are you using a cloud backup system that syncs across devices/computers? Dropbox and iCloud are examples. Syncing repositories outside of Git (so not using the push/pull system) can definitely cause problems especially if you are using branches. If your backup system is linear, one computer being backed up, with no syncing across devices then you are probably ok.
+   * Are you using a cloud backup system that syncs across devices/computers? Dropbox and iCloud are examples. Syncing repositories outside of Git (so not using the push/pull system) can definitely cause problems especially if you are using branches. If your backup system is linear, one computer being backed up, with no syncing across devices, and you are not working off-line then you are probably ok.
+       1. Why are cloud backup/syncing systems so problematic? The problem happens when you work offline and you use branches. Remember that changing branches, changes your file system. Let's say you are on branch A on computer 1 (home) and working off-line. Then on computer 2 (office), your create branch B and do a bunch of work. You leave that computer on branch B. Then you go back home, get on computer 1 and get online. That computer syncs to the cloud and wipes out all the work on computer 2 because it is in branch A or it'll create a slew of 'Conflicted Copies'. These sort of problems happen all the time, when you do automatic syncing across computers.
+       2. Backups of repositories with branches can be confusing even if you don't have syncing across devices. Let's say you switch to branch B and delete most of your files. You stay in branch B and that is what is backed up. The info to get back the files (in the main branch A) are still there but in the hidden .git folder. If you go and look at the back-up, you will just see branch B with all the files gone. You have to know that it is a Git repository and use Git to find our what branch the repository is on. But it might not be obvious to you that this folder is a Git repository.
 
 * How to I clone just one branch? For this you will use Git from the command line. Open a terminal window, change to the directory where you keep repositories (e.g. `cd Documents/GitHub`). Then issue the command 
     ```

@@ -26,7 +26,7 @@ kable(dt, col.names=NULL) %>%
 
 This week I will the basic Git/GitHub skills (and info) that are all most NMFS scientists will need.
 
-Respository skills (using GitHub Desktop)
+Repository skills (using GitHub Desktop)
 
 * Skill 1: Clone one of your GitHub repos onto your computer
 * Skill 2: Tell RStudio about a local repository
