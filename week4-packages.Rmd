@@ -227,7 +227,7 @@ git push -u origin master
 Note, I don't actually do it this way because I often mess things up and it's too many steps to remember. I create a new project with that URL (New Project > Version Control > URL) and then manually copy my files into the new repository folder.
 
 
-## Installing from GitHub/Lab
+## Installing from GitHub
 
 The code you will use to install from GitHub is:
 
@@ -327,9 +327,9 @@ How long does it take?
 Profile your code to find out what are the time hogs.
 
 ```{r}
-a=matrix(0,10,100)
+a <- matrix(0,10,100)
 Rprof(tmp<-tempfile())
-for(i in 1:10000){ b=t(a)%*%a }
+for(i in 1:10000){ b <- t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self
 Rprof(NULL) #stop profiling
