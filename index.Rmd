@@ -4,7 +4,7 @@ title: "Practical R Workflow for Scientists June-July 2021"
 
 <img style="float: right;" src="images/tools-logo-transparent.png" width=30%>
 
-These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be **faster, more efficient and organized** in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on). Two sessions will duplicates of the [2020](https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2020) sessions, but the rest are new topics or cover the same topics in different ways.
+These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be **faster, more efficient and organized** in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on).
 
 **Target audience**: You already code in R, maybe use RStudio too, but want to learn some tips about being more efficient from a seasoned R programmer who does the kind of coding and work that you do.
 
@@ -22,15 +22,15 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [Week 1](week1.html) Introduction to workflow using RStudio and Git/GitHub. The session video will be posted June 2nd but the link has my lectures notes and short videos of the skills. [Lecture notes and video links](week1.html)
 
-* [Week 2](week2.html). More Git skills. The 3 key Git skills. These 3 basic skills are all you need for 95% of your work with Git repositories. [The lecture notes and videos](week2.html)
+* [Week 2](week2.html). More Git skills. The 3 key Git skills. These 3 basic skills are all you need for 95% of your work with Git repositories. [The lecture notes, discussion and videos](week2.html)
 
-* Week 3. GitHub skills. We'll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I'll show you how I use organizations to organize my repositories and some of the nice 'landing page' features of GitHub. For those curious about GitHub Actions, I give you a short demo on that too.
+* [Week 3](week3.html). GitHub skills. We'll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I'll show you how I use organizations to organize my repositories and some of the nice 'landing page' features of GitHub. For those curious about GitHub Actions, I give you a short demo on that too. [The lecture notes and discussion](week3.html)
 
 * Week 4. Rmarkdown for reports. Let's make a report that updates when our data change and post that to GitHub.
 
 * Week 5. Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
 
-* Week 6. Creating a R package. I show you how to make a basic data package that allows you to version and document your data. The same info will apply to code R packages.
+* Week 6. Creating a R package. I show you how to make basic data and code packages that allows you to version and document your data and code.
 
 * Week 7. Documentation for R packages using Roxygen.
 

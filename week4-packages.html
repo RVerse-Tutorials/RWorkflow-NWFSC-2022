@@ -611,8 +611,8 @@ git push -u origin master</code></pre>
 <p>Note, I don’t actually do it this way because I often mess things up and it’s too many steps to remember. I create a new project with that URL (New Project &gt; Version Control &gt; URL) and then manually copy my files into the new repository folder.</p>
 </div>
 </div>
-<div id="installing-from-githublab" class="section level2">
-<h2>Installing from GitHub/Lab</h2>
+<div id="installing-from-github" class="section level2">
+<h2>Installing from GitHub</h2>
 <p>The code you will use to install from GitHub is:</p>
 <pre><code>library(devtools)
 install_github(&quot;youraccount/MyNewPackage&quot;)</code></pre>
@@ -677,16 +677,16 @@ undebug(function)</code></pre>
 <p><strong>Profiling</strong></p>
 <p><code>Rprof()</code> and <code>summaryRprof()</code></p>
 <p>Profile your code to find out what are the time hogs.</p>
-<pre class="r"><code>a=matrix(0,10,100)
+<pre class="r"><code>a &lt;- matrix(0,10,100)
 Rprof(tmp&lt;-tempfile())
-for(i in 1:10000){ b=t(a)%*%a }
+for(i in 1:10000){ b &lt;- t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
-<pre><code>##                   self.time self.pct total.time total.pct
-## &quot;%*%&quot;                  0.50    86.21       0.50     86.21
-## &quot;t.default&quot;            0.04     6.90       0.04      6.90
-## &quot;t&quot;                    0.02     3.45       0.06     10.34
-## &quot;lazyLoadDBfetch&quot;      0.02     3.45       0.02      3.45</code></pre>
+<pre><code>##              self.time self.pct total.time total.pct
+## &quot;%*%&quot;             0.50    86.21       0.50     86.21
+## &quot;t.default&quot;       0.04     6.90       0.04      6.90
+## &quot;t&quot;               0.02     3.45       0.06     10.34
+## &quot;as.integer&quot;      0.02     3.45       0.02      3.45</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
@@ -696,7 +696,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 16 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 20 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week4-packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.</p>
 <pre class="r"><code>library(magrittr)
