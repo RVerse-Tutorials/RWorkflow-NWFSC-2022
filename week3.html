@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -222,6 +225,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -229,6 +301,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -339,8 +421,9 @@ $(document).ready(function () {
 </div>
 <div id="session-questions-and-comments" class="section level2">
 <h2>Session questions and comments</h2>
-<div id="i-would-like-to-organize-my-repositories-into-organizations.-how-do-i-move-my-repos-to-my-new-organization." class="section level3">
-<h3>I would like to organize my repositories into organizations. How do I move my repos to my new organization.</h3>
+<div id="migrating-repos" class="section level3">
+<h3>Migrating repos</h3>
+<p><strong>I would like to organize my repositories into organizations. How do I move my repos to my new organization.</strong></p>
 <p>There is a migrate button. GitHub does all the work for you.</p>
 <ul>
 <li>Open the repo you want to migrate.</li>
@@ -350,36 +433,43 @@ $(document).ready(function () {
 <li>Once the transfer is done, go into Settings for the repo and adjust the membership access as needed. You can add individuals (using their GitHub address) or add teams.</li>
 </ul>
 </div>
-<div id="what-is-the-difference-between-issues-and-discussions" class="section level3">
-<h3>What is the difference between issues and discussions</h3>
+<div id="issues-vs-discussions" class="section level3">
+<h3>Issues vs discussions</h3>
+<p><strong>What is the difference between issues and discussions</strong></p>
 <p>Discussions happen within an organization and are not specific to a repository. Issues are specific to a particular repository and have features like assigning tasks to specific people and assigning labels.</p>
 </div>
-<div id="my-team-is-using-issues-across-a-variety-of-organizations-and-repositories.-how-do-i-find-all-the-issues-assigned-to-me." class="section level3">
-<h3>My team is using issues across a variety of organizations and repositories. How do I find all the issues assigned to me.</h3>
+<div id="find-my-issues" class="section level3">
+<h3>Find my issues</h3>
+<p><strong>My team is using issues across a variety of organizations and repositories. How do I find all the issues assigned to me.</strong></p>
 <ul>
 <li>Log into GitHub</li>
 <li>Go to <a href="https://github.com/issues/assigned" class="uri">https://github.com/issues/assigned</a> and you’ll see all the issues assigned to you.</li>
 </ul>
 </div>
-<div id="how-do-you-decide-whether-to-use-a-github-pages-landing-page" class="section level3">
-<h3>How do you decide whether to use a GitHub Pages landing page?</h3>
-<p>Anything that is for someone other than me has a landing page. This gives someone a readable entry to the repository with instructions for how to use the repository. I always put a link to the landing page in the repo description. Then it appears on the right side of my repo files and is easy to find.</p>
-<p>Here are some videos showing how to make a few different simple landing pages from your Readme file or from an RMarkdown file in a docs folder.</p>
+<div id="github-pages" class="section level3">
+<h3>GitHub Pages</h3>
 <ul>
-<li><a href="https://youtu.be/HIAvNi-4TkU">Super simple</a> - just your <code>Readme.md</code> file</li>
-<li><a href="https://youtu.be/gNVcAnds-Ys">Use a theme</a> - still just your <code>Readme.md</code> file but with a GitHub generated “skin”. My <a href="https://nwfsc-timeseries.github.io/MARSS/">MARSS</a> landing page is generated like this.</li>
-<li><a href="https://youtu.be/fA5BeCaX1eo">User an RMarkdown file</a> - from <code>index.Rmd</code> in a <code>docs</code> folder. This allows you to combine text and figures generated from R. Here is a real example from one of my colleagues <a href="https://mdscheuerell.github.io/ASSESSOR/">ASSESSOR</a>. It was generated from a single <code>index.Rmd</code> file just like in the video.</li>
+<li>How do you decide whether to use a GitHub Pages landing page?</li>
+</ul>
+<p>Anything that is for someone other than me has a landing page. This gives someone a readable entry to the repository with instructions for how to use the repository. I always put a link to the landing page in the repo description. Then it appears on the right side of my repo files and is easy to find.</p>
+<ul>
+<li><p>Here are some videos showing how to make a few different simple landing pages from your Readme file or from an RMarkdown file in a docs folder.</p></li>
+<li><p><a href="https://youtu.be/HIAvNi-4TkU">Super simple</a> - just your <code>Readme.md</code> file</p></li>
+<li><p><a href="https://youtu.be/gNVcAnds-Ys">Use a theme</a> - still just your <code>Readme.md</code> file but with a GitHub generated “skin”. My <a href="https://nwfsc-timeseries.github.io/MARSS/">MARSS</a> landing page is generated like this.</p></li>
+<li><p><a href="https://youtu.be/fA5BeCaX1eo">User an RMarkdown file</a> - from <code>index.Rmd</code> in a <code>docs</code> folder. This allows you to combine text and figures generated from R. Here is a real example from one of my colleagues <a href="https://mdscheuerell.github.io/ASSESSOR/">ASSESSOR</a>. It was generated from a single <code>index.Rmd</code> file just like in the video.</p></li>
 </ul>
 <p>Now that you see how landing pages are often generated, if you see a landing page that you like, go to their <code>Readme.md</code> file and see how they wrote it or look for a <code>docs</code> folder and their <code>index.Rmd</code> file.</p>
-<p>If the repo is just for myself, then I will often only have a Readme file. I write this for my ‘future’ self to help me quickly get back into the project at a later date. What I have here is really project dependent. Some things I usually have in the Readme for personal repos are</p>
 <ul>
-<li>If it is an R package, the code to install. I just want to copy and paste this. Saves me time later.</li>
-<li>Basic organization of the repo if it is anything unique or bespoke.</li>
-<li>Where I am at in the project and what the status was when I stopped.</li>
+<li>Do you use a landing page for a personal-only repo?</li>
 </ul>
+<p>If the repo is just for myself, then I will often only have a Readme file. I write this for my ‘future’ self to help me quickly get back into the project at a later date. What I have here is really project dependent. Some things I usually have in the Readme for personal repos are</p>
+<pre><code>* If it is an R package, the code to install. I just want to copy and paste this. Saves me time later.
+* Basic organization of the repo if it is anything unique or bespoke.
+* Where I am at in the project and what the status was when I stopped.</code></pre>
 </div>
-<div id="i-want-to-link-rstudio-to-git-but-i-am-getting-an-error-that-rstudio-cannot-find-git" class="section level3">
-<h3>I want to link RStudio to Git, but I am getting an error that RStudio cannot find Git</h3>
+<div id="rstudio-and-git" class="section level3">
+<h3>RStudio and Git</h3>
+<p><strong>I want to link RStudio to Git, but I am getting an error that RStudio cannot find Git</strong></p>
 <p>Open RStudio. Go to Tools &gt; Global Options… &gt; Git/SVN . The paste in the location of the git.exe file.</p>
 <p>On a Mac? location is <code>usr/bin/git</code></p>
 <p>Finding that location if you are on a PC can be onerous. First make sure you can see hidden folders. In a finder window, you click View and make sure the hidden files checkbox is checked. Then here are some ideas of where to find <code>git.exe</code>. Note you might not see <code>.exe</code> . You might only see <code>git</code>. It depends if you have <code>show file endings</code> selected in preferences.</p>
@@ -391,17 +481,22 @@ $(document).ready(function () {
 <p>If you installed Git for Windows locally, look here</p>
 <pre><code>C:\Users\UserName\AppData\Local\Programs\Git\bin\git.exe</code></pre>
 </div>
-<div id="can-i-see-when-someone-is-working-on-a-file" class="section level3">
-<h3>Can I see when someone is working on a file?</h3>
+<div id="file-in-use" class="section level3">
+<h3>File in use</h3>
+<p><strong>Can I see when someone is working on a file?</strong></p>
 <p>No. You can see when they commit a change and push the file up to GitHub. Click the history link (circled in red belew) on GitHub to see what’s been happening.</p>
 <p><img src="images/history-github.png" /></p>
 </div>
-<div id="how-i-prevent-two-people-from-working-on-a-file-at-the-same-time" class="section level3">
-<h3>How I prevent two people from working on a file at the same time?</h3>
+<div id="preventing-conflicts" class="section level3">
+<h3>Preventing conflicts</h3>
+<p><strong>How I prevent two people from working on a file at the same time?</strong></p>
 <p>In my experience, this is actually less of a problem than you might imagine in small teams. Generally we are dividing up our tasks and work on different parts of a repository. For example, someone is working on data and another on functions to make plots with data and another on prose. Also you can work on the same file as long as you are working on different parts of the file. So if I add documentation to the top and you change code lower down, those changes are not in conflict.</p>
 <p>Before embarking on the full-scale solution to this which is using forks (or branches) and pull-requests, I’d try just using old fashioned team communication if your team is small. So message (or email) your 1-3 collaborators when doing something that will conflict. “Hey all, I’m doing that repo reorganization that we talked about. I’ll let you know when I’m done. If you can stay out of the repo until then, that’d be great.”</p>
-<p>If that doesn’t work or you’d rather review changes before that are committed to the repository, then use a forking and pull-request workflow. I’d steer clear of branches unless you know that’s what you want to do. Forks don’t have the branch dangers that I’ve talked about in lecture.</p>
-<p><strong>Forking workflow</strong></p>
+<p>If that doesn’t work or you’d rather review changes before that are committed to the repository, then use a forking and pull-request workflow (below). I’d steer clear of branches unless you know that’s what you want to do. Forks don’t have the branch dangers that I’ve talked about in lecture.</p>
+</div>
+</div>
+<div id="forking-workflow" class="section level2">
+<h2>Forking workflow</h2>
 <p><a href="https://youtu.be/q3L6Z0zvo_4">Video showing this workflow</a></p>
 <p>Let’s say Org A is where you have a repo that you are working on.</p>
 <ul>
@@ -416,7 +511,6 @@ $(document).ready(function () {
 </ul>
 <p><img src="images/fetchupstream.png" /></p>
 </div>
-</div>
 
 <hr>
 
@@ -425,6 +519,8 @@ $(document).ready(function () {
 </div>
 
 
+</div>
+</div>
 
 </div>
 
@@ -457,6 +553,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
