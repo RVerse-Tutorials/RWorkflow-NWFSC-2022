@@ -2,7 +2,7 @@
 title: "Week 2"
 output:
   html_document:
-    toc: false
+    toc: true
     include:
       after_body: footer.html
 ---
@@ -69,6 +69,12 @@ That said, they are definitely helpful in certain situations. Before you start w
     
     Here's a screen recording of this [Video](https://youtu.be/CNZh9L2qwCc).
 
+
+## Fix timestamps
+
+* Look in the .git folder (it's hidden so unhide files) for the hooks folder
+* Click on one of the xxx.sample files and duplicate (click on the checkbox next to file, click More, click 'Copy to'). *This is important* duplicate like this so that you retain the special file permissions.
+* Save the file as 'post-checkout' with no file ending. Get rid of the code in the copy and copy in the code below.
 
 Here is the post-checkout code used in this [video](https://youtu.be/WbP9B_jfxPU) to show you how to fix time stamps when you switch branches.
 ```

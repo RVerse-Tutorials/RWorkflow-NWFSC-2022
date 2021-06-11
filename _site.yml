@@ -13,8 +13,11 @@ navbar:
       icon: fa-cogs
       href: week1.html
     - text: Week 2 More Git/GitHub
-      icon: gab fa-github
+      icon: fa-gitalt
       href: week2.html
+    - text: Week 3 GitHub
+      icon: fab fa-github
+      href: week3.html
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
