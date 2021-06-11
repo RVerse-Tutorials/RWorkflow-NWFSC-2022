@@ -1,2 +1,1 @@
-# delete me
-plot(1:10)
+delete me
