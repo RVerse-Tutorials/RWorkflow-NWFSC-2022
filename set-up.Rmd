@@ -47,7 +47,29 @@ git config --global user.name "<your name>"
 
 ## Git from RStudio
 
-If you want to use Git within RStudio, see the [2020 Set-up instructions](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git). I won't be covering that in 2021.
+Pushing to GitHub from RStudio is a hassle because there are many steps to getting the credentials (passwords) properly communicated. These steps are operating system dependent and can especially be hard if you don't have admin access on a PC.
+
+However, you can clone repositories from GitHub and commit your changes (without pushing to GitHub) without having to do credentials. All you need to do is tell RStudio where  `git.exe` is on your computer. If your repo is public, you can even pull without RStudio knowing your GitHub password.
+
+### Telling RStudio where `git.exe` is
+
+1. Open RStudio
+2. Click Tools > Global Options
+3. Click Git/SVN on the left
+4. Click the little check box at the top
+5. In the Git executible box, paste in the location of `git.exe`
+* On a Mac? It is at `/usr/bin/git` Just paste that in.
+* On a PC? Look (by opening a finder window) in the following places. Try the GitHubDesktop one first.
+    * C:/Program Files/Git/bin/git.exe
+    * C:/Users/your.username/AppData/Local/Programs/Git/bin/git.exe
+    * C:/Users/your.username/AppData/Local/GitHubDesktop/app-2.8.3/resources/app/git/cmd/git.exe
+6. Restart R. Session > Restart R...
+
+### Telling RStudio your GitHub username and password
+
+You only need this if you will be pushing to GitHub or have a private repo and are pulling. Everything else works fine without your password.
+
+See the [2020 Set-up instructions](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git) and go to the part about setting up your credentials. I won't be covering this in 2021. 
 
 <!--
 

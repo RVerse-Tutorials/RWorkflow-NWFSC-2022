@@ -444,7 +444,34 @@ git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 </div>
 <div id="git-from-rstudio" class="section level2">
 <h2>Git from RStudio</h2>
-<p>If you want to use Git within RStudio, see the <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git">2020 Set-up instructions</a>. I won’t be covering that in 2021.</p>
+<p>Pushing to GitHub from RStudio is a hassle because there are many steps to getting the credentials (passwords) properly communicated. These steps are operating system dependent and can especially be hard if you don’t have admin access on a PC.</p>
+<p>However, you can clone repositories from GitHub and commit your changes (without pushing to GitHub) without having to do credentials. All you need to do is tell RStudio where <code>git.exe</code> is on your computer. If your repo is public, you can even pull without RStudio knowing your GitHub password.</p>
+<div id="telling-rstudio-where-git.exe-is" class="section level3">
+<h3>Telling RStudio where <code>git.exe</code> is</h3>
+<ol style="list-style-type: decimal">
+<li>Open RStudio</li>
+<li>Click Tools &gt; Global Options</li>
+<li>Click Git/SVN on the left</li>
+<li>Click the little check box at the top</li>
+<li>In the Git executible box, paste in the location of <code>git.exe</code></li>
+</ol>
+<ul>
+<li>On a Mac? It is at <code>/usr/bin/git</code> Just paste that in.</li>
+<li>On a PC? Look (by opening a finder window) in the following places. Try the GitHubDesktop one first.
+<ul>
+<li>C:/Program Files/Git/bin/git.exe</li>
+<li>C:/Users/your.username/AppData/Local/Programs/Git/bin/git.exe</li>
+<li>C:/Users/your.username/AppData/Local/GitHubDesktop/app-2.8.3/resources/app/git/cmd/git.exe</li>
+</ul></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Restart R. Session &gt; Restart R…</li>
+</ol>
+</div>
+<div id="telling-rstudio-your-github-username-and-password" class="section level3">
+<h3>Telling RStudio your GitHub username and password</h3>
+<p>You only need this if you will be pushing to GitHub or have a private repo and are pulling. Everything else works fine without your password.</p>
+<p>See the <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git">2020 Set-up instructions</a> and go to the part about setting up your credentials. I won’t be covering this in 2021.</p>
 <!--
 
 ### NWFSC staff
@@ -485,6 +512,7 @@ We will not be doing this, but often you will want to install packages with C++ 
 * **Xcode** Mac users Open terminal and type the following command `xcode-select --install`
 
 -->
+</div>
 </div>
 
 <hr>
