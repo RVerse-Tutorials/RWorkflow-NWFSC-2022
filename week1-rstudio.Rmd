@@ -242,7 +242,7 @@ However, you can clone repositories from GitHub and commit your changes (without
 * On a PC? Look (by opening a finder window) in the following places. Try the GitHubDesktop one first.
     * C:/Program Files/Git/bin/git.exe
     * C:/Users/your.username/AppData/Local/Programs/Git/bin/git.exe
-    * C:\Users\eli.holmes\AppData\Local\GitHubDesktop\app-2.8.3\resources\app\git\cmd/git.exe
+    * C:/Users/your.username/AppData/Local/GitHubDesktop/app-2.8.3/resources/app/git/cmd/git.exe
 6. Restart R. Session > Restart R...
     
 *Note AppData is a hidden folder, so click View and then click the 'hidden files' checkbox if you don't see it in your Users folder.*
