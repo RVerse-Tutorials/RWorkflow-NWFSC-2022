@@ -1,0 +1,22 @@
+---
+title: "Week 4"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## RMarkdown Reports
+
+* [The lecture notes](week4-rmarkdown.html)
+
+## More example videos
+
+* [Creating the R Markdown folder](https://youtu.be/6vTzzlTxn0o) A short clip of me making the folder and publishing it to GitHub.
+

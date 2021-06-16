@@ -13,7 +13,7 @@
 
 <title>Week 1. Introduction to workflow using RStudio and Git</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -331,14 +331,14 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="set-up.html">
-    <span class="fas fa-clone"></span>
+    <span class="fa fa-clone"></span>
      
     Set-up
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-calendar"></span>
+    <span class="fa fa-calendar"></span>
      
     Workshop Weekly Notes
      
@@ -347,14 +347,14 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="week1.html">
-        <span class="fas fa-cogs"></span>
+        <span class="fa fa-cogs"></span>
          
         Week 1 RStudio + Version Control
       </a>
     </li>
     <li>
       <a href="week2.html">
-        <span class="fas fa-gitalt"></span>
+        <span class="fa fa-gitalt"></span>
          
         Week 2 More Git/GitHub
       </a>
@@ -370,21 +370,21 @@ div.tocify {
 </li>
 <li>
   <a href="https://rverse-tutorials.github.io/RWorkflow/">
-    <span class="fas fa-folder"></span>
+    <span class="fa fa-folder"></span>
      
     Archive
   </a>
 </li>
 <li>
   <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020">
-    <span class="fas fa-clock"></span>
+    <span class="fa fa-clock"></span>
      
     2020 website
   </a>
 </li>
 <li>
   <a href="links.html">
-    <span class="fas fa-info"></span>
+    <span class="fa fa-info"></span>
      
     More resources
   </a>
@@ -568,7 +568,7 @@ par(opar)</code></pre>
 <div id="lets-get-started" class="section level2">
 <h2>Let’s get started!</h2>
 <p>I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub is a source of much misery, and in my experience <strong>creating the repo on GitHub first</strong> eliminates the problems. This really important for the first time you connect your computer to the remote repository server (GitHub).</p>
-<div id="make-a-github-repo" class="section level3">
+<div id="clonerepo" class="section level3">
 <h3>Make a GitHub Repo</h3>
 <p><strong>New repo</strong></p>
 <ol style="list-style-type: decimal">
@@ -576,46 +576,37 @@ par(opar)</code></pre>
 <li>Click add Readme.md and add .gitignore (type R to get the R .gitignore)</li>
 <li>Copy the url of your new repo</li>
 </ol>
-<!--
-**GitHub Classroom**
-
-1. Click here for assignment #1 (don't click if you have already done this): https://classroom.github.com/a/dBZRHuJY
-2. Click here to see your repo: https://github.com/RWorkflow-Workshop-2021
-3. Copy the url of YOUR new repo url
--->
-</div>
-<div id="add-the-new-repo-to-rstudio" class="section level3">
-<h3>Add the new repo to RStudio</h3>
-<p><strong>On the desktop app</strong></p>
+<p><strong>Clone the GitHub repo to your computer</strong></p>
+<ol style="list-style-type: decimal">
+<li>Open GitHub Desktop</li>
+<li>Click File &gt; Clone Repository…</li>
+<li>In the popup windown, click the URL tab to the right and paste in the url from step 3 above.</li>
+<li>Double check that you have the right folder for the Local Path. I keep all my repositories in Documents/GitHub so they are easier to find. Click Clone.</li>
+</ol>
+<p><strong>Create an RStudio project from this new folder</strong></p>
 <ol style="list-style-type: decimal">
 <li>Open RStudio and click <code>New Project</code> (upper right, blue cube with R)</li>
-<li>Click New Project… &gt; Version Control &gt; Git and paste in the url. Give your project a name and make sure the directory is where you want the project.</li>
-<li>Open GitHub Desktop: File &gt; Add Local Repository.</li>
-<li>Done!</li>
+<li>Click New Project… &gt; Existing Directory</li>
+<li>Navigate to the folder you just cloned from above and click ‘Create Project’</li>
 </ol>
-<p><strong>On the RStudio Cloud</strong></p>
-<ol style="list-style-type: decimal">
-<li><p>Click ‘Your Workspace’ on left</p></li>
-<li><p>Click New Project &gt; New Project from Git Repository. Paste in the url.</p></li>
-<li><p>In your project, click the Terminal tab. Type ``` git config –global user.email “<a href="mailto:you@email.com" class="email">you@email.com</a>”</p>
-<p>git config –global user.name “your name” ``` I think you only do this once.</p></li>
-<li><p>Done!</p></li>
-</ol>
+<p>Now you are ready to make some changes, commit them and push up to GitHub.</p>
+<p>See these links if you want to do the cloning step from within <a href="#rstudiogit">RStudio Desktop</a> or <a href="#rstudiocloudgit">RStudio Cloud</a>.</p>
 </div>
 <div id="make-some-changes-and-commit" class="section level3">
 <h3>Make some changes and commit</h3>
+<p><strong>Make a change</strong></p>
 <ol style="list-style-type: decimal">
-<li>Add a file. File &gt; New File &gt; R Script</li>
+<li>In RStudio. Add a file. File &gt; New File &gt; R Script</li>
 <li>Type something and then save the file.</li>
 </ol>
-<p>Now add a note about those changes to your history and push to GitHub.</p>
-<p><strong>On the RStudio desktop</strong></p>
+<p><strong>Now add a note and push to GitHub</strong></p>
+<p>If you are doing this from your computer:</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Switch to GitHub Desktop.</li>
-<li>Click the changes that you want to commit. And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</li>
+<li>Click the changes that you want to commit (check the little checkbox next to the file). Add a comment: first line is subject, newline, description (options). And click <code>Commit</code>.</li>
 <li>Click the Green up arrow to Push to GitHub.</li>
 </ol>
-<p><strong>On the RStudio Cloud</strong></p>
+<p>If you are on RStudio Cloud:</p>
 <p>Make sure you have RStudio Cloud <a href="set-up.html#Git_in_RStudio_Cloud">set up to use Git</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Click the Git tab.</li>
@@ -627,12 +618,16 @@ par(opar)</code></pre>
 <h3>Make some changes and look at the history</h3>
 <ol style="list-style-type: decimal">
 <li>Repeat 1-4 a few times.</li>
-<li>Now look at the history. History in GitHub Desktop. The little clock-like icon in the RStudio Git tab.</li>
+<li>Now look at the history. Just click the History tab in GitHub Desktop.</li>
 <li>Push changes up the GitHub</li>
 </ol>
 </div>
 <div id="go-to-github-to-see-your-changes-there" class="section level3">
 <h3>Go to GitHub to see your changes there</h3>
+<ol style="list-style-type: decimal">
+<li>Go to your repo on GitHub</li>
+<li>Refresh the page and you should see your changes</li>
+</ol>
 </div>
 </div>
 <div id="using-git-to-track-personal-changes-wo-posting-to-remote-repo" class="section level2">
@@ -650,43 +645,68 @@ par(opar)</code></pre>
 <li>Copy its url.</li>
 <li>Open GitHub and go to your account. So for me, I would go to github.com/eeholmes because my account is eeholmes.</li>
 <li>If using GitHub, click the <code>+</code> in top right and click <code>import repository</code>. Paste in the url and give your repo a name.</li>
-<li>Open RStudio and click the project tab in the top right and select, <code>New Project</code>. Then select <code>Version Control</code> and paste in the url of <strong>your</strong> repository’s url. For example, <code>https://github.com/&lt;youraccount&gt;/Test</code> or <code>https://gitlab.com/&lt;youraccount&gt;/Test</code> or</li>
-<li>Add the new repo to GitHub Desktop. Open GitHub Desktop, select File&gt;Add Local Repository and navigate to the folder with the new repository.</li>
+<li>Now that you have the url of your own repo, the <a href="#clonerepo">steps</a> to clone it to your computer as the same as before.</li>
 </ol>
 </div>
 <div id="key-tips" class="section level2">
 <h2>Key tips</h2>
 <ol style="list-style-type: decimal">
-<li>Avoid making changes on GitHub directly.</li>
+<li><p>Avoid making changes on GitHub directly—until you are a bit more experienced. Why? Because you’re more likely to create merge conflicts. See the week 2 material for how to fix a merge conflict.</p></li>
+<li><p>Do not use branches (wait till you are more experienced with Git).</p></li>
+<li><p>Do not use Git at the command line. Wait until you are much more experienced (and even then you rarely have to go to the command line).</p></li>
+<li><p>If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don’t put your GitHub repos in those folders. Conflicted files are very likely if you ever work-offline.</p></li>
+<li><p>The Git info is in the hidden folder <code>.git</code>. If you need to get rid of the repository data (like history), delete that. Don’t copy that folder into another repo. The remote url is in <code>.git/config</code> if you need to check it.</p></li>
+</ol>
+</div>
+<div id="rstudiogit" class="section level2">
+<h2>Working the Git from RStudio on your desktop</h2>
+<p>Pushing/Pulling to GitHub from RStudio is a hassle because there are many steps to getting the credentials (passwords) properly communicated. These steps are operating systems dependent and can especially be a hassle if you don’t have admin access on a PC.</p>
+<p>However, you can clone repositories from GitHub and commit your changes (without pushing to GitHub) without having to do credentials. All you need to do is tell RStudio where <code>git.exe</code> is on your computer.</p>
+<div id="telling-rstudio-where-git.exe-is" class="section level3">
+<h3>Telling RStudio where <code>git.exe</code> is</h3>
+<ol style="list-style-type: decimal">
+<li>Open RStudio</li>
+<li>Click Tools &gt; Global Options</li>
+<li>Click Git/SVN on the left</li>
+<li>Click the little check box at the top</li>
+<li>In the Git executible box, paste in the location of <code>git.exe</code></li>
 </ol>
 <ul>
-<li>Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? Go to the advanced Git material in the Archive tab above to learn how to deal with merge conflicts.</li>
+<li>On a Mac? It is at <code>/usr/bin/git</code> Just paste that in.</li>
+<li>On a PC? Look (by opening a finder window) in the following places. Try the GitHubDesktop one first.
+<ul>
+<li>C:/Program Files/Git/bin/git.exe</li>
+<li>C:/Users/your.username/AppData/Local/Programs/Git/bin/git.exe</li>
+<li>C:.holmes.3/git.exe</li>
+</ul></li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Do not use branches (wait till you are friends with Git).</p></li>
-<li><p>Do not use Git at the command line.</p></li>
-<li><p>If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don’t put your GitHub repos in those folders.</p></li>
-<li><p>The Git info is in the hidden folder <code>.git</code>. If you need to get rid of the repository data (like history), delete that. Don’t copy that folder into another repo. The remote url is in <code>.git/config</code>.</p></li>
+<ol start="6" style="list-style-type: decimal">
+<li>Restart R. Session &gt; Restart R…</li>
 </ol>
+<p><em>Note AppData is a hidden folder, so click View and then click the ‘hidden files’ checkbox if you don’t see it in your Users folder.</em></p>
 </div>
-<div id="adding-your-local-repository" class="section level2">
-<h2>Adding your local repository</h2>
-<p>To use your local repository with GitHub Desktop, you need to add it.</p>
+<div id="add-the-new-repo-to-rstudio" class="section level3">
+<h3>Add the new repo to RStudio</h3>
 <ol style="list-style-type: decimal">
-<li>File &gt; Add Local Repository.</li>
+<li>Open RStudio and click <code>New Project</code> (upper right, blue cube with R)</li>
+<li>Click New Project… &gt; Version Control &gt; Git and paste in the url. Give your project a name and make sure the directory is where you want the project.</li>
+<li>Open GitHub Desktop: File &gt; Add Local Repository. Then navigate to the new folder so GitHub Desktop knows about the repo.</li>
+<li>Done!</li>
 </ol>
-<p>How does it know what the remote repository (GitHub/GitLab) is? It is stored in the .git information which was set when you cloned the repo from GitHub.</p>
 </div>
-<div id="adding-your-github-repository" class="section level2">
-<h2>Adding your GitHub repository</h2>
-<p>If you have a repository on GitHub that you want to add to your local computer:</p>
+</div>
+<div id="rstudiocloudgit" class="section level2">
+<h2>Clone a repo from GitHub into RStudio Cloud</h2>
 <ol style="list-style-type: decimal">
-<li>In GitHub Desktop, File &gt; Clone Repository.</li>
+<li><p>Open RStudio Cloud and click ‘Your Workspace’ on left</p></li>
+<li><p>Click New Project &gt; New Project from Git Repository. Paste in the url.</p></li>
+<li><p>In your project, click the Terminal tab (bottom left). Type ``` git config –global user.email “<a href="mailto:you@email.com" class="email">you@email.com</a>”</p>
+<p>git config –global user.name “your name” ``` I think you only do this once.</p></li>
+<li><p>Done! Now you can commit and push from the Git tab.</p></li>
 </ol>
-<p>You’ll see a window with 3 tabs. The first one is GitHub and shows you <strong>your own</strong> repositories. The 3rd one is URL and don’t use that until you know your way around Git quite well. Use the instructions I gave above on cloning to GitHub and then pulling in <strong>your own</strong> repo to your local computer.</p>
 </div>
-<div id="noaa-info" class="section level2">
-<h2>NOAA Info</h2>
+<div id="noaa-specific-info" class="section level2">
+<h2>NOAA Specific Info</h2>
 <p>For NOAA staff, GitHub can be used for publishing public projects: <a href="https://github.com/NOAAGov/NOAA-Affiliated-Projects">NOAA GitHub</a> and a NWFSC example <a href="https://nwfsc-timeseries.github.io/">NWFSC Timeseries</a>. NWFSC has a GitHub internal server if you want a repository server for your non-public projects and for internal collaboration.</p>
 </div>
 </div>
@@ -734,6 +754,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

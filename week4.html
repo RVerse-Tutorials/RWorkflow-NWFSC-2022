@@ -11,7 +11,7 @@
 
 
 
-<title>Notes on Git and RStudio</title>
+<title>Week 4</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -408,117 +408,22 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Notes on Git and RStudio</h1>
+<h1 class="title toc-ignore">Week 4</h1>
 
 </div>
 
 
-<div id="using-git-in-rstudio" class="section level1">
-<h1>Using Git in RStudio</h1>
-<p>You can read a whole book about Git and R <a href="http://happygitwithr.com/index.html">Happy Git with R</a>.</p>
-<p>Using Git in RStudio can be hard to set-up and hard to debug if you run into problems. If you want to use it, <a href="https://cfss.uchicago.edu/git07.html">read these instructions</a>.</p>
-<p>In particular, read the part about how to set-up so you don’t have to enter your username and password for every commmit.</p>
-<div id="creating-a-local-repository-and-then-getting-it-on-github-or-gitlab" class="section level2">
-<h2>Creating a local repository and then getting it on GitHub (or GitLab)</h2>
-<p>Note. Creating the repo locally first often leads to misery in my experience. Often safer to start by making a blank repo on GitHub or GitLab.</p>
-<div id="lets-create-a-local-repository" class="section level3">
-<h3>Let’s create a local repository</h3>
-<ol style="list-style-type: decimal">
-<li><p>Create a RStudio project (upper right with the blue cube with R). New project… &gt; New Directory &gt; New Project</p></li>
-<li><p>Check the box that says <code>Create a git repository</code>. You have made a local repository.</p></li>
-<li><p>Add a file. File &gt; New File &gt; R Script</p></li>
-<li><p>Type something and then save the file.</p></li>
-<li><p>Click the <code>Git</code> tab in the upper right.</p></li>
-<li><p>Click the changes that you want to commit (do all). And click <code>Commit</code>. Add a comment: first line is subject, newline, description (options).</p></li>
-<li><p>Repeat 4-6 a few times.</p></li>
-<li><p>Now look at the history. The little clock-like icon (or History in the Git window).</p>
+<div id="rmarkdown-reports" class="section level2">
+<h2>RMarkdown Reports</h2>
 <ul>
-<li>Click on <code>filter by file</code> to see just the changes to one file.</li>
-<li>Do a search in the upper right.</li>
-<li>Click on an early commit and click <code>View file @...</code></li>
-</ul></li>
-</ol>
-</div>
-</div>
-<div id="now-lets-get-this-on-github-similar-strategy-if-you-are-working-on-gitlab" class="section level2">
-<h2>Now let’s get this on GitHub (similar strategy if you are working on GitLab)</h2>
-<ol style="list-style-type: decimal">
-<li>Go to GitHub and create a repo with the same name</li>
-<li>Don’t select add Readme or anything</li>
-<li>A page that tells you how to get started should show up. Look for this code.</li>
-</ol>
-<p><strong>…or push an existing repository from the command line</strong></p>
-<pre><code>git remote add origin https://github.com/&lt;youraccount&gt;/&lt;reponame&gt;.git
-git push -u origin master</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Copy the code and go back to RStudio.</li>
-<li>Click the cog on the Git tab and click Shell</li>
-<li>Paste the code into the command line.</li>
-<li>If you see something about Keychain, try Deny. It will hopefully ask you for your GitHub account info on the command line.</li>
-<li>If it all works, you should now be able to push.</li>
-</ol>
-</div>
-<div id="methods-for-downloading-repositories" class="section level2">
-<h2>Methods for downloading repositories</h2>
-<p>If you want to copy someone’s repository on GitHub or make a copy of one of your own, there are a few approaches that you can take. I am going to use <code>https://github.com/RVerse-Tutorials/Test</code> as the repository that you want to copy and we will put the repository at <code>Documents/GitHub/Test</code>.</p>
-<div id="method-1-fork-it" class="section level3">
-<h3>Method #1 Fork it</h3>
-<ol style="list-style-type: decimal">
-<li>Navigate to <code>https://github.com/RVerse-Tutorials/Test</code> on GitHub and click the ‘fork’ button in the upper right. Follow the instructions.</li>
-</ol>
-<p>Now you need to get it on your computer.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Version Control”. Then choose “Git”. Then it asks for a “repository URL”. Supply this: <code>https://github.com/&lt;your github account&gt;/Test</code> and leave the “Project Directory Name” empty. And then choose a directory in which to put the new repository and click OK.</li>
-</ol>
-<p>If you are using GitHub Desktop, you need to add it to that too.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>From GitHub Desktop, go to the menu option ‘File-&gt;Add Local Repository’. Then navigate to <code>~/Documents/GitHub/Test</code> and add.</li>
-</ol>
-<p>The problem with forking is that you can’t fork your own repositories and if you fork someone else’s repository, your fork will always show theirs as a ‘parent’—which doesn’t really have a bad effect but I rarely want my copy of someone’s repo to be linked to theirs in any way. Normally forking is used when you are contributing to the parent repository and need a copy to work on.</p>
-</div>
-<div id="method-2-copying-my-own-repos-not-someone-elses" class="section level3">
-<h3>Method #2 Copying my OWN repos (not someone else’s)</h3>
-<p>This method is pretty failsafe and I find easy to remember. This how I normally copy one of my own folders and make a new GitHub repo. I don’t use Git at the command line very often and rather than looking up how to do it, getting something wrong 3x and then researching how to debug the problem, and then finding I’ve spent the morning with a simple task…. I just do the following now.</p>
-<ol style="list-style-type: decimal">
-<li>Make a new repo (say <code>Test</code>) on GitHub and click the button to add a Readme.md file.</li>
-<li>Download and link to the new repo using Step 2 above (in Method #1).</li>
-<li>Add the repo to GitHub Desktop using Step 3 above (in Method #1)</li>
-<li>Copy the files (on my computer) from the repo I want to copy into the new folder. Note this works because I already have the files I want on my computer.</li>
-<li>Push these changes to GitHub, though the Git tab in RStudio or GitHub Desktop (my preference).</li>
-</ol>
-</div>
-<div id="method-4" class="section level3">
-<h3>Method #4</h3>
-<ol style="list-style-type: decimal">
-<li>From RStudio, go to the menu option ‘File-&gt;New Project…’. Then from the resulting dialog, choose “Version Control”. Then choose “Git”. Then it asks for a “repository URL”. Supply this: <code>https://github.com/RVerse-Tutorials/Test</code> and leave the “Project Directory Name” empty. And then choose a directory in which to put it and click OK.</li>
-</ol>
-<p>This method will have your new repository associated with the repository from where you downloaded. If it is not your own GitHub repository, you don’t want this because you will not be able to push changes to GitHub.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Click on the ‘More’ link in the Git Window of RStudio, and click ‘Shell’. Then issue this command.</li>
-</ol>
-<pre><code>git remote rm origin</code></pre>
-<p>This detaches the cloned repository from the remote repository on GitHub from where you cloned it.</p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Add the new repository to GitHub Desktop and then publish to GitHub. From GitHub Desktop, go to File&gt;Add Local Repository and then navigate to <code>~/Documents/GitHub/Test</code> and add.</p></li>
-<li><p>Publish to GitHub. Once you do step 3, a ‘Publish to GitHub’ button will appear. Click that to publish to GitHub.</p></li>
-</ol>
-<p>Note, there are Git commands you could use to do steps 3 and 4, but in this workshop we are using GitHub Desktop.</p>
-</div>
-<div id="alternate-method-5" class="section level3">
-<h3>Alternate Method #5</h3>
-<p>Another way is to download the repository as a zip file and unzip. <a href="https://youtu.be/bYySjso7vRo">Watch a video that shows you how to do this</a></p>
-<p>Go to <a href="https://github.com/RVerse-Tutorials/Test" class="uri">https://github.com/RVerse-Tutorials/Test</a> and click ‘Clone or download’ and chose ‘Download Zip’. Unzip and you’ll probably want to remove ‘master’ added to the end of the repository name.</p>
-<p>If you chose, ‘Clone in Desktop’, you’ll need to open a terminal window, navigate to the new folder you just downloaded, and run the git code <code>git remote rm origin</code> from within the terminal to detach the repository from the RVerse-Tutorials GitHub account.</p>
-</div>
-</div>
-<div id="packages-with-c-code" class="section level2">
-<h2>Packages with C++ code</h2>
-<p>We will not be doing this in this short course, but often you will want to install packages with C++ code. To do that, you will need Rtools (Windows) or Xcode (Mac)</p>
-<ul>
-<li><p><strong>Rtools</strong> Windows users <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> also so you can build packages with C++ code if needed. See comments here about changing path. <a href="http://stat545.com/packages01_system-prep.html#windows-system-prep">Rtools</a></p></li>
-<li><p><strong>Xcode</strong> Mac users Open terminal and type the following command <code>xcode-select --install</code></p></li>
+<li><a href="week4-rmarkdown.html">The lecture notes</a></li>
 </ul>
 </div>
+<div id="more-example-videos" class="section level2">
+<h2>More example videos</h2>
+<ul>
+<li><a href="https://youtu.be/6vTzzlTxn0o">Creating the R Markdown folder</a> A short clip of me making the folder and publishing it to GitHub.</li>
+</ul>
 </div>
 
 <hr>
@@ -575,7 +480,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

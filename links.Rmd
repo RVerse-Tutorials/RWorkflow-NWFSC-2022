@@ -51,3 +51,9 @@ These are some basic packages that I use all the time. This does not include the
 # Jekyll Templates
 
 * [Hugo Academic](https://sourcethemes.com/academic/)  Popular Jekyll template in academia.
+
+# Travis CI (continuous integration)
+
+* https://juliasilge.com/blog/beginners-guide-to-travis/
+
+

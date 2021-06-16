@@ -13,7 +13,7 @@
 
 <title>Week 6: Advanced package topics</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -331,14 +331,14 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="set-up.html">
-    <span class="fas fa-clone"></span>
+    <span class="fa fa-clone"></span>
      
     Set-up
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-calendar"></span>
+    <span class="fa fa-calendar"></span>
      
     Workshop Weekly Notes
      
@@ -347,14 +347,14 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="week1.html">
-        <span class="fas fa-cogs"></span>
+        <span class="fa fa-cogs"></span>
          
         Week 1 RStudio + Version Control
       </a>
     </li>
     <li>
       <a href="week2.html">
-        <span class="fas fa-gitalt"></span>
+        <span class="fa fa-gitalt"></span>
          
         Week 2 More Git/GitHub
       </a>
@@ -370,21 +370,21 @@ div.tocify {
 </li>
 <li>
   <a href="https://rverse-tutorials.github.io/RWorkflow/">
-    <span class="fas fa-folder"></span>
+    <span class="fa fa-folder"></span>
      
     Archive
   </a>
 </li>
 <li>
   <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020">
-    <span class="fas fa-clock"></span>
+    <span class="fa fa-clock"></span>
      
     2020 website
   </a>
 </li>
 <li>
   <a href="links.html">
-    <span class="fas fa-info"></span>
+    <span class="fa fa-info"></span>
      
     More resources
   </a>
@@ -632,6 +632,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
