@@ -20,3 +20,5 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Creating the R Markdown folder](https://youtu.be/6vTzzlTxn0o) A short clip of me making the folder and publishing it to GitHub.
 
+* [Kniting a R Markdown file](https://youtu.be/8eBBPVMwTLo) This shows you how to open a demo R Markdown file in RStudio and knit it to html.
+

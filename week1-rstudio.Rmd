@@ -137,6 +137,7 @@ Goals today:
 
 ## Let's get started!
 
+
 I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub is a source of much misery, and in my experience **creating the repo on GitHub first** eliminates the problems. This really important for the first time you connect your computer to the remote repository server (GitHub). 
 
 ### Make a GitHub Repo {#clonerepo}
@@ -149,9 +150,11 @@ I am going to show a workflow that is usually robust. Connecting Git on your com
 
 **Clone the GitHub repo to your computer**
 
+*In the lecture, I showed this step using RStudio. I forgot that you have to tell RStudio where `git.exe` is for this to work. See [these instructions](#rstudiogit) for doing what I did in lecture (around minute 39). In Week 2, I switched to doing this with GitHub Desktop. That is the workflow I recommend when you get started. I have updated the notes to that workflow.*
+
 1. Open GitHub Desktop
 2. Click File > Clone Repository...
-3. In the popup windown, click the URL tab to the right and paste in the url from step 3 above.
+3. In the popup window, click the URL tab to the right and paste in the url from step 3 above.
 4. Double check that you have the right folder for the Local Path. I keep all my repositories in Documents/GitHub so they are easier to find. Click Clone.
 
 **Create an RStudio project from this new folder**

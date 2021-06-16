@@ -26,7 +26,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [Week 3](week3.html). GitHub skills. We'll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I'll show you how I use organizations to organize my repositories and some of the nice 'landing page' features of GitHub. For those curious about GitHub Actions, I give you a short demo on that too. [The lecture notes and discussion](week3.html)
 
-* Week 4. Rmarkdown for reports. Let's make a report that updates when our data change and post that to GitHub.
+* [Week 4](week4.html). Rmarkdown for reports. Let's make a report that updates when our data change and post that to GitHub.
 
 * Week 5. Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
 

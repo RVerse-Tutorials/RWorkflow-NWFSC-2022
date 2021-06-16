@@ -13,8 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction to workflow using RStudio and Git/GitHub. 
 
-* [The notes I showed during lecture](week1-rstudio.html)
-* [Session video](https://youtu.be/8YyNtEkKCgY) 
+* [The lecture notes](week1-rstudio.html)
+* [Lecture video](https://youtu.be/8YyNtEkKCgY) 
+
+## Session questions and comments
+
 * Here are some shorter videos of the workflows that I showed during Week 1.
     * Connecting GitHub Desktop to your GitHub account. [Video](https://youtu.be/AiRrSwQte5k)
     * Making a repo on GitHub and getting that into RStudio and GitHub Desktop [Video](https://www.youtube.com/watch?v=jPya6iDik6M)
