@@ -683,10 +683,10 @@ for(i in 1:10000){ b &lt;- t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##                   self.time self.pct total.time total.pct
-## &quot;%*%&quot;                  0.56    90.32       0.56     90.32
-## &quot;t&quot;                    0.02     3.23       0.04      6.45
-## &quot;lazyLoadDBfetch&quot;      0.02     3.23       0.02      3.23
-## &quot;t.default&quot;            0.02     3.23       0.02      3.23</code></pre>
+## &quot;%*%&quot;                  0.50    83.33       0.50     83.33
+## &quot;t&quot;                    0.04     6.67       0.08     13.33
+## &quot;t.default&quot;            0.04     6.67       0.04      6.67
+## &quot;lazyLoadDBfetch&quot;      0.02     3.33       0.02      3.33</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>

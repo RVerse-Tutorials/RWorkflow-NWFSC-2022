@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 * [The lecture notes](week1-rstudio.html)
 * [Lecture video](https://youtu.be/8YyNtEkKCgY) 
 
+*Note at minute 39 or so in the video, I show how to clone a GitHub repo using RStudio. However this requires that RStudio knows where `git.exe` is. For week 2, I changed to cloning using GitHub Desktop, which doesn't require using Git in RStudio at all. So for the Git/GitHub parts, I would go to the Week 2 video.*
+
 ## Session questions and comments
 
 * Here are some shorter videos of the workflows that I showed during Week 1.
