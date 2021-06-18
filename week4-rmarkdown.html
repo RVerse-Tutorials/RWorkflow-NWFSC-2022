@@ -364,6 +364,9 @@ div.tocify {
         Week 3 GitHub
       </a>
     </li>
+    <li>
+      <a href="week4.html">Week 4 R Markdown</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -417,7 +420,7 @@ div.tocify {
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
 <p>If you want to try out the things I am showing, you will need R and RStudio or you can use this link and follow along on RStudio Cloud.</p>
-<p>If you are using RStudio on your own computer, there are some packages that you’ll need: kritr, kableExtra.</p>
+<p>If you are using RStudio on your own computer, there are some packages that you’ll need: rmarkdown, kritr, kableExtra, flextable, ggplot2.</p>
 <p>Build your first R Markdown file</p>
 <ul>
 <li>Open RStudio, and click File &gt; New File &gt; R Markdown… .</li>
@@ -439,13 +442,7 @@ If you have never worked with R Markdown, start with RStudio’s online lessons.
 </div>
 <div id="templates" class="section level2">
 <h2>Templates</h2>
-<p>I have made a repository <a href="https://github.com/RVerse-Tutorials/Rmarkdown-Tutorial">Rmarkdown-Tutorial</a> <a href="https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown"></a> with some template Rmd files for you to look at. For this week, you just need the material; you don’t to make a repository yourself (linked to GitLab or GitHub).</p>
-<p>To get the material:</p>
-<ul>
-<li>You can download a zip of the repository. The download button is on the repository link (above) and is a green button that says ‘Clone or download’. Unzip that file and then do New Project &gt; Existing Directory and navigate to the directory from the zip file.</li>
-<li>If you have Git installed, click the blue cube with R in the top right corner. New Project &gt; Version Control &gt; Git and then paste in the URL. Note you won’t be able to push changes since you cloned from my repository.</li>
-<li>You can also clone to a GitLab or GitHub repo (New Project or Repo &gt; Import from URL) and then pull your clone on GitLab or GitHub into RStudio via New Project &gt; Version Control.</li>
-</ul>
+<p>I have made a repository <a href="https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown">Rmarkdown-Tutorial</a> with some template Rmd files for you to look at. You can clone the repos to your account and then pull into your computer.</p>
 </div>
 <div id="basic-rmd-file" class="section level2">
 <h2>Basic Rmd file</h2>
@@ -454,7 +451,6 @@ If you have never worked with R Markdown, start with RStudio’s online lessons.
 <pre><code>---
 title: &quot;Basic&quot;
 author: &quot;EE Holmes&quot;
-date: &quot;9/2/2018&quot;
 output: html_document
 ---</code></pre>
 <p>This is the <code>yaml</code> which gives the instructions about how to process your R Markdown file. The <code>yaml</code> file is sensitive to spaces. Do not add or subtract spaces. This <code>yaml</code> is very simple, but the <code>yaml</code> can be complex for some applications. We will only be working with simple examples.</p>
@@ -504,7 +500,7 @@ After knitting your Rmd file, a Preview will appear.  Click the 'Publish' button
 <li><strong>ioslidy_presentation.Rmd</strong> Chose File &gt; New &gt; R Markdown &gt; ioslidy presentation to create this presentation template.</li>
 <li><strong>xaringan_presentation.Rmd</strong> You will need to install the <strong>xaringan</strong> package.</li>
 </ul></li>
-<li>Making tables using a function. This allows you to make the same table but with different data. A common example would be making a standard table for each species or each population in a dataset. <a href="https://github.com/RVerse-Tutorials/Rmarkdown-Tutorial/tree/master/Report_with_Tables">Report with Tables</a> shows you how to do that. Start with the README file.</li>
+<li>Making tables using a function. This allows you to make the same table but with different data. A common example would be making a standard table for each species or each population in a dataset. <a href="https://github.com/RWorkflow-Workshop-2021/Week4-report">Report with Tables</a> shows you how to do that. Start with the README file.</li>
 </ul>
 </div>
 <div id="accessibility" class="section level2">

@@ -18,6 +18,8 @@ navbar:
     - text: Week 3 GitHub
       icon: fab fa-github
       href: week3.html
+    - text: Week 4 R Markdown
+      href: week4.html
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
