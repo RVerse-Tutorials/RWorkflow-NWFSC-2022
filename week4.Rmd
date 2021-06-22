@@ -31,6 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Essential reading for advanced R Markdown work
 
+* [R Markdown tutorials](https://rmarkdown.rstudio.com/lesson-1.html) More basic but good to see esp if you are teaching others.
 * the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
 * the [blogdown book](https://bookdown.org/yihui/blogdown/)
 * the [R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
