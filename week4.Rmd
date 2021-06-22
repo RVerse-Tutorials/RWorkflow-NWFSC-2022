@@ -14,9 +14,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## RMarkdown Reports
 
+* [Lecture video](https://youtu.be/OTmxfgcZA8k) See video below for how to make a Word template. I wasn't able to do that in the lecture.
 * [The lecture notes](week4-rmarkdown.html)
 
+* [Sample R Markdown repository on GitHub](https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown)
+* [Sample Word repository on GitHub](https://github.com/RWorkflow-Workshop-2021/Week4-report)
+* Try out R Markdown on [R Studio Cloud](https://rstudio.cloud/project/2649365). Open one of the Rmds and click the Knit button.
+* Try out creating the Word report on [R Studio Cloud](https://rstudio.cloud/project/2643984). Open `Report_with_Tables.Rmd`, Click Knit, and then download the Word output to look at it. If you forget to download, then click on the file and click 'Export'. For some reason, 'Download' is 'Export' in R Studio Cloud.
+
+
 ## More example videos
+
+* [Create a Word template](https://youtu.be/CAdIrDj9k9A). This shows you how to make a Word template that works with the output from R Markdown.
 
 * [Creating the R Markdown folder](https://youtu.be/6vTzzlTxn0o) A short clip of me making the folder and publishing it to GitHub.
 
