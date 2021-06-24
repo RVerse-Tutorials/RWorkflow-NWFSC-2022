@@ -1,0 +1,40 @@
+---
+title: "Week 4"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Intro to **ggplot2**
+
+* [The lecture notes](week5-ggplot2.html)
+
+### More **ggplot2**
+
+The lecture is to introduce you to the way that **ggplot2** is structured because it is quite different to base plotting in R and it takes some getting used to. Once you are ready to go more indepth, here is some material that I have found useful.
+
+* [Review of the material](https://tidyverse-intro.github.io/1-ggplot2.html) I touched on about the 'grammar' of **ggplot2**.
+* [Another presentation of my material](https://bookdown.org/agrogankaylor/quick-intro-to-ggplot2/quick-intro-to-ggplot2.html)
+* Once you have got the basics down, you can stop there. That'll get you 99% of what you need. Or Google "intro to ggplot2" or "ggplot2 gallery" and you'll find many books and examples.
+
+
+### **tidyverse**
+
+I am not going to cover data-wrangling with **tidyverse**, but that is also a key skill for data science. I am not covering it because I think that is something that is not well suited to a 1 hour lecture.  Here are some links to get you started:
+
+* My 2020 "[Intro to tidyverse](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/week9-data-wrangling.html)" lecture.
+* I like this [Data Wrangling](https://dcl-wrangle.stanford.edu/) book
+* And this one [Intro to dplyr](https://tidyverse-intro.github.io/3-dplyr.html) and [Intro to tidyverse](https://tidyverse-intro.github.io/4-tidy.html)
+* Hadley's [R for Data Science book](https://r4ds.had.co.nz/index.html) with the [exercise solutions](https://jrnold.github.io/r4ds-exercise-solutions/) is good a deep dive.
+* [DataCamp course](https://www.datacamp.com/courses/introduction-to-the-tidyverse) if you learn better from courses.
+
+
+
+

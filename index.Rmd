@@ -28,7 +28,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [Week 4](week4.html). Rmarkdown for reports. Let's make a report that updates when our data change and post that to GitHub.
 
-* Week 5. Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
+* [Week 5](week5.html). Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
 
 * Week 6. Creating a R package. I show you how to make basic data and code packages that allows you to version and document your data and code.
 

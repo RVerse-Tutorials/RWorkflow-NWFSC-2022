@@ -11,7 +11,7 @@
 
 
 
-<title>Practical R Workflow for Scientists June-July 2021</title>
+<title>Week 4</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -222,6 +225,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -229,6 +301,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -329,61 +411,47 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Practical R Workflow for Scientists June-July 2021</h1>
+<h1 class="title toc-ignore">Week 4</h1>
 
 </div>
 
 
-<p><img style="float: right;" src="images/tools-logo-transparent.png" width=30%></p>
-<p>These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be <strong>faster, more efficient and organized</strong> in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on).</p>
-<p><strong>Target audience</strong>: You already code in R, maybe use RStudio too, but want to learn some tips about being more efficient from a seasoned R programmer who does the kind of coding and work that you do.</p>
-<p><strong>About me</strong>: I am a modeler/applied mathematician and I am immersed in R. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research.</p>
-<div id="set-up-for-the-workshop" class="section level2">
-<h2>Set-up for the workshop</h2>
-<p>Before the workshops, go to <a href="set-up.html">Set-up</a> for instructions. Unless you will only be listening, you’ll need a <a href="https://github.com/">GitHub</a> account. To actively participate in the activities, you’ll want either R, RStudio and GitHub Desktop installed on your computer or you can use <a href="https://rstudio.cloud/">RStudio Cloud</a>. If you do the latter, you don’t need to install any software.</p>
-</div>
-<div id="video-and-github-organization-links-for-the-sessions" class="section level2">
-<h2>Video and GitHub Organization links for the sessions</h2>
-<p>Please email Eli (<a href="mailto:eli.holmes@noaa.gov" class="email">eli.holmes@noaa.gov</a>) from your NOAA email, and I will send you the WebEx links and link to the GitHub Classroom. It is the same link for each session.</p>
-</div>
-<div id="topics" class="section level2">
-<h2>Topics</h2>
+<div id="intro-to-ggplot2" class="section level2">
+<h2>Intro to <strong>ggplot2</strong></h2>
 <ul>
-<li><p><a href="week1.html">Week 1</a> Introduction to workflow using RStudio and Git/GitHub. The session video will be posted June 2nd but the link has my lectures notes and short videos of the skills. <a href="week1.html">Lecture notes and video links</a></p></li>
-<li><p><a href="week2.html">Week 2</a>. More Git skills. The 3 key Git skills. These 3 basic skills are all you need for 95% of your work with Git repositories. <a href="week2.html">The lecture notes, discussion and videos</a></p></li>
-<li><p><a href="week3.html">Week 3</a>. GitHub skills. We’ll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I’ll show you how I use organizations to organize my repositories and some of the nice ‘landing page’ features of GitHub. For those curious about GitHub Actions, I give you a short demo on that too. <a href="week3.html">The lecture notes and discussion</a></p></li>
-<li><p><a href="week4.html">Week 4</a>. Rmarkdown for reports. Let’s make a report that updates when our data change and post that to GitHub.</p></li>
-<li><p><a href="week5.html">Week 5</a>. Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.</p></li>
-<li><p>Week 6. Creating a R package. I show you how to make basic data and code packages that allows you to version and document your data and code.</p></li>
-<li><p>Week 7. Documentation for R packages using Roxygen.</p></li>
-<li><p>Week 8. Creating landing pages using RStudio/R Markdown/GitHub and R packages landing pages using pkgdown.</p></li>
+<li><a href="week5-ggplot2.html">The lecture notes</a></li>
+</ul>
+<div id="more-ggplot2" class="section level3">
+<h3>More <strong>ggplot2</strong></h3>
+<p>The lecture is to introduce you to the way that <strong>ggplot2</strong> is structured because it is quite different to base plotting in R and it takes some getting used to. Once you are ready to go more indepth, here is some material that I have found useful.</p>
+<ul>
+<li><a href="https://tidyverse-intro.github.io/1-ggplot2.html">Review of the material</a> I touched on about the ‘grammar’ of <strong>ggplot2</strong>.</li>
+<li><a href="https://bookdown.org/agrogankaylor/quick-intro-to-ggplot2/quick-intro-to-ggplot2.html">Another presentation of my material</a></li>
+<li>Once you have got the basics down, you can stop there. That’ll get you 99% of what you need. Or Google “intro to ggplot2” or “ggplot2 gallery” and you’ll find many books and examples.</li>
 </ul>
 </div>
-<div id="video-only" class="section level2">
-<h2>Video only</h2>
-<p>I will make videos of this material.</p>
+<div id="tidyverse" class="section level3">
+<h3><strong>tidyverse</strong></h3>
+<p>I am not going to cover data-wrangling with <strong>tidyverse</strong>, but that is also a key skill for data science. I am not covering it because I think that is something that is not well suited to a 1 hour lecture. Here are some links to get you started:</p>
 <ul>
-<li><p>Handy clustering tools in R</p></li>
-<li><p>Making raster plots with the raster and tmap packages. Working with spatial data is a huge area. We are going to start gently by making raster plots and using the tmap package. You’ll see how easy it easy to make maps of data on a grid.</p></li>
+<li>My 2020 “<a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/week9-data-wrangling.html">Intro to tidyverse</a>” lecture.</li>
+<li>I like this <a href="https://dcl-wrangle.stanford.edu/">Data Wrangling</a> book</li>
+<li>And this one <a href="https://tidyverse-intro.github.io/3-dplyr.html">Intro to dplyr</a> and <a href="https://tidyverse-intro.github.io/4-tidy.html">Intro to tidyverse</a></li>
+<li>Hadley’s <a href="https://r4ds.had.co.nz/index.html">R for Data Science book</a> with the <a href="https://jrnold.github.io/r4ds-exercise-solutions/">exercise solutions</a> is good a deep dive.</li>
+<li><a href="https://www.datacamp.com/courses/introduction-to-the-tidyverse">DataCamp course</a> if you learn better from courses.</li>
 </ul>
-<!--
-Requests
+</div>
+</div>
 
-ggplot
-Bayesian stats
-tidyverse verbs
-collaboration with github/gitlab
-tidyverse world.
-
--->
 <hr>
+
 <div style="text-align: center">
-<p><i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i></p>
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
+</div>
+
+
 </div>
 </div>
-
-
-
 
 </div>
 
@@ -416,6 +484,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
