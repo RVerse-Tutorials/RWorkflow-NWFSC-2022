@@ -13,13 +13,17 @@ navbar:
       icon: fa-cogs
       href: week1.html
     - text: Week 2 More Git/GitHub
-      icon: fa-gitalt
+      icon: fab fa-github-alt
       href: week2.html
     - text: Week 3 GitHub
       icon: fab fa-github
       href: week3.html
     - text: Week 4 R Markdown
+      icon: fa-file-code
       href: week4.html
+    - text: Week 5 ggplot2
+      icon: fa-chart-line
+      href: week5.html
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/
