@@ -685,6 +685,7 @@ plot(t, 100*val, type=&quot;p&quot;)
 barplot(1:4, 1:4, type=&quot;b&quot;)</code></pre>
 <p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>Now let’s do this in with <code>ggplot()</code> in a similar workflow. The difference with <code>ggplot()</code> is that we save the plots and then arrange them into a grid with <code>gridExtra::grid.arrange()</code> (from the gridExtra package).</p>
+<p><strong>UPDATE</strong> Instead of <strong>gridExtra</strong> and <code>grid.arrange()</code>, check out the <a href="https://cran.r-project.org/package=patchwork"><strong>patchwork</strong></a> package. It does similar jobs as <code>grid.arrange()</code> but is better.</p>
 <p>Let’s do a 4x4 grid of plots with <code>plot()</code>.</p>
 <pre class="r"><code>library(gridExtra)
 df &lt;- data.frame(t = 1:10, val = rnorm(10))
@@ -700,18 +701,29 @@ gridExtra::grid.arrange(p1, p2, p3, p4)</code></pre>
                         p4+geom_errorbar(aes(ymin=val-se, ymax=val+se), width=0.3), ncol=1)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>When you don’t know how many plots you’ll be arranging. There are many situations where you are building a group of plots into a list and you don’t know how big that list will be (because the data flowing to your plot code changes). You can assemble ggplot objects into a list and pass that to <code>grid.arrange()</code>.</p>
+<pre class="r"><code>df &lt;- data.frame(t = 1:10, val = rnorm(10))
+plist &lt;- list()
+n &lt;- 3
+for(i in 1:n) plist[[i]] &lt;- ggplot(df, aes(x=t, y=val)) + geom_line() + geom_point()
+df2 &lt;- data.frame(t = 1:4, val = 1:4, se=.1*(1:4))
+plist[[n+1]] &lt;- ggplot(df2, aes(x=t, y=val)) + geom_col()
+gridExtra::grid.arrange(grobs=plist)</code></pre>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>The <strong>patchwork</strong> package gives you the same functionality.</p>
+<pre><code>patchwork::wrap_plots(plist)</code></pre>
 </div>
 <div id="dynamically" class="section level2">
 <h2>Dynamically</h2>
-<p>ggplot will also dynamically break your data into plots for you.</p>
+<p><code>ggplot()</code> will also dynamically break your data into plots for you.</p>
 <pre class="r"><code>df1 &lt;- data.frame(t=t, val=val, name=&quot;df1&quot;)
 df2 &lt;- data.frame(t=t, val=val+1, name=&quot;df2&quot;)
 df &lt;- rbind(df1, df2)
 p1 &lt;- ggplot(df, aes(x=t, y=val, col=name)) + geom_line()
 p1</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<pre class="r"><code>p1 + facet_wrap(~name)</code></pre>
 <p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<pre class="r"><code>p1 + facet_wrap(~name)</code></pre>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <pre class="r"><code>head(mpg)</code></pre>
 <pre><code>## # A tibble: 6 x 11
 ##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
@@ -725,25 +737,25 @@ p1</code></pre>
 <p>Let’s plot city mpg versus number of cylinders.</p>
 <pre class="r"><code>pc &lt;- ggplot(mpg, aes(x=cyl, y=cty)) + geom_point()
 pc</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Now we can divide this up by different factors in our the mpg data frame.</p>
 <pre class="r"><code>pc + facet_wrap(~class)</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>We can add some things to our plot and free the scales.</p>
 <pre class="r"><code>pc + facet_wrap(~class, scales=&quot;free&quot;) + geom_smooth(method=&quot;lm&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <p>Another nice feature is that we can combine these wrapped figures into a grid because they are ggplot objects. Making this plot in base R would take you forever and another 2 forever is you wanted to change it around or if the number of classes in your data changed.</p>
 <pre class="r"><code>pf &lt;- pc + facet_wrap(~class)
 grid.arrange( p1, pf, ncol=2)</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>And I can add features to the plots right in the <code>grid.arrange()</code> call.</p>
 <pre class="r"><code>pf &lt;- pc + facet_wrap(~class)
 grid.arrange(
   p1+ggtitle(&quot;All the classes&quot;), 
   pf+theme_bw()+ylab(&quot;City mpg&quot;),
   ncol=2)</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 </div>
 <div id="notes-1" class="section level2">
 <h2>Notes</h2>
@@ -772,7 +784,7 @@ p2 &lt;- ggplot(mpg, aes(x=hwy,y=cyl)) + pt
 grid.arrange(p1, p2)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 <div id="summary" class="section level1">
 <h1>Summary</h1>

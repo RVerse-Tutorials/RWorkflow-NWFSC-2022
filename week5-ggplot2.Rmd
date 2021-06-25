@@ -327,6 +327,8 @@ barplot(1:4, 1:4, type="b")
 
 Now let's do this in with `ggplot()` in a similar workflow. The difference with `ggplot()` is that we save the plots and then arrange them into a grid with `gridExtra::grid.arrange()` (from the gridExtra package).
 
+**UPDATE** Instead of **gridExtra** and `grid.arrange()`, check out the [**patchwork**](https://cran.r-project.org/package=patchwork) package. It does similar jobs as `grid.arrange()` but is better.
+
 Let's do a 4x4 grid of plots with `plot()`.
 
 ```{r warning=FALSE}
@@ -347,9 +349,26 @@ gridExtra::grid.arrange(p1+geom_smooth(method="lm"),
                         p4+geom_errorbar(aes(ymin=val-se, ymax=val+se), width=0.3), ncol=1)
 ```
 
+When you don't know how many plots you'll be arranging. There are many situations where you are building a group of plots into a list and you don't know how big that list will be (because the data flowing to your plot code changes). You can assemble ggplot objects into a list and pass that to `grid.arrange()`.
+
+```{r}
+df <- data.frame(t = 1:10, val = rnorm(10))
+plist <- list()
+n <- 3
+for(i in 1:n) plist[[i]] <- ggplot(df, aes(x=t, y=val)) + geom_line() + geom_point()
+df2 <- data.frame(t = 1:4, val = 1:4, se=.1*(1:4))
+plist[[n+1]] <- ggplot(df2, aes(x=t, y=val)) + geom_col()
+gridExtra::grid.arrange(grobs=plist)
+```
+
+The **patchwork** package gives you the same functionality.
+```
+patchwork::wrap_plots(plist)
+```
+
 ## Dynamically
 
-ggplot will also dynamically break your data into plots for you.
+`ggplot()` will also dynamically break your data into plots for you.
 
 ```{r}
 df1 <- data.frame(t=t, val=val, name="df1")
