@@ -1,5 +1,5 @@
 ---
-title: "Week 8: Intro to ggplot"
+title: "Week 5: Intro to ggplot"
 output:
   html_document:
     toc: true
