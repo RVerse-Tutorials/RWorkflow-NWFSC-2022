@@ -11,7 +11,7 @@
 
 
 
-<title>Bookdown</title>
+<title>NOAA Resources</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -225,75 +222,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -301,16 +229,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -429,67 +347,29 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Bookdown</h1>
+<h1 class="title toc-ignore">NOAA Resources</h1>
 
 </div>
 
 
-<p>The bookdown package makes it easy to create books with R Markdown and RStudio. These can be easily published online and in various formats: HTML, PDF, ePub, and Kindle. Read about bookdown and see hundreds of online books written with it at <a href="https://bookdown.org/">bookdown.org</a>.</p>
-<p>Once you are ready to write your own book, read the <a href="https://bookdown.org/yihui/bookdown/">online documentation</a>.</p>
-<p>Examples:</p>
+<div id="noaa-affiliated-github-sites" class="section level2">
+<h2>NOAA affiliated GitHub sites</h2>
 <ul>
-<li>The <a href="https://bookdown.org/">bookdown.org</a> website has hundreds of examples.</li>
-<li>We have a time-series book using it: <a href="https://nwfsc-timeseries.github.io/atsa-labs/">Applied Time-Series Analysis</a></li>
+<li><a href="https://github.com/NOAAGov/NOAA-Affiliated-Projects">NOAAgov</a></li>
+<li><a href="https://noaa-fisheries-integrated-toolbox.github.io/">NOAA Fisheries Integrated Toolbox</a></li>
 </ul>
-<div id="download-the-template" class="section level2">
-<h2>Download the template</h2>
-<p>Download a zip file of the <a href="https://github.com/RVerse-Tutorials/bookdown-demo">bookdown-demo</a> repository. You can use the ‘download zip file’ button on the GitHub repository or you can navigate to your ‘RWorkflow’ folder in RStudio and click ‘More’ in the Files panel and select ‘Set as working directory’. Then issue these commands.</p>
-<pre><code>library(RWorkflowsetup)
-download.repo(&quot;bookdown-demo&quot;)</code></pre>
-<p><em>INCOIS participants: You will find a copy of the repository in the RWorkflow directory that you copied from the thumb drive.</em></p>
-<p>This is a copy of the <a href="https://github.com/rstudio/bookdown-demo">original bookdown-demo</a> by Yihui Xie, the creator of the bookdown package, with a few changes so it works immediately with GitHub.</p>
 </div>
-<div id="build-the-book" class="section level2">
-<h2>Build the book</h2>
-<ol style="list-style-type: decimal">
-<li>Open RStudio</li>
-<li>Click the project button in top right and select ‘New Project’.</li>
-<li>Click ‘Existing Directory’ and choose your ‘bookdown-demo’ folder.</li>
-<li>Click the Build tab and click ‘Build book’</li>
-</ol>
-<p>Your book should appear.</p>
-</div>
-<div id="post-and-online-version-of-your-book-via-github" class="section level2">
-<h2>Post and online version of your book via GitHub</h2>
-<p>You can host your book many places. To do so on GitHub, do the following.</p>
-<ol style="list-style-type: decimal">
-<li>Make your bookdown-demo folder into a repository.</li>
-</ol>
+<div id="noaa-fisheries-github-resources" class="section level2">
+<h2>NOAA Fisheries GitHub Resources</h2>
 <ul>
-<li>Open GitHub Desktop, click ‘File &gt; New Repository’</li>
-<li>Type <code>bookdown-demo</code> as the name and <code>&lt;yourbasedir&gt;\RWorkflow</code> as the local path. This assumes that the bookdown-demo folder is in the RWorkflow directory. If not, replace the path with the directory where you put the bookdown-demo folder.</li>
+<li><a href="https://github.com/nmfs-fish-tools/Resources">FIT Resources</a> NOAA licences, Disclaimers, code review procedures.</li>
+<li><a href="https://github.com/nmfs-general-modeling-tools/nmfspalette">NMFS Palette</a></li>
+<li><a href="https://github.com/nmfs-general-modeling-tools/nmfspalette/blob/main/pkgdown/extra.css">pkgdown css for NOAA pkgdown sites</a></li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Publish the bookdown-demo folder to GitHub. Click the Publish button in GitHub Desktop.</li>
-<li>Open the repository on GitHub.</li>
-</ol>
-<ul>
-<li>Click Settings, and scroll down to <code>GitHub Pages</code>. Change the source to <code>master branch/docs</code> folder and click save.</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Your book should appear at <code>https://&lt;yourname&gt;.github.io/bookdown-demo/</code> in a few minutes.</li>
-</ol>
-</div>
-
-<hr>
-
-<div style="text-align: center">
-<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
 </div>
 
 
-</div>
-</div>
+
 
 </div>
 
@@ -522,35 +402,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -11,11 +11,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This week I will give an introduction to plotting with ggplot. Getting a basic familiarity with ggplot will really save you a lot of time that you spend futzing with plots. 
+This week I will give an introduction to plotting with the **ggplot2** package. Getting a basic familiarity with **ggplot2** will really save you a lot of time that you spend futzing with plots. 
 
-This is oriented to those with little or no experience using ggplot or those who have tried it and gotten frustrated. If you already use ggplot, you won't find this session very interesting.  The goal of this session is to get you started. Once you have the basics, there are a gazillion ggplot tutorials online (though personally the basics are all I need).
+This is oriented to those with little or no experience using **ggplot2** or those who have tried it and gotten frustrated. If you already use **ggplot2**, you won't find this session very interesting.  The goal of this session is to get you started. Once you have the basics, there are a gazillion ggplot tutorials online (though personally the basics are all I need).
 
-You will need to install the ggplot2 and gridExtra packages for this session.
+You can [clone my Week 5 repository](https://github.com/RWorkflow-Workshop-2021/Week5) or open the respository in R Studio Cloud and work from there.
+
+
+If you are working on your own computer, you will need to install the **ggplot2** and **gridExtra** packages.
 
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)

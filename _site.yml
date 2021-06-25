@@ -30,6 +30,9 @@ navbar:
   - text: 2020 website
     icon: fa-clock
     href: https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020
+  - text: NOAA
+    icon: fa-fish
+    href: noaa.html
   - text: More resources
     icon: fa-info
     href: links.html

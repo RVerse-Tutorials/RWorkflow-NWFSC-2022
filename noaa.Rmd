@@ -1,0 +1,14 @@
+---
+title: "NOAA Resources"
+---
+
+## NOAA affiliated GitHub sites
+
+* [NOAAgov](https://github.com/NOAAGov/NOAA-Affiliated-Projects)
+* [NOAA Fisheries Integrated Toolbox](https://noaa-fisheries-integrated-toolbox.github.io/)
+
+## NOAA Fisheries GitHub Resources
+
+* [FIT Resources](https://github.com/nmfs-fish-tools/Resources) NOAA licences, Disclaimers, code review procedures.
+* [NMFS Palette](https://github.com/nmfs-general-modeling-tools/nmfspalette)
+* [pkgdown css for NOAA pkgdown sites](https://github.com/nmfs-general-modeling-tools/nmfspalette/blob/main/pkgdown/extra.css)
