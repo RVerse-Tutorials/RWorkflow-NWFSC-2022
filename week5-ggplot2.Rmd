@@ -15,7 +15,7 @@ This week I will give an introduction to plotting with the **ggplot2** package. 
 
 This is oriented to those with little or no experience using **ggplot2** or those who have tried it and gotten frustrated. If you already use **ggplot2**, you won't find this session very interesting.  The goal of this session is to get you started. Once you have the basics, there are a gazillion ggplot tutorials online (though personally the basics are all I need).
 
-You can [clone my Week 5 repository](https://github.com/RWorkflow-Workshop-2021/Week5) or open the respository in R Studio Cloud and work from there.
+You can [clone my Week 5 repository](https://github.com/RWorkflow-Workshop-2021/Week5) or open the [respository in R Studio Cloud](https://rstudio.cloud/project/2668698) and work from there. Once in either place, open `week5-ggplot2.Rmd` and click the Knit button.
 
 
 If you are working on your own computer, you will need to install the **ggplot2** and **gridExtra** packages.
