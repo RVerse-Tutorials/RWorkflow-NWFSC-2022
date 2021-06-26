@@ -210,7 +210,7 @@ ggplot(data=df, aes(x=x, y=val)) +
   geom_line(data=df2, aes(x=x, y=val2))
 ```
 
-This *inheriting* feature of `aes()` is great but can get you mixed up when you are layering data like this. Here I made a typo and used `val` instead of `val2` for y in the line. `ggplot` *helped* me out by using the data from `df` instead.
+This *inheriting* feature of `aes()` is great but can get you mixed up when you are layering data like this. Here I made a typo and used `val` instead of `val2` for y in the line. `ggplot` *helped* me out by using `val` that I happened to have defined earlier.
 ```{r}
 ggplot(data=df, aes(x=x, y=val)) +
   geom_point() +

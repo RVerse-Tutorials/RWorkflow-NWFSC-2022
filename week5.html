@@ -11,7 +11,7 @@
 
 
 
-<title>Week 4</title>
+<title>Week 5</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -429,7 +429,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 4</h1>
+<h1 class="title toc-ignore">Week 5</h1>
 
 </div>
 
@@ -439,6 +439,7 @@ div.tocify {
 <ul>
 <li><a href="week5-ggplot2.html">The lecture notes</a></li>
 </ul>
+<p><em>Note</em> in the Q&amp;A (and more briefly in the lecture), I talked about data from the data frame specified in <code>ggplot(data=df)</code> flowing into <code>geom_...(data=df2)</code>. That doesn’t actually happen. See the notes below.</p>
 <div id="more-ggplot2" class="section level3">
 <h3>More <strong>ggplot2</strong></h3>
 <p>The lecture is to introduce you to the way that <strong>ggplot2</strong> is structured because it is quite different to base plotting in R and it takes some getting used to. Once you are ready to go more indepth, here is some material that I have found useful.</p>
@@ -459,6 +460,96 @@ div.tocify {
 <li><a href="https://www.datacamp.com/courses/introduction-to-the-tidyverse">DataCamp course</a> if you learn better from courses.</li>
 </ul>
 </div>
+</div>
+<div id="q-a" class="section level2">
+<h2>Q &amp; A</h2>
+<p><strong>ggplot does respect <code>data=df</code></strong></p>
+<p><em>Note</em> In the Q&amp;A, I was talking about problems with inheriting data frame information when you have multiple data frames in your <code>ggplot()</code> code. Basically, I implied that your ggplot code doesn’t always respect something like <code>geom_line(data=df1)</code> and would use the data frame defined in the <code>ggplot()</code> part of your code. That is not true.</p>
+<p>In my example it appeared to do so but it was actually using <code>val</code> that I had defined in my environment.</p>
+<p>So this code will properly throw an error because <code>df2</code> does not have <code>y</code>. Note, I use <code>data=df</code> in the <code>ggplot()</code> call so you clearly see what is <code>data</code> in the function calls.</p>
+<pre class="r"><code>library(ggplot2)
+df &lt;- data.frame(x=1:10, y=1:10, x2=1:10+2, y2=1:10+2)
+df2 &lt;- data.frame(x=df$x+10, y2=df$y)
+ggplot(data=df, aes(x=x, y=y)) + geom_point(data=df2)</code></pre>
+<pre><code>## Error in FUN(X[[i]], ...): object &#39;y&#39; not found</code></pre>
+<p>If I define <code>y</code>, then R will use that. But it doesn’t use the <code>x</code> that I also defined, because the data in <code>ggplot()</code> is searched first.</p>
+<pre class="r"><code>y &lt;- 1
+x &lt;- 1
+ggplot(data=df, aes(x=x, y=y)) + geom_point(data=df2)</code></pre>
+<p><img src="week5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Being more specific in my <code>aes()</code> call tells R not to go looking for <code>x</code> and <code>y</code> outside the data frame specified by the <code>data</code> argument and the code properly throws an error.</p>
+<pre class="r"><code>ggplot(data=df, aes(x=.data$x, y=.data$y)) + geom_point(data=df2)</code></pre>
+<pre><code>## Error: Column `y` not found in `.data`</code></pre>
+<p>Note what is happening in this code: * The <code>geom_line()</code> has a new data defined in <code>data=df2</code> * But it doesn’t have its needed aesthetics (x and y), so it inherits that from <code>ggplot()</code>.</p>
+<p>Sometimes specifying your <code>aes()</code> in your <code>geom_...()</code> part using <code>.data</code> is not enough because there are other aesthetics that are flowing through and you don’t want those. In that case, <code>inherit.aes=FALSE</code> can be helpful. Here I don’t want <code>aes(color="a")</code> to be inherited.</p>
+<pre class="r"><code>df &lt;- data.frame(x=1:10, y=1:10, x2=1:10+2, y2=1:10+2)
+df2 &lt;- data.frame(x=df$x+10, y2=df$y)
+ggplot(data=df, aes(x=.data$x, y=.data$y, color=&quot;a&quot;)) + 
+  geom_point(data=df2, aes(x=.data$x, y=.data$y2), inherit.aes=FALSE)</code></pre>
+<p><img src="week5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><strong>Making your ggplot2 code more robust</strong></p>
+<p>Once you have multiple data frames in your code, it is very easy to introduce bugs that take hours to track down. It is really hard to keep track of what data frame is being inherited and how the aesthetics are being inherited.</p>
+<p>Look at this code. What data is <code>geom_point()</code> using? What aesthetics are <code>geom_line()</code> and <code>geom_col()</code> using? This code works but writing code like this can drive you crazy later on.</p>
+<pre class="r"><code>df1=data.frame(abc=1:10, xyz=1:10+rep(1:2,5), xyz2=1:10)
+df2=data.frame(abc=1:10, xyz=0.5*df1$xyz, xyz2=0.25*df1$xyz, name=letters[rep(1:2,5)])
+ggplot(df1, aes(x=abc, y=xyz)) + 
+  geom_line(data=df2, aes(color=name)) + 
+  geom_point(aes(y=xyz))</code></pre>
+<p><img src="week5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<ul>
+<li><code>geom_line()</code> is <code>geom_line(data=df2, aes(x=abc, y=xyz, color=name)</code>. The <code>aes(x=abc, y=xyz)</code> is inherited from <code>ggplot()</code> and <code>aes(color=name)</code> is specified in the call.</li>
+<li><code>geom_point()</code> is <code>geom_point(data=df1, aes(x=abc, y=xyz2)</code>. <code>data=df1</code> and <code>aes(x=abc)</code> are inherited from <code>ggplot()</code> and <code>aes(y=xyz2)</code> is specified in the call. <code>aes(color=name)</code> is not inherited from the <code>geom_line()</code> above.</li>
+</ul>
+<p>What happens if I had written very similar code but like this.</p>
+<pre class="r"><code>df1=data.frame(abc=1:10, xyz=1:10+rep(1:2,5), xyz2=1:10)
+df2=data.frame(abc=1:10, xyz=0.5*df1$xyz, xyz2=0.25*df1$xyz, name=letters[rep(1:2,5)])
+ggplot(df2, aes(x=abc, y=xyz, color=name)) + 
+  geom_line() + 
+  geom_point(data=df1, aes(y=xyz2))</code></pre>
+<pre><code>## Error in FUN(X[[i]], ...): object &#39;name&#39; not found</code></pre>
+<p>Why does this throw an error now??</p>
+<ul>
+<li><code>geom_line()</code> is <code>geom_line(data=df2, aes(x=abc, y=xyz, color=name)</code>. It inherited the data and <code>aes()</code> from <code>ggplot()</code>.</li>
+<li><code>geom_point()</code> is <code>geom_point(data=df1, aes(x=abc, y=xyz2, color=name)</code>. <code>data=df1</code> and <code>aes(x=abc, color=name)</code> are inherited from <code>ggplot()</code> and <code>aes(y=xyz2)</code> is specified in the call. But <code>name</code> is not in <code>df1</code> so it throws an error.</li>
+</ul>
+<p>What’s a more robust way to write code when you have multiple data frames in the code? Here is one way, the data are clear and there is no danger of aesthetics being inherited.</p>
+<pre class="r"><code>ggplot() + 
+  geom_line(data=df2, aes(x=.data$abc, y=.data$xyz, color=name)) + 
+  geom_point(data=df1, aes(x=.data$abc, y=xyz2))</code></pre>
+<p><img src="week5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>On stackoverflow, the answers would say that you should avoid multiple data frames and put all the data in one data frame that you specify in <code>ggplot()</code>. In my experience, that is simply impractical. There are many cases where using multiple data frames is the best solution. BTW, I do try to avoid using multiple data frames in my ggplot code! That is a good policy, just not always efficient.</p>
+<p>Note that without a data frame in <code>ggplot()</code>, <code>facet_...()</code> functions won’t work. You can add a data frame with the column name that you want to facet on, but the behavior might be non-intuitive. In this case, we have a data frame <code>df3</code> in <code>ggplot()</code> but it is not used elsewhere. The facet looks for any data frame that have the <code>name</code> column (<code>df2</code> does) and plots those in separate panels. <code>df1</code> doesn’t have <code>name</code> so it appears in every panel. This could be useful if there was a plot you needed to show in every panel and then other data that was separated across panels.</p>
+<pre class="r"><code>library(patchwork)
+library(ggplot2)
+df1=data.frame(abc=1:5, xyz=1:5, name2=&quot;a&quot;)
+df2=data.frame(abc=1:10, xyz=1:10, name=c(rep(letters[1:3],3),&quot;d&quot;))
+df3=data.frame(name=&quot;a&quot;)
+p1 &lt;- ggplot(df3) +
+  geom_point(data=df1, aes(x=.data$abc, y=.data$xyz)) +
+  geom_col(data=df2, aes(x=.data$abc, y=.data$xyz), alpha=0.5)
+p1 + facet_wrap(~.data$name)</code></pre>
+<p><img src="week5_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Note to those who do R packages, you need to always use <code>.data</code> in <strong>ggplot2</strong> code even if you don’t have multiple data frames. Otherwise your package won’t pass <code>R CMD check</code>. So you have to write your calls like this:</p>
+<pre><code>ggplot(df, aes(x=.data$abc, y=.data$xyz)) + geom_point()</code></pre>
+<p><strong>another example of <code>inherit.aes=FALSE</code></strong></p>
+<p>Another option for making your code more robust, is to use <code>inherit.aes = FALSE</code> so that you don’t inadvertently inherit aesthetic information. That can help with bizarre behavior like this. I’m trying to get the plot on the right, but the one on the left is all wrong.</p>
+<pre class="r"><code>library(patchwork)
+library(ggplot2)
+val &lt;- mtcars$mpg
+x &lt;- mtcars$hp
+df1 &lt;- data.frame(x=x, val=val, name=rep(letters[1:2],length(x)/2))
+df2 &lt;- data.frame(x=x, val2=val+10)
+df3 &lt;- data.frame(x=x+3, val=val-10, name=&quot;a&quot;)
+p1 &lt;- ggplot(df3, aes(x=x, y=val, color=&quot;a&quot;)) +
+  geom_point(data=df1, aes(x=x, y=val, color=name)) +
+  geom_line(data=df2, aes(x=x, y=val)) + 
+  ggtitle(&quot;Yipes&quot;)
+p2 &lt;- ggplot(df3, aes(x=x, y=val, color=&quot;a&quot;)) +
+  geom_point(data=df1, aes(x=x, y=val, color=name)) +
+  geom_line(data=df2, aes(x=x, y=val), inherit.aes=FALSE) + 
+  ggtitle(&quot;Correct&quot;)
+p1 + p2</code></pre>
+<p><img src="week5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 
 <hr>

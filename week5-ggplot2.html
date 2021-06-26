@@ -584,7 +584,7 @@ ggplot(data=df, aes(x=x, y=val)) +
   geom_point() +
   geom_line(data=df2, aes(x=x, y=val2))</code></pre>
 <p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>This <em>inheriting</em> feature of <code>aes()</code> is great but can get you mixed up when you are layering data like this. Here I made a typo and used <code>val</code> instead of <code>val2</code> for y in the line. <code>ggplot</code> <em>helped</em> me out by using the data from <code>df</code> instead.</p>
+<p>This <em>inheriting</em> feature of <code>aes()</code> is great but can get you mixed up when you are layering data like this. Here I made a typo and used <code>val</code> instead of <code>val2</code> for y in the line. <code>ggplot</code> <em>helped</em> me out by using <code>val</code> that I happened to have defined earlier.</p>
 <pre class="r"><code>ggplot(data=df, aes(x=x, y=val)) +
   geom_point() +
   geom_line(data=df2, aes(x=x, y=val))</code></pre>
