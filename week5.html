@@ -463,7 +463,8 @@ div.tocify {
 </div>
 <div id="q-a" class="section level2">
 <h2>Q &amp; A</h2>
-<p><strong>ggplot does respect <code>data=df</code></strong></p>
+<div id="ggplot-does-respect-datadf" class="section level3">
+<h3>ggplot does respect <code>data=df</code></h3>
 <p><em>Note</em> In the Q&amp;A, I was talking about problems with inheriting data frame information when you have multiple data frames in your <code>ggplot()</code> code. Basically, I implied that your ggplot code doesn’t always respect something like <code>geom_line(data=df1)</code> and would use the data frame defined in the <code>ggplot()</code> part of your code. That is not true.</p>
 <p>In my example it appeared to do so but it was actually using <code>val</code> that I had defined in my environment.</p>
 <p>So this code will properly throw an error because <code>df2</code> does not have <code>y</code>. Note, I use <code>data=df</code> in the <code>ggplot()</code> call so you clearly see what is <code>data</code> in the function calls.</p>
@@ -487,7 +488,9 @@ df2 &lt;- data.frame(x=df$x+10, y2=df$y)
 ggplot(data=df, aes(x=.data$x, y=.data$y, color=&quot;a&quot;)) + 
   geom_point(data=df2, aes(x=.data$x, y=.data$y2), inherit.aes=FALSE)</code></pre>
 <p><img src="week5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p><strong>Making your ggplot2 code more robust</strong></p>
+</div>
+<div id="making-your-ggplot2-code-more-robust" class="section level3">
+<h3>Making your ggplot2 code more robust</h3>
 <p>Once you have multiple data frames in your code, it is very easy to introduce bugs that take hours to track down. It is really hard to keep track of what data frame is being inherited and how the aesthetics are being inherited.</p>
 <p>Look at this code. What data is <code>geom_point()</code> using? What aesthetics are <code>geom_line()</code> and <code>geom_col()</code> using? This code works but writing code like this can drive you crazy later on.</p>
 <pre class="r"><code>df1=data.frame(abc=1:10, xyz=1:10+rep(1:2,5), xyz2=1:10)
@@ -518,6 +521,9 @@ ggplot(df2, aes(x=abc, y=xyz, color=name)) +
   geom_point(data=df1, aes(x=.data$abc, y=xyz2))</code></pre>
 <p><img src="week5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>On stackoverflow, the answers would say that you should avoid multiple data frames and put all the data in one data frame that you specify in <code>ggplot()</code>. In my experience, that is simply impractical. There are many cases where using multiple data frames is the best solution. BTW, I do try to avoid using multiple data frames in my ggplot code! That is a good policy, just not always efficient.</p>
+</div>
+<div id="facet-when-you-have-multiple-data-frames" class="section level3">
+<h3><code>facet</code> when you have multiple data frames</h3>
 <p>Note that without a data frame in <code>ggplot()</code>, <code>facet_...()</code> functions won’t work. You can add a data frame with the column name that you want to facet on, but the behavior might be non-intuitive. In this case, we have a data frame <code>df3</code> in <code>ggplot()</code> but it is not used elsewhere. The facet looks for any data frame that have the <code>name</code> column (<code>df2</code> does) and plots those in separate panels. <code>df1</code> doesn’t have <code>name</code> so it appears in every panel. This could be useful if there was a plot you needed to show in every panel and then other data that was separated across panels.</p>
 <pre class="r"><code>library(patchwork)
 library(ggplot2)
@@ -531,7 +537,9 @@ p1 + facet_wrap(~.data$name)</code></pre>
 <p><img src="week5_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Note to those who do R packages, you need to always use <code>.data</code> in <strong>ggplot2</strong> code even if you don’t have multiple data frames. Otherwise your package won’t pass <code>R CMD check</code>. So you have to write your calls like this:</p>
 <pre><code>ggplot(df, aes(x=.data$abc, y=.data$xyz)) + geom_point()</code></pre>
-<p><strong>another example of <code>inherit.aes=FALSE</code></strong></p>
+</div>
+<div id="another-example-of-inherit.aesfalse" class="section level3">
+<h3>another example of <code>inherit.aes=FALSE</code></h3>
 <p>Another option for making your code more robust, is to use <code>inherit.aes = FALSE</code> so that you don’t inadvertently inherit aesthetic information. That can help with bizarre behavior like this. I’m trying to get the plot on the right, but the one on the left is all wrong.</p>
 <pre class="r"><code>library(patchwork)
 library(ggplot2)
@@ -550,6 +558,16 @@ p2 &lt;- ggplot(df3, aes(x=x, y=val, color=&quot;a&quot;)) +
   ggtitle(&quot;Correct&quot;)
 p1 + p2</code></pre>
 <p><img src="week5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="more-info-on-setting-up-credentials-in-r-studio" class="section level3">
+<h3>More info on setting up credentials in R Studio</h3>
+<p>For those of you who want to connect R Studio to GitHub (so you can push to GitHub), here are some notes from the chat today. <em>You don’t need to do this if you use GitHub Desktop</em>; this is if you want to push to GitHub from within RStudio.</p>
+<ul>
+<li>the solution for me was generating a new ssh key to connect to github (<a href="https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh" class="uri">https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh</a>)</li>
+<li>and making sure my local repository was pointed to the origin through ssh rather than https (<a href="https://help.github.com/en/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh" class="uri">https://help.github.com/en/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh</a>).</li>
+</ul>
+<p>BTW, whenever I want to double check my repo origin, I open the file <code>config</code> in the <code>.git</code> folder. You’ll see your repo info listed there. Um, you change it here also and this is the first place I look if my repo is having trouble connecting to GitHub.</p>
+</div>
 </div>
 
 <hr>

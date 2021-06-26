@@ -578,22 +578,22 @@ lines(x[order(x)], val2[order(x)])</code></pre>
 <li>Add points with <code>geom_point()</code></li>
 <li>Add <code>df2</code> using <code>geom_line()</code> with <code>df2</code> passed in and <code>aes()</code> call.</li>
 </ul>
-<p>How <code>aes()</code> is working. <code>aes()</code> information is flowing rightward. Everything to the right will inherit the data frame and <code>aes()</code> info unless you specifiy new data or new <code>aes()</code>.</p>
+<p>How <code>aes()</code> is working. <code>aes()</code> information is flowing rightward. Everything to the right will inherit the data frame and <code>aes()</code> info in <code>ggplot()</code> unless you specifiy new data or new <code>aes()</code> (or use <code>inherit.aes=FALSE</code>).</p>
 <pre class="r"><code>df2 &lt;- data.frame(x=x, val2=val+10)
 ggplot(data=df, aes(x=x, y=val)) +
   geom_point() +
   geom_line(data=df2, aes(x=x, y=val2))</code></pre>
 <p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>This <em>inheriting</em> feature of <code>aes()</code> is great but can get you mixed up when you are layering data like this. Here I made a typo and used <code>val</code> instead of <code>val2</code> for y in the line. <code>ggplot</code> <em>helped</em> me out by using <code>val</code> that I happened to have defined earlier.</p>
-<pre class="r"><code>ggplot(data=df, aes(x=x, y=val)) +
-  geom_point() +
-  geom_line(data=df2, aes(x=x, y=val))</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<p>Usually it is clearer if you keep the data and <code>aes()</code> with the points and lines. Note data and <code>aes()</code> will still inherit rightward.</p>
+<p>This inheriting feature is usually very handy, but when working with multiple data frames, it is often clearer if you keep the data and <code>aes()</code> with the points and lines. Note since there is no data or <code>aes()</code> specified in <code>ggplot()</code> , there is no inheriting of data.</p>
 <pre class="r"><code>ggplot() +
   geom_point(data=df, aes(x=x, y=val)) +
   geom_line(data=df2, aes(x=x, y=val2))</code></pre>
-<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="week5-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>The lack of data and aesthetics in <code>ggplot()</code> means that this code will throw an error. <code>geom_line()</code> has data but no aesthetics because it can’t inherit that from <code>ggplot()</code>.</p>
+<pre class="r"><code>ggplot() +
+  geom_point(data=df, aes(x=x, y=val)) +
+  geom_line(data=df2)</code></pre>
+<pre><code>## Error: geom_line requires the following missing aesthetics: x and y</code></pre>
 <p>Here is another example of plotting data from two different data frames:</p>
 <pre class="r"><code>ggplot() +
   geom_line(data=iris, aes(x = Sepal.Length, y=Petal.Length)) +
@@ -605,7 +605,7 @@ ggplot(data=df, aes(x=x, y=val)) +
 <h2>Adding a legend</h2>
 <p>ggplot makes it rather hard to modify your legend if you create a plot this way. Creating a manual legend, as opposed to dynamically as ggplot is supposed to work, can be quite hacky. First thing to know is that the color, linestyle, and/or shape must be in <code>aes()</code> to appear in the legend. If it’s not there you can’t control it in the legend.</p>
 <p>Note: What I am about to show <em>is really hacky and not the way ggplot is intended to be used,</em> but it comes up so often for new ggplot users that I want you to see a solution so you don’t give up on ggplot because of legends. Jump ahead to the correct ggplot workflow with long-form data frames to see how to avoid this.</p>
-<p>This works. Ignore the warning about unknown aesthetics. Once again ggplot loves to warn about non-problems.</p>
+<p>This works. Ignore the warning about unknown aesthetics.</p>
 <pre class="r"><code>ggplot() +
   geom_point(data=df, aes(x=x, y=val, col=&quot;df&quot;, linetype=&quot;df&quot;)) +
   geom_line(data=df2, aes(x=x, y=val2, col=&quot;df2&quot;, linetype=&quot;df2&quot;)) +
@@ -634,9 +634,10 @@ ggplot(df3, aes(x=x, y=val, col=name, shape=name)) +
 <h2>Notes</h2>
 <ul>
 <li>If the color, shape, linetype is not in an <code>aes()</code> it won’t appear in the legend.</li>
-<li><code>aes()</code> info in <code>ggplot()</code> flows to the other elements. Put the <code>aes()</code> info in the individual <code>geom_...()</code> calls if you don’t want that.</li>
-<li>Want to mix points and lines? You need to use <code>scale_..._manual()</code> to manually turn-off points of lines for some of the data.</li>
-<li>You can always force colors, shapes, linetypes by passing in color, shape, size etc outside of <code>aes()</code> but it won’t appear in the legend.</li>
+<li>If the color, shape, or linetype is in an <code>aes()</code> it will appear in the legend.</li>
+<li><code>aes()</code> info in <code>ggplot()</code> flows to the other elements. Put the <code>aes()</code> info in the individual <code>geom_...()</code> calls if you don’t want that. Use <code>inherit.aes=FALSE</code> to stop this inheriting behavior.</li>
+<li>Want to mix points and lines? You need to use <code>scale_..._manual()</code> to manually turn-off points or lines for some of the data.</li>
+<li>You can always force colors, shapes, linetypes by passing in color, shape, size etc outside of <code>aes()</code> but it won’t appear in the legend. Only colors, shapes, etc, that appear in <code>aes()</code> will appear in a legend.</li>
 </ul>
 <p>Example, points are all black since the <code>aes(col=name)</code> only appears in the <code>geom_line()</code> call.</p>
 <pre class="r"><code>ggplot(df3, aes(x=x, y=val)) + 
@@ -647,7 +648,7 @@ ggplot(df3, aes(x=x, y=val, col=name, shape=name)) +
 <div id="modifying-the-legend" class="section level2">
 <h2>Modifying the legend</h2>
 <p>You can control all aspects of the legend. Read up on it <a href="http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/">here</a>.</p>
-<p>Making some data points and other lines will require <code>scale_...()</code> and gets hacky.</p>
+<p>Manually changing data points and other lines will require <code>scale_...()</code> and gets hacky.</p>
 <pre class="r"><code>ggplot(df3, aes(x=x, y=val)) + 
   geom_line(aes(col=name, linetype=name)) +
   geom_point(aes(shape=name)) +

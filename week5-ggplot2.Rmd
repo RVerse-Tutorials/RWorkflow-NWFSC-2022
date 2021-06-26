@@ -201,7 +201,7 @@ In `ggplot()` you have two possible workflows. First one could be like the `plot
 * Add points with `geom_point()`
 * Add `df2` using `geom_line()` with `df2` passed in and `aes()` call.
 
-How `aes()` is working. `aes()` information is flowing rightward. Everything to the right will inherit the data frame and `aes()` info unless you specifiy new data or new `aes()`.
+How `aes()` is working. `aes()` information is flowing rightward. Everything to the right will inherit the data frame and `aes()` info in `ggplot()` unless you specifiy new data or new `aes()` (or use `inherit.aes=FALSE`).
 
 ```{r}
 df2 <- data.frame(x=x, val2=val+10)
@@ -210,19 +210,20 @@ ggplot(data=df, aes(x=x, y=val)) +
   geom_line(data=df2, aes(x=x, y=val2))
 ```
 
-This *inheriting* feature of `aes()` is great but can get you mixed up when you are layering data like this. Here I made a typo and used `val` instead of `val2` for y in the line. `ggplot` *helped* me out by using `val` that I happened to have defined earlier.
-```{r}
-ggplot(data=df, aes(x=x, y=val)) +
-  geom_point() +
-  geom_line(data=df2, aes(x=x, y=val))
-```
-
-Usually it is clearer if you keep the data and `aes()` with the points and lines. Note data and `aes()` will still inherit rightward.
+This inheriting feature is usually very handy, but when working with multiple data frames, it is often clearer if you keep the data and `aes()` with the points and lines. Note since there is no data or `aes()` specified in `ggplot()` , there is no inheriting of data.
 ```{r}
 ggplot() +
   geom_point(data=df, aes(x=x, y=val)) +
   geom_line(data=df2, aes(x=x, y=val2))
 ```
+
+The lack of data and aesthetics in `ggplot()` means that this code will throw an error. `geom_line()` has data but no aesthetics because it can't inherit that from `ggplot()`.
+```{r error=TRUE, fig.show='hide'}
+ggplot() +
+  geom_point(data=df, aes(x=x, y=val)) +
+  geom_line(data=df2)
+```
+
 
 Here is another example of plotting data from two different data frames:
 ```{r}
@@ -239,7 +240,7 @@ ggplot makes it rather hard to modify your legend if you create a plot this way.
 
 Note: What I am about to show *is really hacky and not the way ggplot is intended to be used,* but it comes up so often for new ggplot users that I want you to see a solution so you don't give up on ggplot because of legends. Jump ahead to the correct ggplot workflow with long-form data frames to see how to avoid this.
 
-This works. Ignore the warning about unknown aesthetics. Once again ggplot loves to warn about non-problems.
+This works. Ignore the warning about unknown aesthetics.
 ```{r}
 ggplot() +
   geom_point(data=df, aes(x=x, y=val, col="df", linetype="df")) +
@@ -268,9 +269,10 @@ ggplot(df3, aes(x=x, y=val, col=name, shape=name)) +
 ## Notes
 
 * If the color, shape, linetype is not in an `aes()` it won't appear in the legend. 
-* `aes()` info in `ggplot()` flows to the other elements. Put the `aes()` info in the individual `geom_...()` calls if you don't want that.
-* Want to mix points and lines? You need to use `scale_..._manual()` to manually turn-off points of lines for some of the data.
-* You can always force colors, shapes, linetypes by passing in color, shape, size etc outside of `aes()` but it won't appear in the legend.
+* If the color, shape, or linetype is in an `aes()` it will appear in the legend. 
+* `aes()` info in `ggplot()` flows to the other elements. Put the `aes()` info in the individual `geom_...()` calls if you don't want that. Use `inherit.aes=FALSE` to stop this inheriting behavior.
+* Want to mix points and lines? You need to use `scale_..._manual()` to manually turn-off points or lines for some of the data.
+* You can always force colors, shapes, linetypes by passing in color, shape, size etc outside of `aes()` but it won't appear in the legend. Only colors, shapes, etc, that appear in `aes()` will appear in a legend.
 
 Example, points are all black since the `aes(col=name)` only appears in the `geom_line()` call.
 ```{r}
@@ -283,7 +285,7 @@ ggplot(df3, aes(x=x, y=val)) +
 
 You can control all aspects of the legend. Read up on it [here](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/).
 
-Making some data points and other lines will require `scale_...()` and gets hacky.
+Manually changing data points and other lines will require `scale_...()` and gets hacky.
 
 ```{r}
 ggplot(df3, aes(x=x, y=val)) + 

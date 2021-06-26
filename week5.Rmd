@@ -39,7 +39,7 @@ I am not going to cover data-wrangling with **tidyverse**, but that is also a ke
 
 ## Q & A
 
-**ggplot does respect `data=df`**
+### ggplot does respect `data=df`
 
 *Note* In the Q&A, I was talking about problems with inheriting data frame information when you have multiple data frames in your `ggplot()` code. Basically, I implied that your ggplot code doesn't always respect something like `geom_line(data=df1)` and would use the data frame defined in the `ggplot()` part of your code. That is not true.
 
@@ -76,7 +76,7 @@ ggplot(data=df, aes(x=.data$x, y=.data$y, color="a")) +
   geom_point(data=df2, aes(x=.data$x, y=.data$y2), inherit.aes=FALSE)
 ```
 
-**Making your ggplot2 code more robust**
+### Making your ggplot2 code more robust
 
 Once you have multiple data frames in your code, it is very easy to introduce bugs that take hours to track down. It is really hard to keep track of what data frame is being inherited and how the aesthetics are being inherited. 
 
@@ -114,6 +114,7 @@ ggplot() +
 
 On stackoverflow, the answers would say that you should avoid multiple data frames and put all the data in one data frame that you specify in `ggplot()`. In my experience, that is simply impractical. There are many cases where using multiple data frames is the best solution. BTW, I do try to avoid using multiple data frames in my ggplot code! That is a good policy, just not always efficient.
 
+### `facet` when you have multiple data frames
 
 Note that without a data frame in `ggplot()`, `facet_...()` functions won't work. You can add a data frame with the column name that you want to facet on, but the behavior might be non-intuitive. In this case, we have a data frame `df3` in `ggplot()` but it is not used elsewhere. The facet looks for any data frame that have the `name` column (`df2` does) and plots those in separate panels. `df1` doesn't have `name` so it appears in every panel. This could be useful if there was a plot you needed to show in every panel and then other data that was separated across panels.
 ```{r}
@@ -133,7 +134,7 @@ Note to those who do R packages, you need to always use `.data` in **ggplot2** c
 ggplot(df, aes(x=.data$abc, y=.data$xyz)) + geom_point()
 ```
 
-**another example of `inherit.aes=FALSE`**
+### another example of `inherit.aes=FALSE`
 
 Another option for making your code more robust, is to use `inherit.aes = FALSE` so that you don't inadvertently inherit aesthetic information. That can help with bizarre behavior like this. I'm trying to get the plot on the right, but the one on the left is all wrong.
 ```{r}
@@ -155,4 +156,11 @@ p2 <- ggplot(df3, aes(x=x, y=val, color="a")) +
 p1 + p2
 ```
 
+### More info on setting up credentials in R Studio
 
+For those of you who want to connect R Studio to GitHub (so you can push to GitHub), here are some notes from the chat today. *You don't need to do this if you use GitHub Desktop*; this is if you want to push to GitHub from within RStudio.
+
+* the solution for me was generating a new ssh key to connect to github (https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) 
+* and making sure my local repository was pointed to the origin through ssh rather than https (https://help.github.com/en/github/using-git/changing-a-remotes-url#switching-remote-urls-from-https-to-ssh).
+
+BTW, whenever I want to double check my repo origin, I open the file `config` in the `.git` folder. You'll see your repo info listed there. Um, you change it here also and this is the first place I look if my repo is having trouble connecting to GitHub.
