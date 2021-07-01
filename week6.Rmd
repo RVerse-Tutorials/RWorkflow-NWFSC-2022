@@ -1,5 +1,5 @@
 ---
-title: "Week 5"
+title: "Week 6"
 output:
   html_document:
     toc: true
@@ -14,7 +14,6 @@ knitr::opts_chunk$set(echo = TRUE, error=TRUE)
 
 ## Intro to **ggplot2**
 
-* [Lecture video](https://youtu.be/MjbkJjB31kA)
 * [The lecture notes](week5-ggplot2.html)
 
 *Note* in the Q&A (and more briefly in the lecture), I talked about data from the data frame specified in `ggplot(data=df)` flowing into `geom_...(data=df2)`. That doesn't actually happen. See the notes below.
@@ -44,7 +43,7 @@ I am not going to cover data-wrangling with **tidyverse**, but that is also a ke
 
 *Note* In the Q&A, I was talking about problems with inheriting data frame information when you have multiple data frames in your `ggplot()` code. Basically, I implied that your ggplot code doesn't always respect something like `geom_line(data=df1)` and would use the data frame defined in the `ggplot()` part of your code. That is not true.
 
-In my example it appeared to do so but it was actually using `val` that I had defined earlier in my environment.
+In my example it appeared to do so but it was actually using `val` that I had defined in my environment.
 
 So this code will properly throw an error because `df2` does not have `y`. Note, I use `data=df` in the `ggplot()` call so you clearly see what is `data` in the function calls.
 ```{r fig.show='hide'}

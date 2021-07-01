@@ -11,7 +11,7 @@
 
 
 
-<title>Week 5</title>
+<title>Week 6</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -429,7 +429,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 5</h1>
+<h1 class="title toc-ignore">Week 6</h1>
 
 </div>
 
@@ -437,7 +437,6 @@ div.tocify {
 <div id="intro-to-ggplot2" class="section level2">
 <h2>Intro to <strong>ggplot2</strong></h2>
 <ul>
-<li><a href="https://youtu.be/MjbkJjB31kA">Lecture video</a></li>
 <li><a href="week5-ggplot2.html">The lecture notes</a></li>
 </ul>
 <p><em>Note</em> in the Q&amp;A (and more briefly in the lecture), I talked about data from the data frame specified in <code>ggplot(data=df)</code> flowing into <code>geom_...(data=df2)</code>. That doesn’t actually happen. See the notes below.</p>
@@ -473,12 +472,11 @@ div.tocify {
 df &lt;- data.frame(x=1:10, y=1:10, x2=1:10+2, y2=1:10+2)
 df2 &lt;- data.frame(x=df$x+10, y2=df$y)
 ggplot(data=df, aes(x=x, y=y)) + geom_point(data=df2)</code></pre>
-<pre><code>## Error in FUN(X[[i]], ...): object &#39;y&#39; not found</code></pre>
 <p>If I define <code>y</code>, then R will use that. But it doesn’t use the <code>x</code> that I also defined, because the data in <code>ggplot()</code> is searched first.</p>
 <pre class="r"><code>y &lt;- 1
 x &lt;- 1
 ggplot(data=df, aes(x=x, y=y)) + geom_point(data=df2)</code></pre>
-<p><img src="week5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="week6_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Being more specific in my <code>aes()</code> call tells R not to go looking for <code>x</code> and <code>y</code> outside the data frame specified by the <code>data</code> argument and the code properly throws an error.</p>
 <pre class="r"><code>ggplot(data=df, aes(x=.data$x, y=.data$y)) + geom_point(data=df2)</code></pre>
 <pre><code>## Error: Column `y` not found in `.data`</code></pre>
@@ -488,7 +486,7 @@ ggplot(data=df, aes(x=x, y=y)) + geom_point(data=df2)</code></pre>
 df2 &lt;- data.frame(x=df$x+10, y2=df$y)
 ggplot(data=df, aes(x=.data$x, y=.data$y, color=&quot;a&quot;)) + 
   geom_point(data=df2, aes(x=.data$x, y=.data$y2), inherit.aes=FALSE)</code></pre>
-<p><img src="week5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="week6_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="making-your-ggplot2-code-more-robust" class="section level3">
 <h3>Making your ggplot2 code more robust</h3>
@@ -499,7 +497,7 @@ df2=data.frame(abc=1:10, xyz=0.5*df1$xyz, xyz2=0.25*df1$xyz, name=letters[rep(1:
 ggplot(df1, aes(x=abc, y=xyz)) + 
   geom_line(data=df2, aes(color=name)) + 
   geom_point(aes(y=xyz))</code></pre>
-<p><img src="week5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="week6_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <ul>
 <li><code>geom_line()</code> is <code>geom_line(data=df2, aes(x=abc, y=xyz, color=name)</code>. The <code>aes(x=abc, y=xyz)</code> is inherited from <code>ggplot()</code> and <code>aes(color=name)</code> is specified in the call.</li>
 <li><code>geom_point()</code> is <code>geom_point(data=df1, aes(x=abc, y=xyz2)</code>. <code>data=df1</code> and <code>aes(x=abc)</code> are inherited from <code>ggplot()</code> and <code>aes(y=xyz2)</code> is specified in the call. <code>aes(color=name)</code> is not inherited from the <code>geom_line()</code> above.</li>
@@ -520,7 +518,7 @@ ggplot(df2, aes(x=abc, y=xyz, color=name)) +
 <pre class="r"><code>ggplot() + 
   geom_line(data=df2, aes(x=.data$abc, y=.data$xyz, color=name)) + 
   geom_point(data=df1, aes(x=.data$abc, y=xyz2))</code></pre>
-<p><img src="week5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="week6_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>On stackoverflow, the answers would say that you should avoid multiple data frames and put all the data in one data frame that you specify in <code>ggplot()</code>. In my experience, that is simply impractical. There are many cases where using multiple data frames is the best solution. BTW, I do try to avoid using multiple data frames in my ggplot code! That is a good policy, just not always efficient.</p>
 </div>
 <div id="facet-when-you-have-multiple-data-frames" class="section level3">
@@ -535,7 +533,7 @@ p1 &lt;- ggplot(df3) +
   geom_point(data=df1, aes(x=.data$abc, y=.data$xyz)) +
   geom_col(data=df2, aes(x=.data$abc, y=.data$xyz), alpha=0.5)
 p1 + facet_wrap(~.data$name)</code></pre>
-<p><img src="week5_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="week6_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Note to those who do R packages, you need to always use <code>.data</code> in <strong>ggplot2</strong> code even if you don’t have multiple data frames. Otherwise your package won’t pass <code>R CMD check</code>. So you have to write your calls like this:</p>
 <pre><code>ggplot(df, aes(x=.data$abc, y=.data$xyz)) + geom_point()</code></pre>
 </div>
@@ -558,7 +556,7 @@ p2 &lt;- ggplot(df3, aes(x=x, y=val, color=&quot;a&quot;)) +
   geom_line(data=df2, aes(x=x, y=val), inherit.aes=FALSE) + 
   ggtitle(&quot;Correct&quot;)
 p1 + p2</code></pre>
-<p><img src="week5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="week6_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="more-info-on-setting-up-credentials-in-r-studio" class="section level3">
 <h3>More info on setting up credentials in R Studio</h3>
