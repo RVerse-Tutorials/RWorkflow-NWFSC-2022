@@ -467,7 +467,7 @@ div.tocify {
 <div id="ggplot-does-respect-datadf" class="section level3">
 <h3>ggplot does respect <code>data=df</code></h3>
 <p><em>Note</em> In the Q&amp;A, I was talking about problems with inheriting data frame information when you have multiple data frames in your <code>ggplot()</code> code. Basically, I implied that your ggplot code doesn’t always respect something like <code>geom_line(data=df1)</code> and would use the data frame defined in the <code>ggplot()</code> part of your code. That is not true.</p>
-<p>In my example it appeared to do so but it was actually using <code>val</code> that I had defined in my environment.</p>
+<p>In my example it appeared to do so but it was actually using <code>val</code> that I had defined earlier in my environment.</p>
 <p>So this code will properly throw an error because <code>df2</code> does not have <code>y</code>. Note, I use <code>data=df</code> in the <code>ggplot()</code> call so you clearly see what is <code>data</code> in the function calls.</p>
 <pre class="r"><code>library(ggplot2)
 df &lt;- data.frame(x=1:10, y=1:10, x2=1:10+2, y2=1:10+2)

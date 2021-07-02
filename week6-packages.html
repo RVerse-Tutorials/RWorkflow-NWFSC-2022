@@ -11,7 +11,7 @@
 
 
 
-<title>Week 4: Organizing your R code into a package</title>
+<title>Week 6: Organizing your R code and data into a package</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -431,7 +431,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 4: Organizing your R code into a package</h1>
+<h1 class="title toc-ignore">Week 6: Organizing your R code and data into a package</h1>
 
 </div>
 
@@ -457,21 +457,36 @@ Robust
 </tr>
 </tbody>
 </table>
-<p>This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework really helps you write robust code and well documented code. It also makes it easy to bundle data with code. Organizing your code into an R package is very, very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I’ll show you how to host it on GitLab or GitHub with a nice little landing page.</p>
+<p>This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package.</p>
+<ul>
+<li>The package framework really helps you write robust code and well documented code.</li>
+<li>It makes it easy to bundle data with code.</li>
+<li>It make it easy to version and document your data.</li>
+</ul>
+<p>Organizing your code into an R package is very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I’ll show you how to host it on GitHub with a nice little landing page.</p>
+<ul>
+<li>Week 1: Intro to R packages for data and code. How to build an R package in RStudio. <em>Everyone</em></li>
+<li>Week 2: Intro to Roxygen for documentation, <strong>pkgdown</strong> for package websites, and intro to GitHub Actions for automation. <em>Everyone</em></li>
+<li>Week 3: Advanced topics for developers. How to set up a NAMESPACE, passing <code>R CMD check</code>, C++ code in your package, coding GitHub Actions workflows. <em>Those writing R packages</em></li>
+</ul>
 <p>If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>.</p>
 <div id="why-a-package" class="section level2">
 <h2>Why a package?</h2>
-<p>An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people. Why use an R package rather than just make a bunch of scripts?</p>
+<p>An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people. Why use an R package rather than just make a bunch of scripts with your data in a folder?</p>
 <ul>
 <li><strong>Reproducibility and documentation</strong> In the long-run, you will save yourself much work if you organize and document your code. Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.</li>
 <li><strong>You want to share your code</strong> If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.</li>
+<li><strong>Robust data sharing!</strong> Putting your data in a dedicated data package allows you to version your data (so everyone knows they are using the most up to date data), document your data, track data changes, provide data releases (with archives), provide easy visualizations of the data, and any other packages can load that data package and have access to the data.</li>
 <li><strong>You want to make an application</strong> If you want to make a shiny application, having your code in a package will help.</li>
 </ul>
 </div>
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
-<p><strong>Windows users</strong>: You might need to install <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a>. Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don’t have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.<br />
-<strong>Mac users</strong>: You don’t need anything.</p>
+<p><strong>Mac users</strong>: You don’t need to do anything.</p>
+<p><strong>Windows users</strong>: Try running this code and see what happens. You need to install <strong>devtools</strong> package if you don’t have it.</p>
+<pre><code># install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;RWorkflow-Workshop-2021/week6-testpackage&quot;)</code></pre>
+<p>If that code complains, then you need to install <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a>. Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don’t have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.</p>
 </div>
 <div id="make-a-package" class="section level2">
 <h2>Make a package</h2>
@@ -482,6 +497,7 @@ Robust
 <li>Name your package <code>MyNewPackage</code> and select the directory where to put it.</li>
 <li>Click Create Package.</li>
 <li>Click on the ‘Build’ tab in the upper right, and click ‘Install and Restart’. Your package should build and load.</li>
+<li>Click on click ‘check’. Your package should pass all the checks without errors.</li>
 </ol>
 </div>
 <div id="parts-of-an-r-package" class="section level2">
@@ -490,45 +506,54 @@ Robust
 <h3>The essentials</h3>
 <p>2 files and a directory.</p>
 <ul>
-<li><p><strong>DESCRIPTION</strong> This file has the meta-data about your package. Name and what packages it depends on. Most of it is self-explanatory. The <code>Imports:</code> is any functions from other packages that you use.</p></li>
-<li><p><strong>NAMESPACE</strong> This file indicates what needs to be exposed to users for your R package. For our course, you won’t need to edit as devtools takes care of it.</p></li>
+<li><p><strong>DESCRIPTION</strong> This file has the meta-data about your package. Name and what packages it depends on. Most of it is self-explanatory. The <code>Depends:</code> and <code>Imports:</code> lines specify any functions from other packages that you use in your functions.</p></li>
+<li><p><strong>NAMESPACE</strong> This file indicates what needs to be exposed to users for your R package. For our course, you won’t need to edit as <strong>Roxygen2</strong> takes care of it.</p></li>
 <li><p><strong>R directory</strong> This is where all your R code goes for your package.</p></li>
 </ul>
 </div>
 <div id="basic-add-ons" class="section level3">
 <h3>Basic add-ons</h3>
 <ul>
-<li><p><strong>man</strong> A directory for documentation. You won’t need to write this. It will be added automatically.</p></li>
-<li><p><strong>data</strong> A directory for data files saved in RData format (with the ending <code>.RData</code>)</p></li>
+<li><p><strong>man</strong> A directory for documentation. You won’t need to write this. It will be added automatically by <strong>Roxygen2</strong>.</p></li>
+<li><p><strong>data</strong> A directory for data files saved in RData format (with the ending <code>.RData</code>). Nothing else!</p></li>
+<li><p><strong>data-raw</strong> A directory for raw data files that produced the data files in <strong>data</strong> folder. Nothing else.</p></li>
 </ul>
+</div>
+<div id="other-add-ons" class="section level3">
+<h3>Other add-ons</h3>
+<p><code>inst</code> folder for misc stuff, license, citation</p>
 </div>
 </div>
 <div id="using-and-adding-stuff" class="section level2">
 <h2>Using and adding stuff</h2>
-<p>You have built this package and loaded it. You can use the package functions. Type</p>
+<p>You have built <strong>MyNewFunction</strong> and loaded it. You can use the package functions. Type</p>
 <pre><code>hello()</code></pre>
 <div id="add-a-new-function" class="section level3">
 <h3>Add a new function</h3>
 <ol style="list-style-type: decimal">
-<li>Create a new R script. Call it <code>littleforecast.R</code> and save in the R directory.</li>
+<li><p>Create a new R script file. File &gt; New File &gt; R Script.</p></li>
+<li><p>Paste this code into the script and save as <code>littleforecast.R</code> in the R directory.</p></li>
 </ol>
-<p><strong>You need to install the forecast package for this to work.</strong></p>
 <pre><code>littleforecast &lt;- function(data, nyears=10){
   fit &lt;- forecast::auto.arima(data)
   fc &lt;- forecast::forecast(fit, h = nyears)
   ggplot2::autoplot(fc)
 }</code></pre>
-<ol start="2" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li>Open NAMESPACE. and Paste in</li>
 </ol>
 <pre><code>export(littleforecast)</code></pre>
-<ol start="3" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li>Open DESCRIPTION. Under Description, paste these lines</li>
 </ol>
-<pre><code>Depends: R (&gt;= 3.4.1), ggplot2
-Imports: forecast</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Click Install and Restart from the build tab.</li>
+<pre><code>Imports: forecast, ggplot2</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Install the <strong>forecast</strong> and <strong>ggplot2</strong> packages if you don’t have them.</li>
+</ol>
+<pre><code>install.packages(&quot;forecast&quot;)
+install.packages(&quot;ggplot2&quot;)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Click Install and Restart from the Build tab.</li>
 </ol>
 </div>
 <div id="use-your-new-function" class="section level3">
@@ -703,8 +728,10 @@ Rprof(tmp&lt;-tempfile())
 for(i in 1:10000){ b &lt;- t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
-<pre><code>##       self.time self.pct total.time total.pct
-## &quot;%*%&quot;      0.56      100       0.56       100</code></pre>
+<pre><code>##             self.time self.pct total.time total.pct
+## &quot;%*%&quot;            0.54    93.10       0.54     93.10
+## &quot;eval&quot;           0.02     3.45       0.58    100.00
+## &quot;t.default&quot;      0.02     3.45       0.02      3.45</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 <p><strong>microbenchmark</strong></p>
 <p>This is a handy package for comparing speeds of code.</p>
@@ -714,7 +741,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 17 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 16 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week6-packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.</p>
 <pre class="r"><code>library(magrittr)

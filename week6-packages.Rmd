@@ -37,16 +37,24 @@ If/when you want to go into R packaging in more depth, see Hadley Wickham's book
 
 ## Why a package?
 
-An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts?
+An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts with your data in a folder?
 
 * **Reproducibility and documentation**  In the long-run, you will save yourself much work if you organize and document your code.  Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.
 * **You want to share your code**  If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.
+* **Robust data sharing!** Putting your data in a dedicated data package allows you to version your data (so everyone knows they are using the most up to date data), document your data, track data changes, provide data releases (with archives), provide easy visualizations of the data, and any other packages can load that data package and have access to the data.
 * **You want to make an application**  If you want to make a shiny application, having your code in a package will help.
 
 ## Set-up
 
-**Windows users**: You might need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  
-**Mac users**: You don't need anything.
+**Mac users**: You don't need to do anything.
+
+**Windows users**: Try running this code and see what happens. You need to install **devtools** package if you don't have it.
+```
+# install.packages("devtools")
+devtools::install_github("RWorkflow-Workshop-2021/week6-testpackage")
+```
+
+If that code complains, then you need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  
 
 
 ## Make a package
@@ -57,6 +65,8 @@ An R package is an easy and the standard way to organize your R code, document y
 4. Name your package `MyNewPackage` and select the directory where to put it. 
 5. Click Create Package.
 6. Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
+7. Click on click 'check'.  Your package should pass all the checks without errors.
+
 
 ## Parts of an R package
 
@@ -64,22 +74,27 @@ An R package is an easy and the standard way to organize your R code, document y
 
 2 files and a directory.
 
-* **DESCRIPTION** This file has the meta-data about your package.  Name and what packages it depends on.  Most of it is self-explanatory.  The `Imports:` is any functions from other packages that you use.
+* **DESCRIPTION** This file has the meta-data about your package.  Name and what packages it depends on.  Most of it is self-explanatory.  The `Depends:` and `Imports:` lines specify any functions from other packages that you use in your functions.
 
-* **NAMESPACE** This file indicates what needs to be exposed to users for your R package. For our course, you won't need to edit as devtools takes care of it.
+* **NAMESPACE** This file indicates what needs to be exposed to users for your R package. For our course, you won't need to edit as **Roxygen2** takes care of it.
 
 * **R directory** This is where all your R code goes for your package.
 
 ### Basic add-ons
 
-* **man** A directory for documentation.  You won't need to write this.  It will be added automatically.
+* **man** A directory for documentation.  You won't need to write this.  It will be added automatically by **Roxygen2**.
 
-* **data** A directory for data files saved in RData format (with the ending `.RData`)
+* **data** A directory for data files saved in RData format (with the ending `.RData`). Nothing else!
 
+* **data-raw** A directory for raw data files that produced the data files in **data** folder. Nothing else.
+
+### Other add-ons
+
+`inst` folder for misc stuff, license, citation
 
 ## Using and adding stuff
 
-You have built this package and loaded it.  You can use the package functions.  Type 
+You have built **MyNewFunction** and loaded it.  You can use the package functions.  Type 
 
 ```
 hello()
@@ -87,9 +102,9 @@ hello()
 
 ### Add a new function
 
-1. Create a new R script. Call it `littleforecast.R` and save in the R directory.
+1. Create a new R script file. File > New File > R Script. 
 
-**You need to install the forecast package for this to work.**
+2. Paste this code into the script and save as `littleforecast.R` in the R directory.
 
 ```
 littleforecast <- function(data, nyears=10){
@@ -99,20 +114,26 @@ littleforecast <- function(data, nyears=10){
 }
 ```
 
-2. Open NAMESPACE. and Paste in 
+3. Open NAMESPACE. and Paste in 
 
 ```
 export(littleforecast)
 ```
 
-3. Open DESCRIPTION. Under Description, paste these lines
+4. Open DESCRIPTION. Under Description, paste these lines
 
 ```
-Depends: R (>= 3.4.1), ggplot2
-Imports: forecast
+Imports: forecast, ggplot2
 ```
 
-4. Click Install and Restart from the build tab.
+5. Install the **forecast** and **ggplot2** packages if you don't have them.
+
+```
+install.packages("forecast")
+install.packages("ggplot2")
+```
+
+6. Click Install and Restart from the Build tab.
 
 
 ### Use your new function
