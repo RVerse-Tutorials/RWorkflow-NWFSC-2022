@@ -336,7 +336,7 @@ NULL
 
 Let's use our new data package in a R Markdown document.
 
-```{r comment=NA. echo=FALSE}
+```{r comment=NA, echo=FALSE}
 a <- readLines("week6-packages-rmd.txt")
 cat(a, sep="\n")
 ```
