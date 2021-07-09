@@ -30,7 +30,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [June 25](week5.html). Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
 
-* July 9. Intro to R packages for data and code. How to build an R package in RStudio. In the second half of the lecture, I will show you how to make an R data package and what that can do to allow data documentation, data revision tracking, data versioniong and data sharing.
+* July 9. Intro to R packages for data and code. How to build an R package in RStudio. In the second half of the lecture, I will show you how to make an R data package and what that can do to allow data documentation, data revision tracking, data versioning and data sharing.
 
 * July 16. Intro to Roxygen for documentation, **pkgdown** for package websites, and intro to GitHub Actions for automation. Even if you don't do the coding on your team, you should be aware of how documentation works so you can contribute and the tools for automating tasks like a project website so your team doesn't fall into inefficient workflows.
 

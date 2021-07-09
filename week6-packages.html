@@ -483,6 +483,7 @@ Robust
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
 <p><strong>Mac users</strong>: You don’t need to do anything.</p>
+<p><strong>RStudio Cloud users</strong>: You don’t need to do anything.</p>
 <p><strong>Windows users</strong>: Try running this code and see what happens. You need to install <strong>devtools</strong> package if you don’t have it.</p>
 <pre><code># install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;RWorkflow-Workshop-2021/week6-testpackage&quot;)</code></pre>
@@ -490,6 +491,8 @@ devtools::install_github(&quot;RWorkflow-Workshop-2021/week6-testpackage&quot;)<
 </div>
 <div id="make-a-package" class="section level2">
 <h2>Make a package</h2>
+<div id="on-your-laptop" class="section level3">
+<h3>On your laptop</h3>
 <ol style="list-style-type: decimal">
 <li>Open RStudio</li>
 <li>In the upper right hand corner, click the blue cube with R, and click New Project.</li>
@@ -499,6 +502,11 @@ devtools::install_github(&quot;RWorkflow-Workshop-2021/week6-testpackage&quot;)<
 <li>Click on the ‘Build’ tab in the upper right, and click ‘Install and Restart’. Your package should build and load.</li>
 <li>Click on click ‘check’. Your package should pass all the checks without errors.</li>
 </ol>
+</div>
+<div id="on-rstudio-cloud" class="section level3">
+<h3>On RStudio Cloud</h3>
+<p>Open this link, <a href="https://rstudio.cloud/project/2574138">MyNewPackage</a></p>
+</div>
 </div>
 <div id="parts-of-an-r-package" class="section level2">
 <h2>Parts of an R package</h2>
@@ -516,16 +524,19 @@ devtools::install_github(&quot;RWorkflow-Workshop-2021/week6-testpackage&quot;)<
 <ul>
 <li><p><strong>man</strong> A directory for documentation. You won’t need to write this. It will be added automatically by <strong>Roxygen2</strong>.</p></li>
 <li><p><strong>data</strong> A directory for data files saved in RData format (with the ending <code>.RData</code>). Nothing else!</p></li>
-<li><p><strong>data-raw</strong> A directory for raw data files that produced the data files in <strong>data</strong> folder. Nothing else.</p></li>
 </ul>
 </div>
 <div id="other-add-ons" class="section level3">
 <h3>Other add-ons</h3>
-<p><code>inst</code> folder for misc stuff, license, citation</p>
+<ul>
+<li><p><code>inst</code> folder for misc stuff</p></li>
+<li><p><code>inst\extdata</code> folder for external data.</p></li>
+<li><p><code>data-raw</code> A directory for raw data files that produced the data files in <code>data</code> folder.</p></li>
+</ul>
 </div>
 </div>
-<div id="using-and-adding-stuff" class="section level2">
-<h2>Using and adding stuff</h2>
+<div id="using-and-adding-functions" class="section level2">
+<h2>Using and adding functions</h2>
 <p>You have built <strong>MyNewFunction</strong> and loaded it. You can use the package functions. Type</p>
 <pre><code>hello()</code></pre>
 <div id="add-a-new-function" class="section level3">
@@ -583,7 +594,7 @@ littleforecast(WWW2)</code></pre>
 <h2>The key components</h2>
 <div id="the-description-file" class="section level3">
 <h3>The DESCRIPTION file</h3>
-<p>Open the file named DESCRIPTION. Most of it is self-explanatory. <code>Depends:</code> means the user will have all the commands of that package at the command line. <code>Imports:</code> is any other R packages that your package needs in order to work but it’s functions won’t be available at the command line (unless you choose).</p>
+<p>Open the file named DESCRIPTION. Most of it is self-explanatory. <code>Depends:</code> means the user will have all the commands of that package at the command line. <code>Imports:</code> is any other R packages that your package needs in order to work but it’s functions won’t be available at the command line (unless you choose). <em>Developers: On July 23, I am going to show you exactly how to set up your NAMESPACE and Depends/Imports.</em></p>
 <pre><code>Package: MyNewPackage
 Type: Package
 Title: What the Package Does (Title Case)
@@ -594,10 +605,10 @@ Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 Depends: R (&gt;= 3.4.1), ggplot2
 Imports: forecast
-License: What license is it under?
+License: What license is it under? (GPL-3 or CCO for US Government)
 Encoding: UTF-8
 LazyData: true</code></pre>
-<p>The packages on the <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines are required to be installed in order to install your package. If the user doesn’t have these packages, then they will be installed.</p>
+<p>The packages on the <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines are required to be installed in order to install your package. If the user doesn’t have these packages, then they will be installed when installing the package.</p>
 </div>
 <div id="the-namespace-file" class="section level3">
 <h3>The NAMESPACE file</h3>
@@ -618,8 +629,6 @@ return(&lt;what you want to return to user&gt;)
 </div>
 <div id="sharing-your-package" class="section level2">
 <h2>Sharing your package</h2>
-<p>You can put your package on GitLab or GitHub and then people can easily install it. Yes, you could share a zip file…</p>
-<p>Note: Each time you change your package, you should update the version so that people know which version they are using.</p>
 <div id="github-desktop-instructions" class="section level3">
 <h3>GitHub Desktop Instructions</h3>
 <p>** You have not made your folder a Git repository yet</p>
@@ -638,33 +647,12 @@ return(&lt;what you want to return to user&gt;)
 </ul>
 <p>Go to your GitHub account (online) and you will see your repository there.</p>
 </div>
-<div id="rstudio-instructions" class="section level3">
-<h3>RStudio Instructions</h3>
-<p>For GitHub or GitLab.</p>
-<ol style="list-style-type: decimal">
-<li>Open RStudio and make sure <code>MyNewPackage</code> (or whatever you named your new package) shows up in the upper right corner.</li>
-<li>Click Tools &gt; Version Control &gt; Project Setup and select Git in the drop down. Click Create Repository.</li>
-<li>Open GitLab or GitHub.</li>
-<li>Create a blank repository with the name <code>MyNewPackage</code> (or whatever you named your new package). Don’t add anything to it.</li>
-<li>Copy the URL of that new repository.</li>
-<li>Go back to RStudio. Click on the Git tab.</li>
-<li>Commit all your new changes (those files we added and such)</li>
-<li>Click the cog and select “Shell”.</li>
-<li>Type these lines to the command line. Note URL is the URL you copied above.</li>
-</ol>
-<pre><code>git remote add URL
-git push -u origin master</code></pre>
-<p>Note, I don’t actually do it this way because I often mess things up and it’s too many steps to remember. I create a new project with that URL (New Project &gt; Version Control &gt; URL) and then manually copy my files into the new repository folder.</p>
-</div>
 </div>
 <div id="installing-from-github" class="section level2">
 <h2>Installing from GitHub</h2>
 <p>The code you will use to install from GitHub is:</p>
 <pre><code>library(devtools)
 install_github(&quot;youraccount/MyNewPackage&quot;)</code></pre>
-<p>or</p>
-<pre><code>library(devtools)
-install_gitlab(&quot;youraccount/MyNewPackage&quot;)</code></pre>
 <p>For example to install the package on ‘RVerse-Tutorials’, you would use</p>
 <pre><code>install_github(&quot;RVerse-Tutorials/TestPackage&quot;)</code></pre>
 <div id="installing-from-github-headaches" class="section level3">
@@ -677,12 +665,15 @@ install_gitlab(&quot;youraccount/MyNewPackage&quot;)</code></pre>
 <p>If R simply won’t install a package from GitHub/Lab (or CRAN even) because of a package dependency problem, something like <code>can't install because couldn't remove old installation</code> error. Then click on the Packages tab (lower right panel) and click Install. Look at where R is installing packages. There might be more than one place. Close all your RStudio windows (exit altogether) and go to those locations and delete the library folder(s) for the offending package. Then open RStudio and re-install that package.</p>
 <p>To limit the number of headaches that users face when trying to install your package from GitHub/Lab, use as few packages on your <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on <span class="citation">@Suggests</span>.</p>
 </div>
+<div id="making-releases" class="section level3">
+<h3>Making releases</h3>
+<p>Make a release on GitHub?: Click Release to the right on your GitHub repo.</p>
+<p>To install the latest release</p>
+<pre><code>install_github(&quot;youraccount/MyNewPackage@*release&quot;)</code></pre>
 </div>
-<div id="more-on-githublab" class="section level2">
-<h2>More on GitHub/Lab</h2>
-<div id="landing-page" class="section level3">
-<h3>Landing page</h3>
-<p>Why? It looks nicer and conveys the needed info to users. This is for GitHub. I haven’t done this on GitLab.</p>
+<div id="making-a-landing-page" class="section level3">
+<h3>Making a landing page</h3>
+<p>Why? It looks nicer and conveys the needed info to users. This is for GitHub.</p>
 <ol style="list-style-type: decimal">
 <li>In RStudio in your <code>MyNewPackage</code>, create a new text file called <code>README.md</code> and type in some info about your package.</li>
 <li>Push the new file to GitHub.</li>
@@ -692,106 +683,143 @@ install_gitlab(&quot;youraccount/MyNewPackage&quot;)</code></pre>
 </div>
 <div id="pkgdown" class="section level3">
 <h3><strong>pkgdown</strong></h3>
-<p>I am actually switching to <a href="https://pkgdown.r-lib.org/articles/pkgdown.html">pkgdown</a> for my landing pages for more developed products. Here is an example of pkgdown being used in the Fisheries Intergrated Toolbox <a href="https://nmfs-fish-tools.github.io/r4MAS/index.html">r4MAS</a>.</p>
-</div>
-<div id="making-releases" class="section level3">
-<h3>Making releases</h3>
-<p>Make a release on GitHub (tag on GitLab)</p>
-<p>To install the latest release</p>
-<pre><code>install_github(&quot;youraccount/MyNewPackage@*release&quot;)</code></pre>
+<p>We’ll cover <strong>pkgdown</strong> next week.</p>
 </div>
 </div>
-<div id="debugging-tools" class="section level2">
-<h2>Debugging Tools</h2>
-<div id="entering-functions" class="section level3">
-<h3>Entering functions</h3>
-<p>This is an personal list of some simple degugging tools. Also I am not familiar with the debugging tools in RStudio.</p>
-<pre><code>debug(function)
-undebug(function)</code></pre>
-<p>Allows you to go line by line through the function and interact at the command line.</p>
-<p><code>browser()</code></p>
-<p>Put in your code where you want to enter the function.</p>
-<p><code>options(error=recover)</code></p>
-<p>Puts you into browser() at the point of the error (instead of a specific spot)</p>
-<p><code>traceback()</code></p>
-<p>Tells you where your code stopped. Note RStudio will show this also. Check your Project Options under Tools if you don’t see Traceback on errors.</p>
-</div>
-<div id="how-long" class="section level3">
-<h3>How long?</h3>
-<p><code>system.time( function )</code></p>
-<p>How long does it take?</p>
-<p><strong>Profiling</strong></p>
-<p><code>Rprof()</code> and <code>summaryRprof()</code></p>
-<p>Profile your code to find out what are the time hogs.</p>
-<pre class="r"><code>a &lt;- matrix(0,10,100)
-Rprof(tmp&lt;-tempfile())
-for(i in 1:10000){ b &lt;- t(a)%*%a }
-Rprof()
-summaryRprof(tmp)$by.self</code></pre>
-<pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            0.54    93.10       0.54     93.10
-## &quot;eval&quot;           0.02     3.45       0.58    100.00
-## &quot;t.default&quot;      0.02     3.45       0.02      3.45</code></pre>
-<pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
-<p><strong>microbenchmark</strong></p>
-<p>This is a handy package for comparing speeds of code.</p>
-<pre class="r"><code>library(microbenchmark)
-a &lt;- 2
-res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
-ggplot2::autoplot(res)</code></pre>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 16 rows containing non-finite values (stat_ydensity).</code></pre>
-<p><img src="week6-packages_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code. Piping also makes it a nightmare for your functions to pass the package checks required to submit to CRAN, important to me as I develop packages for CRAN.</p>
-<pre class="r"><code>library(magrittr)
-x &lt;- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
-fun1 &lt;- function(x){
-x %&gt;% log() %&gt;%
-    diff() %&gt;%
-    exp() %&gt;%
-    round(1)
-}
-fun2 &lt;- function(x){ round(exp(diff(log(x))), 1) }
-res &lt;- microbenchmark::microbenchmark(fun1(x), fun2(x))
-ggplot2::autoplot(res)</code></pre>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
-<p><img src="week6-packages_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-</div>
-</div>
-<div id="dependsimports" class="section level2">
-<h2>Depends/Imports</h2>
-<p><strong><span class="citation">@Depends</span></strong> These packages that will be loaded when your package is loaded. So if you have <strong>gplot2</strong> in <span class="citation">@Depends</span>, like above, then the user automatically can use <strong>ggplot2</strong> functions without issuing the command <code>library(ggplot2)</code>.</p>
-<p><strong><span class="citation">@Imports</span></strong> Are required for the package functions, but the user will not have access to the functions without calling <code>library(...)</code>. In your package, you will use <code>::</code> to access the functions from the packages on the <span class="citation">@Imports</span> line. <em>Most of your package dependencies will be here.</em></p>
-<p>To limit the number of headaches that users face when trying to install your package, use as few packages on your <span class="citation">@Depends</span> and <span class="citation">@Imports</span> lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on <span class="citation">@Suggests</span>.</p>
-<p>I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I’ll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command <code>library(SardineForecast)</code> a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won’t load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it’s a suffer-fest.</p>
-<p>For my MARSS package, I have only 3 non-base dependencies in the <span class="citation">@Imports</span> line and nothing on the <span class="citation">@Depends</span> line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the <span class="citation">@Suggests</span> line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).</p>
-<p><strong>What should you put on your Depends and Imports lines?</strong></p>
-<p>First off, when you are starting, don’t worry too much about this. Just add packages that are needed as you work on your functions.</p>
-<ul>
-<li><p>ALWAYS use <code>::</code> to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for <code>xyzpackage::</code> to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like <code>ggplot()</code> which use functions within their calls and you have to use <code>::</code> everywhere. Like so</p>
-<pre class="r"><code>ggplot2::ggplot(df) +
-   ggplot2::geom_point(ggplot2::aes(gp, y))</code></pre>
-<p>Arg. Another example is say a GAM call:</p>
-<pre class="r"><code>mgcv::gam(a ~ mgcv::s(b), data=df)</code></pre>
-<p>But this is just for your package functions. In your scripts, you’d probably use a <code>library()</code> call.</p></li>
-<li><p>Never ever use <code>library()</code> in a function! Use <code>xyzfunction::function</code>. Sure use <code>library()</code> in your scripts, but never in a package function. When you add a function from a new package to your function, add those packages to <span class="citation">@Depends</span> or <span class="citation">@Imports</span> in your DESCRIPTION file as you go along.</p></li>
-<li><p>Every so often check that you don’t have packages on <span class="citation">@Depends</span> and <span class="citation">@Imports</span> that you don’t use. Just do a Edit &gt; Find in Files… search for <code>xyzpackage::</code> to find out if you are still using <code>xyzpackage</code>.</p></li>
-<li><p>How do you know if you forgot a dependency or forgot a <code>::</code> somewhere? Two ways:</p>
+<div id="data-package-in-r" class="section level2">
+<h2>Data package in R</h2>
+<p>A data package can be exactly the same as a code package except that you don’t have much in the <code>R</code> folder and you have a lot in the <code>data</code> folder. A “data” package is just dedicated to data. There is nothing else very special about it.</p>
+<p>Let’s alter <code>MyNewPackage</code> to add some data and document that data.</p>
+<p>I am going to use the <strong>Roxygen2</strong> workflow for the documentation. You should do that too. To set up for <strong>Roxygen2</strong>, go to Tools &gt; Project Options &gt; Build Tools. Check the ‘Generate documentation with Roxygen’ box and then click Configure. Make sure the ‘Install and Restart’ box at the bottom is checked.</p>
 <ol style="list-style-type: decimal">
-<li>Do Session &gt; Restart R to close all your loaded packages. Then load your package with <code>library(yourpackagename)</code> and try your functions. Things will fail if you have a package in <span class="citation">@Imports</span> but forgot a <code>::</code> somewhere.</li>
-<li>From the Build tab, use More &gt; Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).</li>
-</ol></li>
+<li>Create a <code>data-raw</code> folder.</li>
+<li>Add a raw data file to that. <code>mydata.csv</code></li>
+<li>Process that data with some code, create data <code>mydata</code> and save the to a <code>mydata.rda</code> file in the <code>data</code> folder. Save your code.</li>
+<li>Create <code>mydata.R</code> in the <code>R</code> folder. This is how you document your data. Add this to that file.</li>
+</ol>
+<pre><code>#&#39; @title My Data
+#&#39;
+#&#39; @description My dataset on diamonds and here is more info.
+#&#39;
+#&#39; \itemize{
+#&#39;   \item price. price in US dollars
+#&#39;   \item carat. weight of the diamond
+#&#39; }
+#&#39;
+#&#39; @docType data
+#&#39; @name mydata
+#&#39; @usage data(mydata)
+#&#39; @format A data frame with 10 rows and 2 variables
+NULL</code></pre>
+<p><em>Note</em>, in the latest Roxygen2, you don’t need the <code>@name</code> but that only works if you use <code>LazyData: true</code> in your <code>DESCRIPTION</code> file. For a pure data package, you might not want to do that.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Click Install and Restart from the Build tab.</li>
+<li>Update the version number in DESCRIPTION.</li>
+<li>Push to GitHub.</li>
+</ol>
+<p>Let’s use our new data package in a R Markdown document.</p>
+<pre class="r"><code>a &lt;- readLines(&quot;week6-packages-rmd.txt&quot;)
+cat(a, sep=&quot;\n&quot;)</code></pre>
+<pre><code>---
+title: &quot;Untitled&quot;
+output: html_document
+---
+
+```{r, eval=FALSE}
+install_github(&quot;RWorkflow-Workshop-2021/MyNewPackage@*release&quot;)
+```
+
+```{r, echo=FALSE}
+library(MyNewPackage)
+data(mydata)
+knitr::kable(mydata, 
+             aption=paste(&quot;This is version&quot;, packageVersion(&quot;MyNewPackage&#39;)))
+```</code></pre>
+</div>
+<div id="changes-to-that-workflow" class="section level2">
+<h2>Changes to that workflow</h2>
+<ul>
+<li><em>My data is not csv files.</em> That was just an example. For documentation purposes, it is now recommended to use <code>data-raw</code> so that you have the raw data and the <code>rda</code> files in the <code>data</code> directory. You can put whatever you want into <code>data-raw</code>.</li>
+<li><em>Won’t including the raw data make my R package huge?</em> Yeah, it would. In your <code>.Rbuildignore</code> file, add the line <code>^data-raw$</code> to not include that in a build.</li>
+<li><em>Would you always put raw data in <code>data-raw</code>?</em> No. Another common place is <code>inst\extdata</code>. Which one you use is up to you. I use <code>extdata</code> more as a sandbox and it’ll have all sorts of info used to make the <code>data</code> files.</li>
+<li><em>My data are huge or the raw data should be on any repo. I don’t want them part of the package at all.</em> That’s fine. You only need the <code>data</code> folder.</li>
 </ul>
 </div>
-<div id="styling-your-code" class="section level2">
-<h2>Styling your code</h2>
-<p>You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the <a href="https://www.tidyverse.org/blog/2017/12/styler-1.0.0/"><strong>styler</strong> R package</a>. <strong>styler</strong> has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools &gt; Addins &gt; Browse Addins. Scroll down to styler, and select the file(s), you want to style.</p>
+<div id="comment-on-creating-the-rd-file" class="section level2">
+<h2>Comment on creating the Rd file</h2>
+<p>The Rd file in the <code>man</code> directory is what makes the documentation. The <a href="https://r-pkgs.org/index.html">R Packages</a> section on <a href="https://r-pkgs.org/data.html#documenting-data">documenting data</a> shows you how to write those files.</p>
+<p>But keep the following in mind. The Roxygen2 code that is shown in that section is where the dataset is defined when <code>library(mypackage)</code> is called. That would happen if <code>LazyData: true</code> in the <code>DESCRIPTION</code> file. Here’s how the new Roxygen2 code looks. Notice no <code>@name mydata</code> and <code>NULL</code> at the bottom is replaced with <code>"mydata"</code>.</p>
+<pre><code>#&#39; @title My Data
+#&#39;
+#&#39; @description My dataset on diamonds and here is more info.
+#&#39;
+#&#39; \itemize{
+#&#39;   \item price. price in US dollars
+#&#39;   \item carat. weight of the diamond
+#&#39; }
+#&#39;
+#&#39; @docType data
+#&#39; @usage data(mydata)
+#&#39; @format A data frame with 10 rows and 2 variables
+&quot;mydata&quot;</code></pre>
+<p>If you changed <code>LazyData: false</code>, all that Roxygen2 code is going to fail. So I personally would not use the new Roxygen2 “shortcut”.</p>
+<p>Why would you ever set <code>LazyData: false</code>? Because some of your data have the same name. I make R data packages with 100s of datasets with the exact same structure and same name. I use them like so where <code>dat</code> is a character string name of my data:</p>
+<pre><code>plot_data &lt;- function(dat){
+data(dat)
+gpplot(salmon, aes(x=year, y=spawners)) + geom_point()
+}</code></pre>
+<p>All my data are stored with the name <code>salmon</code> not with the data file name.</p>
+<p>So like so:</p>
+<pre><code>salmon &lt;- read.csv(file=&quot;data-raw/columbia-river-chinook-esu.csv&quot;)
+save(salmon, file=&quot;data/columbia-river-chinook-esu.rda&quot;)</code></pre>
+<p>I don’t ever want to refer to the Columbia River data as <code>columbia-river-chinook-esu</code>. In my workflow, that wouldn’t make sense.</p>
+<p>But in other applications, it often makes sense to give your data a specific name, like <code>sst</code> or <code>nooksack-river</code> or <code>thedata</code>. In that case, the style in the R Packages section on <a href="https://r-pkgs.org/data.html#documenting-data">documenting data</a> is fine.</p>
 </div>
-<div id="byte-compile" class="section level2">
-<h2>Byte Compile</h2>
-<p>Adding this line to your DESCRIPTION file can really speed up your code. This is one of the advantages of putting your functions in a package. It can actually make your functions faster.</p>
-<pre><code>ByteCompile: TRUE</code></pre>
+<div id="examples-of-real-data-packages" class="section level2">
+<h2>Examples of real data packages</h2>
+<ul>
+<li><a href="https://github.com/eeholmes/SardineForecast">SardineForecast</a> Note this is the repo I show in lecture but you won’t be able to see it yourself since it is private.</li>
+<li><a href="https://nwfsc-math-bio.github.io/VRData/">VRData</a> This is a data repo that I am developing for NWFSC application.</li>
+</ul>
+</div>
+<div id="workflow-to-make-your-new-data-package" class="section level2">
+<h2>Workflow to make your new data package</h2>
+<ul>
+<li>Create a new R package in RStudio via New Project in upper right corner.</li>
+<li>Install the Roxygen2 package if you don’t have it.</li>
+<li>Create <code>data</code> folder.</li>
+<li>Add <code>rda</code> files to the <code>data</code> folder.</li>
+<li>Add <code>.R</code> files to the <code>R</code> folder with your Roxygen2 data documentation.</li>
+</ul>
+<p>If you use <code>LazyData: true</code> and your data all have unique names, you can use:</p>
+<pre><code>#&#39; dataname
+#&#39;
+#&#39; data description
+#&#39;
+&quot;dataname&quot;</code></pre>
+<p>or if you use <code>LazyData: false</code> and your data do not have unique names, you use:</p>
+<pre><code>#&#39; dataname
+#&#39;
+#&#39; data description
+#&#39;
+#&#39; @docType data
+#&#39; @name foo
+NULL</code></pre>
+<ul>
+<li>Make sure Tools &gt; Project Options &gt; Build Tools has the checkbox for “Generate documentation with Roxygen” checked. Click on Configure and check the “Install and Restart” checkbox.</li>
+<li>On the Build tab, click “Install and Restart”</li>
+</ul>
+<p>Note, you’ll want to keep your raw data and code to convert that into the <code>rda</code> files with the package. Put in <code>data-raw</code> or <code>inst\extdata</code>.</p>
+</div>
+<div id="data-package-collaboration" class="section level2">
+<h2>Data package collaboration</h2>
+<p>In a team application, you’ll be dividing up the work.</p>
+<ul>
+<li><strong>The package development</strong>. R coder and knows how to design a package.</li>
+<li><strong>Data</strong>. Team members who add files to <code>data-raw</code> in whatever format your team uses.</li>
+<li><strong>Documentation</strong>. Multiple team members might be involved in editing the files in the <code>R</code> directory. Note, in <strong>VRData</strong> the documentation headers are in <code>data-raw</code> and I have code that processes that into the files in <code>R</code>.</li>
+<li><strong>Package maintainer</strong>. Not necessarily the package developer. This person makes sure releases are posted to GitHub.</li>
+</ul>
 </div>
 
 <hr>

@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 set.seed(1234)
 ```
 
-```{r chunk1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(kableExtra)
 dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
 kable(dt, col.names=NULL) %>%
@@ -48,8 +48,6 @@ An R package is an easy and the standard way to organize your R code, document y
 
 **Mac users**: You don't need to do anything.
 
-**RStudio Cloud users**: You don't need to do anything.
-
 **Windows users**: Try running this code and see what happens. You need to install **devtools** package if you don't have it.
 ```
 # install.packages("devtools")
@@ -61,8 +59,6 @@ If that code complains, then you need to install [RTools](https://cran.r-project
 
 ## Make a package
 
-### On your laptop
-
 1. Open RStudio
 2. In the upper right hand corner, click the blue cube with R, and click New Project.
 3. Click 'New Directory' and choose R package.
@@ -71,9 +67,6 @@ If that code complains, then you need to install [RTools](https://cran.r-project
 6. Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
 7. Click on click 'check'.  Your package should pass all the checks without errors.
 
-### On RStudio Cloud
-
-Open this link, [MyNewPackage](https://rstudio.cloud/project/2574138)
 
 ## Parts of an R package
 
@@ -98,9 +91,7 @@ Open this link, [MyNewPackage](https://rstudio.cloud/project/2574138)
 
 * `inst` folder for misc stuff
 
-* `inst\extdata` folder for external data.
-
-* `data-raw` A directory for raw data files that produced the data files in `data` folder.
+* **data-raw** A directory for raw data files that produced the data files in **data** folder. Nothing else.
 
 
 ## Using and adding functions
@@ -275,18 +266,9 @@ If R simply won't install a package from GitHub/Lab (or CRAN even) because of a 
 
 To limit the number of headaches that users face when trying to install your package from GitHub/Lab, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
 
+## More on GitHub
 
-### Making releases
-
-Make a release on GitHub?: Click Release to the right on your GitHub repo.
-
-To install the latest release
-
-```
-install_github("youraccount/MyNewPackage@*release")
-```
-
-### Making a landing page
+### Landing page
 
 Why? It looks nicer and conveys the needed info to users. This is for GitHub.
 
@@ -299,151 +281,136 @@ Why? It looks nicer and conveys the needed info to users. This is for GitHub.
 
 We'll cover **pkgdown** next week.
 
+Here is an example of pkgdown being used in the Fisheries Integrated Toolbox [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/index.html).
 
-## Data package in R
+### Making releases
 
-A data package can be exactly the same as a code package except that you don't have much in the `R` folder and you have a lot in the `data` folder. A "data" package is just dedicated to data. There is nothing else very special about it.
+Make a release on GitHub.
 
-Let's alter `MyNewPackage` to add some data and document that data.
+To install the latest release
 
-I am going to use the **Roxygen2** workflow for the documentation. You should do that too. To set up for **Roxygen2**, go to Tools > Project Options > Build Tools. Check the 'Generate documentation with Roxygen' box and then click Configure. Make sure the 'Install and Restart' box at the bottom is checked.
-
-1. Create a `data-raw` folder.
-2. Add a raw data file to that. `mydata.csv`
-3. Process that data with some code, create data `mydata` and save the to a `mydata.rda` file in the `data` folder. Save your code.
-4. Create `mydata.R` in the `R` folder. This is how you document your data. Add this to that file.
 ```
-#' @title My Data
-#'
-#' @description My dataset on diamonds and here is more info.
-#'
-#' \itemize{
-#'   \item price. price in US dollars
-#'   \item carat. weight of the diamond
-#' }
-#'
-#' @docType data
-#' @name mydata
-#' @usage data(mydata)
-#' @format A data frame with 10 rows and 2 variables
-NULL
-```
-*Note*, in the latest Roxygen2, you don't need the `@name` but that only works if you use `LazyData: true` in your `DESCRIPTION` file. For a pure data package, you might not want to do that.
-
-5. Click Install and Restart from the Build tab.
-6. Update the version number in DESCRIPTION.
-6. Push to GitHub.
-
-Let's use our new data package in a R Markdown document.
-
-```{r comment=NA. echo=FALSE}
-a <- readLines("week6-packages-rmd.txt")
-cat(a, sep="\n")
+install_github("youraccount/MyNewPackage@*release")
 ```
 
+## Debugging Tools
 
-## Changes to that workflow
+### Entering functions
 
-* *My data is not csv files.* That was just an example. For documentation purposes, it is now recommended to use `data-raw` so that you have the raw data and the `rda` files in the `data` directory. You can put whatever you want into `data-raw`.
-* *Won't including the raw data make my R package huge?* Yeah, it would. In your `.Rbuildignore` file, add the line `^data-raw$` to not include that in a build.
-* *Would you always put raw data in `data-raw`?* No. Another common place is `inst\extdata`. Which one you use is up to you. I use `extdata` more as a sandbox and it'll have all sorts of info used to make the `data` files.
-* *My data are huge or the raw data should be on any repo. I don't want them part of the package at all.* That's fine. You only need the `data` folder.
+This is an personal list of some simple degugging tools. Also I am not familiar with the debugging tools in RStudio.
 
-## Comment on creating the Rd file
-
-The Rd file in the `man` directory is what makes the documentation. The [R Packages](https://r-pkgs.org/index.html) section on [documenting data](https://r-pkgs.org/data.html#documenting-data) shows you how to write those files.
-
-But keep the following in mind. The Roxygen2 code that is shown in that section is where the dataset is defined when `library(mypackage)` is called. That would happen if `LazyData: true` in the `DESCRIPTION` file. Here's how the new Roxygen2 code looks. Notice no `@name mydata` and `NULL` at the bottom is replaced with `"mydata"`.
 ```
-#' @title My Data
-#'
-#' @description My dataset on diamonds and here is more info.
-#'
-#' \itemize{
-#'   \item price. price in US dollars
-#'   \item carat. weight of the diamond
-#' }
-#'
-#' @docType data
-#' @usage data(mydata)
-#' @format A data frame with 10 rows and 2 variables
-"mydata"
+debug(function)
+undebug(function)
 ```
-If you changed `LazyData: false`, all that Roxygen2 code is going to fail. So I personally would not use the new Roxygen2 "shortcut".
 
-Why would you ever set `LazyData: false`? Because some of your data have the same name. I make R data packages with 100s of datasets with the exact same structure and same name. I use them like so where `dat` is a character string name of my data:
+Allows you to go line by line through the function and interact at the command line.
+
+`browser()`
+
+Put in your code where you want to enter the function. 
+
+`options(error=recover)`
+
+Puts you into browser() at the point of the error (instead of a specific spot)
+
+`traceback()`
+
+Tells you where your code stopped. Note RStudio will show this also. Check your Project Options under Tools if you don't see Traceback on errors.
+
+### How long?
+
+`system.time( function )`
+
+How long does it take?
+
+**Profiling**
+
+`Rprof()` and `summaryRprof()`
+
+Profile your code to find out what are the time hogs.
+
+```{r}
+a <- matrix(0,10,100)
+Rprof(tmp<-tempfile())
+for(i in 1:10000){ b <- t(a)%*%a }
+Rprof()
+summaryRprof(tmp)$by.self
+Rprof(NULL) #stop profiling
 ```
-plot_data <- function(dat){
-data(dat)
-gpplot(salmon, aes(x=year, y=spawners)) + geom_point()
+
+**microbenchmark**
+
+This is a handy package for comparing speeds of code.
+
+```{r}
+library(microbenchmark)
+a <- 2
+res <- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
+ggplot2::autoplot(res)
+```
+
+This shows an example of code using [piping](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) (`%>%`) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code.
+
+```{r}
+library(magrittr)
+x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
+fun1 <- function(x){
+x %>% log() %>%
+    diff() %>%
+    exp() %>%
+    round(1)
 }
-```
-All my data are stored with the name `salmon` not with the data file name.
-
-So like so:
-```
-salmon <- read.csv(file="data-raw/columbia-river-chinook-esu.csv")
-save(salmon, file="data/columbia-river-chinook-esu.rda")
-```
-I don't ever want to refer to the Columbia River data as `columbia-river-chinook-esu`. In my workflow, that wouldn't make sense.
-
-But in other applications, it often makes sense to give your data a specific name, like `sst` or `nooksack-river` or `thedata`. In that case, the style in the R Packages section on [documenting data](https://r-pkgs.org/data.html#documenting-data) is fine.
-
-
-
-
-## Examples of real data packages
-
-* [SardineForecast](https://github.com/eeholmes/SardineForecast) Note this is the repo I show in lecture but you won't be able to see it yourself since it is private.
-* [VRData](https://nwfsc-math-bio.github.io/VRData/) This is a data repo that I am developing for NWFSC application.
-
-## Workflow to make your new data package
-
-* Create a new R package in RStudio via New Project in upper right corner.
-* Install the Roxygen2 package if you don't have it.
-* Create `data` folder.
-* Add `rda` files to the `data` folder.
-* Add `.R` files to the `R` folder with your Roxygen2 data documentation.
-
-If you use `LazyData: true` and your data all have unique names, you can use:
-```
-#' dataname
-#'
-#' data description
-#'
-"dataname"
-```
-or if you use `LazyData: false` and your data do not have unique names, you use:
-```
-#' dataname
-#'
-#' data description
-#'
-#' @docType data
-#' @name foo
-NULL
+fun2 <- function(x){ round(exp(diff(log(x))), 1) }
+res <- microbenchmark::microbenchmark(fun1(x), fun2(x))
+ggplot2::autoplot(res)
 ```
 
-* Make sure Tools > Project Options > Build Tools has the checkbox for "Generate documentation with Roxygen" checked. Click on Configure and check the "Install and Restart" checkbox.
-* On the Build tab, click "Install and Restart"
+## Depends/Imports
 
-Note, you'll want to keep your raw data and code to convert that into the `rda` files with the package. Put in `data-raw` or `inst\extdata`.
+**@Depends** These packages that will be loaded when your package is loaded. So if you have **gplot2** in @Depends, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. 
 
-## Data package collaboration
+**@Imports** Are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you will use `::` to access the functions from the packages on the @Imports line. *Most of your package dependencies will be here.*
 
-In a team application, you'll be dividing up the work.
+To limit the number of headaches that users face when trying to install your package, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
 
-* **The package development**. R coder and knows how to design a package.
-* **Data**. Team members who add files to `data-raw` in whatever format your team uses.
-* **Documentation**. Multiple team members might be involved in editing the files in the `R` directory. Note, in **VRData** the documentation headers are in `data-raw` and I have code that processes that into the files in `R`.
-* **Package maintainer**. Not necessarily the package developer. This person makes sure releases are posted to GitHub.
+I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
 
+For my MARSS package, I have only 3 non-base dependencies in the @Imports line and nothing on the @Depends line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the @Suggests line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
 
+**What should you put on your Depends and Imports lines?**
 
+First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
 
-    
-    
+* ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
+    ```{r eval=FALSE}
+    ggplot2::ggplot(df) +
+       ggplot2::geom_point(ggplot2::aes(gp, y))
+    ```
+    Arg. Another example is say a GAM call:
+    ```{r eval=FALSE}
+    mgcv::gam(a ~ mgcv::s(b), data=df)
+    ```
+    But this is just for your package functions. In your scripts, you'd probably use a `library()` call.
 
+* Never ever use `library()` in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.  When you add a function from a new package to your function, add those packages to @Depends or @Imports in your DESCRIPTION file as you go along.
 
+* Every so often check that you don't have packages on @Depends and @Imports that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
 
+* How do you know if you forgot a dependency or forgot a `::` somewhere? Two ways:
+
+    1. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in @Imports but forgot a `::` somewhere.
+    2. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
+
+## Styling your code
+
+You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the [**styler** R package](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/). **styler** has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools > Addins > Browse Addins. Scroll down to styler, and select the file(s), you want to style.
+
+## Byte Compile
+
+Adding this line to your DESCRIPTION file can really speed up your code. This is one of the advantages of putting your functions in a package. It can actually make your functions faster.
+
+```
+ByteCompile: TRUE
+```
 
