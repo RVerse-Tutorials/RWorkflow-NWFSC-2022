@@ -394,7 +394,7 @@ But in other applications, it often makes sense to give your data a specific nam
 
 ## Examples of real data packages
 
-* [SardineForecast](https://github.com/eeholmes/SardineForecast) Note this is the repo I show in lecture but you won't be able to see it yourself since it is private.
+* [SardineForecast](https://github.com/eeholmes/SardineForecast) A complex package with lots of different types of data.
 * [VRData](https://nwfsc-math-bio.github.io/VRData/) This is a data repo that I am developing for NWFSC application.
 
 ## Workflow to make your new data package
