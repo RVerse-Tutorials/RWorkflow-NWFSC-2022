@@ -19,10 +19,9 @@ knitr::opts_chunk$set(echo = TRUE, error=TRUE)
 ## Helpful FIT/NOAA resources
 
 * [FIT Resources](https://github.com/nmfs-fish-tools/Resources) License, disclaimer and NOAA footer for your packages here.
-* [FIT Resources blog](https://noaa-fisheries-integrated-toolbox.github.io/resources/)
+* [FIT Resources blog](https://noaa-fisheries-integrated-toolbox.github.io/resources/) Scroll down the navbar on left to see coding resources.
 * [Package review template](https://github.com/nmfs-general-modeling-tools/nmfs-general-modeling-tools.github.io/blob/master/.github/ISSUE_TEMPLATE/r-package-code-review.md) 
 * [FIT NOAA Themed pkgdown](https://noaa-fisheries-integrated-toolbox.github.io/resources/workshops/NOAA-pkgdown/)
 * [Code Testing](https://noaa-fisheries-integrated-toolbox.github.io/resources/best-practices/code-testing/)
 * [Code review](https://noaa-fisheries-integrated-toolbox.github.io/resources/best-practices/code-review/)
-* [GitHub Actions](https://github.com/nmfs-general-modeling-tools/nmfspalette/actions)
-* [NMFS Reports](https://emilymarkowitz-noaa.github.io/NMFSReports/) Check out this nice package by Emily Markowitz at AFSC for making NMFS Reports with proper branding and structure.
+* [NMFS Reports](https://emilymarkowitz-noaa.github.io/NMFSReports/) Check out this package by Emily Markowitz at AFSC for making NMFS Reports with proper branding and structure.
