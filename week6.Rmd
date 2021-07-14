@@ -14,7 +14,12 @@ knitr::opts_chunk$set(echo = TRUE, error=TRUE)
 
 ## Intro to R packages
 
+* [Lecture Video](https://youtu.be/mIGIRzMxSG0)
 * [The lecture notes](week6-packages.html)
+
+## Notes from Q&A
+
+* [GitHub info on large files](https://docs.github.com/en/github/managing-large-files/working-with-large-files/conditions-for-large-files)
 
 ## Helpful FIT/NOAA resources
 
