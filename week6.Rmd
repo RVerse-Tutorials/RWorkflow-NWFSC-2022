@@ -30,3 +30,13 @@ knitr::opts_chunk$set(echo = TRUE, error=TRUE)
 * [Code Testing](https://noaa-fisheries-integrated-toolbox.github.io/resources/best-practices/code-testing/)
 * [Code review](https://noaa-fisheries-integrated-toolbox.github.io/resources/best-practices/code-review/)
 * [NMFS Reports](https://emilymarkowitz-noaa.github.io/NMFSReports/) Check out this package by Emily Markowitz at AFSC for making NMFS Reports with proper branding and structure.
+
+## Example R packages
+
+* [MyNewPackage](https://github.com/RWorkflow-Workshop-2021/MyNewPackage) The package I made during class. You can also open on [RStudio Cloud](https://rstudio.cloud/project/2574138) and build it from there.
+* [VRData](https://nwfsc-math-bio.github.io/VRData/) This is the data package that I spent the most time on in lecture.
+* [SardineForecast](https://github.com/eeholmes/SardineForecast) Data package for a recent paper of mine. 
+  * This one had a lot of preprocessing which is in the `inst/extdata` folder. The data documentation is in [`R/data.R`](https://github.com/eeholmes/SardineForecast/blob/master/R/data.R). I don't recommend putting all the data background into one R file. It drove me nuts.
+  * For my paper, I had an appendix with the data information. To write that, I wrote a script to process the Rd files in the `man` folder into a Rmd document. So although writing the data documentation was time-consuming, it saved me a lot of time when writing the paper.
+  * The paper also included the data used in the analyses in a table in an appendix. I wrote a script to make that table using this data library.\
+  * For the paper tables and figures, I used `library(SardineForecast)`. That ensured that all figures and tables used the same and most recent data. There were a number of big data changes that happened in revision, and not having a data package would have made updating the paper much harder.
