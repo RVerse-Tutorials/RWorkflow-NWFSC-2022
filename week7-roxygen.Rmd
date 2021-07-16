@@ -72,7 +72,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 ```
 
-### Basic structure of Roxygen2 comments
+### Basic structure
 
 Roxygen comments with `#'` are put at the top of your function, in the same file. They have a standard format and standard sections. There is a bit of customization you can do, but the following basic form will cover 95% of your needs. [Read this](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd-formatting.html#links) for details.
 
@@ -184,7 +184,7 @@ Add the citation to your Rd file with
 * [VRData](https://nwfsc-math-bio.github.io/VRData/) example pkgdown site.
 * [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/) FIT public R package.
 
-### Add **pkgdown** to MyNewPackage
+### Add to MyNewPackage
 
 ```
 usethis::use_pkgdown()
@@ -193,7 +193,7 @@ pkgdown::build_site()
 
 Let's get this up on GitHub using GitHub Pages. Go to Settings on your repo and scroll down to 'GitHub Pages'.
 
-### **pkgdown** template with NOAA branding
+### NOAA branding
 
 I have created a template that you can clone:
 
