@@ -11,7 +11,7 @@
 
 
 
-<title>Week 5: Roxygen</title>
+<title>Week 7</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -385,6 +385,13 @@ div.tocify {
         Week 6 packages
       </a>
     </li>
+    <li>
+      <a href="week7.html">
+        <span class="fa fa-circle"></span>
+         
+        Week 7 roxygen and pkgdown
+      </a>
+    </li>
   </ul>
 </li>
 <li>
@@ -436,123 +443,16 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 5: Roxygen</h1>
+<h1 class="title toc-ignore">Week 7</h1>
 
 </div>
 
 
-<div id="documenting-your-code-and-data-with-roxygen" class="section level1">
-<h1>Documenting your code and data with Roxygen</h1>
-<p>We all know that documenting our code is important, but equally important is to be able to read that documentation. If you use R, you know that the help feature (?function) is essential. If you organize your code into an R package, it is super easy to create help files that you and users can use to call up using ?. Documenting code may sound like a snoozer of a topic, but using Roxygen and diligently writing documentation for my functions and data is one of the top 3 habits that has made my coding more efficient. You can also document all your data in the same way.</p>
-<p>For more help on Roxygen, see the section in Hadley Wickham’s book R Packages on <a href="http://r-pkgs.had.co.nz/man.html">Documentation</a>. Here’s a short cheatsheet <a href="https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html">Roxygen helper</a>. Also Roxygen has good tutorials and help. Type</p>
-<pre><code>browseVignettes(package=&quot;roxygen2&quot;)</code></pre>
-<p>to open a browser window with links to the tutorials.</p>
-<div id="type-of-documentation" class="section level2">
-<h2>Type of documentation</h2>
-<p>Roxygen (and the the ‘Build and Install’ step) will create a the help files that users access with `?function.name.</p>
-<p>The same man files are also used to create a package manual, e.g.  <a href="https://cran.r-project.org/web/packages/MARSS/MARSS.pdf" class="uri">https://cran.r-project.org/web/packages/MARSS/MARSS.pdf</a></p>
-<p>And it generates the navigation page for all the documentation</p>
-<pre><code>help(package=&quot;forecast&quot;)</code></pre>
-<p>The man files are also used by <strong>pkgdown</strong> to make a website version of your documentation. Here is an example of the default <a href="http://jebyrnes.github.io/multifunc/index.html">pkgdown-generated webpage</a>.</p>
-<div id="not-just-for-public-products" class="section level3">
-<h3>Not just for public products!</h3>
-<p>This is an example of a package that is purely <em>personal</em>. It is for the data, and a few utility functions, for a group of researchers working with a shared set of data.</p>
-<pre><code>help(package=&quot;SardineForecast&quot;)</code></pre>
-</div>
-</div>
-<div id="set-up" class="section level2">
-<h2>Set-up</h2>
-<div id="install-the-roxygen2-r-package." class="section level3">
-<h3>Install the <strong>roxygen2</strong> R package.</h3>
-<pre><code>install.packages(&quot;roxygen2&quot;)</code></pre>
-<p>Open your test package, <strong>MyNewPackage</strong>. Open RStudio and then click the little arrow next to the blue cube in the top right corner.</p>
-</div>
-<div id="set-the-project-build-options-to-use-roxygen" class="section level3">
-<h3>Set the Project Build Options to use Roxygen</h3>
-<p>Tools &gt; Project Options… &gt; Build Tools &gt; then check the checkbox “Generate documentation with Roxygen”. Then click “Configure”. Check the box at the bottom for “Install and Restart”.</p>
-</div>
-</div>
-<div id="basic-structure-of-roxygen2-comments" class="section level2">
-<h2>Basic structure of Roxygen2 comments</h2>
-<p>Roxygen comments with #’ are put at the top of your function, in the same file. They have a standard format and standard sections. There is a bit of customization you can do, but the following basic form will cover 95% of your needs.</p>
-<pre><code>#&#39; @title Short title
-#&#39;
-#&#39; @description 
-#&#39; Description should be one paragraph. Put details in details.
-#&#39;
-#&#39; @details
-#&#39; Optional if you want to add more detais.J
-#&#39;
-#&#39; @param param.name1 Describe all your function arguments
-#&#39; @param param.name2 Describe all your function arguments
-#&#39;
-#&#39; @examples
-#&#39; # provide some examples of how to use your function
-#&#39; hello()
-#&#39;
-#&#39; @seealso List relevant other functions
-#&#39; 
-#` @references 
-#&#39; List references
-#&#39; @export
-yourfunction &lt;- function(param.name1, param.name2){}</code></pre>
-<p><code>@title</code> and <code>@description</code> can be left off (not the text, just the @…. part), but title text should be in line 1, then a blank line (#’ only), and then the description text. The only required elements are <code>@title</code>, <code>@description</code>, and <code>@param</code> (defining the function arguments).</p>
-<p><code>@export</code> means that your function is added to your NAMESPACE so is not hidden. Just include this for now.</p>
-</div>
-<div id="add-help-to-hello" class="section level2">
-<h2>Add help to <code>hello()</code></h2>
-<p>First remove the old <code>hello.Rd</code> file from the man folder. That is there because when we created our new package using RStudio’s template, we didn’t select ‘use Roxygen’ so it added a manually created help (i.e. Rd) file for us in the man folder. Now we are going to use Roxygen, so we need to remove that file.</p>
-<p>Copy and paste this to the top of <code>hello.r</code> in the R folder. Replace all the comments at the top with these lines.</p>
-<pre><code>#&#39; Hello World!
-#&#39;
-#&#39; Prints a the classic first program greeting. It takes no arguments.
-#&#39;
-#&#39; @examples
-#&#39; hello()
-#&#39; @export</code></pre>
-<p>To build the documentation, click ‘Install and Restart’ from the Build tab.</p>
-<p>Once you see that <code>MyNewPackage</code> is reloaded (<code>library(MyNewPackage)</code> appears on the command line), you can type <code>?hello</code> to get the help info.</p>
-<div id="the-namespace" class="section level3">
-<h3>The NAMESPACE</h3>
-<p>Roxygen will complain that the NAMESPACE was not generated by Roxygen so it is ignoring our <code>@export</code>. Let delect the NAMESPACE file and try again.</p>
-</div>
-</div>
-<div id="updating-the-documentation" class="section level2">
-<h2>Updating the documentation</h2>
-<p>When you update the documentation or add new documentation, rebuild the help files using the ‘Install and Restart’ button on the Build tab. Note, with the default Project Options, RStudio does not remake the documentation when you click ‘Install and Restart’. You have to change that by going to Tools &gt; Project Options &gt; Build Tools and then clicking ‘Configure’ next to ‘Generate documentation with Roxygen’ and then clicking the box next to ‘Install and Restart’. Or you can run this code to make the documentation.</p>
-<pre><code>devtools::document()</code></pre>
-</div>
-<div id="customizing-your-help-files" class="section level2">
-<h2>Customizing your help files</h2>
-<p>The easiest way to figure out how to customize Roxygen headers is to look at the Roxygen header for a help file you are trying to copy.</p>
-<div id="adding-references" class="section level3">
-<h3>Adding references</h3>
-<p>If you use BibTex you can insert references by citation in your help files.</p>
-<ol style="list-style-type: decimal">
-<li>Create the <code>inst</code> folder if you don’t have one</li>
-<li>Within that, create <code>REFERENCES.bib</code> 3 Add refs to that in BibTex format.</li>
-<li>Install the <strong>Rdpack</strong> package</li>
-<li>Add <strong>Rdpack</strong> to <code>Imports</code> in your DESCRIPTION file and add <code>RdMacros: Rdpack</code> to your DESCRIPTION file.</li>
-<li>Cite in your Roxygen header using</li>
-</ol>
-<pre><code>\insertRef{Waltonetal1998}{MyNewPackage}</code></pre>
-<p>Example of a reference in <code>REFERENCES.bib</code></p>
-<pre><code>@article{Waltonetal1998,
-  title={The development and operational application of nonlinear algorithms for the measurement of sea surface temperatures with the NOAA polar-orbiting environmental satellites},
-  author={Walton, CC and Pichel, WG and Sapper, JF and May, DA},
-  journal={Journal of Geophysical Research: Oceans},
-  volume={103},
-  number={C12},
-  pages={27999--28012},
-  year={1998},
-  publisher={Wiley Online Library}
-}</code></pre>
-<p>You can get the citation for R packages from</p>
-<pre><code>citation(package=&quot;ggplot2&quot;)</code></pre>
-<p>Add the citation to your Rd file with</p>
-<pre><code>\insertRef{Waltonetal1998}{MyNewPackage}</code></pre>
-</div>
-</div>
+<div id="roxygen2-and-pkgdown" class="section level2">
+<h2>Roxygen2 and pkgdown</h2>
+<ul>
+<li><a href="week7-roxygen.html">The lecture notes</a></li>
+</ul>
 </div>
 
 <hr>
@@ -609,7 +509,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

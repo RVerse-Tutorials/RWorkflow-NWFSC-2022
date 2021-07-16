@@ -1,0 +1,18 @@
+---
+title: "Week 7"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+## Roxygen2 and pkgdown
+
+* [The lecture notes](week7-roxygen.html)
+
