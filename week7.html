@@ -451,8 +451,32 @@ div.tocify {
 <div id="roxygen2-and-pkgdown" class="section level2">
 <h2>Roxygen2 and pkgdown</h2>
 <ul>
+<li><a href="https://youtu.be/UYKezKp5dkY">Lecture video</a></li>
 <li><a href="week7-roxygen.html">The lecture notes</a></li>
 </ul>
+<p>Links to resources for <strong>pkgdown</strong> sites:</p>
+<ul>
+<li>The NOAA branded <strong>pkgdown template</strong> for you to clone (<a href="https://github.com/RWorkflow-Workshop-2021/pkgdown-template">repo</a>, <a href="https://rworkflow-workshop-2021.github.io/pkgdown-template/">webpage</a>)</li>
+<li><a href="https://github.com/nmfs-fish-tools/Resources">FIT Resources</a> <code>LICENSE</code> file, <code>Disclaimer.md</code> and NOAA footer for your packages here.</li>
+<li><a href="https://noaa-fisheries-integrated-toolbox.github.io/resources/workshops/NOAA-pkgdown/">FIT NOAA Themed pkgdown</a>. The <strong>pkgdown template</strong> repo uses the information from this.</li>
+<li><a href="https://noaa-fisheries-integrated-toolbox.github.io/resources/">FIT Resources blog</a> Scroll down the navbar on left to see coding resources.</li>
+</ul>
+</div>
+<div id="q-a" class="section level2">
+<h2>Q &amp; A</h2>
+<div id="badges" class="section level3">
+<h3>Badges</h3>
+<p>Check out <code>usethis::use_badges()</code>. You’ll want to make sure your <code>Readme.md</code> file has</p>
+<pre><code>&lt;!-- badges: start --&gt;
+
+&lt;!-- badges: end --&gt;</code></pre>
+<p>So <strong>usethis</strong> knows where to put the badge code.</p>
+</div>
+<div id="github-pages" class="section level3">
+<h3>GitHub Pages</h3>
+<p>With the last 2 <strong>pkgdown</strong> sites that I put up on GitHub Pages, I had some trouble where GitHub was only showing a page made from the Readme file and not the <strong>pkgdown</strong> site even though I had the GitHub Pages settings done correctly. so on my GitHub repository under Settings &gt; GitHub Pages &gt; branch = main and folder = docs.</p>
+<p>To solve, I changed branch = None in Settings &gt; GitHub Pages. That turns off GitHub Pages, then I immediately reset branch = main and folder = docs and hit Save. The <strong>pkgdown</strong> site then appeared within 30 seconds or so.</p>
+</div>
 </div>
 
 <hr>
