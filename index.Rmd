@@ -32,7 +32,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [July 9](week6.html). Intro to R packages for data and code. How to build an R package in RStudio. In the second half of the lecture, I will show you how to make an R data package and what that can do to allow data documentation, data revision tracking, data versioning and data sharing.
 
-* July 16. Intro to Roxygen for documentation, **pkgdown** for package websites, and intro to GitHub Actions for automation. Even if you don't do the coding on your team, you should be aware of how documentation works so you can contribute and the tools for automating tasks like a project website so your team doesn't fall into inefficient workflows.
+* [July 16](week7.html). Intro to Roxygen for documentation, **pkgdown** for package websites, and intro to GitHub Actions for automation. Even if you don't do the coding on your team, you should be aware of how documentation works so you can contribute and the tools for automating tasks like a project website so your team doesn't fall into inefficient workflows.
 
 * July 23. Advanced topics for developers. How to set up a NAMESPACE, passing `R CMD check`, C++ code in your package, coding GitHub Actions workflows. I am going to pass on tips to help you understand how these things work so you don't waste hours figuring it out or fall back on hacky solutions.
 
