@@ -517,7 +517,7 @@ NULL</code></pre>
 <ul>
 <li>If you are manually setting up your NAMESPACE, then add this code to it:</li>
 </ul>
-<pre><code>@import ggplot2</code></pre>
+<pre><code>import(ggplot2)</code></pre>
 <p>In your package functions, you should use <code>::</code> to access the functions from the packages on the <code>@Depends</code> line. Strictly speaking, you don’t have to, but I suggest you do. Otherwise a) if you ever move that package from <code>@Depends</code> to <code>@Imports</code>, you have much suffering in front of you as you search for all the functions and change to use <code>::</code>. b) Other people (or yourself) will know where every function comes from. c) Should you ever, perhaps inadvertently, create a function with the same name as one of the <code>@Depends</code> functions, you won’t run into a conflict.</p>
 </div>
 <div id="imports" class="section level3">
@@ -587,7 +587,17 @@ NULL</code></pre>
 <ul>
 <li>If you are manually setting up your NAMESPACE, then add this code to it:</li>
 </ul>
-<pre><code>@importFrom magrittr %&gt;%</code></pre>
+<pre><code>importFrom(magrittr, %&gt;%)</code></pre>
+<p>Note,</p>
+<ul>
+<li><strong>magrittr</strong> 2.0 fixes some of the past issues with slow pipes. You could put in a dependency for 2.0 using</li>
+</ul>
+<pre><code>Depends: magrittr (&gt;= 2.0)</code></pre>
+<p>in your DESCRIPTION file. Note, R is picky about the space in front of the version number.</p>
+<ul>
+<li><a href="https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/">R 4.1 is introducting a native pipe</a> <code>|&gt;</code>. It’s a little than the <strong>magrittr</strong> pipe. If you use that in your package, you’ll need to add a dependency on R 4.1:</li>
+</ul>
+<pre><code>Depends: R (&gt;= 4.1)</code></pre>
 </div>
 <div id="common-errors" class="section level3">
 <h3>Common errors</h3>
@@ -668,8 +678,13 @@ Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
 ## &quot;%*%&quot;            0.60    93.75       0.60     93.75
-## &quot;t.default&quot;      0.04     6.25       0.04      6.25</code></pre>
+## &quot;eval&quot;           0.02     3.12       0.64    100.00
+## &quot;t.default&quot;      0.02     3.12       0.02      3.12</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
+</div>
+<div id="profvis-package" class="section level3">
+<h3><strong>profvis</strong> package</h3>
+<p>Check out the <a href="https://rstudio.github.io/profvis/"><strong>profvis</strong></a> for profiling your code. I haven’t used it but others have said it’s a great tool.</p>
 </div>
 <div id="microbenchmark" class="section level3">
 <h3><strong>microbenchmark</strong></h3>
@@ -680,9 +695,9 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 15 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week8-adv-packages_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping in my simulations. It is slow.</p>
+<p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping in my simulations. It is slow though it has gotten much faster in <strong>magrittr</strong> 2.0.</p>
 <pre class="r"><code>library(magrittr)
 x &lt;- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
 fun1 &lt;- function(x){

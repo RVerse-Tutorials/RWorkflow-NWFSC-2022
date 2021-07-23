@@ -70,7 +70,7 @@ NULL
 
 * If you are manually setting up your NAMESPACE, then add this code to it:
 ```
-@import ggplot2
+import(ggplot2)
 ```
 
 In your package functions, you should use `::` to access the functions from the packages on the `@Depends` line. Strictly speaking, you don't have to, but I suggest you do. Otherwise a) if you ever move that package from `@Depends` to `@Imports`, you have much suffering in front of you as you search for all the functions and change to use `::`. b) Other people (or yourself) will know where every function comes from. c) Should you ever, perhaps inadvertently, create a function with the same name as one of the `@Depends` functions, you won't run into a conflict.
@@ -163,7 +163,20 @@ NULL
 
 * If you are manually setting up your NAMESPACE, then add this code to it:
 ```
-@importFrom magrittr %>%
+importFrom(magrittr, %>%)
+```
+
+Note, 
+
+* **magrittr** 2.0 fixes some of the past issues with slow pipes. You could put in a dependency for 2.0 using
+```
+Depends: magrittr (>= 2.0)
+```
+in your DESCRIPTION file. Note, R is picky about the space in front of the version number.
+
+* [R 4.1 is introducting a native pipe](https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/) `|>`. It's a little than the **magrittr** pipe. If you use that in your package, you'll need to add a dependency on R 4.1:
+```
+Depends: R (>= 4.1)
 ```
 
 ### Common errors
@@ -256,6 +269,10 @@ summaryRprof(tmp)$by.self
 Rprof(NULL) #stop profiling
 ```
 
+### **profvis** package
+
+Check out the [**profvis**](https://rstudio.github.io/profvis/) for profiling your code. I haven't used it but others have said it's a great tool.
+
 ### **microbenchmark**
 
 This is a handy package for comparing speeds of code.
@@ -267,7 +284,7 @@ res <- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)
 ```
 
-This shows an example of code using [piping](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) (`%>%`) versus without. This is why I do not use piping in my simulations. It is slow.
+This shows an example of code using [piping](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) (`%>%`) versus without. This is why I do not use piping in my simulations. It is slow though it has gotten much faster in **magrittr** 2.0.
  
 ```{r}
 library(magrittr)

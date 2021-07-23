@@ -34,7 +34,7 @@ Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you
 
 * [July 16](week7.html). Intro to **roxygen2** for documentation and **pkgdown** for package websites. Even if you don't do the coding on your team, you should be aware of how documentation works so you can contribute and the tools for automating tasks like a project website so your team doesn't fall into inefficient workflows.
 
-* July 23. Advanced topics for developers. How to set up a NAMESPACE, passing `R CMD check`, C++ code in your package, coding GitHub Actions workflows. I am going to pass on tips to help you understand how these things work so you don't waste hours figuring it out or fall back on hacky solutions.
+* [July 23](week8.html). Advanced topics for developers. How to set up a NAMESPACE, passing `R CMD check`, debugging tools, coding GitHub Actions workflows, C++ code in your package. I am going to pass on tips to help you understand how these things work so you don't waste hours figuring it out or fall back on hacky solutions.
 
 ## Video only
 
