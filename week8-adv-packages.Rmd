@@ -1,5 +1,5 @@
 ---
-title: "Week 6: Organizing your R code and data into a package"
+title: "Week 8: More R package tips"
 output:
   html_document:
     toc: true
@@ -21,158 +21,20 @@ kable(dt, col.names=NULL) %>%
   column_spec(column = 1:5, width = "20%")
 ```
 
-This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. 
+This week I will discuss topics that are specific for R package developers. These are topics that can tough to figure out when you are starting:
 
-* The package framework really helps you write robust code and well documented code. 
-* It makes it easy to bundle data with code.
-* It make it easy to version and document your data.
+* How to set up a NAMESPACE
+* Passing `R CMD check`
+* Coding GitHub Actions workflows
+* Some debugging and code speed analysis tips
+* Intro to C++ code in your package
 
-Organizing your code into an R package is very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I'll show you how to host it on GitHub with a nice little landing page.
-
-* Week 1: Intro to R packages for data and code. How to build an R package in RStudio. *Everyone*
-* Week 2: Intro to Roxygen for documentation, **pkgdown** for package websites, and intro to GitHub Actions for automation. *Everyone*
-* Week 3: Advanced topics for developers. How to set up a NAMESPACE, passing `R CMD check`, C++ code in your package, coding GitHub Actions workflows. *Those writing R packages*
-
-If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
-
-## Why a package?
-
-An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts with your data in a folder?
-
-* **Reproducibility and documentation**  In the long-run, you will save yourself much work if you organize and document your code.  Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.
-* **You want to share your code**  If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.
-* **Robust data sharing!** Putting your data in a dedicated data package allows you to version your data (so everyone knows they are using the most up to date data), document your data, track data changes, provide data releases (with archives), provide easy visualizations of the data, and any other packages can load that data package and have access to the data.
-* **You want to make an application**  If you want to make a shiny application, having your code in a package will help.
-
-## Set-up
-
-**Mac users**: You don't need to do anything.
-
-**Windows users**: Try running this code and see what happens. You need to install **devtools** package if you don't have it.
-```
-# install.packages("devtools")
-devtools::install_github("RWorkflow-Workshop-2021/week6-testpackage")
-```
-
-If that code complains, then you need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  
+A good resource is Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
 
 
-## Make a package
+## Depends and Imports
 
-1. Open RStudio
-2. In the upper right hand corner, click the blue cube with R, and click New Project.
-3. Click 'New Directory' and choose R package.
-4. Name your package `MyNewPackage` and select the directory where to put it. 
-5. Click Create Package.
-6. Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
-7. Click on click 'check'.  Your package should pass all the checks without errors.
-
-
-## Parts of an R package
-
-### The essentials
-
-2 files and a directory.
-
-* **DESCRIPTION** This file has the meta-data about your package.  Name and what packages it depends on.  Most of it is self-explanatory.  The `Depends:` and `Imports:` lines specify any functions from other packages that you use in your functions.
-
-* **NAMESPACE** This file indicates what needs to be exposed to users for your R package. For our course, you won't need to edit as **Roxygen2** takes care of it.
-
-* **R directory** This is where all your R code goes for your package.
-
-### Basic add-ons
-
-* **man** A directory for documentation.  You won't need to write this.  It will be added automatically by **Roxygen2**.
-
-* **data** A directory for data files saved in RData format (with the ending `.RData`). Nothing else!
-
-
-### Other add-ons
-
-* `inst` folder for misc stuff
-
-* **data-raw** A directory for raw data files that produced the data files in **data** folder. Nothing else.
-
-
-## Using and adding functions
-
-You have built **MyNewFunction** and loaded it.  You can use the package functions.  Type 
-
-```
-hello()
-```
-
-### Add a new function
-
-1. Create a new R script file. File > New File > R Script. 
-
-2. Paste this code into the script and save as `littleforecast.R` in the R directory.
-
-```
-littleforecast <- function(data, nyears=10){
-  fit <- forecast::auto.arima(data)
-  fc <- forecast::forecast(fit, h = nyears)
-  ggplot2::autoplot(fc)
-}
-```
-
-3. Open NAMESPACE. and Paste in 
-
-```
-export(littleforecast)
-```
-
-4. Open DESCRIPTION. Under Description, paste these lines
-
-```
-Imports: forecast, ggplot2
-```
-
-5. Install the **forecast** and **ggplot2** packages if you don't have them.
-
-```
-install.packages("forecast")
-install.packages("ggplot2")
-```
-
-6. Click Install and Restart from the Build tab.
-
-
-### Use your new function
-
-```
-dat <- WWWusage
-littleforecast(dat, nyears=100)
-```
-
-and a 100 year forecast of internet usage should appear.
-
-## Add data
-
-1. Add a folder called `data`
-
-2. Run these lines from the command line.
-
-```
-WWW2 <- WWWusage^2
-save(WWW2, file="data/WWW2.RData")
-```
-
-3. Click Install and Restart from the Build tab
-
-4. Now your data is available from your package. Type 
-
-```
-WWW2
-littleforecast(WWW2)
-```
-at the command line.
-
-## The key components
-
-### The DESCRIPTION file
-
-Open the file named DESCRIPTION.  Most of it is self-explanatory.  `Depends:` means the user will have all the commands of that package at the command line. `Imports:` is any other R packages that your package needs in order to work but it's functions won't be available at the command line (unless you choose). *Developers: On July 23, I am going to show you exactly how to set up your NAMESPACE and Depends/Imports.*
+Read about all the details of NAMESPACE in the R package book section on [NAMESPACEs](https://r-pkgs.org/namespace.html). But that has a lot of complex cases. I suggest trying to keep things as simple as you can.
 
 ```
 Package: MyNewPackage
@@ -183,148 +45,203 @@ Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-Depends: R (>= 3.4.1), ggplot2
+Depends: R (>= 4.0.0), ggplot2
 Imports: forecast
+Suggests: knitr
 License: What license is it under? (GPL-3 or CCO for US Government)
 Encoding: UTF-8
 LazyData: true
 ```
 
-The packages on the @Depends and @Imports lines are required to be installed in order to install your package. If the user doesn't have these packages, then they will be installed when installing the package.
+*Note* see the [**pkgdown-template**](https://github.com/RWorkflow-Workshop-2021/pkgdown-template) for how to set up your license for a NOAA package.
 
 
-### The NAMESPACE file
+### `@Depends`
 
-This file has the commands to export the functions (in the R folder) to the command line for use. If you don't have a function here, the user will need to use `:::` to access the function.
+These packages that will be loaded when your package is loaded. So if you have **ggplot2** in `@Depends`, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. Note for public packages, it is polite to alter the user's workspace as little as possible so only put a package in `Depends` if you really need to or if it wouldn't make sense to load your package and not have another package available.
+
+If you have a package on `@Depends` then you must import that package in your NAMESPACE. Let's say **ggplot2** (and only that) is on your `@Depends` line. 
+
+* If you are using **roxygen2**, then make a file called (say), `import_packages.R` in the R folder and add this code to it. The `NULL` is important.
+```
+#' @import ggplot2
+NULL
+```
+
+* If you are manually setting up your NAMESPACE, then add this code to it:
+```
+@import ggplot2
+```
+
+In your package functions, you should use `::` to access the functions from the packages on the `@Depends` line. Strictly speaking, you don't have to, but I suggest you do. Otherwise a) if you ever move that package from `@Depends` to `@Imports`, you have much suffering in front of you as you search for all the functions and change to use `::`. b) Other people (or yourself) will know where every function comes from. c) Should you ever, perhaps inadvertently, create a function with the same name as one of the `@Depends` functions, you won't run into a conflict.
+
+### `@Imports`
+
+Imports are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you must use `::` to access the functions from the packages on the `@Imports` line. *Most of your package dependencies will be here.*
+
+To limit the number of headaches that users face when trying to install your package, use as few packages on your `@Depends` and `@Imports` lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on `@Suggests`.
+
+Many packages are loaded by base R but you still need to declare those in `@Depends` or `@Imports`. For example `lm()` is in the **stats** package. *Tip* Routinely use `?function` to figure out what package a function comes from and then add `xyz::` to that function if you are writing a function for a package. Or add the package to `@Depends` and to your NAMESPACE.
+
+### `@Suggests`
+
+These packages are used in vignettes or examples. You (the developer) will need these installed when you check your package.
+
+### Do your need R on `@Depends`
+
+No not unless you have a version dependency. There were some big changes in R 4.0 so you might need that dependency. If you are doing a public R package, search about for options for testing your package under different R versions.
+
+### What should you put on your Depends and Imports lines?
+
+First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
+
+* ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
+    ```{r eval=FALSE}
+    ggplot2::ggplot(df) +
+       ggplot2::geom_point(ggplot2::aes(gp, y))
+    ```
+    Arg. Another example is say a GAM call:
+    ```{r eval=FALSE}
+    mgcv::gam(a ~ mgcv::s(b), data=df)
+    ```
+    But this is just for your package functions. In your *scripts*, you'd probably use a `library()` call.
+
+* Never ever use `library()` (or `require()`) in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.  When you add a function from a new package to your function, add those packages to `@Depends` or `@Imports` in your DESCRIPTION file as you go along.
+
+* Every so often check that you don't have packages on `@Depends` and `@Imports` that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
+
+* How do you know if you forgot a dependency or forgot a `::` somewhere? A few ways:
+
+    1. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
+    2. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in `@Imports` but forgot a `::` somewhere.
+    
+### My strategy
+
+I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a **huge** hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariably one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
+
+For my MARSS package, I have only 3 non-base dependencies in the `@Imports` line and nothing on the `@Depends` line besides R. Then on the `@Suggests` line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
+
+## Passing package Check
+
+The is also called `R CMD check` but if you are using RStudio, you can use Build tab > More... > Check
+
+`R CMD check` has many errors that can be hard to decipher. I am going to go through the common hard-to-decipher ones.
+
+### **ggplot2** and **dplyr** functions
+
+You will get weird errors about undeclared global variables if you use **ggplot2** and **dplyr** functions.
+
+This will thrown an error:
+```
+ggplot(df, aes(x=x, y=y))
+```
+You need to explicitly say that `x` and `y` come from the data argument (`df`). Technically, the `ggplot()` arguments are `ggplot(data=df, mapping=aes())`.
+```
+ggplot2::ggplot(df, ggplot2::aes(x=.data$x, y=.data$y))
+```
+
+A lot of the **dplyr** functions must also be specified like this.
+This will thrown an check error:
+```
+dplyr::select(df, x)
+```
+You need to do this.
+```
+dplyr::select(df, .data$x)
+```
+All the **dplyr** verbs will throw this check error: `arrange()`, `filter()`, `mutate()`, etc.
+
+### `%>%` pipes
+
+`%>%` this is actually a function and you need to import it from the **magrittr** package.
+
+* If you are using **roxygen2**, then make a file called (say), `import_packages.R` in the R folder and add this code to it. The `NULL` is important.
+```
+#' @importFrom magrittr %>%
+NULL
+```
+
+* If you are manually setting up your NAMESPACE, then add this code to it:
+```
+@importFrom magrittr %>%
+```
+
+### Common errors
+
+* Undeclared global functions: You forgot `::` somewhere
+* Undeclared global. That's either a bug or its the **ggplot2** and **dplyr** problem.
+* Examples have problems. Note check runs through these alphabetically. Sometimes it can be hard to figure out where the problem was.
+  * Use `dontrun{}` to make code that won't run. Horribly, it can be really hard to actually not run this code, so make sure the code is correct. If you are showing bad code, then you'll need to comment it out.
+  * Use `donttest{}`. It is hard to get this respected when you run check. Setting the system env flag should force `R CMD check` to respect `donttest{}`:
+    ```
+    Sys.setenv("R_CHECK_DONTTEST_EXAMPLES"=FALSE)
+    ```
+    But R Studio's 'check' via the Build tab uses `devtools::check()` and that doesn't respect that flag. It hard codes in `--run-donttest`. So go to Tools > Project Options > Build Tools and uncheck the little box that says 'Use devtools functions if available'. Then try clicking Check from the Build tab.  R package developers have been complaining about this a lot. It is new to R 4.0.
+    
+    For getting `R CMD check` to pass in a GitHub Action when you have `donttest{}` in examples, see the comments below on GitHub Actions.
+
+## Writing S3 methods
+
+S3 classes and methods are easy to make.
+
+### Step 1. Set the class of your object.
+
+So let's say your package fits a model via `lm()` and returns that fit. Then just assign an additional class to the fit:
 
 ```
-exportPattern("^[[:alpha:]]+")
-export(littleforecast)
+fit <- lm(a ~ b, data=df)
+class(fit) <- c("foo", class(fit))
 ```
 
-The first line means "export all functions". I don't normally have that line but it is handy when you are starting out; just export all your functions. The next line is exporting the `littleforecast` function.
-
-### The R Directory: Function code
-
-This is where functions are put.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions.
-
-It has this structure: name and the names of information passed into the function.
+### Step 2. Write a method function
 
 ```
-functionname <- function(infofunctionneeds1, infofunctionneeds2, ...){
-# The work
-return(<what you want to return to user>)
+print.foo <- function(x){
+cat("Hello, this is a foo object!\n")
+cat(paste("Your r2 is", summary(fit)$adj.r.squared), "\n")
 }
 ```
 
-## Sharing your package
-
-### GitHub Desktop Instructions
-
-** You have not made your folder a Git repository yet
-
-* Open GitHub Desktop.  
-* Click New Repository and then type in 'MyNewPackage' (or whatever you named your new package).
-* Click Publish (to GitHub)
-
-** You have made your folder a Git repository already
-
-* Open GitHub Desktop.  
-* Click Add Local Repository... and then type in 'MyNewPackage' (or whatever you named your new package).
-* Click Publish (to GitHub)
-
-Go to your GitHub account (online) and you will see your repository there.
-
-
-## Installing from GitHub
-
-The code you will use to install from GitHub is:
+### Step 3. Declare the method in your NAMESPACE
 
 ```
-library(devtools)
-install_github("youraccount/MyNewPackage")
-```
-
-For example to install the package on 'RVerse-Tutorials', you would use
-```
-install_github("RVerse-Tutorials/TestPackage")
-```
-
-### Installing from GitHub headaches
-
-If you are on a Windows machine and get an error saying 'loading failed for i386' or similar, then try
-```
-options(devtools.install.args = "--no-multiarch")
-```
-If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use
-```
-Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
-```
-If R asks you to update packages, you don't need to update (normally). If you do update, and it asks if you want to install from source, you can probably say 'No'. It is very unlikely that the package you trying to install needs the most updated version of a package. If that were the case, the package writer could have explicitly stated a version dependency, like `forecast (>=2.0)`.
-
-If R simply won't install a package from GitHub/Lab (or CRAN even) because of a package dependency problem, something like `can't install because couldn't remove old installation` error. Then click on the Packages tab (lower right panel) and click Install. Look at where R is installing packages. There might be more than one place. Close all your RStudio windows  (exit altogether) and go to those locations and delete the library folder(s) for the offending package. Then open RStudio and re-install that package.
-
-To limit the number of headaches that users face when trying to install your package from GitHub/Lab, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
-
-## More on GitHub
-
-### Landing page
-
-Why? It looks nicer and conveys the needed info to users. This is for GitHub.
-
-1. In RStudio in your `MyNewPackage`, create a new text file called `README.md` and type in some info about your package.
-2. Push the new file to GitHub.
-3. Open repo on GitHub, Click Settings, Scroll down to GitHub Pages, Select Source and select "master". Select a theme.
-4. Wait a few minutes and then go to the URL shown.
-
-### **pkgdown**
-
-We'll cover **pkgdown** next week.
-
-Here is an example of pkgdown being used in the Fisheries Integrated Toolbox [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/index.html).
-
-### Making releases
-
-Make a release on GitHub.
-
-To install the latest release
-
-```
-install_github("youraccount/MyNewPackage@*release")
+S3method(print, foo)
 ```
 
 ## Debugging Tools
 
 ### Entering functions
 
-This is an personal list of some simple degugging tools. Also I am not familiar with the debugging tools in RStudio.
+This is an personal list of some simple degugging tools. RStudio has debugging tools too but I don't know those.
+
+### `debug()`
 
 ```
 debug(function)
 undebug(function)
 ```
+Allows you to go line by line through the function and interact at the command line. Use the little icons above the console window to step out of `for` loops.
 
-Allows you to go line by line through the function and interact at the command line.
 
-`browser()`
+### `browser()`
 
 Put in your code where you want to enter the function. 
 
-`options(error=recover)`
+### `options(error=recover)`
 
-Puts you into browser() at the point of the error (instead of a specific spot)
+Type this on the command line. Puts you into `browser()` at the point of the error (instead of a specific spot)
 
-`traceback()`
+### `traceback()`
 
 Tells you where your code stopped. Note RStudio will show this also. Check your Project Options under Tools if you don't see Traceback on errors.
 
-### How long?
+## Analyzing code speed
 
-`system.time( function )`
+### `system.time( functionname )`
 
-How long does it take?
+How long does your function take?
 
-**Profiling**
+### Profiling
 
 `Rprof()` and `summaryRprof()`
 
@@ -339,7 +256,7 @@ summaryRprof(tmp)$by.self
 Rprof(NULL) #stop profiling
 ```
 
-**microbenchmark**
+### **microbenchmark**
 
 This is a handy package for comparing speeds of code.
 
@@ -350,8 +267,8 @@ res <- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)
 ```
 
-This shows an example of code using [piping](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) (`%>%`) versus without. This is why I do not use piping. It is slow and I do simulations and I want fast code.
-
+This shows an example of code using [piping](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) (`%>%`) versus without. This is why I do not use piping in my simulations. It is slow.
+ 
 ```{r}
 library(magrittr)
 x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
@@ -366,42 +283,6 @@ res <- microbenchmark::microbenchmark(fun1(x), fun2(x))
 ggplot2::autoplot(res)
 ```
 
-## Depends/Imports
-
-**@Depends** These packages that will be loaded when your package is loaded. So if you have **gplot2** in @Depends, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. 
-
-**@Imports** Are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you will use `::` to access the functions from the packages on the @Imports line. *Most of your package dependencies will be here.*
-
-To limit the number of headaches that users face when trying to install your package, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
-
-I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
-
-For my MARSS package, I have only 3 non-base dependencies in the @Imports line and nothing on the @Depends line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the @Suggests line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
-
-**What should you put on your Depends and Imports lines?**
-
-First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
-
-* ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
-    ```{r eval=FALSE}
-    ggplot2::ggplot(df) +
-       ggplot2::geom_point(ggplot2::aes(gp, y))
-    ```
-    Arg. Another example is say a GAM call:
-    ```{r eval=FALSE}
-    mgcv::gam(a ~ mgcv::s(b), data=df)
-    ```
-    But this is just for your package functions. In your scripts, you'd probably use a `library()` call.
-
-* Never ever use `library()` in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.  When you add a function from a new package to your function, add those packages to @Depends or @Imports in your DESCRIPTION file as you go along.
-
-* Every so often check that you don't have packages on @Depends and @Imports that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
-
-* How do you know if you forgot a dependency or forgot a `::` somewhere? Two ways:
-
-    1. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in @Imports but forgot a `::` somewhere.
-    2. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
-
 ## Styling your code
 
 You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the [**styler** R package](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/). **styler** has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools > Addins > Browse Addins. Scroll down to styler, and select the file(s), you want to style.
@@ -413,4 +294,78 @@ Adding this line to your DESCRIPTION file can really speed up your code. This is
 ```
 ByteCompile: TRUE
 ```
+
+## Installing from GitHub
+
+The code you will use to install from GitHub is:
+
+```
+library(devtools)
+install_github("youraccount/MyNewPackage")
+```
+
+For example to install the package on 'RVerse-Tutorials', you would use
+```
+install_github("RVerse-Tutorials/TestPackage")
+```
+Also look into **remotes**. I see that used now instead of **devtools** for this.
+
+To install the latest release rather than the main branch use `@release` at the end.
+```
+install_github("RVerse-Tutorials/TestPackage@release")
+```
+
+### Installing from GitHub headaches
+
+If you are on a Windows machine and get an error saying 'loading failed for i386' or similar, then try
+```
+options(devtools.install.args = "--no-multiarch")
+```
+If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use
+```
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
+```
+If R asks you to update packages, you don't need to update (normally). If you do update, and it asks if you want to install from source, you can probably say 'No'. It is very unlikely that the package you trying to install needs the most updated version of a package. If that were the case, the package writer could have explicitly stated a version dependency, like `forecast (>=2.0)`.
+
+If R simply won't install a package from GitHub (or CRAN even) because of a package dependency problem, something like `can't install because couldn't remove old installation` error. Then click on the Packages tab (lower right panel) and click Install. Look at where R is installing packages. There might be more than one place. Close all your RStudio windows  (exit altogether) and go to those locations and delete the library folder(s) for the offending package. Then open RStudio and re-install that package.
+
+To limit the number of headaches that users face when trying to install your package from GitHub/Lab, use as few packages on your `@Depends` and `@Imports` lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on `@Suggests`.
+
+## GitHub Actions
+
+This helps you automate tasks when you push (say) changes to GitHub. The super common one is check package and getting that nifty *Passing* badge.
+
+![badge](https://github.com/RWorkflow-Workshop-2021/pkgdown-template/workflows/R-CMD-check/badge.svg)
+
+### Getting started.
+
+```
+usethis::use_github_actions()
+```
+Note what it does because you might need to change things.
+
+```
+usethis::use_github_actions_badge()
+```
+Set up the `R CMD check` badge.
+
+### Start adapting for your own purposes
+
+Look at examples:
+
+* Start here [r-lib/actions](https://github.com/r-lib/actions)
+* Here how I am using it:
+[VRData](https://github.com/nwfsc-math-bio/VRData/tree/master/.github/workflows) to run scripts on data that is pushed.
+* Read all about [Github actions with R](https://orchid00.github.io/actions_sandbox/)
+* [This blog helped me](https://fromthebottomoftheheap.net/2020/04/30/rendering-your-readme-with-github-actions/). It's a write-up of a colleague putting together his first GitHub Action.
+* [Here](https://github.com/UW-Upwelling-Project/imageryML/blob/main/.github/workflows/R-CMD-check.yaml) is an example of setting the environment so that `R CMD check` doesn't run `donttest{}` in examples.
+* Look in the [Fisheries Integrated Toolbox](https://github.com/nmfs-fish-tools) for the `.github/workflows` folder and look at examples of workflows.
+
+You can also use GitHub Actions is [many more ways](https://youtu.be/R8_veQiYBjI) to help you automate workflows.
+
+## C++ code
+
+Read this the [compiled code](https://r-pkgs.org/src.html#src) section in the R package handbook.
+
+
 

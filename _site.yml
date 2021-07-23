@@ -30,6 +30,9 @@ navbar:
     - text: Week 7 roxygen and pkgdown
       icon: fa-circle
       href: week7.html
+    - text: Week 8 more packages
+      icon: fa-box
+      href: week8.html
   - text: Archive
     icon: fa-folder
     href: https://rverse-tutorials.github.io/RWorkflow/

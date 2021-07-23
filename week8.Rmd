@@ -1,0 +1,18 @@
+---
+title: "Week 8"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+## More R packaging
+
+* [The lecture notes](week8-adv-packages.html)
+
