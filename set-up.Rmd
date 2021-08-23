@@ -67,9 +67,37 @@ However, you can clone repositories from GitHub and commit your changes (without
 
 ### Telling RStudio your GitHub username and password
 
-You only need this if you will be pushing to GitHub or have a private repo and are pulling. Everything else works fine without your password.
+Go to [HappyGitwR](https://happygitwithr.com/credential-caching.html) to read all about how to pass your credentials (e.g. username and password) to GitHub so you can interact (read push/pull changes) with your GitHub reponsitories.
 
-See the [2020 Set-up instructions](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/set-up.html#Set_up_RStudio_to_use_Git) and go to the part about setting up your credentials. I won't be covering this in 2021. 
+**Here is the simple version**
+
+Install these two packages if you don't have them already:
+```
+install.packages("usethis")
+install.packages("gitcreds")
+```
+
+Run this code to generate your Personal Access Token (PAT) for your GitHub account. It doesn't matter what folder you are in when you run this. Just to the R command line in RStudio within any folder or project. For most people, you can just accept the default scope that **usethis** selects for you. If you are not one of those people, then you will know what extra boxes to check. Everyone else, just accept the default scopes. Next choose a time limit for your PAT. You can choose "forever" but you might not want to do that. I set up mine for 12 months.
+```
+usethis::create_github_token()
+```
+SAVE the token, that long string of letters!! You need it for the next step.
+
+Next set up R so it knows where this PAT is:
+```
+gitcreds_set()
+```
+If you have an old PAT that you need to replace, it will give you an option for that.
+
+Now pushing and pulling to GitHub should work fine from R (and RStudio).
+
+If you need to make another PAT, because your PAT expired or you messed up the scope, then go here
+
+https://github.com/settings/tokens 
+
+to delete the old on before setting up a new one.
+
+
 
 <!--
 

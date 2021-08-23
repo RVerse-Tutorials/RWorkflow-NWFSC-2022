@@ -677,9 +677,8 @@ for(i in 1:10000){ b &lt;- t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
 <pre><code>##             self.time self.pct total.time total.pct
-## &quot;%*%&quot;            0.60    93.75       0.60     93.75
-## &quot;eval&quot;           0.02     3.12       0.64    100.00
-## &quot;t.default&quot;      0.02     3.12       0.02      3.12</code></pre>
+## &quot;%*%&quot;            0.56    90.32       0.56     90.32
+## &quot;t.default&quot;      0.06     9.68       0.06      9.68</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 </div>
 <div id="profvis-package" class="section level3">
@@ -695,7 +694,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 10 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 14 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week8-adv-packages_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping in my simulations. It is slow though it has gotten much faster in <strong>magrittr</strong> 2.0.</p>
 <pre class="r"><code>library(magrittr)
