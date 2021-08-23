@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, error=TRUE)
 ## More R packaging
 
 * [The lecture notes](week8-adv-packages.html)
+* [The lecture video](https://youtu.be/w0A1z8GtwF0)
 
 ## Q & A
 
