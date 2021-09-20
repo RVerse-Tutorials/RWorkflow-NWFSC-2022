@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>README.utf8.md</title>
+<title>README</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -42,38 +56,11 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -81,13 +68,8 @@ h6 {
   margin-left: auto;
   margin-right: auto;
 }
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -98,44 +80,56 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 66px;
-  padding-bottom: 40px;
+.dropdown-submenu {
+  position: relative;
 }
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 71px;
-  margin-top: -71px;
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
 }
-
-.section h2 {
-  padding-top: 71px;
-  margin-top: -71px;
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
 }
-.section h3 {
-  padding-top: 71px;
-  margin-top: -71px;
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
 }
-.section h4 {
-  padding-top: 71px;
-  margin-top: -71px;
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
 }
-.section h5 {
-  padding-top: 71px;
-  margin-top: -71px;
+.dropdown-submenu.pull-left {
+  float: none;
 }
-.section h6 {
-  padding-top: 71px;
-  margin-top: -71px;
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -146,26 +140,93 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
-
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -189,99 +250,119 @@ $(document).ready(function () {
     Set-up
   </a>
 </li>
-<li>
-  <a href="rstudio.html">
-    <span class="fa fa-cogs"></span>
-     
-    RStudio
-  </a>
-</li>
-<li>
-  <a href="RMarkdown.html">
-    <span class="fa fa-file"></span>
-     
-    R Markdown
-  </a>
-</li>
-<li>
-  <a href="websites.html">
-    <span class="fa fa-chrome"></span>
-     
-    Websites
-  </a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    More Tools
+    <span class="fa fa-calendar"></span>
+     
+    Workshop Weekly Notes
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="packages.html">
-        <span class="fa fa-archive"></span>
+      <a href="week1.html">
+        <span class="fa fa-cogs"></span>
          
-        R Packages
+        Week 1 RStudio + Version Control
       </a>
     </li>
     <li>
-      <a href="jekyll.html">
-        <span class="fa fa-sitemap"></span>
+      <a href="week2.html">
+        <span class="fab fa-github-alt"></span>
          
-        Jekyll
+        Week 2 More Git/GitHub
       </a>
     </li>
     <li>
-      <a href="bookdown.html">
-        <span class="fa fa-book"></span>
+      <a href="week3.html">
+        <span class="fab fa-github"></span>
          
-        Bookdown
+        Week 3 GitHub
       </a>
     </li>
     <li>
-      <a href="shiny.html">
-        <span class="fa fa-gamepad"></span>
+      <a href="week4.html">
+        <span class="fa fa-file-code"></span>
          
-        Shiny
+        Week 4 R Markdown
       </a>
     </li>
     <li>
-      <a href="links.html">Links</a>
+      <a href="week5.html">
+        <span class="fa fa-chart-line"></span>
+         
+        Week 5 ggplot2
+      </a>
+    </li>
+    <li>
+      <a href="week6.html">
+        <span class="fa fa-box"></span>
+         
+        Week 6 packages
+      </a>
+    </li>
+    <li>
+      <a href="week7.html">
+        <span class="fa fa-circle"></span>
+         
+        Week 7 roxygen and pkgdown
+      </a>
+    </li>
+    <li>
+      <a href="week8.html">
+        <span class="fa fa-box"></span>
+         
+        Week 8 more packages
+      </a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow/">
+    <span class="fa fa-folder"></span>
+     
+    Archive
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020">
+    <span class="fa fa-clock"></span>
+     
+    2020 website
+  </a>
+</li>
+<li>
+  <a href="noaa.html">
+    <span class="fa fa-fish"></span>
+     
+    NOAA
+  </a>
+</li>
+<li>
+  <a href="links.html">
+    <span class="fa fa-info"></span>
+     
+    More resources
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://rverse-tutorials.github.io/Fish-Forecast-Training-Course/">
-    <span class="fa fa-home"></span>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2021">
+    <span class="fab fa-github"></span>
      
+    Repo
   </a>
 </li>
 <li>
-  <a href="https://rverse-tutorials.github.io/RWorkflow-Workshop">
-    <span class="fa fa-wrench"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://fish-forecast.github.io/Catch-Forecasting-INCOIS/">
-    <span class="fa fa-line-chart"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://github.com/RVerse-Tutorials/RWorkflow-Workshop">
-    <span class="fa fa-github"></span>
-     
-  </a>
+  <a href="https://github.com/orgs/RWorkflow-Workshop-2021">Org</a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -289,12 +370,31 @@ $(document).ready(function () {
 </div>
 
 
-<div id="website-for-the-rworkflow-incois-short-course" class="section level1">
-<h1>Website for the RWorkflow INCOIS Short Course</h1>
-<ul>
-<li>Simple website built with R Markdown ‘Build Website’ function.</li>
-<li>Click the ‘Build Website’ button in RStudio to make.</li>
-</ul>
+<div id="rworkflow-nwfsc-2021" class="section level1">
+<h1>RWorkflow-NWFSC-2021</h1>
+<p>How to edit and build website.</p>
+<div id="edit" class="section level2">
+<h2>Edit</h2>
+<ol style="list-style-type: decimal">
+<li>look at <code>_site.yml</code> to see the structure of the website and file names if editing</li>
+<li>edit the Rmd file</li>
+<li>click <strong>Build website</strong> in Build tab</li>
+<li>push to GitHub</li>
+</ol>
+</div>
+<div id="add-week-of-material" class="section level2">
+<h2>Add week of material</h2>
+<ol style="list-style-type: decimal">
+<li>look at <code>_site.yml</code> to see the structure of the website and file names if editing</li>
+<li>copy <code>weekX.Rmd</code> where X is one of the previous weeks</li>
+<li>add that to <code>_site.yml</code> with the other weeks</li>
+<li>add it to the <code>index.Rmd</code> file too</li>
+<li>copy one of the <code>weekX-topic.Rmd</code> files and edit that</li>
+<li>add links to that in <code>weekX.Rmd</code></li>
+<li>click <strong>Build website</strong> in Build tab</li>
+<li>push to GitHub</li>
+</ol>
+</div>
 </div>
 
 
@@ -306,7 +406,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -314,6 +414,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

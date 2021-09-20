@@ -24,6 +24,8 @@ kable(dt, col.names=NULL) %>%
 
 # Overview
 
+[Lecture video](https://youtu.be/TiII9trsArk)
+
 This week I will the basic Git/GitHub skills (and info) that are all most NMFS scientists will need.
 
 Repository skills (using GitHub Desktop)

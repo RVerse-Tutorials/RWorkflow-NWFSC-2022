@@ -13,7 +13,7 @@
 
 <title>Week 8: More R package tips</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -676,9 +676,9 @@ Rprof(tmp&lt;-tempfile())
 for(i in 1:10000){ b &lt;- t(a)%*%a }
 Rprof()
 summaryRprof(tmp)$by.self</code></pre>
-<pre><code>##       self.time self.pct total.time total.pct
-## &quot;%*%&quot;      0.56    96.55       0.56     96.55
-## &quot;t&quot;        0.02     3.45       0.02      3.45</code></pre>
+<pre><code>##             self.time self.pct total.time total.pct
+## &quot;%*%&quot;            0.58    96.67       0.58     96.67
+## &quot;t.default&quot;      0.02     3.33       0.02      3.33</code></pre>
 <pre class="r"><code>Rprof(NULL) #stop profiling</code></pre>
 </div>
 <div id="profvis-package" class="section level3">
@@ -694,7 +694,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 17 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 12 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week8-adv-packages_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping in my simulations. It is slow though it has gotten much faster in <strong>magrittr</strong> 2.0.</p>
 <pre class="r"><code>library(magrittr)

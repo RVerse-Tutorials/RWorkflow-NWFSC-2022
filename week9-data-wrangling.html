@@ -13,7 +13,7 @@
 
 <title>Week 9: Intro to piping and tidyverse data wrangling</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -883,7 +883,7 @@ head(df2)</code></pre>
 <pre><code>## Warning in mean.default(id): argument is not numeric or logical: returning NA
 
 ## Warning in mean.default(id): argument is not numeric or logical: returning NA</code></pre>
-<pre><code>## # A tibble: 2 x 6
+<pre><code>## # A tibble: 2 × 6
 ##   pop      id  Week1   Week2  Week3  Week4
 ##   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 r1       NA 0.176   0.870  -0.291 -0.181
@@ -896,7 +896,7 @@ head(df2)</code></pre>
   group_by(pop, id) %&gt;%
   summarize(mean=mean(c(Week1, Week2, Week3, Week4)))</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;pop&#39;. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 4 x 3
+<pre><code>## # A tibble: 4 × 3
 ## # Groups:   pop [2]
 ##   pop   id      mean
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;
@@ -912,7 +912,7 @@ head(df2)</code></pre>
   select(where(is.numeric)) %&gt;% 
   summarize_all(mean)</code></pre>
 <pre><code>## Adding missing grouping variables: `pop`</code></pre>
-<pre><code>## # A tibble: 2 x 5
+<pre><code>## # A tibble: 2 × 5
 ##   pop    Week1   Week2  Week3  Week4
 ##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 r1    0.176   0.870  -0.291 -0.181
@@ -922,7 +922,7 @@ head(df2)</code></pre>
   select(ends_with(&quot;2&quot;)) %&gt;% 
   summarize_all(mean)</code></pre>
 <pre><code>## Adding missing grouping variables: `pop`</code></pre>
-<pre><code>## # A tibble: 2 x 2
+<pre><code>## # A tibble: 2 × 2
 ##   pop     Week2
 ##   &lt;chr&gt;   &lt;dbl&gt;
 ## 1 r1     0.870 
@@ -972,7 +972,7 @@ head(df2)</code></pre>
 mtcars %&gt;% 
   group_by(carb) %&gt;% 
   summarize(lmm=fun(mpg,hp))</code></pre>
-<pre><code>## # A tibble: 6 x 2
+<pre><code>## # A tibble: 6 × 2
 ##    carb   lmm
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1  162.
@@ -987,7 +987,7 @@ mtcars %&gt;%
   mutate(lmm=fun(mpg,hp)) %&gt;%
   select(mpg, hp, lmm)</code></pre>
 <pre><code>## Adding missing grouping variables: `carb`</code></pre>
-<pre><code>## # A tibble: 32 x 4
+<pre><code>## # A tibble: 32 × 4
 ## # Groups:   carb [6]
 ##     carb   mpg    hp   lmm
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1322,7 +1322,7 @@ df.long</code></pre>
     values_to = &quot;val&quot;
   )</code></pre>
 <pre class="r"><code>df.long2</code></pre>
-<pre><code>## # A tibble: 96 x 4
+<pre><code>## # A tibble: 96 × 4
 ##     carb model          name     val
 ##    &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;dbl&gt;
 ##  1     4 Mazda RX4      mpg    21   
@@ -1360,7 +1360,7 @@ ggplot(df.long, aes(x=model, y=val, col=name)) + geom_point() +
     names_from = &quot;name&quot;, 
     values_from = &quot;val&quot;
   )</code></pre>
-<pre><code>## # A tibble: 32 x 5
+<pre><code>## # A tibble: 32 × 5
 ##    model              carb   mpg    wt    hp
 ##    &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ##  1 Mazda RX4             4  21    2.62   110
