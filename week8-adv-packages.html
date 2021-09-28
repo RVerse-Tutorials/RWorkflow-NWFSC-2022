@@ -694,7 +694,7 @@ res &lt;- microbenchmark(2 + 2, 2 + a, sum(2, a), sum(2, 2))
 ggplot2::autoplot(res)</code></pre>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 12 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>## Warning: Removed 17 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="week8-adv-packages_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>This shows an example of code using <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">piping</a> (<code>%&gt;%</code>) versus without. This is why I do not use piping in my simulations. It is slow though it has gotten much faster in <strong>magrittr</strong> 2.0.</p>
 <pre class="r"><code>library(magrittr)

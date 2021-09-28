@@ -24,7 +24,9 @@ kable(dt, col.names=NULL) %>%
 
 # Overview
 
-This week I will the basic GitHub skills plus a few more Git skills.
+[Lecture video](https://youtu.be/pdaOa4t6-Wc)
+
+This week I will cover the basic GitHub skills plus a few more Git skills.
 
 Key GitHub.com skills.
 
@@ -56,9 +58,10 @@ Topics I won't cover during lecture:
 
 ## Prep for Week 5
 
+**This is for the R packaging sessions in 2 weeks**. Just to test if this works for you (so I have time to trouble-shoot if not). 
+
 For those of you with RStudio Cloud account:
 Click this: https://rstudio.cloud/project/2574138
-
 When it opens, click the Build tab (upper right panel) and then 'Install and Restart'.
 
 Then run this code (lower right panel)

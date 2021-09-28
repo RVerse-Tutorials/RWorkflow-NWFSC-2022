@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Everything you'll be using is free. You will need a GitHub (free) account. Sign up here [GitHub](https://github.com/).
 
+## Fresh install R, Studio, GH Desktop
+
 To follow along with the material on your own computer, install the following:
 
 * Install [R](https://cran.r-project.org/)
@@ -20,6 +22,8 @@ To follow along with the material on your own computer, install the following:
 * Install [GitHub Desktop](https://desktop.github.com/)
 
 To follow along with RStudio Cloud (with a browser) instead of installing programs (or if you following along on a phone or tablet): Sign up for an [RStudio Cloud](https://rstudio.cloud/) account.
+
+**Already have R and RStudio installed?** See [update R](#updateR) for instructions on updating R to the most recent version. This is not required for the workshop, but it is good to keep R and RStudio updated.
 
 ## Git using GitHub Desktop
 
@@ -97,6 +101,56 @@ https://github.com/settings/tokens
 
 to delete the old on before setting up a new one.
 
+
+## Updating R/RStudio {#updateR}
+
+### IT installs everything on my computer
+
+Talk to them. They have their own procedure for this and they install/update R and RStudio all the time (probably).
+
+### I can install stuff.
+
+**R**
+
+Install the latest R from CRAN. When you restart RStudio, it will use the updated version of R.
+
+**Windows users** can try using the package `installr` (only for Windows). This [installr tutorial](https://www.r-statistics.com/2015/06/a-step-by-step-screenshots-tutorial-for-upgrading-r-on-windows/) is very helpful. Or download from [CRAN](https://cloud.r-project.org).
+
+**Mac users** 
+
+1. Go to https://cloud.r-project.org/bin/macosx/ 
+2. Find the latest pkg file for your macOS and double-click on that.
+3. Double-click on the downloaded file to install. Follow instructions. You should be able to click "Next" to all dialogs.
+4. I delete old R versions from my computer after I am happy with the upgrade.
+
+**RStudio**
+
+Open RStudio. Go to "Help" tab. Click "Check for Updates"
+
+**Getting your packages to the new R version**
+
+If you want to automatically re-install these you can follow these instructions. I do not do this, because I tend to accumulate so many packages just when I am trying out stuff and I use my R updates to clean-up. I have a small list of packages that I install on a fresh R install. But if you want to just install all the packages you have installed, here how you could do that.
+
+```
+tmp <- installed.packages()
+installedpkgs <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
+save(installedpkgs, file="installed_old.rda")
+```
+Once you have the new R installed, open RStudio (or R) and navigate to where you have that `installed_old.rda` file.
+```
+
+load("installed_old.rda")
+tmp <- installed.packages()
+installedpkgs.new <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
+missing <- setdiff(installedpkgs, installedpkgs.new)
+if(length(missing)!=0) install.packages(missing)
+update.packages()
+```
+Does R say, "package not available" and you know it is? Try a different mirror.
+
+**Updating packages**
+
+To update packages, Go to "Tools" tab and then "Check for Package Updates". 
 
 
 <!--
