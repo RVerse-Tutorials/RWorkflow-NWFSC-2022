@@ -148,6 +148,14 @@ update.packages()
 ```
 Does R say, "package not available" and you know it is? Try a different mirror.
 
+So what do I do? I run this code
+```
+install.packages("tidyverse")
+install.packages(c("knitr", "rmarkdown", "markdown"))
+install.packages(c("kableExtra", "gridExtra", "raster", "sp"))
+```
+I say "no" to install from binary (unless for some reason I need the very latest version, which I never do). That gets me 75% of the way and then I install the other stuff as I need it. *Notes* 1) I don't write scripts with `library()` buried deep in the script. Those calls always go at the top so they break early if I am running something. 2) I tend to bundle my code into packages with a DESCRIPTION file with all the dependencies and suggests. When I install that with `install.packages(..., dependencies=TRUE)` it will install all the packages required or used in the vignettes and examples. 3) I prefer to use `::` when using functions from other packages, like `forecast::forecast()`. Exception is **ggplot2** stuff. Otherwise I spend forever trying to figure what package a function came from.
+
 **Updating packages**
 
 To update packages, Go to "Tools" tab and then "Check for Package Updates". 

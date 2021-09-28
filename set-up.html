@@ -13,8 +13,8 @@
 
 <title>Set-up</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -567,6 +567,11 @@ missing &lt;- setdiff(installedpkgs, installedpkgs.new)
 if(length(missing)!=0) install.packages(missing)
 update.packages()</code></pre>
 <p>Does R say, “package not available” and you know it is? Try a different mirror.</p>
+<p>So what do I do? I run this code</p>
+<pre><code>install.packages(&quot;tidyverse&quot;)
+install.packages(c(&quot;knitr&quot;, &quot;rmarkdown&quot;, &quot;markdown&quot;))
+install.packages(c(&quot;kableExtra&quot;, &quot;gridExtra&quot;, &quot;raster&quot;, &quot;sp&quot;))</code></pre>
+<p>I say “no” to install from binary (unless for some reason I need the very latest version, which I never do). That gets me 75% of the way and then I install the other stuff as I need it. <em>Notes</em> 1) I don’t write scripts with <code>library()</code> buried deep in the script. Those calls always go at the top so they break early if I am running something. 2) I tend to bundle my code into packages with a DESCRIPTION file with all the dependencies and suggests. When I install that with <code>install.packages(..., dependencies=TRUE)</code> it will install all the packages required or used in the vignettes and examples. 3) I prefer to use <code>::</code> when using functions from other packages, like <code>forecast::forecast()</code>. Exception is <strong>ggplot2</strong> stuff. Otherwise I spend forever trying to figure what package a function came from.</p>
 <p><strong>Updating packages</strong></p>
 <p>To update packages, Go to “Tools” tab and then “Check for Package Updates”.</p>
 <!--
