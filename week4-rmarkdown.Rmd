@@ -105,7 +105,10 @@ After knitting your Rmd file, a Preview will appear.  Click the 'Publish' button
 
 ## Other example Rmds
 
+[Repo with the following examples](https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown)
+
 * Figures `Figures.Rmd`
+* Figures in a for loop and side by side `Figures_for_loop.Rmd`
 * Tables `Table.Rmd`
 * Tables for Word, html, or latex `Table_Extras.Rmd`
 * Math `Math.Rmd`
