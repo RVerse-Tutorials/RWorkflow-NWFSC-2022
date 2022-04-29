@@ -1,0 +1,55 @@
+---
+title: "Week 4"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## RMarkdown Reports
+
+* [Lecture video](https://youtu.be/OTmxfgcZA8k) See video below for how to make a Word template. I wasn't able to do that in the lecture.
+* [The lecture notes](week4-rmarkdown.html)
+
+* [Sample R Markdown repository on GitHub](https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown)
+* [Sample Word repository on GitHub](https://github.com/RWorkflow-Workshop-2021/Week4-report)
+* Try out R Markdown on [R Studio Cloud](https://rstudio.cloud/project/2649365). Open one of the Rmds and click the Knit button.
+* Try out creating the Word report on [R Studio Cloud](https://rstudio.cloud/project/2643984). Open `Report_with_Tables.Rmd`, Click Knit, and then download the Word output to look at it. If you forget to download, then click on the file and click 'Export'. For some reason, 'Download' is 'Export' in R Studio Cloud.
+
+
+## More example videos
+
+* [Create a Word template](https://youtu.be/CAdIrDj9k9A). This shows you how to make a Word template that works with the output from R Markdown.
+
+* [Creating the R Markdown folder](https://youtu.be/6vTzzlTxn0o) A short clip of me making the folder and publishing it to GitHub.
+
+* [Kniting a R Markdown file](https://youtu.be/8eBBPVMwTLo) This shows you how to open a demo R Markdown file in RStudio and knit it to html.
+
+## Post-lecture Q&A
+
+### How to improve accessiblilty (508 compliance)
+
+* for PDF, explore the [**tagpdf** package](https://www.ctan.org/pkg/tagpdf)
+* for html, see the [Improve accessibility of HTML pages](https://bookdown.org/yihui/rmarkdown-cookbook/html-accessibility.html) chapter in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/).
+
+### Essential reading for advanced R Markdown work
+
+* [R Markdown tutorials](https://rmarkdown.rstudio.com/lesson-1.html) More basic but good to see esp if you are teaching others.
+* the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
+* the [blogdown book](https://bookdown.org/yihui/blogdown/)
+* the [R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+Some of my tips:
+
+* [Footnotes that work across output types](https://stackoverflow.com/questions/25579868/how-to-add-footnotes-to-github-flavoured-markdown/47839024#47839024)
+* [Figure and table refs across child Rmds](https://stackoverflow.com/questions/37116632/r-markdown-html-number-figures/47298632#47298632)
+* [Including a long list of math definitions in your Rmd](https://stackoverflow.com/questions/33226675/how-to-get-bm-to-work-in-an-r-markdown-to-html-file/43595791#43595791)
+* [the atsa labbook](https://github.com/nwfsc-timeseries/atsa-labs) A complex bookdown book where a lot of post-processing of files and special equation, figure and table reference code was/is needed.
+
+

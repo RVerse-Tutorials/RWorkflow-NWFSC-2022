@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Week 1. Intro to Git and GitHub</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li>
+  <a href="week1.html">
+    <span class="fa fa-calendar"></span>
+     
+    Workshop Weekly Notes
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io">
+    <span class="fas fa-toolbox"></span>
+     
+    RVerse
+  </a>
+</li>
+<li>
+  <a href="links.html">
+    <span class="fa fa-info"></span>
+     
+    More resources
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2022">
+    <span class="fab fa-github"></span>
+     
+    Repo
+  </a>
+</li>
+<li>
+  <a href="https://github.com/orgs/RWorkflow-Workshop-2021">Org</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Week 1. Intro to Git and GitHub</h1>
+
+</div>
+
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Compartmentalized
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Documented
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Extendible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Reproducible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Robust
+</td>
+</tr>
+</tbody>
+</table>
+<div id="what-is-git-and-github" class="section level1">
+<h1>What is Git and GitHub?</h1>
+<p><strong>Git</strong> A program to track your file changes and create a history of those changes. Creates a ‘container’ for a set of files called a repository.</p>
+<p><strong>GitHub</strong> A website to host these repositories and allow you to sync local copies (on your computer) to the website. <em>Lots</em> of functionality built on top of this.</p>
+<div id="some-basic-git-jargon" class="section level2">
+<h2>Some basic Git jargon</h2>
+<ul>
+<li><strong>Repo</strong> Repository. It is your code and the record of your changes. In a hidden folder called <code>.git</code> (so if you wanted to get rid of the history and other Git info, you could delete that folder). You have a local repo and a remote repo (on GitHub).</li>
+<li><strong>Commit</strong> Write a note about what change you made to a file and “commit” that note to the repository record.</li>
+<li><strong>Push</strong> Push local changes up to a remote version of the repository on GitHub</li>
+<li><strong>Pull</strong> Pull changes on GitHub into the version of the repository on your local computer</li>
+<li><strong>Git GUIs</strong> A graphical interface for Git (which is command line). There are <a href="https://git-scm.com/downloads/guis">many</a>. I am teaching an easy-entry one, <a href="https://desktop.github.com/">GitHub Desktop</a>. The lecture notes have videos of me using other ones.</li>
+</ul>
+</div>
+</div>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>Today I will cover the basic Git/GitHub skills (and info) that are all most people need for 95% of their work. I am using <a href="https://desktop.github.com/">GitHub Desktop</a>. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> If you want to use Git from RStudio, <a href="set-up.html">go to set-up</a> and scroll to the section on RStudio and Git.</p>
+<p>Simple Workflow:</p>
+<ul>
+<li>Make local (on your computer) changes to code.</li>
+<li>Record what those changes were about and commit to the code change record (history).</li>
+<li>Push those changes to your remote repository (aka origin)</li>
+</ul>
+<p>We’ll do this</p>
+<p><img src="images/git-linear-flow-2.png" /></p>
+<p>Not this, i.e. what you would probably see if you Google “Git”. <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p><img src="images/git-online.png" width="400" /></p>
+</div>
+<div id="set-up" class="section level1">
+<h1>Set-up</h1>
+<p>I’ll be using GitHub Desktop for the lecture. The first time you use it, you will need to</p>
+<ul>
+<li>Open GitHub Desktop &gt; Preference &gt; Accounts and log into your GitHub account</li>
+<li>Open GitHub Desktop &gt; Preference &gt; Git and add your name and email</li>
+</ul>
+</div>
+<div id="the-key-skills" class="section level1">
+<h1>The Key Skills</h1>
+<p>Repository skills (using GitHub Desktop)</p>
+<ul>
+<li><p>Skill 1: Create a blank repo on GitHub</p></li>
+<li><p>Skill 2: Clone your <strong>GitHub</strong> repo onto your computer</p></li>
+<li><p>Skill 0: Open your repository in your editing platform.</p></li>
+<li><p>Skill 3: Make some changes and commit those local changes</p></li>
+<li><p>Skill 4: Push local changes to GitHub</p></li>
+<li><p>Skill 1b: Clone someone else’s GitHub repository</p></li>
+</ul>
+<p><img src="images/git-repo-structure.png" width="200" /></p>
+</div>
+<div id="lets-see-it-done" class="section level1">
+<h1>Let’s see it done!</h1>
+<div id="skill-1-create-a-blank-repo-on-github" class="section level2">
+<h2>Skill 1: Create a blank repo on GitHub</h2>
+<ol style="list-style-type: decimal">
+<li>Click the + in the upper left from YOUR GitHub page.</li>
+<li>Click new and add the Readme file and <code>.gitignore</code></li>
+</ol>
+</div>
+<div id="skill-2-clone-your-repo-to-your-computer" class="section level2">
+<h2>Skill 2: Clone your repo to your computer</h2>
+<ol style="list-style-type: decimal">
+<li>Copy the URL of your repo. <code>https://www.github.com/yourname/yourrepo</code></li>
+<li>Open GitHub Desktop on your computer. Click File &gt; Clone Repository</li>
+<li>Click URL in the box that pops up and paste in the URL above</li>
+<li>Double check that you are saving the repo in the right place</li>
+</ol>
+</div>
+<div id="skill-3-make-some-changes-and-commit-your-changes" class="section level2">
+<h2>Skill 3: Make some changes and commit your changes</h2>
+<ol style="list-style-type: decimal">
+<li>Make some changes to a file or add a file. <strong>Make changes however you want.</strong></li>
+<li>Open GitHub Desktop, click the little checkboxes next to the changes.</li>
+<li>Add a commit comment, click commit.</li>
+</ol>
+</div>
+<div id="skill-4-push-changes-to-github-pull-changes-from-github" class="section level2">
+<h2>Skill 4: Push changes to GitHub / Pull changes from GitHub</h2>
+<p>To push changes you commited in Skill #3</p>
+<ol style="list-style-type: decimal">
+<li>In GitHub Desktop, click Push at top to push the changes to GitHub</li>
+</ol>
+<p>To pull changes on GitHub that are not on your local computer:</p>
+<ol style="list-style-type: decimal">
+<li>Make some changes directly on GitHub</li>
+<li>Click Pull in GitHub Desktop</li>
+</ol>
+</div>
+<div id="skill-1b-copy-a-repo-on-github" class="section level2">
+<h2>Skill 1b: Copy a repo on GitHub</h2>
+<p>You can clone your own or other people’s repos.</p>
+<ol style="list-style-type: decimal">
+<li>In a browser, go to the GitHub repository you want to copy.</li>
+<li>Copy its url.</li>
+<li>Navigate to your GitHub page: click your icon in the upper right and then ‘your repositories’</li>
+<li>Click the <code>+</code> in top right and click <code>import repository</code>. Paste in the url and give your repo a name.</li>
+<li>Use Skill #1 to clone your new repo to your computer</li>
+</ol>
+</div>
+<div id="skill-1c.-use-an-existing-repository-as-a-template-for-something-new" class="section level2">
+<h2>Skill 1c. Use an existing repository as a template for something new</h2>
+<p>Let say you want to make a copy of one of your GitHub repositories and use it as a template to make something brand new.</p>
+<ol style="list-style-type: decimal">
+<li>Clone the repository that you will be building off of to GitHub</li>
+<li>Use Skill #1 to pull that repository onto your computer</li>
+<li>Get rid of any files you don’t want in the new repo and use Skill #3 to push those to GitHub.</li>
+</ol>
+</div>
+</div>
+<div id="other-skills" class="section level1">
+<h1>Other skills</h1>
+<div id="make-an-existing-folder-on-your-computer-a-github-repository" class="section level2">
+<h2>Make an existing folder on your computer a GitHub repository</h2>
+<ol style="list-style-type: decimal">
+<li>Use Skill #1 to create a blank repo on GitHub and clone onto your computer</li>
+<li>Copy the files you want to your new repository folder</li>
+<li>Use Skill #3 to push those to GitHub</li>
+</ol>
+<p>Note there are some easier ways to do this but the above is how to do it with your Skills 1-3. Also in my experience the other ‘easier’ ways have a funny way of creating problems for beginners.</p>
+</div>
+</div>
+<div id="definitions" class="section level1">
+<h1>Definitions</h1>
+<div id="forking-versus-cloning" class="section level2">
+<h2>Forking versus Cloning</h2>
+<p>Forking is if you are contributing to someone else’s repository. In that case, you need to make ‘pull requests’. Pull request = ‘here is a suggested change’ request.</p>
+<p>Cloning is if you want your own copy of the repository because you want to make your own version of the code or use it as a starting point for your own project. Or you need to clone a blank repository to get started on a project.</p>
+</div>
+<div id="merge-conflicts" class="section level2">
+<h2>Merge conflicts</h2>
+<p>Merge conflicts happen when there are changes to a file on your remote repository (GitHub) but also changes to that same file on your local repository. Git doesn’t know how to resolve the conflicting changes and needs your help. GitHub Desktop will warn you and give you some helpful options to resolve these.</p>
+</div>
+<div id="branches" class="section level2">
+<h2>Branches</h2>
+<p>A copy of your repository that you can work on without changing the main repository. Once you are done, you incorporate the changes into the main repository. <strong>Beginners should steer clear of branches</strong> because they are incompatible with our common workflows!! I maintain many repositories and use branches on only 2 of them.</p>
+<p>Also if you decide later on to start using branches, then read up on Gitflow versus trunk-based development styles: <a href="https://www.toptal.com/software/trunk-based-development-git-flow">here</a> and <a href="https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development">here</a>. The development styles with lots of branching (and branches on branches) are known for merge conflict headaches.</p>
+</div>
+</div>
+<div id="review-a-workflow-to-minimize-headaches" class="section level1">
+<h1>Review: A workflow to minimize headaches</h1>
+<ul>
+<li>Open GitHub Desktop</li>
+<li>Do a pull from GitHub</li>
+<li>Work</li>
+<li>Commit changes</li>
+<li>Push changes up to GitHub</li>
+</ul>
+<div id="starting-out" class="section level3">
+<h3>Starting out</h3>
+<ul>
+<li>Don’t use branches when you are just starting. You might never need them.</li>
+<li>Skills 1-4 are most of what anyone needs.</li>
+<li>Get in the habit of always doing a Pull/Push before you start work in your project.</li>
+</ul>
+</div>
+<div id="tips-to-be-aware-of" class="section level2">
+<h2>Tips to be aware of:</h2>
+<ul>
+<li>How to issue a Git command in a terminal window.
+<ul>
+<li>Open a terminal window</li>
+<li><code>cd</code> to the directory with the repository</li>
+<li>GitHub Desktop &gt; Repository &gt; Open in Terminal</li>
+</ul></li>
+<li>Where the Git info is hidden in a repository.
+<ul>
+<li>In the <code>.git</code> folder</li>
+</ul></li>
+<li><em>Time stamps</em> is something that you probably use to see when a file was <strong>last changed</strong>. Time stamps do <strong>NOT</strong> have that meaning in a Git repository. A time stamp in a Git repository is the last time you did something to the file (cloned repo, switched branches, checked out state of repo at some time in the past, …). See the Pro tips, if you need last time file changed as your time stamp.</li>
+</ul>
+</div>
+</div>
+<div id="more-git-skills" class="section level1">
+<h1>More Git skills</h1>
+<div id="getting-rid-of-changes-you-have-made" class="section level2">
+<h2>Getting rid of changes you have made</h2>
+<p>Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with <code>reset</code> and <code>revert</code> commands. Don’t do this. Here are some strategies that will make this let prone to leaving your code a mess.</p>
+<div id="have-you-commited-the-changes-yet" class="section level3">
+<h3>Have you commited the changes yet?</h3>
+<p><strong>No?</strong> Easy click on the file in GitHub Desktop, right click and click ‘Discard Changes…’. Note this will take things all the way back to your last commit!! If you have been making a bunch of changes without committing those, then you are out of luck.</p>
+<p><strong>Yes?</strong> Go to History in the GitHub Desktop window, click on the commit and click ‘Revert’. This will get rid of all the changes that went with that commit. So if you changed multiple files, all those files will be reverted. If you have pushed the changes to GitHub, then you can push the revert and it’ll show up on GitHub too.</p>
+</div>
+<div id="resolving-merge-conflicts-with-github-desktop" class="section level3">
+<h3>Resolving merge conflicts with GitHub Desktop</h3>
+<p>GitHub Desktop makes resolving these pretty easy.</p>
+<ol style="list-style-type: decimal">
+<li>If it tells you to fetch commits off GitHub, go ahead and do that.</li>
+<li>Now try to Pull. It’ll tell you that you have conflicts and give you options for what to do.</li>
+</ol>
+<div class="figure">
+<img src="images/git-merge-conflict-gh.png" alt="" />
+<p class="caption">GitHub Desktop merge conflict alert</p>
+</div>
+<ul>
+<li>Click the ‘x’ and Git will alter <code>hello.R</code> and show where the conflicts are. You then edit <code>hello.R</code> in RStudio to fix the conflicts.</li>
+<li>If you know what file you want to use, use the little arrow dropdown to use the file on GitHub or on your local machine.</li>
+<li>Use Abort Merge to abandon the merge. Your changes to <code>hello.R</code> are still there.
+<ul>
+<li>Click on History, right click the commit and revert to get rid of it. All file changes that are part of that commit will disappear! You can revert the revert if needed.</li>
+<li>Go into <code>hello.R</code> and fix the conflict. Git won’t have marked it so it might be hard to find.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="recovering-a-single-file" class="section level2">
+<h2>Recovering a single file</h2>
+<p>Let’s say you made a big multi-file commit and you want to revert one file.</p>
+<p>You can do this at the Git command line, but I find that to be a huge time suck and in my early Git days, I sometimes left my repository with a horrible problem that I could not fix and had to completely rebuild my repo. Since I don’t need to be a Git wizard, this is what I do when I want to go ‘back in time’ for a single file.</p>
+<p>Assuming you have already pushed the changes up to GitHub</p>
+<ul>
+<li>Go to the repo on GitHub</li>
+<li>Click ‘commits’ It’s a little icon above your code with a clock with a counter-clockwise arrow.</li>
+<li>Scroll to the commit where the file was in the state you want (one before the last bad commit).</li>
+<li>On the right click the <code>&lt; &gt;</code> to browse your repo at the state in time where your file was ok.</li>
+<li>Click on the file and copy the text.</li>
+<li>Go back to RStudio, open the file, and paste in the text from when it was good.</li>
+</ul>
+<p>If you have not pushed the changes up to GitHub.</p>
+<ul>
+<li>Now you have to go to the Git command line. Git tab in RStudio and then click the cog &gt; Shell.</li>
+<li>Note, in 9 times out of 10, I would push the commit to GitHub and then use the above copy/paste to avoid using the Git command line. I would find that much faster.</li>
+</ul>
+<p>Ok, here’s the Git command to get a single file back. This works whether or not you have pushed to GitHub. The problem with this and why I don’t do it is that I usually need to look at the file. So I am scrolling back through the status of my repo in the past until I find the status that I want. Then I stare a bit and think and think. Then get a coffee and think some more. Then I scroll back through the status of the repo in the past some more and THEN I do the copy and paste. It is rarely the case that I know exactly what commit that I need to get rid of—and even rarer that I want to go completely to a status in the past.</p>
+<ul>
+<li>Open the Git bash shell</li>
+<li><code>git log</code> to find the commit hash (the long number)</li>
+<li><code>git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R</code> would reset test.R to one before that commit. This part <code>1d0f8c2eb4e66db0a7123588ae2fad26a6338303</code> is the bad commit hash and this part <code>~1</code> means what the file was like 1 commit before that.</li>
+</ul>
+<p>If you accidentally leave off the file name and Git says you have a detached head, use <code>git checkout master</code> to reattach your head.</p>
+</div>
+<div id="pro-tip" class="section level2">
+<h2>Pro tip</h2>
+<p><em>Time stamps</em> is something that you probably use to see when a file was last changed. Time stamps lose meaning if you use <code>git checkout</code> for branches or tags. In fact, in the Git-verse, time doesn’t exist since Git workflow is not necessarily linear. I find this very confusing so I purposely work in a linear fashion with Git.</p>
+<p>To fix time stamps when you use <code>git checkout</code> (i.e. switch branches), you can use a <code>post-checkout</code> file in the <code>.git/hooks</code> folder.</p>
+<ol style="list-style-type: decimal">
+<li>Open <code>post-checkout.sample</code>. Save as <code>post-checkout</code></li>
+<li>Copy this into that file</li>
+</ol>
+<pre><code>#!/bin/sh -e
+
+OS=${OS:-`uname`}
+
+if [ &quot;$OS&quot; = &#39;Darwin&#39; ]; then
+  get_touch_time() {
+    date -r ${unixtime} &#39;+%Y%m%d%H%M.%S&#39;
+  }
+else
+  get_touch_time() {
+    date -d @${unixtime} &#39;+%Y%m%d%H%M.%S&#39;
+  }
+fi
+
+# all git files
+git ls-tree -r --name-only HEAD &gt; .git_ls-tree_r_name-only_HEAD
+
+# modified git files
+git diff --name-only &gt; .git_diff_name-only
+
+# only restore files not modified
+comm -2 -3 .git_ls-tree_r_name-only_HEAD .git_diff_name-only | while read filename; do
+  unixtime=$(git log -1 --format=&quot;%at&quot; -- &quot;${filename}&quot;)
+  touchtime=$(get_touch_time)
+  # echo ${touchtime} &quot;${filename}&quot;
+  touch -t ${touchtime} &quot;${filename}&quot;
+done
+
+rm .git_ls-tree_r_name-only_HEAD .git_diff_name-only</code></pre>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><strong>Why GitHub Desktop?</strong> I teach using it because it is made by GitHub and all you have to do is download and login with your GitHub account. No hassles for students. I personally use it because my Git and GitHub work is simply much faster using it. I have many GitHub repos so speed and being able to track multiple repos is important to me. Also I use GitHub issues to plan and track my work. Being able to type ‘#’ in my commit message and see what issues are open on GitHub is critical for my workflow. Other people use RStudio’s Git GUI but it doesn’t have the functions I need. I also like GitKraken. Search around and find something that works for your purposes. In JupyterLab I use the jupyter-git extension.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p> Note, if you decide later on to start using branches, then read up on Gitflow (the second figure) versus trunk-based (the first figure) development styles: <a href="https://www.toptal.com/software/trunk-based-development-git-flow">here</a> and <a href="https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development">here</a>. The development styles with lots of branching (and branches on branches) are known for merge conflict headaches.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+<hr>
+
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program, NOAA Fisheries <i class="fas fa-cubes"></i>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

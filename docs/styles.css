@@ -1,0 +1,50 @@
+/* Need to adjust the navbar behaviour so the navbar doesn't wrap */
+.navbar-nav { 
+position: fixed;
+left: 150px;
+width: 1000px;
+}
+
+.navbar-right { 
+position: fixed;
+left: 80%;
+width: 300px;
+}
+
+.navbar-header {
+position: fixed;
+left: 30px;
+width: 97%;
+}
+
+.nav {
+    font-size: 15px;
+}
+
+body {
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 2;
+}
+
+div.scroll {
+    background-color: #FFFFFF;
+    height:225px;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+blockquote {
+    border-left:none;
+    font-size: 1em;
+    display: block;
+    margin-top: .25em;
+    margin-left: 20px;
+}
+
+h1 {
+padding-bottom: 0.5em;
+}
+
+.section {
+   padding-bottom: 2em;
+}

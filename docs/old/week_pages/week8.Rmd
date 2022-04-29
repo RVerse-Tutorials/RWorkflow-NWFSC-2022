@@ -1,0 +1,35 @@
+---
+title: "Week 8"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+## More R packaging
+
+* [The lecture notes](week8-adv-packages.html)
+* [The lecture video](https://youtu.be/w0A1z8GtwF0)
+
+## Q & A
+
+I added more links to the lecture notes from the chat:
+
+* **profvis** package
+
+Check out the [**profvis**](https://rstudio.github.io/profvis/) for profiling your code. I haven't used it but others have said it's a great tool.
+
+* **magrittr** 2.0!
+
+The new version is much faster. [Read about it here](https://www.tidyverse.org/blog/2020/11/magrittr-2-0-is-here/)
+
+* R 4.1 has a native pipe
+
+It's a little different than the `%>%` pipe is denoted `|>`. [Read about R 4.1 here](https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/).
+

@@ -1,4 +1,4 @@
-# RWorkflow-NWFSC-2021
+# RWorkflow-NWFSC-2022
 
 How to edit and build website.
 
@@ -19,8 +19,4 @@ How to edit and build website.
 5. add links to that in `weekX.Rmd`
 3. click **Build website** in Build tab
 4. push to GitHub
-
-## Note
-
-There is lots of old material in the repo. Old weeks material.
 

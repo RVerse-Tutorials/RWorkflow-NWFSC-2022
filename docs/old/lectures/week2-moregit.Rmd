@@ -1,0 +1,331 @@
+---
+title: "Week 2. More Git"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
+
+
+# Overview
+
+[Lecture video](https://youtu.be/TiII9trsArk)
+
+This week I will the basic Git/GitHub skills (and info) that are all most NMFS scientists will need.
+
+Repository skills (using GitHub Desktop)
+
+* Skill 1: Clone one of your GitHub repos onto your computer
+* Skill 2: Tell RStudio about a local repository
+* Skill 3: Commit local changes and push GitHub
+
+* How to clone someone else's GitHub repository
+* How to use a repository as a template for something brand new.
+
+New definitions
+
+* Fork or clone? What's the difference?
+* What are branches and pull requests? Most of you don't need this but you should know what this is.
+
+Key GitHub.com skills.
+
+* How to use issues.
+* How to use releases.
+* How to use organizations---for yourself or a team.
+
+Tips to be aware of:
+
+* How to issue a Git command in a terminal window.
+* Where the Git info is hidden in a repository.
+* How to deal with a merge conflict using GitHub Desktop
+
+Topics I won't cover:
+
+* **Branches**. Very few NMFS scientists need this and working with branches is a recipe for headaches for most. I will add a video to the Week 2 notes if you need/want to know this. I do use branches but only on 2-3 repositories from the 40 or so that I maintain. 
+* Working with Git from the **command line**. For most of you, you have no need for this and this is just a good way to mess up your repository. The exception is a few unique cases where you do need to issue a Git command (like `git push` first time you need to give RStudio your GitHub login).
+* How to do a **pull requests**. I'll post a video. Most of you won't need this.
+
+# Examples
+
+## College Scorecard
+
+[College Scorecard](https://collegescorecard.ed.gov/)
+
+This is not a bespoke website. It is a Jekyll site being generated from GitHub. All the data driving the College Scorescard is available on the GitHub repository maintained by the Department of Education.
+
+## NMFS Fish Tools
+
+[https://nmfs-fish-tools.github.io/](https://nmfs-fish-tools.github.io/)
+
+Here is an example of one of the tools: [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/index.html)
+
+Again this is not a bespoke website. In this case, r4MASS is an R package and a tool called pkgdown was used to create this site which GitHub shows as webpage in your browser.
+
+# Schematic
+
+![](images/git-intro-2.jpg)
+
+
+
+# Skills
+
+## Review
+
+### Needed set-up
+
+* Install R, RStudio, and GitHub Desktop (or use RStudio Cloud)
+* *Optional*: Tell RStudio where Git is installed
+
+###Create a blank repo on GitHub
+
+1. Click the + in the upper left from YOUR GitHub page.
+2. Click new and add the Readme file and .gitignore
+
+## Skill 1: Clone your repo to your computer
+
+1. Copy the URL of your repo. `https://www.github.com/yourname/yourrepo`
+2. Open GitHub Desktop on your computer. Click File > Clone Repository
+3. Click URL in the box that pops up and paste in the URL above
+4. Double check that you are saving the repo in the right place
+
+## Skill 2: Add repo to RStudio
+
+1. Open RStudio and click the project tab in the top right and select, `New Project`. 
+2. Select `Existing Directory` and navigate to the directory where you 
+just saved the repo.
+3. Click 'Create project'
+
+## Skill 3: Commit and push changes
+
+In a RStudio project that is also a Git repository
+
+1. Make some changes to a file or add a file.
+2. Open GitHub Desktop, click the little checkboxes next to the changes.
+3. Add a commit comment, commit.
+4. Click Push at top to push the changes to GitHub
+
+## Copy a repo on GitHub
+
+You can clone your own or other people's repos.
+
+1. In a browser, go to the GitHub repository you want to copy.
+2. Copy its url.
+3. Navigate to your GitHub page: click your icon in the upper right and then 'your repositories'
+4. Click the `+` in top right and click `import repository`. Paste in the url and give your repo a name.
+5. Use Skill #1 to clone your new repo to your computer
+
+*Optional* Method 2.
+
+If RStudio knows where Git is, you can use this method.
+
+Step 1-4 are the same.
+
+5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Version Control` and paste in the url of **your** repository's url.  For example, `https://github.com/<youraccount>/Test`  
+6. Add the new repo to GitHub Desktop. Open GitHub Desktop, select File>Add Local Repository and navigate to the folder with the new repository.
+
+## Use an existing repository as a template for something new
+
+Let say you want to make a copy of one of your GitHub repositories and use it as a template to make something brand new.
+
+1. Clone the repository that you will be building off of to GitHub
+2. Use skill #1 to pull that repository onto your computer
+3. Get rid of any files you don't want in the new repo and use skill #3 to push those to GitHub.
+
+## Pull changes on GitHub
+
+1. Click Pull in GitHub Desktop
+
+## Make an existing folder on your computer a GitHub repository
+
+1. Use skill #1 to create a blank repo on GitHub and clone onto your computer
+2. Copy the files you want to your new repository folder
+3. Use skill #3 to push those to GitHub
+
+Note there are some easier ways to do this but the above is how to do it with your skills 1-3.
+
+In **GitHub Desktop**, click File > Add Local Repository... Then navigate to the folder and click that. GitHub Desktop will complain that there is no repository at that location but gives you option to 'Create new repository'. Click that and answer questions.  Then you'll see 'Publish to GitHub' at the top. Click. Done! You can also do File > New Repository but getting it to work on an existing folder is finicky and prone to unintended consequences.
+
+In **RStudio**, Tools > Project Options... > Git/SVN > use the dropdown to select Git. It'll ask you to restart RStudio. Go to GitHub Desktop, click File > Add Local Repository... Then navigate to the folder and click that. Then you'll see 'Publish to GitHub' at the top. Click. Done!
+
+# Definitions
+
+## Forking versus Cloning
+
+Forking is if you are contributing to someone else's repository. In that case, you need to make 'pull requests'. Pull request = 'here is a suggested change' request.
+
+Cloning is if you want your own copy of the repository because you want to make your own version of the code or use it as a starting point for your own project. Or you need to clone a blank repository to get started on a project.
+
+## Merge conflicts
+
+Merge conflicts happen when there are changes to a file on your remote repository (GitHub) but also changes to that same file on your local repository. Git doesn't know how to resolve the conflicting changes and needs your help. GitHub Desktop will warn you and give you some helpful options to resolve these.
+
+## Branches
+
+A copy of your repository that you can work on without changing the main repository. Once you are done, you incorporate the changes into the main repository. **Most of you should steer clear of branches** because they are incompatible with our common workflows!! I maintain 40+ repositories and use branches on only 2 of them.
+
+When your switch to a branch, i.e. `checkout` a branch, it changes the files in that folder to the state of the branch. The info to restore the files to the main branch state is in the `.git` folder.
+
+Let's say you have a repository (folder) for all your common functions, `common` and in that a folder called `R` with a function `basicplot.R`. You decide to create a branch to play around with some other options for `basicplot.R`. So you switch branches to branch `temp` and make some sandboxy changes to `basicplot.R`. Those changes are in your file system, not on some magic separate 'branch'. Any call to like this in your other code is reading that sandboxy `basicplot.R`.
+
+* `source(`~/Documents/common/R/basicplot.R`)
+
+Let's say you have you hard drive on an automatic backup system. It will backup the branch `temp`. The main branch info is in the `.git` folder but this will be pretty confusing if someone looks at the files.
+
+For this reason, switching branches will reset the time stamp of `basicplot.R` when you switch back to the main branch.
+
+# Key GitHub skills
+
+## Issues
+
+* Use the Issues in GitHub to enter any issues (bugs, feature changes, notes).
+* You can reference issues in your commits with #<num of the issue>
+* Add code to your issue so you can easily recreate the problem.
+
+## Releases
+
+* The release or tag feature in GitHub will help you go back in time and document working states
+* Use a NEWS file to keep a notebook of all your major changes.
+
+*Pro tip* checkout the state of the repository at the time of a release. From the terminal:
+```
+git checkout v1.0
+```
+When done:
+```
+git switch -
+```
+Warning `git checkout ...` will change all your time stamps.
+
+## Organizations
+
+I use this to organize collections of repositories.
+
+* Share access to repos across a team
+* Have team discussions
+* Have a organization landing page
+
+# More Git skills
+
+## Getting rid of changes you have made
+
+Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with `reset` and `revert` commands. Don't do this. Here are some strategies that will make this let prone to leaving your code a mess.
+
+### Have you commited the changes yet?
+
+**No?** Easy click on the file in GitHub Desktop, right click and click 'Discard Changes...'. Note this will take things all the way back to your last commit!! If you have been making a bunch of changes without committing those, then you are out of luck.
+
+**Yes?** Go to History in the GitHub Desktop window, click on the commit and click 'Revert'. This will get rid of all the changes that went with that commit. So if you changed multiple files, all those files will be reverted. If you have pushed the changes to GitHub, then you can push the revert and it'll show up on GitHub too.
+
+### Resolving merge conflicts with GitHub Desktop
+
+GitHub Desktop makes resolving these pretty easy.
+
+1. If it tells you to fetch commits off GitHub, go ahead and do that.
+2. Now try to Pull. It'll tell you that you have conflicts and give you options for what to do.
+
+![GitHub Desktop merge conflict alert](images/git-merge-conflict-gh.png)
+
+* Click the 'x' and Git will alter `hello.R` and show where the conflicts are. You then edit `hello.R` in RStudio to fix the conflicts.
+* If you know what file you want to use, use the little arrow dropdown to use the file on GitHub or on your local machine.
+* Use Abort Merge to abandon the merge. Your changes to `hello.R` are still there.
+    * Click on History, right click the commit and revert to get rid of it. All file changes that are part of that commit will disappear! You can revert the revert if needed.
+    * Go into `hello.R` and fix the conflict. Git won't have marked it so it might be hard to find.
+    
+**Those using Git in RStudio** Merge conflicts are a bit of a disaster in RStudio, and RStudio gives no warning before it mucks up your files. So it you are pushing/pulling from RStudio be sure to practice on some toy merge conflicts before you run into a real one.
+
+## Recovering a single file
+
+Let's say you made a big multi-file commit and you want to revert one file.
+
+You can do this at the Git command line, but I find that to be a huge time suck and in my early Git days, I sometimes left my repository with a horrible problem that I could not fix and had to completely rebuild my repo. Since I don't need to be a Git wizard, this is what I do when I want to go 'back in time' for a single file.
+
+Assuming you have already pushed the changes up to GitHub
+
+* Go to the repo on GitHub
+* Click 'commits' It's a little icon above your code with a clock with a counter-clockwise arrow.
+* Scroll to the commit where the file was in the state you want (one before the last bad commit).
+* On the right click the `< >` to browse your repo at the state in time where your file was ok.
+* Click on the file and copy the text.
+* Go back to RStudio, open the file, and paste in the text from when it was good.
+
+If you have not pushed the changes up to GitHub.
+
+* Now you have to go to the Git command line. Git tab in RStudio and then click the cog > Shell.
+* Note, in 9 times out of 10, I would push the commit to GitHub and then use the above copy/paste to avoid using the Git command line. I would find that much faster.
+
+Ok, here's the Git command to get a single file back. This works whether or not you have pushed to GitHub. The problem with this and why I don't do it is that I usually need to look at the file. So I am scrolling back through the status of my repo in the past until I find the status that I want. Then I stare a bit and think and think. Then get a coffee and think some more. Then I scroll back through the status of the repo in the past some more and THEN I do the copy and paste. It is rarely the case that I know exactly what commit that I need to get rid of---and even rarer that I want to go completely to a status in the past.
+
+* Open the Git bash shell
+* `git log` to find the commit hash (the long number)
+* `git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R`  would reset test.R to one before that commit. This part `1d0f8c2eb4e66db0a7123588ae2fad26a6338303` is the bad commit hash and this part `~1` means what the file was like 1 commit before that.
+    
+If you accidentally leave off the file name and Git says you have a detached head, use `git checkout master` to reattach your head.
+
+## A workflow to minimize headaches
+
+* Open GitHub Desktop
+* Do a pull from GitHub
+* Work
+* Commit changes and push up
+
+### Starting out
+
+* Don't use branches when you are just starting. You might never need them.
+* Skills 1-3 are most of what anyone neeeds.
+* Get in the habit of always doing a Pull/Push before you start work in your project.
+
+## Pro tip
+
+*Time stamps* is something that you probably use to see when a file was last changed. Time stamps lose meaning if you use `git checkout` for branches or tags. In fact, in the Git-verse, time doesn't exist since Git workflow is not necessarily linear. I find this very confusing so I purposely work in a linear fashion with Git.
+
+To fix time stamps when you use `git checkout` (i.e. switch branches), you can use a `post-checkout` file in the `.git/hooks` folder.
+
+1. Open `post-checkout.sample`. Save as `post-checkout`
+2. Copy this into that file
+
+```
+#!/bin/sh -e
+
+OS=${OS:-`uname`}
+
+if [ "$OS" = 'Darwin' ]; then
+  get_touch_time() {
+    date -r ${unixtime} '+%Y%m%d%H%M.%S'
+  }
+else
+  get_touch_time() {
+    date -d @${unixtime} '+%Y%m%d%H%M.%S'
+  }
+fi
+
+# all git files
+git ls-tree -r --name-only HEAD > .git_ls-tree_r_name-only_HEAD
+
+# modified git files
+git diff --name-only > .git_diff_name-only
+
+# only restore files not modified
+comm -2 -3 .git_ls-tree_r_name-only_HEAD .git_diff_name-only | while read filename; do
+  unixtime=$(git log -1 --format="%at" -- "${filename}")
+  touchtime=$(get_touch_time)
+  # echo ${touchtime} "${filename}"
+  touch -t ${touchtime} "${filename}"
+done
+
+rm .git_ls-tree_r_name-only_HEAD .git_diff_name-only
+```

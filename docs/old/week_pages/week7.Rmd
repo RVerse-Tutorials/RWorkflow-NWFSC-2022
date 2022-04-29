@@ -1,0 +1,43 @@
+---
+title: "Week 7"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+## Roxygen2 and pkgdown
+
+* [Lecture video](https://youtu.be/UYKezKp5dkY)
+* [The lecture notes](week7-roxygen.html)
+
+Links to resources for **pkgdown** sites:
+
+* The NOAA branded **pkgdown template** for you to clone ([repo](https://github.com/RWorkflow-Workshop-2021/pkgdown-template), [webpage](https://rworkflow-workshop-2021.github.io/pkgdown-template/))
+* [FIT Resources](https://github.com/nmfs-fish-tools/Resources) `LICENSE` file, `Disclaimer.md` and NOAA footer for your packages here.
+* [FIT NOAA Themed pkgdown](https://noaa-fisheries-integrated-toolbox.github.io/resources/workshops/NOAA-pkgdown/). The **pkgdown template** repo uses the information from this.
+* [FIT Resources blog](https://noaa-fisheries-integrated-toolbox.github.io/resources/) Scroll down the navbar on left to see coding resources.
+
+## Q & A
+
+### Badges
+
+Check out `usethis::use_badges()`. You'll want to make sure your `Readme.md` file has
+```
+<!-- badges: start -->
+
+<!-- badges: end -->
+```
+So **usethis** knows where to put the badge code.
+
+### GitHub Pages
+
+With the last 2 **pkgdown** sites that I put up on GitHub Pages, I had some trouble where GitHub was only showing a page made from the Readme file and not the **pkgdown** site even though I had the GitHub Pages settings done correctly. so on my GitHub repository under Settings > GitHub Pages > branch = main and folder = docs.
+
+To solve, I changed branch = None in Settings > GitHub Pages. That turns off GitHub Pages, then I immediately reset branch = main and folder = docs and hit Save. The **pkgdown** site then appeared within 30 seconds or so.

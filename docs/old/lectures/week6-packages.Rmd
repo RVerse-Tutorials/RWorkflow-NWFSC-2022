@@ -1,0 +1,449 @@
+---
+title: "Week 6: Organizing your R code and data into a package"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
+```
+
+```{r chunk1, echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
+
+This week I will discuss how to make an R package. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. 
+
+* The package framework really helps you write robust code and well documented code. 
+* It makes it easy to bundle data with code.
+* It make it easy to version and document your data.
+
+Organizing your code into an R package is very easy. If you are at the stage where you write functions and multiple R scripts for your projects, you need to be aware of how to package your code because it is such a powerful (and common) code organization method in R. By the end of this session, you will be able to build your own mini R package. I'll show you how to host it on GitHub with a nice little landing page.
+
+* Week 1: Intro to R packages for data and code. How to build an R package in RStudio. *Everyone*
+* Week 2: Intro to Roxygen for documentation, **pkgdown** for package websites, and intro to GitHub Actions for automation. *Everyone*
+* Week 3: Advanced topics for developers. How to set up a NAMESPACE, passing `R CMD check`, C++ code in your package, coding GitHub Actions workflows. *Those writing R packages*
+
+If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
+
+## Why a package?
+
+An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts with your data in a folder?
+
+* **Reproducibility and documentation**  In the long-run, you will save yourself much work if you organize and document your code.  Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.
+* **You want to share your code**  If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.
+* **Robust data sharing!** Putting your data in a dedicated data package allows you to version your data (so everyone knows they are using the most up to date data), document your data, track data changes, provide data releases (with archives), provide easy visualizations of the data, and any other packages can load that data package and have access to the data.
+* **You want to make an application**  If you want to make a shiny application, having your code in a package will help.
+
+## Set-up
+
+**Mac users**: You don't need to do anything.
+
+**RStudio Cloud users**: You don't need to do anything.
+
+**Windows users**: Try running this code and see what happens. You need to install **devtools** package if you don't have it.
+```
+# install.packages("devtools")
+devtools::install_github("RWorkflow-Workshop-2021/week6-testpackage")
+```
+
+If that code complains, then you need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/). Note there is a different RTools for R 4.0.0 (released in April 2020) versus earlier R releases. Look for the little link for earlier versions of RTools if you don't have 4.0.0 installed. Technically, it says you only need RTools to install packages with C/C++ so you might be fine. Personally, I always install RTools on my Windows machines since I install packages with C/C++ sometimes. But to keep things simple, try building a package without RTools and see if it works.  
+
+
+## Make a package
+
+### On your laptop
+
+1. Open RStudio
+2. In the upper right hand corner, click the blue cube with R, and click New Project.
+3. Click 'New Directory' and choose R package.
+4. Name your package `MyNewPackage` and select the directory where to put it. 
+5. Click Create Package.
+6. Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
+7. Click on click 'check'.  Your package should pass all the checks without errors.
+
+### On RStudio Cloud
+
+Open this link, [MyNewPackage](https://rstudio.cloud/project/2574138)
+
+## Parts of an R package
+
+### The essentials
+
+2 files and a directory.
+
+* **DESCRIPTION** This file has the meta-data about your package.  Name and what packages it depends on.  Most of it is self-explanatory.  The `Depends:` and `Imports:` lines specify any functions from other packages that you use in your functions.
+
+* **NAMESPACE** This file indicates what needs to be exposed to users for your R package. For our course, you won't need to edit as **Roxygen2** takes care of it.
+
+* **R directory** This is where all your R code goes for your package.
+
+### Basic add-ons
+
+* **man** A directory for documentation.  You won't need to write this.  It will be added automatically by **Roxygen2**.
+
+* **data** A directory for data files saved in RData format (with the ending `.RData`). Nothing else!
+
+
+### Other add-ons
+
+* `inst` folder for misc stuff
+
+* `inst\extdata` folder for external data.
+
+* `data-raw` A directory for raw data files that produced the data files in `data` folder.
+
+
+## Using and adding functions
+
+You have built **MyNewFunction** and loaded it.  You can use the package functions.  Type 
+
+```
+hello()
+```
+
+### Add a new function
+
+1. Create a new R script file. File > New File > R Script. 
+
+2. Paste this code into the script and save as `littleforecast.R` in the R directory.
+
+```
+littleforecast <- function(data, nyears=10){
+  fit <- forecast::auto.arima(data)
+  fc <- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+}
+```
+
+3. Open NAMESPACE. and Paste in 
+
+```
+export(littleforecast)
+```
+
+4. Open DESCRIPTION. Under Description, paste these lines
+
+```
+Imports: forecast, ggplot2
+```
+
+5. Install the **forecast** and **ggplot2** packages if you don't have them.
+
+```
+install.packages("forecast")
+install.packages("ggplot2")
+```
+
+6. Click Install and Restart from the Build tab.
+
+
+### Use your new function
+
+```
+dat <- WWWusage
+littleforecast(dat, nyears=100)
+```
+
+and a 100 year forecast of internet usage should appear.
+
+## Add data
+
+1. Add a folder called `data`
+
+2. Run these lines from the command line.
+
+```
+WWW2 <- WWWusage^2
+save(WWW2, file="data/WWW2.RData")
+```
+
+3. Click Install and Restart from the Build tab
+
+4. Now your data is available from your package. Type 
+
+```
+WWW2
+littleforecast(WWW2)
+```
+at the command line.
+
+## The key components
+
+### The DESCRIPTION file
+
+Open the file named DESCRIPTION.  Most of it is self-explanatory.  `Depends:` means the user will have all the commands of that package at the command line. `Imports:` is any other R packages that your package needs in order to work but it's functions won't be available at the command line (unless you choose). *Developers: On July 23, I am going to show you exactly how to set up your NAMESPACE and Depends/Imports.*
+
+```
+Package: MyNewPackage
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+Depends: R (>= 3.4.1), ggplot2
+Imports: forecast
+License: What license is it under? (GPL-3 or CCO for US Government)
+Encoding: UTF-8
+LazyData: true
+```
+
+The packages on the @Depends and @Imports lines are required to be installed in order to install your package. If the user doesn't have these packages, then they will be installed when installing the package.
+
+
+### The NAMESPACE file
+
+This file has the commands to export the functions (in the R folder) to the command line for use. If you don't have a function here, the user will need to use `:::` to access the function.
+
+```
+exportPattern("^[[:alpha:]]+")
+export(littleforecast)
+```
+
+The first line means "export all functions". I don't normally have that line but it is handy when you are starting out; just export all your functions. The next line is exporting the `littleforecast` function.
+
+### The R Directory: Function code
+
+This is where functions are put.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions.
+
+It has this structure: name and the names of information passed into the function.
+
+```
+functionname <- function(infofunctionneeds1, infofunctionneeds2, ...){
+# The work
+return(<what you want to return to user>)
+}
+```
+
+## Sharing your package
+
+### GitHub Desktop Instructions
+
+** You have not made your folder a Git repository yet
+
+* Open GitHub Desktop.  
+* Click New Repository and then type in 'MyNewPackage' (or whatever you named your new package).
+* Click Publish (to GitHub)
+
+** You have made your folder a Git repository already
+
+* Open GitHub Desktop.  
+* Click Add Local Repository... and then type in 'MyNewPackage' (or whatever you named your new package).
+* Click Publish (to GitHub)
+
+Go to your GitHub account (online) and you will see your repository there.
+
+
+## Installing from GitHub
+
+The code you will use to install from GitHub is:
+
+```
+library(devtools)
+install_github("youraccount/MyNewPackage")
+```
+
+For example to install the package on 'RVerse-Tutorials', you would use
+```
+install_github("RVerse-Tutorials/TestPackage")
+```
+
+### Installing from GitHub headaches
+
+If you are on a Windows machine and get an error saying 'loading failed for i386' or similar, then try
+```
+options(devtools.install.args = "--no-multiarch")
+```
+If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use
+```
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
+```
+If R asks you to update packages, you don't need to update (normally). If you do update, and it asks if you want to install from source, you can probably say 'No'. It is very unlikely that the package you trying to install needs the most updated version of a package. If that were the case, the package writer could have explicitly stated a version dependency, like `forecast (>=2.0)`.
+
+If R simply won't install a package from GitHub/Lab (or CRAN even) because of a package dependency problem, something like `can't install because couldn't remove old installation` error. Then click on the Packages tab (lower right panel) and click Install. Look at where R is installing packages. There might be more than one place. Close all your RStudio windows  (exit altogether) and go to those locations and delete the library folder(s) for the offending package. Then open RStudio and re-install that package.
+
+To limit the number of headaches that users face when trying to install your package from GitHub/Lab, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
+
+
+### Making releases
+
+Make a release on GitHub?: Click Release to the right on your GitHub repo.
+
+To install the latest release
+
+```
+install_github("youraccount/MyNewPackage@*release")
+```
+
+### Making a landing page
+
+Why? It looks nicer and conveys the needed info to users. This is for GitHub.
+
+1. In RStudio in your `MyNewPackage`, create a new text file called `README.md` and type in some info about your package.
+2. Push the new file to GitHub.
+3. Open repo on GitHub, Click Settings, Scroll down to GitHub Pages, Select Source and select "master". Select a theme.
+4. Wait a few minutes and then go to the URL shown.
+
+### **pkgdown**
+
+We'll cover **pkgdown** next week.
+
+
+## Data package in R
+
+A data package can be exactly the same as a code package except that you don't have much in the `R` folder and you have a lot in the `data` folder. A "data" package is just dedicated to data. There is nothing else very special about it.
+
+Let's alter `MyNewPackage` to add some data and document that data.
+
+I am going to use the **Roxygen2** workflow for the documentation. You should do that too. To set up for **Roxygen2**, go to Tools > Project Options > Build Tools. Check the 'Generate documentation with Roxygen' box and then click Configure. Make sure the 'Install and Restart' box at the bottom is checked.
+
+1. Create a `data-raw` folder.
+2. Add a raw data file to that. `mydata.csv`
+3. Process that data with some code, create data `mydata` and save the to a `mydata.rda` file in the `data` folder. Save your code.
+4. Create `mydata.R` in the `R` folder. This is how you document your data. Add this to that file.
+```
+#' @title My Data
+#'
+#' @description My dataset on diamonds and here is more info.
+#'
+#' \itemize{
+#'   \item price. price in US dollars
+#'   \item carat. weight of the diamond
+#' }
+#'
+#' @docType data
+#' @name mydata
+#' @usage data(mydata)
+#' @format A data frame with 10 rows and 2 variables
+NULL
+```
+*Note*, in the latest Roxygen2, you don't need the `@name` but that only works if you use `LazyData: true` in your `DESCRIPTION` file. For a pure data package, you might not want to do that.
+
+5. Click Install and Restart from the Build tab.
+6. Update the version number in DESCRIPTION.
+6. Push to GitHub.
+
+Let's use our new data package in a R Markdown document.
+
+```{r comment=NA, echo=FALSE}
+a <- readLines("week6-packages-rmd.txt")
+cat(a, sep="\n")
+```
+
+
+## Changes to that workflow
+
+* *My data is not csv files.* That was just an example. For documentation purposes, it is now recommended to use `data-raw` so that you have the raw data and the `rda` files in the `data` directory. You can put whatever you want into `data-raw`.
+* *Won't including the raw data make my R package huge?* Yeah, it would. In your `.Rbuildignore` file, add the line `^data-raw$` to not include that in a build.
+* *Would you always put raw data in `data-raw`?* No. Another common place is `inst\extdata`. Which one you use is up to you. I use `extdata` more as a sandbox and it'll have all sorts of info used to make the `data` files.
+* *My data are huge or the raw data should be on any repo. I don't want them part of the package at all.* That's fine. You only need the `data` folder.
+
+## Comment on creating the Rd file
+
+The Rd file in the `man` directory is what makes the documentation. The [R Packages](https://r-pkgs.org/index.html) section on [documenting data](https://r-pkgs.org/data.html#documenting-data) shows you how to write those files.
+
+But keep the following in mind. The Roxygen2 code that is shown in that section is where the dataset is defined when `library(mypackage)` is called. That would happen if `LazyData: true` in the `DESCRIPTION` file. Here's how the new Roxygen2 code looks. Notice no `@name mydata` and `NULL` at the bottom is replaced with `"mydata"`.
+```
+#' @title My Data
+#'
+#' @description My dataset on diamonds and here is more info.
+#'
+#' \itemize{
+#'   \item price. price in US dollars
+#'   \item carat. weight of the diamond
+#' }
+#'
+#' @docType data
+#' @usage data(mydata)
+#' @format A data frame with 10 rows and 2 variables
+"mydata"
+```
+If you changed `LazyData: false`, all that Roxygen2 code is going to fail. So I personally would not use the new Roxygen2 "shortcut".
+
+Why would you ever set `LazyData: false`? Because some of your data have the same name. I make R data packages with 100s of datasets with the exact same structure and same name. I use them like so where `dat` is a character string name of my data:
+```
+plot_data <- function(dat){
+data(dat)
+gpplot(salmon, aes(x=year, y=spawners)) + geom_point()
+}
+```
+All my data are stored with the name `salmon` not with the data file name.
+
+So like so:
+```
+salmon <- read.csv(file="data-raw/columbia-river-chinook-esu.csv")
+save(salmon, file="data/columbia-river-chinook-esu.rda")
+```
+I don't ever want to refer to the Columbia River data as `columbia-river-chinook-esu`. In my workflow, that wouldn't make sense.
+
+But in other applications, it often makes sense to give your data a specific name, like `sst` or `nooksack-river` or `thedata`. In that case, the style in the R Packages section on [documenting data](https://r-pkgs.org/data.html#documenting-data) is fine.
+
+
+
+
+## Examples of real data packages
+
+* [SardineForecast](https://github.com/eeholmes/SardineForecast) A complex package with lots of different types of data.
+* [VRData](https://nwfsc-math-bio.github.io/VRData/) This is a data repo that I am developing for NWFSC application.
+
+## Workflow to make your new data package
+
+* Create a new R package in RStudio via New Project in upper right corner.
+* Install the Roxygen2 package if you don't have it.
+* Create `data` folder.
+* Add `rda` files to the `data` folder.
+* Add `.R` files to the `R` folder with your Roxygen2 data documentation.
+
+If you use `LazyData: true` and your data all have unique names, you can use:
+```
+#' dataname
+#'
+#' data description
+#'
+"dataname"
+```
+or if you use `LazyData: false` and your data do not have unique names, you use:
+```
+#' dataname
+#'
+#' data description
+#'
+#' @docType data
+#' @name foo
+NULL
+```
+
+* Make sure Tools > Project Options > Build Tools has the checkbox for "Generate documentation with Roxygen" checked. Click on Configure and check the "Install and Restart" checkbox.
+* On the Build tab, click "Install and Restart"
+
+Note, you'll want to keep your raw data and code to convert that into the `rda` files with the package. Put in `data-raw` or `inst\extdata`.
+
+## Data package collaboration
+
+In a team application, you'll be dividing up the work.
+
+* **The package development**. R coder and knows how to design a package.
+* **Data**. Team members who add files to `data-raw` in whatever format your team uses.
+* **Documentation**. Multiple team members might be involved in editing the files in the `R` directory. Note, in **VRData** the documentation headers are in `data-raw` and I have code that processes that into the files in `R`.
+* **Package maintainer**. Not necessarily the package developer. This person makes sure releases are posted to GitHub.
+
+
+
+
+    
+    
+
+
+
+

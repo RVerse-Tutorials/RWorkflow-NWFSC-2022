@@ -13,28 +13,32 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Everything you'll be using is free. You will need a GitHub (free) account. Sign up here [GitHub](https://github.com/).
 
-## Fresh install R, Studio, GH Desktop
+## For weeks 1-4, you only need a GitHub account and GitHub Desktop.
 
-To follow along with the material on your own computer, install the following:
+* Sign up for [GitHub](https://github.com/)
+* Install [GitHub Desktop](https://desktop.github.com/)
+* Open GitHub Desktop on your computer, go to Preferences, click Accounts and login to your GitHub account.
+* Still in Preferences, click Git and enter your name and email.
+
+## For weeks 5-8, you need R, RStudio and GH Desktop (or RStudio Cloud)
+
+### Installing locally
 
 * Install [R](https://cran.r-project.org/)
 * Install [RStudio](https://www.rstudio.com/products/rstudio/download/)
 * Install [GitHub Desktop](https://desktop.github.com/)
 
-To follow along with RStudio Cloud (with a browser) instead of installing programs (or if you following along on a phone or tablet): Sign up for an [RStudio Cloud](https://rstudio.cloud/) account.
-
 **Already have R and RStudio installed?** See [update R](#updateR) for instructions on updating R to the most recent version. This is not required for the workshop, but it is good to keep R and RStudio updated.
 
-## Git using GitHub Desktop
+### Using RStudio Cloud
 
-For the class, I am going to focus on using Git from GitHub Desktop as it is easy to use and does not have the headaches of Git using RStudio.
+If you use RStudio Cloud you only need a browser. No installing of programs. Sign up for an [RStudio Cloud](https://rstudio.cloud/) account.
 
-1. Get a [GitHub](https://github.com/) account
-2. Install [GitHub Desktop](https://desktop.github.com/)
-3. Open GitHub Desktop, go to Preferences, click Accounts and login to your GitHub account.
-4. Still in Preferences, click Git and enter your name and email.
+## Using Git from within RStudio
 
-## Git in RStudio Cloud
+In the class, I am going to use GitHub Desktop, but if you want to use Git from within RStudio or RStudio Cloud then read this section.
+
+### Git in RStudio Cloud
 
 1. Tell RStudio Cloud you want use Git. Open your project then Click Tools > Global Options > Git/SVN (left nav) and check 'Enable version control for RStudio projects'
 ![Tools tab is on your project page](images/RStudio-Cloud-Tools.png){25%}
@@ -51,41 +55,39 @@ git config --global user.name "<your name>"
 
 ## Git from RStudio
 
-Pushing to GitHub from RStudio is a hassle because there are many steps to getting the credentials (passwords) properly communicated. These steps are operating system dependent and can especially be hard if you don't have admin access on a PC.
+There are a few steps involved. Go slow an deliberately. Nothing is hard.
 
-However, you can clone repositories from GitHub and commit your changes (without pushing to GitHub) without having to do credentials. All you need to do is tell RStudio where  `git.exe` is on your computer. If your repo is public, you can even pull without RStudio knowing your GitHub password.
-
-### Telling RStudio where `git.exe` is
+### Tell RStudio where `git.exe` is
 
 1. Open RStudio
 2. Click Tools > Global Options
 3. Click Git/SVN on the left
 4. Click the little check box at the top
-5. In the Git executible box, paste in the location of `git.exe`
+5. In the Git executable box, paste in the location of `git.exe`
 * On a Mac? It is at `/usr/bin/git` Just paste that in.
-* On a PC? Look (by opening a finder window) in the following places. Try the GitHubDesktop one first.
+* On a PC? Look (by opening a finder window) in the following places. Try the GitHub Desktop one first.
     * C:/Program Files/Git/bin/git.exe
     * C:/Users/your.username/AppData/Local/Programs/Git/bin/git.exe
     * C:/Users/your.username/AppData/Local/GitHubDesktop/app-2.8.3/resources/app/git/cmd/git.exe
-6. Restart R. Session > Restart R...
+6. Restart R. From within RStudio go to Session > Restart R...
 
-### Telling RStudio your GitHub username and password
+### Tell RStudio your GitHub username and password
 
 Go to [HappyGitwR](https://happygitwithr.com/credential-caching.html) to read all about how to pass your credentials (e.g. username and password) to GitHub so you can interact (read push/pull changes) with your GitHub reponsitories.
 
 **Here is the simple version**
 
-Install these two packages if you don't have them already:
+Install these two packages:
 ```
 install.packages("usethis")
 install.packages("gitcreds")
 ```
 
-Run this code to generate your Personal Access Token (PAT) for your GitHub account. It doesn't matter what folder you are in when you run this. Just to the R command line in RStudio within any folder or project. For most people, you can just accept the default scope that **usethis** selects for you. If you are not one of those people, then you will know what extra boxes to check. Everyone else, just accept the default scopes. Next choose a time limit for your PAT. You can choose "forever" but you might not want to do that. I set up mine for 12 months.
+Run this code to generate your Personal Access Token (PAT) for your GitHub account. It doesn't matter what folder you are in when you run this. Just go to the R command line in RStudio within any folder or project. For most people, you can just accept the default scope that **usethis** selects for you. If you are not one of those people, then you will know what extra boxes to check. Everyone else, just accept the default scopes. Next choose a time limit for your PAT. You can choose "forever" but you might not want to do that. I set up mine for 12 months.
 ```
 usethis::create_github_token()
 ```
-SAVE the token, that long string of letters!! You need it for the next step.
+SAVE the token, that long string of letters!! **You need it for the next step.**
 
 Next set up R so it knows where this PAT is:
 ```
@@ -99,7 +101,7 @@ If you need to make another PAT, because your PAT expired or you messed up the s
 
 https://github.com/settings/tokens 
 
-to delete the old on before setting up a new one.
+to delete the old one before setting up a new one.
 
 
 ## Updating R/RStudio {#updateR}
@@ -108,7 +110,7 @@ to delete the old on before setting up a new one.
 
 Talk to them. They have their own procedure for this and they install/update R and RStudio all the time (probably).
 
-### I can install stuff.
+### I can install stuff
 
 **R**
 
@@ -129,7 +131,7 @@ Open RStudio. Go to "Help" tab. Click "Check for Updates"
 
 **Getting your packages to the new R version**
 
-If you want to automatically re-install these you can follow these instructions. I do not do this, because I tend to accumulate so many packages just when I am trying out stuff and I use my R updates to clean-up. I have a small list of packages that I install on a fresh R install. But if you want to just install all the packages you have installed, here how you could do that.
+If you want to automatically re-install these you can follow these instructions. I do not do this, because I tend to accumulate so many packages just when I am trying out stuff and I use my R updates to clean-up. I have a small list of packages that I install on a fresh R install. But if you want to just install all the packages you have installed, here is how you could do that.
 
 ```
 tmp <- installed.packages()
@@ -159,45 +161,4 @@ I say "no" to install from binary (unless for some reason I need the very latest
 **Updating packages**
 
 To update packages, Go to "Tools" tab and then "Check for Package Updates". 
-
-
-<!--
-
-### NWFSC staff
-
-**GitHub** If you are using GitHub in a work capacity, as opposed to purely non-work or school, then the repositories you post should be intended for public use (as opposed to just a personal repo). GitHub is officially allowed for a platform for release of products and provides a nice platform for that. I'll show a few examples. There is paperwork to fill out [info](https://docs.google.com/document/d/1KFajoHazgpm55c1wlGeaaq0gRKVoQviAK0yurOQNr8c/view) and [checklist](https://drive.google.com/file/d/0B6s8nwvlch0hZ0VWR01rVmtuUGs/view). Key point is that GitHub is not NOAA-controlled and sensitive information and data that needs to stay on government computers should not be on GitHub. 
-
-**GitHub internal server** If you want to have repositories for work that is not intended for the public or that involve data, code, or reports that cannot be on a non-NOAA computer, then you can use the NWFSC GitHub server. Contact Marcus Nedelmann at NWFSC to get an account. No paperwork needed.
-
-### Non-NOAA participants or those using GitHub purely for non-NOAA work
-
-If you don't already have an account on GitHub, go to [github.com](https://github.com) and click the "sign up" link near upper right of the page.  It is pretty self-explanatory.  Go ahead and get a **free** account. The free GitHub account allows you to have unlimited public and private repositories. 
-
-
-## Week 3: Installing packages from GitHub
-
-Windows people: You will need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html). 
-
-Run this code to confirm that you can install packages from GitHub:
-
-```{r get-packages-from-github, eval=FALSE}
-devtools::install_github("RVerse-Tutorials/TestPackage")
-```
-
-To install from an internal GitHub server, like the NWFSC GitHub, use this. Note for the NWFSC GitHub, you need to be on the network since this is an internal (not public) server. Again, replace the dummy variables with the real values.
-
-```{r get-packages-from-gitlab2, eval=FALSE}
-devtools::install_github("<github account>/repo name", host="<url of the server>")
-```
-
-## (Optional) Packages with C++ code
-
-We will not be doing this, but often you will want to install packages with C++ code.  To do that, you will need Rtools (Windows) or Xcode (Mac)
-
-* **Rtools** Windows users  [Rtools](https://cran.r-project.org/bin/windows/Rtools/) also so you can build packages with C++ code if needed.  See comments here about changing path. [Rtools](http://stat545.com/packages01_system-prep.html#windows-system-prep)
-
-* **Xcode** Mac users Open terminal and type the following command `xcode-select --install`
-
--->
-
 

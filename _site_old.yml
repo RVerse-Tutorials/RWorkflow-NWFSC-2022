@@ -8,9 +8,33 @@ navbar:
     href: set-up.html
   - text: Workshop Weekly Notes
     icon: fa-calendar
-    href: week1.html
+    menu:
+    - text: Week 1 RStudio + Version Control
+      icon: fa-cogs
+      href: week1.html
+    - text: Week 2 More Git/GitHub
+      icon: fab fa-github-alt
+      href: week2.html
+    - text: Week 3 GitHub
+      icon: fab fa-github
+      href: week3.html
+    - text: Week 4 R Markdown
+      icon: fa-file-code
+      href: week4.html
+    - text: Week 5 ggplot2
+      icon: fa-chart-line
+      href: week5.html
+    - text: Week 6 packages
+      icon: fa-box
+      href: week6.html
+    - text: Week 7 roxygen and pkgdown
+      icon: fa-circle
+      href: week7.html
+    - text: Week 8 more packages
+      icon: fa-box
+      href: week8.html
   - text: RVerse
-    icon: fas fa-toolbox
+    icon: fa-folder
     href: https://rverse-tutorials.github.io
   - text: More resources
     icon: fa-info

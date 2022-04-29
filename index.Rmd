@@ -1,64 +1,56 @@
 ---
-title: "Practical R Workflow for Scientists June-July 2021"
+title: "Practical R Workflow for Scientists May-July 2022"
 ---
 
 <img style="float: right;" src="images/tools-logo-transparent.png" width=30%>
 
-These short sessions (45min to 1hr) will be focused on tools and practices for NMFS scientists to help you be **faster, more efficient and organized** in your coding and in merging reports with code. The focus of these workshops is practical skills and tools. Each session will be stand-alone. While the sessions will be introductory, I will give you links to my GitHub repositories that illustrate more complex examples (and that you can copy and build on).
+These short sessions (45min to 1hr) will be focused on R, RStudio and GitHub tools and practices for NOAA scientists to help you be **faster, more efficient and organized** in your data science projects. The focus of these workshops is practical skills and tools; they are intended to get you applying the skill immediately in your own work. I will give you links to my and other NOAA GitHub repositories that illustrate more complex examples (that you can copy and build on).
 
-**Target audience**: You already code in R, maybe use RStudio too, but want to learn some tips about being more efficient from a seasoned R programmer who does the kind of coding and work that you do.
+**Target audience**: Weeks 1-4: You have heard of GitHub or use it some, but want to learn how to use it better. This year, I also have two sessions on Agile project management and Scrum using GitHub issues and project boards. Weeks 5-8: You already code in R, maybe use RStudio too, but want to learn some tips about being more efficient from a seasoned R programmer who does the kind of coding and work that you do. 
 
-**About me**: I am a modeler/applied mathematician and I am immersed in R. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research.
+**About me**: I am a modeler/applied mathematician and I am immersed in R. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research and am heavily involved in efforts to support transition to Open Science workflows within NOAA Fisheries.
 
 ## Set-up for the workshop
 
-Before the workshops, go to [Set-up](set-up.html) for instructions. Unless you will only be listening, you'll need a [GitHub](https://github.com/) account. To actively participate in the activities, you'll want either R, RStudio and GitHub Desktop installed on your computer or you can use [RStudio Cloud](https://rstudio.cloud/). If you do the latter, you don't need to install any software.
+For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub Desktop](https://desktop.github.com/) installed. For weeks 5-6, you'll want R and RStudio  installed on your computer or you can use [RStudio Cloud](https://rstudio.cloud/). If you do the latter, you don't need to install any software.
 
 ## Video and GitHub Organization links for the sessions
 
-Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you the WebEx links and link to the GitHub Classroom. It is the same link for each session.
+Please email Eli (eli.holmes@noaa.gov) from your NOAA email, and I will send you the WebEx links.
 
-## 2021 Topics Fridays 10-11am PST (note we skip July 2nd)
+## 2022 Topics Fridays 10-11am PST (note we skip June 17 and 24)
 
-* [May 28](week1.html) Introduction to workflow using RStudio and Git/GitHub. The session video will be posted June 2nd but the link has my lectures notes and short videos of the skills. [Lecture notes and video links](week1.html)
+### Part 1
 
-* [June 4](week2.html). More Git skills. The 3 key Git skills. These 3 basic skills are all you need for 95% of your work with Git repositories. [The lecture notes, discussion and videos](week2.html)
+* [May 20](week1-introtogit.html) **Introduction to Git/GitHub** I will introduce you to Git and GitHub for tracking your work. In this session, you will learn the 3 basic Git skills that are all you need to get started (and for many scientists are all they need). I worked for years with just these 3 skills. Skill 1: Clone one of your GitHub repos onto your computer, Skill 2: Commit local changes, and Skill 3: Push/Pull changes to/from GitHub. I’ll discuss how to deal with merge conflicts, which often cause beginners a lot of heartburn.
+<!-- [Lecture notes and video links](week1.html) -->
 
-* [June 11](week3.html). GitHub skills. We'll learn how to use issues and releases on GitHub to be more efficient either working alone or in a team. I'll show you how I use organizations to organize my repositories and some of the nice 'landing page' features of GitHub. For those curious about GitHub Actions, I give you a short demo on that too. [The lecture notes and discussion](week3.html)
+* May 27 **More GitHub skills: issues, project boards, and releases** This week, you’ll learn all about issues, project boards and releases in GitHub. These features are key to helping you organize your work and keep track of what needs to be done. These features also allow a team to collaborate effectively together on a repository.  
+<!-- [The lecture notes, discussion and videos](week2.html) -->
 
-* [June 18](week4.html). Rmarkdown for reports. Let's make a report that updates when our data change and post that to GitHub.
+* June 3 **Introduction to Agile project management** Now that you have learned about Git and GitHub project tracking features, we will learn the basics of Agile project management. This will give you a proven and flexible framework for organizing a team’s work and communication on GitHub. Agile project management focuses how to structure team communication and workflow to facilitate peer collaboration and help, get quick feedback from end-users, allow responsiveness to change, and focus on the key tasks.
+<!-- [The lecture notes and discussion](week3.html) -->
 
-* [June 25](week5.html). Making plots with ggplot2. Learning ggplot2 will make it much easier to make plots from the big and complex datasets that you deal with on a daily basis.
+* June 10 **Intro to Scrum using GitHub issues and project boards** This week will focus on the most popular Agile methodology: Scrum. Although Scrum is associated with software development, it is used in many different fields. Scrum is a lightweight and flexible framework that helps teams to work together better and learn with each cycle of work. It has 3 roles, 5 events (steps) that the team goes through during a time-boxed period of work. I will show you how to set up and run a Scrum Sprint in GitHub. The real power of Scrum comes with teams by promoting high functioning teamwork, but you can use Scrum solo; you’ll just have to ‘switch hats’ when you take on different roles.
+<!-- [The lecture notes and discussion](week4.html) -->
 
-* [July 9](week6.html). Intro to R packages for data and code. How to build an R package in RStudio. In the second half of the lecture, I will show you how to make an R data package and what that can do to allow data documentation, data revision tracking, data versioning and data sharing.
+### Part 2 starts July 1. NO SESSION ON JUNE 17 or 24
 
-* [July 16](week7.html). Intro to **roxygen2** for documentation and **pkgdown** for package websites. Even if you don't do the coding on your team, you should be aware of how documentation works so you can contribute and the tools for automating tasks like a project website so your team doesn't fall into inefficient workflows.
+* July 1 **Creating R packages for code or data** This week I will show you how to make an R package. RStudio makes this incredibly easy; literally 2-3 clicks. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework helps you write robust and well documented code. It also makes it easy to bundle data with code. By the end of this session, you will be able to build your own mini R package.
+<!-- [The lecture notes and discussion](week5.html) -->
 
-* [July 23](week8.html). Advanced topics for developers. How to set up a NAMESPACE, passing `R CMD check`, debugging tools, coding GitHub Actions workflows, C++ code in your package. I am going to pass on tips to help you understand how these things work so you don't waste hours figuring it out or fall back on hacky solutions.
+* July 8 **Documentation for R packages using Roxygen and pkgdown** Being able to easily include good and accessible documentation of functions and data is one of the big advantages of packaging your R products. Gone are the days when you need to write documentation after the fact. Nowadays, we include documentation in headers to our functions (or object definitions) and that gets automatically assembled into documentation (help files, manuals, etc). In R, Roxygen is the way this is done and RStudio makes it super easy. Once your package is documented with Roxygen, creating a website is simple with pkgdown.
+<!-- [The lecture notes and discussion](week6.html) -->
 
-## Video only
+* July 15 **R Markdown for reports: integrating text and data tables** There are many online tutorials for R Markdown which will cover the basics. I will focus on R Markdown for fisheries (or other) reports. When the data change (which happens often), we have to remake tables (and graphs) and update the numbers in text. For big reports, this is time-consuming and creates errors. I'll show you how to use R Markdown to automate this process, so you are not manually remaking reports. In the last 1/3, I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories.
+<!-- [The lecture notes and discussion](week7.html) -->
 
-I will make videos of this material.
-
-* Handy clustering tools in R
-
-* Making raster plots with the raster and tmap packages. Working with spatial data is a huge area. We are going to start gently by making raster plots and using the tmap package. You'll see how easy it easy to make maps of data on a grid.
-
-
-
-<!--
-Requests
-
-ggplot
-Bayesian stats
-tidyverse verbs
-collaboration with github/gitlab
-tidyverse world.
-
--->
+* July 22 **Writing tests for R packages and other code** 
+Writing tests and automating quality control for your R packages and code: we know we should do it, but for most of us, it is the last thing we do or want to do. In this session, I’ll get you started writing unit tests using the testthat package (the standard). I’ll also give examples of the other types of common tests and some ideas of how to automate these tests with GitHub Actions. The goal is to give you some easy coding habits that will help you incorporate tests without too much extra work.
+<!-- [The lecture notes and discussion](week8.html) -->
 
 <hr>
 
 <div style="text-align: center">
-<i class="fas fa-cubes"></i> NWFSC Math Bio Program <i class="fas fa-cubes"></i>
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program, NOAA Fisheries <i class="fas fa-cubes"></i>
 </div>

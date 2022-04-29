@@ -2,6 +2,20 @@
 title: "Resources"
 ---
 
+## NOAA affiliated GitHub sites
+
+* [NMFS Openscapes](https://nmfs-openscapes.github.io/)
+* [NMFS R User Group](https://nmfs-openscapes.github.io/NMFS-R-UG/)
+* [NOAA Fisheries Integrated Toolbox](https://noaa-fisheries-integrated-toolbox.github.io/)
+
+## NOAA Fisheries GitHub Resources
+
+* [FIT Resources](https://github.com/nmfs-fish-tools/Resources) NOAA licences, Disclaimers, code review procedures.
+* [FIT Resources blog](https://noaa-fisheries-integrated-toolbox.github.io/resources/) Scroll down the navbar on left to see coding resources.
+* [NMFS Palette](https://github.com/nmfs-general-modeling-tools/nmfspalette)
+* [pkgdown css for NOAA pkgdown sites](https://github.com/nmfs-general-modeling-tools/nmfspalette/blob/main/pkgdown/extra.css)
+* [NMFS Reports](https://emilymarkowitz-noaa.github.io/NMFSReports/) Check out this package by Emily Markowitz at AFSC for making NMFS Reports with proper branding and structure.
+
 ## Never worked with R?
 
 If you have never worked with R, you can get a basic familiarity by going through [this free tutorial](https://www.datacamp.com/courses/free-introduction-to-r).  Takes about 4 hours.   

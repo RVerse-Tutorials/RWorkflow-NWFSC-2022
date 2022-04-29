@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Set-up</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li>
+  <a href="week1.html">
+    <span class="fa fa-calendar"></span>
+     
+    Workshop Weekly Notes
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io">
+    <span class="fas fa-toolbox"></span>
+     
+    RVerse
+  </a>
+</li>
+<li>
+  <a href="links.html">
+    <span class="fa fa-info"></span>
+     
+    More resources
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2022">
+    <span class="fab fa-github"></span>
+     
+    Repo
+  </a>
+</li>
+<li>
+  <a href="https://github.com/orgs/RWorkflow-Workshop-2021">Org</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Set-up</h1>
+
+</div>
+
+
+<p>Everything you’ll be using is free. You will need a GitHub (free) account. Sign up here <a href="https://github.com/">GitHub</a>.</p>
+<div id="for-weeks-1-4-you-only-need-a-github-account-and-github-desktop." class="section level2">
+<h2>For weeks 1-4, you only need a GitHub account and GitHub Desktop.</h2>
+<ul>
+<li>Sign up for <a href="https://github.com/">GitHub</a></li>
+<li>Install <a href="https://desktop.github.com/">GitHub Desktop</a></li>
+<li>Open GitHub Desktop on your computer, go to Preferences, click Accounts and login to your GitHub account.</li>
+<li>Still in Preferences, click Git and enter your name and email.</li>
+</ul>
+</div>
+<div id="for-weeks-5-8-you-need-r-rstudio-and-gh-desktop-or-rstudio-cloud" class="section level2">
+<h2>For weeks 5-8, you need R, RStudio and GH Desktop (or RStudio Cloud)</h2>
+<div id="installing-locally" class="section level3">
+<h3>Installing locally</h3>
+<ul>
+<li>Install <a href="https://cran.r-project.org/">R</a></li>
+<li>Install <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a></li>
+<li>Install <a href="https://desktop.github.com/">GitHub Desktop</a></li>
+</ul>
+<p><strong>Already have R and RStudio installed?</strong> See <a href="#updateR">update R</a> for instructions on updating R to the most recent version. This is not required for the workshop, but it is good to keep R and RStudio updated.</p>
+</div>
+<div id="using-rstudio-cloud" class="section level3">
+<h3>Using RStudio Cloud</h3>
+<p>If you use RStudio Cloud you only need a browser. No installing of programs. Sign up for an <a href="https://rstudio.cloud/">RStudio Cloud</a> account.</p>
+</div>
+</div>
+<div id="using-git-from-within-rstudio" class="section level2">
+<h2>Using Git from within RStudio</h2>
+<p>In the class, I am going to use GitHub Desktop, but if you want to use Git from within RStudio or RStudio Cloud then read this section.</p>
+<div id="git-in-rstudio-cloud" class="section level3">
+<h3>Git in RStudio Cloud</h3>
+<ol style="list-style-type: decimal">
+<li><p>Tell RStudio Cloud you want use Git. Open your project then Click Tools &gt; Global Options &gt; Git/SVN (left nav) and check ‘Enable version control for RStudio projects’ <img src="images/RStudio-Cloud-Tools.png" alt="Tools tab is on your project page" />{25%}</p></li>
+<li><p>Click the Terminal tab in the lower left panel or click the blue cog below the Git tab in the upper right panel. <img src="images/RStudio-Cloud-Terminal.png" alt="Terminal location" />{25%}</p></li>
+<li><p>Type in this with your info</p></li>
+</ol>
+<pre><code>git config --global user.email &quot;&lt;your email&gt;&quot;
+
+git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
+</div>
+</div>
+<div id="git-from-rstudio" class="section level2">
+<h2>Git from RStudio</h2>
+<p>There are a few steps involved. Go slow an deliberately. Nothing is hard.</p>
+<div id="tell-rstudio-where-git.exe-is" class="section level3">
+<h3>Tell RStudio where <code>git.exe</code> is</h3>
+<ol style="list-style-type: decimal">
+<li>Open RStudio</li>
+<li>Click Tools &gt; Global Options</li>
+<li>Click Git/SVN on the left</li>
+<li>Click the little check box at the top</li>
+<li>In the Git executable box, paste in the location of <code>git.exe</code></li>
+</ol>
+<ul>
+<li>On a Mac? It is at <code>/usr/bin/git</code> Just paste that in.</li>
+<li>On a PC? Look (by opening a finder window) in the following places. Try the GitHub Desktop one first.
+<ul>
+<li>C:/Program Files/Git/bin/git.exe</li>
+<li>C:/Users/your.username/AppData/Local/Programs/Git/bin/git.exe</li>
+<li>C:/Users/your.username/AppData/Local/GitHubDesktop/app-2.8.3/resources/app/git/cmd/git.exe</li>
+</ul></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Restart R. From within RStudio go to Session &gt; Restart R…</li>
+</ol>
+</div>
+<div id="tell-rstudio-your-github-username-and-password" class="section level3">
+<h3>Tell RStudio your GitHub username and password</h3>
+<p>Go to <a href="https://happygitwithr.com/credential-caching.html">HappyGitwR</a> to read all about how to pass your credentials (e.g. username and password) to GitHub so you can interact (read push/pull changes) with your GitHub reponsitories.</p>
+<p><strong>Here is the simple version</strong></p>
+<p>Install these two packages:</p>
+<pre><code>install.packages(&quot;usethis&quot;)
+install.packages(&quot;gitcreds&quot;)</code></pre>
+<p>Run this code to generate your Personal Access Token (PAT) for your GitHub account. It doesn’t matter what folder you are in when you run this. Just go to the R command line in RStudio within any folder or project. For most people, you can just accept the default scope that <strong>usethis</strong> selects for you. If you are not one of those people, then you will know what extra boxes to check. Everyone else, just accept the default scopes. Next choose a time limit for your PAT. You can choose “forever” but you might not want to do that. I set up mine for 12 months.</p>
+<pre><code>usethis::create_github_token()</code></pre>
+<p>SAVE the token, that long string of letters!! <strong>You need it for the next step.</strong></p>
+<p>Next set up R so it knows where this PAT is:</p>
+<pre><code>gitcreds_set()</code></pre>
+<p>If you have an old PAT that you need to replace, it will give you an option for that.</p>
+<p>Now pushing and pulling to GitHub should work fine from R (and RStudio).</p>
+<p>If you need to make another PAT, because your PAT expired or you messed up the scope, then go here</p>
+<p><a href="https://github.com/settings/tokens" class="uri">https://github.com/settings/tokens</a></p>
+<p>to delete the old one before setting up a new one.</p>
+</div>
+</div>
+<div id="updateR" class="section level2">
+<h2>Updating R/RStudio</h2>
+<div id="it-installs-everything-on-my-computer" class="section level3">
+<h3>IT installs everything on my computer</h3>
+<p>Talk to them. They have their own procedure for this and they install/update R and RStudio all the time (probably).</p>
+</div>
+<div id="i-can-install-stuff" class="section level3">
+<h3>I can install stuff</h3>
+<p><strong>R</strong></p>
+<p>Install the latest R from CRAN. When you restart RStudio, it will use the updated version of R.</p>
+<p><strong>Windows users</strong> can try using the package <code>installr</code> (only for Windows). This <a href="https://www.r-statistics.com/2015/06/a-step-by-step-screenshots-tutorial-for-upgrading-r-on-windows/">installr tutorial</a> is very helpful. Or download from <a href="https://cloud.r-project.org">CRAN</a>.</p>
+<p><strong>Mac users</strong></p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://cloud.r-project.org/bin/macosx/" class="uri">https://cloud.r-project.org/bin/macosx/</a></li>
+<li>Find the latest pkg file for your macOS and double-click on that.</li>
+<li>Double-click on the downloaded file to install. Follow instructions. You should be able to click “Next” to all dialogs.</li>
+<li>I delete old R versions from my computer after I am happy with the upgrade.</li>
+</ol>
+<p><strong>RStudio</strong></p>
+<p>Open RStudio. Go to “Help” tab. Click “Check for Updates”</p>
+<p><strong>Getting your packages to the new R version</strong></p>
+<p>If you want to automatically re-install these you can follow these instructions. I do not do this, because I tend to accumulate so many packages just when I am trying out stuff and I use my R updates to clean-up. I have a small list of packages that I install on a fresh R install. But if you want to just install all the packages you have installed, here is how you could do that.</p>
+<pre><code>tmp &lt;- installed.packages()
+installedpkgs &lt;- as.vector(tmp[is.na(tmp[,&quot;Priority&quot;]), 1])
+save(installedpkgs, file=&quot;installed_old.rda&quot;)</code></pre>
+<p>Once you have the new R installed, open RStudio (or R) and navigate to where you have that <code>installed_old.rda</code> file.</p>
+<pre><code>
+load(&quot;installed_old.rda&quot;)
+tmp &lt;- installed.packages()
+installedpkgs.new &lt;- as.vector(tmp[is.na(tmp[,&quot;Priority&quot;]), 1])
+missing &lt;- setdiff(installedpkgs, installedpkgs.new)
+if(length(missing)!=0) install.packages(missing)
+update.packages()</code></pre>
+<p>Does R say, “package not available” and you know it is? Try a different mirror.</p>
+<p>So what do I do? I run this code</p>
+<pre><code>install.packages(&quot;tidyverse&quot;)
+install.packages(c(&quot;knitr&quot;, &quot;rmarkdown&quot;, &quot;markdown&quot;))
+install.packages(c(&quot;kableExtra&quot;, &quot;gridExtra&quot;, &quot;raster&quot;, &quot;sp&quot;))</code></pre>
+<p>I say “no” to install from binary (unless for some reason I need the very latest version, which I never do). That gets me 75% of the way and then I install the other stuff as I need it. <em>Notes</em> 1) I don’t write scripts with <code>library()</code> buried deep in the script. Those calls always go at the top so they break early if I am running something. 2) I tend to bundle my code into packages with a DESCRIPTION file with all the dependencies and suggests. When I install that with <code>install.packages(..., dependencies=TRUE)</code> it will install all the packages required or used in the vignettes and examples. 3) I prefer to use <code>::</code> when using functions from other packages, like <code>forecast::forecast()</code>. Exception is <strong>ggplot2</strong> stuff. Otherwise I spend forever trying to figure what package a function came from.</p>
+<p><strong>Updating packages</strong></p>
+<p>To update packages, Go to “Tools” tab and then “Check for Package Updates”.</p>
+</div>
+</div>
+
+<hr>
+
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program, NOAA Fisheries <i class="fas fa-cubes"></i>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

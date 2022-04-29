@@ -1,0 +1,215 @@
+---
+title: "Introduction to Git within RStudio"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
+
+# Overview
+
+I will introduce you to RStudio and GitHub/GitLab and show you how to use GitHub/GitLab without having to learn Git. If you have tried RStudio or Git and gotten frustrated or thought 'I don't have time to learn this', this is for you. If you want to learn how to easily keep track of changes in your code, this is for you. If you have never used RStudio, this is for you.
+
+I'm going to show you how to work with Git/GitHub/GitLab with no command-line interface. The goal is to futz with Git as little as possible. See the Links tab above for a nice online workshop on Git/GitHub if you want to learn more.
+
+# RStudio
+
+When you open RStudio you will see 4 panels:
+
+![RStudio-panels](images/RStudio-screenshot.png)
+
+## Create an RStudio Project
+
+1. In RStudio, choose "File->New Project..."
+1. Then choose "New Directory" and then choose "Empty Project"
+1. In the next dialog, choose a name (_it is best to  use only letters, numbers, dashes, and underscores, and include no spaces in the name_).  
+1. Then click "Create Project".
+
+That should give you a new project.
+
+### Add a new script file
+
+1. Add a new file using 'File > New File > R Script'
+2. Or you can click the new icon in top left corner.
+2. Add some code to that file. Copy and paste in:
+
+```
+require(graphics)
+## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
+## Page 9: Plant Weight Data.
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
+lm.D9 <- lm(weight ~ group)
+opar <- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
+plot(lm.D9, las = 1)      # Residuals, Fitted, ...
+par(opar)
+```
+
+### Run the code
+
+1. Select all the lines of code and select 'Run'
+2. Run all the code by selecting 'Source'
+
+## Project organization
+
+Keep your projects in separate folders with a uniform set of folder names. For example,
+
+* R - your functions
+* scripts - scripts (so not functions)
+* data - your RData files
+* output -
+* inst - random stuff
+* notes -
+
+The top right corner allows you to create projects and switch between projects.
+
+![RStudio-panels](images/RStudio-screenshot.png)
+
+### Project settings
+
+Key one is to **not** save your `.Rdata` (your environment) when your are done for the day.  Under Tools > Project Options... > General
+
+## Super helpful features
+
+* Edit > Find in Files...
+* Code > Comment
+* Code > Reindent Lines
+* File > New (templates)
+* History tab
+* Help tab (index at bottom)
+* Help > Markdown quick reference
+
+## More exercises
+
+R for Data Science is a great book to introduce you to working with data in R. Read through the following sections of the R for Data Science book and work through the examples.
+
+* [Workflow basics](http://r4ds.had.co.nz/workflow-basics.html): super basic review on how R works.
+* [Workflow: projects](http://r4ds.had.co.nz/workflow-projects.html): info about organizing RStudio projects.
+* [Workflow: scripts](http://r4ds.had.co.nz/workflow-scripts.html):  how to evaluate code in scripts.
+
+# Git (GitHub/GitLab)
+
+Tracking your code (and project) changes. I am focusing on Git for individuals **not teams**. If you aren't using a change tracker (version control), then start just with a personal project and track only your changes. I will not cover *branches*.
+
+For NOAA staff, GitHub can be used for publishing public projects:
+[NOAA GitHub](https://github.com/NOAAGov/NOAA-Affiliated-Projects) and a NWFSC example
+[NWFSC Timeseries](https://nwfsc-timeseries.github.io/). NWFSC has a GitLab server if you want a repository server for your non-public projects and for internal collaboration.
+
+## Basics
+
+* Repo: Repository. It is your code and the record of your changes. In a hidden folder called `.git` (so if you wanted to get rid of the history and other Git info, you could delete that folder). You have a local repo and a remote repo (on GitHub/GitLab).
+* Actions: Commit, Push, Pull
+* Git: The program that keeps track of the changes on local and remote repo.
+* Git GUIs: A graphical interface for Git (which is command line). There are [many](https://git-scm.com/downloads/guis). I am teaching an easy-entry one, GitHub Desktop.
+
+Workflow (to get started):
+
+* Make local changes to code.
+* Record what those changes were about and commit to the code change record (history).
+* Push those changes to your remote copy (aka your backup)
+
+![First foray into Git/GitHub/GitLab](images/git-intro.png)
+
+Goals today:
+
+1. Get you started.
+2. Show you a simple workflow.
+3. Show some simple GitHub/GitLab features.
+
+## Let's get started!
+
+I am going to show a workflow that is usually robust. Connecting Git on your computer and GitHub (or GitLab) is a source of much misery, and in my experience **creating the repo on GitHub (or GitLab) first** eliminates the problems. This really important for the first time you connect your computer to the remote repository server (GitHub or GitLab). Start with a new repo created on GitHub or GitLab.
+
+### Make a GitHub or GitLab Repo
+
+1. Go to GitHub or GitLab and create a new repository (the + in the top right or New Project)
+2. Click add Readme.md and add .gitignore (type R to get the R .gitignore)
+3. Copy the url of your new repo
+
+### Add to RStudio
+
+1. Open RStudio and click `New Project` (upper right, blue cube with R)
+2. Click New Project... > Version Control > Git and paste in the url. Give your project a name and make sure the directory is where you want the project.
+3. Done!
+
+### Make some changes and commit
+
+1. Add a file. File > New File > R Script
+2. Type something and then save the file.
+3. Click the `Git` tab in the upper right.
+4. Click the changes that you want to commit (do all). And click `Commit`. Add a comment: first line is subject, newline, description (options).
+5. Click the Green up arrow to Push to GitHub or GitLab.
+
+### Make some changes and look at the history
+
+1. Repeat 1-4 a few times.
+2. Now look at the history. The little clock-like icon (or History in the Git window). 
+   
+   * Click on `filter by file` to see just the changes to one file.
+   * Do a search in the upper right.
+   * Click on an early commit and click `View file @...`
+   
+3. Push changes up the GitHub or GitLab
+
+## Copy someone's else rep
+
+1. In a browser, https://github.com/RVerse-Tutorials/Test.
+2. Copy its url.
+3. Open GitHub or GitLab.  
+4. If using GitHub, click the `+` in top right and click `import repository`. Paste in the url and give your repo a name.
+4. If using GitLab, click `New Project` on right, then `Import Repository` tab, then click `Repo by URL`. Paste in url and give repo a name.
+5. Open RStudio and click the project tab in the top right and select, `New Project`. Then select `Version Control` and paste in the url of **your** repository's url.  For example, `https://github.com/<youraccount>/Test` or 
+`https://gitlab.com/<youraccount>/Test` or 
+
+6. Add the new repo to GitHub Desktop. Open GitHub Desktop, select File>Add Local Repository and navigate to the folder with the new repository.
+
+## Key tips
+
+1. Do not make changes on GitHub or GitLab directly.
+
+  * Waa, I did and then I forget to pull and now I have merge conflicts. What do I do?? I warned you. Now, Google is your friend.
+  
+2. Do not use branches (wait till you are friends with Git).
+
+3. Do not use Git at the command line.
+
+4. If you use Dropbox or iCloud on multiple computers to keep folders synced up across different computers, don't put your Git repos in those folders.
+
+5. The Git info is in the hidden folder `.git`. If you need to get rid of the repository data (like history), delete that. Don't copy that folder into another repo.
+
+6. Start by making a blank repo on GitHub or GitLab and select the box to add a Readme file. Then clone that with RStudio or GitHub Desktop.
+ 
+# GitHub Desktop
+
+Despite the name, it works with GitLab too.
+
+You can commit your changes and push them with RStudio only, but many people use a Git GUI to interact with Git and their remote repository. GitHub Desktop is simple and works well.  Why not just use RStudio? If you are happy with that, fine. Many people prefer a separate Git GUI, though Git with RStudio has improved and serves many just fine.
+
+![GitHub Desktop](images/GitHub-Desktop.png)
+
+## Adding your local repository
+
+To use your local repository with GitHub Desktop, you need to add it.
+
+1. File > Add Local Repository.
+
+How does it know what the remote repository (GitHub/GitLab) is? It is stored in the .git information which was set when you cloned the repo from GitHub/GitLab.
+
+
+

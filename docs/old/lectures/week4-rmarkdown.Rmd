@@ -1,0 +1,215 @@
+---
+title: "R Markdown for Reports"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This week will shift gears and talk about writing reports using R Markdown. There are many on-line tutorials for R Markdown which will cover the basics. I'll focus on some of the aspects of R Markdown that can really speed up your work: automating the making of tables and figures. Our work often involves making tables that process some data and then report that in tables. When the data change (which happens often), we have to remake tables (and graphs). I'll show you how to automate this process so you are not manually remaking tables for reports.
+
+## Set-up
+
+If you want to try out the things I am showing, you will need R and RStudio or you can use this link and follow along on RStudio Cloud. 
+
+If you are using RStudio on your own computer, there are some packages that you'll need: rmarkdown, kritr, kableExtra, flextable, ggplot2.
+
+Build your first R Markdown file
+
+* Open RStudio, and click File > New File > R Markdown... . 
+* Select the default (document) and click ok. This will open a template R Markdown document. 
+* Save the file and then click 'Knit' in the nav bar above your template. 
+* Download the necessary packages if RStudio complains and won't build.
+
+Note, to make PDF files you will need a LaTeX installation.  If you don't have one already (if you are not sure, then you don't), you can install [tinytex](https://yihui.name/tinytex/).  Run these lines:
+
+```
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
+
+Note the first time you make a PDF, tinytex will load any needed packages and it can take a **long** time. You'll see a spinning wheel on the R Markdown tab.
+
+Note, if you are using RStudio Cloud, I have installed all these things for you.
+
+
+
+## Overview
+
+R Markdown is a format that allows you to combine text and R code.  From RStudio you can output your file in many formats: html, PDF, Word, presentations.  We are exploring a small slice of R Markdown.  
+If you have never worked with R Markdown, start with RStudio's online lessons. That'll get you up to speed with the basics.
+[RStudio R Markdown lessions](https://rmarkdown.rstudio.com/lesson-1.html)
+
+When you are ready to explore more, go to this great R Markdown resource [R Markdown for Scientists](https://rmd4sci.njtierney.com/). [The R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/) is also a good resource.
+
+
+## Templates
+
+I have made a repository [Rmarkdown-Tutorial](https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown) with some template Rmd files for you to look at. You can clone the repos to your account and then pull into your computer.
+
+
+## Basic Rmd file
+
+Open up `Basic.Rmd`.  
+
+At the top you see
+
+```
+---
+title: "Basic"
+author: "EE Holmes"
+output: html_document
+---
+```
+
+This is the `yaml` which gives the instructions about how to process your R Markdown file.  The `yaml` file is sensitive to spaces.  Do not add or subtract spaces.  This `yaml` is very simple, but the `yaml` can be complex for some applications.  We will only be working with simple examples.
+
+After the `yaml` is the content.  To see a summary of R Markdown formating, click 'Help' menu and then 'Markdown Quick Reference'.
+
+## Create output
+
+We can create documents in different formats from this Rmd file.  Click the drop-down menu next to the 'knit' button.
+
+* **HTML** Select 'knit to HTML' to create a web document.
+* **Word** Select 'knit to Word' to create a Word document.
+* **PDF** Select 'knit to PDF' to create a PDF. Note need for a LaTeX installation (easiest is tinytex).
+
+## Getting help
+
+In RStudio, click the 'Help' tab in the top nav bar.  You will see 'Markdown Quick Reference'.  That has basic markdown syntax.  You can also click 'Cheatsheets' and there are two references sheets.   Using Google, you can also find answers to any questions that the RStudio help files doesn't answer. See also [R Markdown for Scientists](https://rmd4sci.njtierney.com/).
+
+Tips:
+
+* Markdown is sensitive to leading spaces.  "  ## Topic" will not produce a header while "## Topic" will.  " ```{r}" (note leading space) will not be interpreted as R code.
+* Markdown is sensitive to line returns.  If you are tying to make a list, "1. item", then you must have two line returns before the "1. item".
+
+## Start a new Rmarkdown file using RStudio template
+
+Click the File tab, then select New File > R Markdown. This will open a template R Markdown file.  You will be asked for a title and whether to have the output be html, PDF, or Word.
+
+<!--
+
+## Put your report online
+
+#### RPubs
+
+After knitting your Rmd file, a Preview will appear.  Click the 'Publish' button in the top right, select 'RPubs'.  This is a free service for publishing output.  Follow the instructions and you'll soon have a link you can share.  [Here](https://youtu.be/GJ36zamYVLg) is a video showing how to do this.
+
+-->
+
+
+## Other example Rmds
+
+[Repo with the following examples](https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown)
+
+* Figures `Figures.Rmd`
+* Figures in a for loop and side by side `Figures_for_loop.Rmd`
+* Tables `Table.Rmd`
+* Tables for Word, html, or latex `Table_Extras.Rmd`
+* Math `Math.Rmd`
+* Table of contents and Code folding  `Extras.Rmd`
+* Presentations
+  - **ioslidy_presentation.Rmd** Chose File > New > R Markdown > ioslidy presentation to create this presentation template.
+  - **xaringan_presentation.Rmd** You will need to install the **xaringan** package.
+* Making tables using a function. This allows you to make the same table but with different data. A common example would be making a standard table for each species or each population in a dataset. [Report with Tables](https://github.com/RWorkflow-Workshop-2021/Week4-report) shows you how to do that. Start with the README file.
+
+## Accessibility
+
+Knitting in RStudio by clicking the Knit button uses `rmarkdown::render()` which will automatically produce an html document that is more accessible than other ways that you might knit a R Markdown document. However you'll need to do some special things to add alt info to figure in the html, specifically add a figure caption.
+
+### Adding figure alt text
+
+If you don't need to have figure captions or if you are ok with the figure legend and alt text being the same, they adding alt text for figures is quite easy.
+
+**Figure caption displayed and alt text will be the same**
+
+```{r fig.cap="This will be the alt text"}
+plot(1:10)
+```
+
+**No figure caption displayed**
+
+Add this to the top of your Rmd (or save to a css file and put that in the yaml) and the figure caption will not show up in your html.
+
+```
+<style>
+    .caption {
+        display:none;
+    }
+</style>
+```
+
+**Use html**
+
+Another approach is to have R Markdown save your figures, and then insert those with html. Then you have full control over the caption, alt text and can add the longdesc tag also.
+
+### Adding table captions
+
+You can use `caption=` with `knitr::kable()` to add captions.
+
+```{r}
+knitr::kable(cars[,1:2], caption="This will be the Table caption")
+```
+
+**No table caption displayed**
+
+Add this to the top of your Rmd (or save to a css file and put that in the yaml) and the table caption will not show up in your displayed html but will still be there for accessibility.
+
+```
+<style>
+    caption {
+        display:none;
+    }
+</style>
+```
+
+### Accessibility resources
+https://r-resources.massey.ac.nz/rmarkdown/
+
+**Latex (PDF)***
+
+Making accessible PDFs is harder in LaTeX. You might look at the [tagpdf](https://www.ctan.org/pkg/tagpdf). 
+
+Another option is to have R Markdown save the figures, and use LaTeX:
+
+```
+\begin{figure}
+    \centering
+    \includegraphics{fig1.png}
+   \Description[short desc]{long description}
+   \caption{the caption}
+   \label{fig:fig1}
+\end{figure}
+```
+
+## More Rmd uses
+
+* Websites: The workshop website is built off Rmd files. See the [website](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/websites.html) tutorial to learn how to do this. It is super easy.
+* Online books using bookdown: Books [like this one](https://nwfsc-timeseries.github.io/atsa-labs/) for our time-series course are easy to make using Rmds. See the [bookdown](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2020/bookdown.html) tutorial to learn how to do this. Again super easy.
+* Create a spiffy landing page for your repository: Like this one for our [MARSS package](https://nwfsc-timeseries.github.io/MARSS/). This is literally a couple clicks on GitHub (not sure if this is possible on GitLab).
+* A journal article repo. [Journal Article](https://github.com/RVerse-Tutorials/Journal_Article) This shows you a realistic repository for a journal article. I've cut out many paragraphs here and there to shorten it, but it is still has all the parts. The repository is a self-contained paper with all the data and the analyses are redone completely whenever Main.Rmd is re-knit. So if the data change, all the analyses will be updated.
+* Making tables using a function. This allows you to make the same table but with different data. A common example would be making a standard table for each species or each population in a dataset. [Report with Tables](https://github.com/RVerse-Tutorials/Rmarkdown-Tutorial/tree/master/Report_with_Tables) shows you how to do that. Start with the README file.
+
+## Figure and Table numbering
+
+Automatic figures and table numbering for a paper or a report is a hassle with R Markdown. Here is my [solution](https://stackoverflow.com/a/47298632/10947238). The Journal Article repo uses this method.
+
+## Automatic updates
+
+First install the `usethis` R package. Then issue this command to set up your repository.
+
+```
+usethis::use_github_actions()
+```
+
+
+https://fromthebottomoftheheap.net/2020/04/30/rendering-your-readme-with-github-actions/
+
+
+
+

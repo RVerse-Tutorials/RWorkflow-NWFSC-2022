@@ -1,0 +1,15 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r, eval=FALSE}
+install_github("RWorkflow-Workshop-2021/MyNewPackage@*release")
+```
+
+```{r, echo=FALSE}
+library(MyNewPackage)
+data(mydata)
+knitr::kable(mydata, 
+             caption=paste("This is version", packageVersion("MyNewPackage')))
+```

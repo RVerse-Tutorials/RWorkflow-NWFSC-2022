@@ -1,0 +1,208 @@
+---
+title: "Week 7: Roxygen and pkgdown"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Documentation: roxygen2 and pkgdown
+
+* **roxygen2** allows robust and standardized function and data documentation
+* **pkgdown** creates a nice website from your documentation which acts as user guide for your package.
+
+## **roxygen2**
+
+We all know that documenting our code is important, but equally important is to be able to read that documentation. If you use R, you know that the help feature (?function) is essential. If you organize your code into an R package, it is super easy to create help files that you and users can use to call up using ?. Documenting code may sound like a snoozer of a topic, but using the **roxygen2** package and diligently writing documentation for my functions and data is one of the top 3 habits that has made my coding more efficient. You can also document all your data in the same way.
+
+For more help on **roxygen2**, see the section in Hadley Wickham's book R Packages on [Roxygen](https://r-pkgs.org/man.html#roxygen-comments). Here's a short cheatsheet [Roxygen helper](https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html).  Also Roxygen has good tutorials and help. Type
+```
+browseVignettes(package="roxygen2")
+```
+to open a browser window with links to the tutorials.
+
+### Overview
+
+**roxygen2** (and the the 'Build and Install' step) will create the help files that users access with `?function.name.
+
+The same man files are also used to create a package manual, e.g. 
+https://cran.r-project.org/web/packages/MARSS/MARSS.pdf
+
+And it generates the navigation page for all the documentation
+```
+help(package="forecast")
+```
+
+The man files are also used by **pkgdown** to make a website version of your documentation.
+Here is an example of a [pkgdown-generated webpage](https://nmfs-fish-tools.github.io/r4MAS/) for the FIT R package r4MAS.
+
+### Examples
+
+[SardineForecast](https://eeholmes.github.io/SardineForecast/) is an example of a package that is purely *personal*. It is for the data, and a few utility functions, for a group of researchers working with a shared set of data.
+
+```
+help(package="SardineForecast")
+```
+
+[r4MAS](https://nmfs-fish-tools.github.io/r4MAS/) is an example of a FIT public R package.
+
+### Set-up
+
+* Install the **roxygen2** R package.
+
+```
+install.packages("roxygen2")
+```
+
+* Open your test package, **MyNewPackage**. If you made this last week, you can open RStudio and then click the little arrow next to the blue cube in the top right corner. Or you can [clone it](https://github.com/RWorkflow-Workshop-2021/MyNewPackage) (click the little + in top right in GitHub, select Import, and paste in the URL).
+
+* Set the Project Build Options to use Roxygen
+
+  Tools > Project Options... > Build Tools > then check the checkbox "Generate documentation with Roxygen". Then click "Configure". Check the box at the bottom for "Install and Restart".
+  
+* Make sure your DESCRIPTION file has these lines:
+```
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+```
+
+### Basic structure
+
+Roxygen comments with `#'` are put at the top of your function, in the same file. They have a standard format and standard sections. There is a bit of customization you can do, but the following basic form will cover 95% of your needs. [Read this](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd-formatting.html#links) for details.
+
+```
+#' @title Short title
+#'
+#' @description 
+#' Description should be one paragraph. Put details in details.
+#'
+#' @details
+#' Optional if you want to add more detais.J
+#'
+#' @param param.name1 Describe all your function arguments
+#' @param param.name2 Describe all your function arguments
+#'
+#' @examples
+#' # provide some examples of how to use your function
+#' hello()
+#'
+#' @seealso List relevant other functions [littleforecast()].
+#' 
+#` @references 
+#' List references
+#' @export
+yourfunction <- function(param.name1, param.name2){}
+```
+
+`@title` and `@description` can be left off (not the text, just the @.... part), but title text should be in line 1, then a blank line (#' only), and then the description text. The only required elements are `@title`, `@description`, and `@param` (defining the function arguments).
+
+`@export` means that your function is added to your NAMESPACE so is not hidden.  Just include this for now.
+
+
+### Add help to `hello()`
+
+First remove the old `hello.Rd` file from the man folder. That is there because when we created our new package using RStudio's template, we didn't select 'use Roxygen' so it added a manually created help (i.e. Rd) file for us in the man folder. Now we are going to use Roxygen, so we need to remove that file.
+
+Copy and paste this to the top of `hello.r` in the R folder. Replace all the comments at the top with these lines.
+
+```
+#' Hello World!
+#'
+#' Prints a the classic first program greeting. It takes no arguments.
+#'
+#' @examples
+#' hello()
+#' @export
+```
+
+To build the documentation, click 'Install and Restart' from the Build tab.
+
+Once you see that `MyNewPackage` is reloaded (`library(MyNewPackage)` appears on the command line), you can type `?hello` to get the help info.
+
+### The NAMESPACE
+
+Roxygen will complain that the NAMESPACE was not generated by Roxygen so it is ignoring our `@export`. Let's delete the NAMESPACE file and try again.
+
+### Updating the documentation
+
+When you update the documentation or add new documentation, rebuild the help files using the 'Install and Restart' button on the Build tab. Note, with the default Project Options, RStudio does not remake the documentation when you click 'Install and Restart'.  You have to change that by going to Tools > Project Options > Build Tools and then clicking 'Configure' next to 'Generate documentation with Roxygen' and then clicking the box next to 'Install and Restart'.  Or you can run this code to make the documentation.
+
+```
+devtools::document()
+```
+
+
+### Customizing your help files
+
+The easiest way to figure out how to customize Roxygen headers is to look at the Roxygen header for a help file you are trying to copy. Or read the [help file](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd-formatting.html#links) for details.
+
+### Adding references
+
+If you use BibTex you can insert references by citation in your help files.
+
+1. Create the `inst` folder if you don't have one
+2. Within that, create `REFERENCES.bib`
+3  Add refs to that in BibTex format.
+4. Install the **Rdpack** package
+5. Add **Rdpack** to `Imports` in your DESCRIPTION file and add `RdMacros: Rdpack` to your DESCRIPTION file.
+3. Cite in your Roxygen header using
+```
+\insertRef{Waltonetal1998}{MyNewPackage}
+```
+
+
+Example of a reference in `REFERENCES.bib`
+
+```
+@article{Waltonetal1998,
+  title={The development and operational application of nonlinear algorithms for the measurement of sea surface temperatures with the NOAA polar-orbiting environmental satellites},
+  author={Walton, CC and Pichel, WG and Sapper, JF and May, DA},
+  journal={Journal of Geophysical Research: Oceans},
+  volume={103},
+  number={C12},
+  pages={27999--28012},
+  year={1998},
+  publisher={Wiley Online Library}
+}
+```
+
+Add the citation to your Rd file with
+
+```
+\insertRef{Waltonetal1998}{MyNewPackage}
+```
+
+
+## **pkgdown**
+
+* [VRData](https://nwfsc-math-bio.github.io/VRData/) example pkgdown site.
+* [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/) FIT public R package.
+
+### Add to MyNewPackage
+
+```
+usethis::use_pkgdown()
+pkgdown::build_site()
+```
+
+Let's get this up on GitHub using GitHub Pages. Go to Settings on your repo and scroll down to 'GitHub Pages'.
+
+### NOAA branding
+
+I have created a template that you can clone:
+
+[pkgdown template](https://github.com/RWorkflow-Workshop-2021/pkgdown-template)
+
+Let's walk through the pieces.
+
+
+
+
+
+
