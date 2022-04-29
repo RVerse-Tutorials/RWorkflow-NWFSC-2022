@@ -1,0 +1,441 @@
+---
+title: "Week 5. Intro to R packages"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+## Why a package?
+
+### Shorter answer
+
+* The package framework really helps you write robust code and well documented code. 
+* It makes it easy to bundle data with code.
+* It make it easy to version and document your data.
+
+### Longer answer
+
+An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts with your data in a folder?
+
+* **Reproducibility and documentation**  In the long-run, you will save yourself much work if you organize and document your code.  Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.
+* **You want to share your code**  If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.
+* **Robust data sharing!** Putting your data in a dedicated data package allows you to version your data (so everyone knows they are using the most up to date data), document your data, track data changes, provide data releases (with archives), provide easy visualizations of the data, and any other packages can load that data package and have access to the data.
+* **You want to make an application**  If you want to make a shiny application, having your code in a package will help.
+
+## Create a simple package with RStudio
+
+1. Open RStudio
+2. In the upper right hand corner, click the blue cube with R, and click New Project.
+3. In the pop up, click 'New Directory' and choose R package.
+4. Name your package `TestPackage` and select the directory where to put it. Also  check the little box saying 'Create git repository'.
+5. Click Create Package.
+
+That's it!!
+
+You will see a 'Build' tab.
+
+6. Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
+7. Click on click 'check'.  Your package won't pass the checks because the license is not set.
+
+### On RStudio Cloud
+
+Open this link, [TestPackage](https://rstudio.cloud/project/3592671)
+
+## Parts of an R package
+
+### The essentials
+
+2 files and a directory.
+
+* **DESCRIPTION** This file has the meta-data about your package.  Name and what packages it depends on.  Most of it is self-explanatory.  The `Depends:` and `Imports:` lines specify any functions from other packages that you use in your functions.
+
+* **NAMESPACE** This file indicates what needs to be exposed to users for your R package. For our course, you won't need to edit as {roxygen2} takes care of it.
+
+* **R directory** This is where all your R code goes for your package.
+
+### Basic add-ons
+
+* **man** A directory for documentation.  You won't need to write this.  It will be added automatically by {roxygen2}.
+
+* **data** A directory for data files saved in RData format with the ending `.rda` or `.RData`. Nothing else!
+
+
+### Other add-ons
+
+* `inst` folder for misc stuff
+
+* `inst\extdata` folder for external data.
+
+* `data-raw` A directory for raw data files that produced the data files in `data` folder.
+
+* `.Rbuildignore` optional, but in practice you will always need this.
+
+### Let's take a look at the default files that RStudio created
+
+* `DESCRIPTION`
+
+```
+Package: DeleteMe
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+```
+
+* `NAMESPACE`
+
+```
+exportPattern("^[[:alpha:]]+")
+```
+
+This is saying export all functions in the R folder.
+
+
+## Let's create a real package
+
+We are going to use {roxygen2} which will create our documentation. You should always use this. Don't get into the bad habit of writing functions without documentation headers!
+
+We could use
+```
+usethis::create_package("../TestPackage")
+```
+to create our package with {roxygen2} set up but I'll walk you through do it manually.
+
+### Install {roxygen2} if needed
+
+```
+install.packages("roxygen2")
+```
+
+### Delete the `NAMESPACE` file
+
+{roxygen2} is going to create that so we need to get rid of non-roxygen2 one. If you forget, you'll see a warning and {roxygen2} won't delete the old one.
+
+### Set Project Options
+
+1. Click on Tools > Project Options > Build Tools
+
+2. Make sure Generate documentation with Roxygen is checked. *Don't see that?* Then you need to install the {roxygen2} package.
+
+3. Click Configure next to the Roxygen line. Make sure all the checkboxes are checked. The last 2 won't be by default.
+
+
+### Add a function to TestPackage
+
+1. Change `hello.R` in the R folder. 
+
+2. Paste this code into the script and save. The `#'` is the {roxygen2} header.
+
+```
+#' @title Hello!
+#'
+#' @description This function just says hello.
+#'
+#' @export
+hello <- function(){ cat("HELLO") }
+```
+
+3. Click Install and Restart from the Build tab.
+
+### Use your new function
+
+Learn about your function with
+
+```
+?hello
+```
+
+Use your function with
+
+```
+hello()
+```
+
+## Add data
+
+1. Add a folder called `data`
+
+2. Run these lines from the command line.
+
+```
+WWW2 <- WWWusage^2
+save(WWW2, file="data/WWW2.rda")
+```
+
+3. Click Install and Restart from the Build tab
+
+4. Now your data are available from your package. Type 
+
+```
+WWW2
+```
+at the command line.
+
+### Add a more realistic function to TestPackage
+
+1. Create a new R script file. File > New File > R Script. 
+
+2. Paste this code into the script and save as `littleforecast.R` in the R directory.
+
+```
+#' Forecast with Arima Model
+#'
+#' This fits an Arima model to data with forecast's auto.arima() function and plots
+#' a forecast with the forecast() function.
+#'
+#' @param data A vector (time series) of data
+#' @param nyears Number of time steps to forecast forward
+#' @return A plot of a forecast.
+#' @examples
+#' dat <- WWWusage
+#' littleforecast(dat, nyears=100)
+#' @export
+littleforecast <- function(data, nyears=10){
+  fit <- forecast::auto.arima(data)
+  fc <- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+}
+```
+
+This function depends on some packages: {forecast} and {ggplot2}. We need to tell our package about these dependencies.
+
+Add this line to `DESCRIPTION` file after the `Description:` line:
+
+```
+Imports: forecast, ggplot2
+```
+
+Click Build > Install and Restart. Now we can use our function.
+
+```
+littleforecast(WWW2)
+```
+
+
+## Let's clean up our DESCRIPTION file
+
+Let's edit our `DESCRIPTION` file to look like so:
+
+```
+Package: TestPackage
+Title: This Is A Toy Package
+Version: 1.3
+Author: Eli Holmes
+Maintainer: <eli.holmes@noaa.gov>
+Description: This is a super simple toy package for students to copy and experiment with for the short course.
+Depends: R (>= 3.4.1)
+Imports: forecast, ggplot2
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+```
+
+The packages on the Depends and Imports lines are required to be installed in order to install your package. If the user doesn't have these packages, then they will be installed when installing the package. When you try to Build and Install, R will complain and throw an error if you are missing packages.
+
+* `Depends:` means the user will have all the commands of that package at the command line. 
+* `Imports:` is any other R packages that your package needs in order to work but its functions won't be available at the command line (unless you choose). 
+
+
+## Let's look at the NAMESPACE file
+
+{roxygen2} made this NAMESPACE file.
+
+```
+export(littleforecast)
+export(hello)
+```
+
+How does {roxygen2} know to export a function? Add this to the documentation code at the top of your functions.
+
+```
+#' @export
+```
+
+### The R Directory: Function code
+
+This is where functions are put **and our data documentation files**.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions. The top of the function has documentation in {roxygen2} format.
+
+```
+#' @title A little foo function
+#'
+#' @description This little function does this.
+#'
+#' @param arg1 what this argument is
+#' @export foo
+foo <- function(arg1){
+# The work
+return(<what you want to return to user>)
+}
+```
+
+### `.Rbuildignore`
+
+Though not required, in practice you will need to tell R what not to include in your package. RStudio will make this for you but you need to check it and add more stuff.
+
+```
+^.*\.Rproj$
+^\.Rproj\.user$
+^TestPackage\.Rcheck$
+^TestPackage.*\.tar\.gz$
+^TestPackage.*\.tgz$
+.github
+.git
+```
+
+## Let's add another function to TestPackage
+
+1. Create a new R script file. File > New File > R Script. 
+
+2. Paste this code into the script and save as `irisaverages.R` in the R directory.
+
+```
+#' dplyr example
+#' 
+#' This adds a new function that needs {dplyr}
+#' @param col which column to average
+#' @export
+irisaverages <- function(col = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")){
+col <- match.arg(col)
+iris$col <- iris[[col]]
+iris %>% dplyr::group_by(Species) %>% 
+   dplyr::summarize(mean = mean(col))
+}
+```
+
+We now use {dplyr} and `%>%` (pipe).
+
+We can either add {dplyr} to `Depends` in our DESCRIPTION file but that would load the whole {dplyr} library and maybe we don't want to do that.
+
+We can add {dplyr} to `Imports` but how to get `%>%`? Add a file `import_packages.R` to the R folder (the name of the file is unimportant).
+```
+#' @importFrom magrittr %>%
+NULL
+```
+or add 
+```
+#' @importFrom magrittr %>%
+```
+to the header of `irisaverages.R`.
+
+*How would I ever remember this??* Sadly if your use piping, you'll gets lots of practice with this.
+
+
+## Documenting data
+
+### Add the data
+
+Add to the `data` folder as an `.rda` or `.RData` file.
+
+```
+setosa <- subset(iris, Species=="setosa")
+save(setosa, file="data/setosa.rda")
+```
+
+### Document the data
+
+Add in the R folder `data-setosa.R`. Tip, it is good to give your data documentation scripts a clear name tag to distinguish them from functions.
+```
+#' @title The setosa dataset
+#'
+#' @description
+#'
+#' \itemize{
+#'   \item Sepal.Length. length of sepals
+#'   \item Sepal.Width. with of sepals
+#'   \item Petal.Length. length of petals
+#'   \item Petal.Width. with of petals
+#' }
+#'
+#' @docType data
+#' @name setosa
+#' @usage data(setosa)
+#' @references R base package.
+#' @format A data frame.
+#' @keywords datasets
+NULL
+```
+*Note*, in the latest Roxygen2, you don't need the `@name` but that only works if you use `LazyData: true` in your `DESCRIPTION` file. You might not want to load data every time the user loads the package.
+
+5. Click Install and Restart from the Build tab.
+
+
+## File names, data names and documentation
+
+### `rda` file names
+
+The `rda` filename in the `data` folder is what is used to load data. For example, let's say you have
+
+```
+save(cars1, cars2, file="data/carsdata.rda")
+```
+
+So 2 data objects saved to one `rda` file. To load both data objects, you use
+
+```
+data(carsdata)
+```
+
+### Data documentation
+
+What do I document: `cars1`, `cars2` or `carsdata`? You can actually do whatever you want.
+
+Do this to show this documentation with `?cars2`.
+```
+#' @title a dataset of horsepower for different cars
+#'
+#' @docType data
+#' @name cars2
+NULL
+```
+
+Do this to show this documentation with `?cars1`, `?cars2`, and `?carsdata`
+```
+#' @title some datasets of horsepower for different cars
+#'
+#' @docType data
+#' @name carsdata
+#' @aliases cars1 cars2
+NULL
+```
+
+Do this to show this documentation with `?carsdata`.
+```
+#' @title three datasets of horsepower for different cars
+#'
+#' @docType data
+#' @name carsdata
+NULL
+```
+
+This will only work for data that are exported. That means `Lazydata: true` and what is loaded from `data(carsdata)`.
+```
+#' @title three datasets of horsepower for different cars
+#'
+#' @docType data
+"cars2"
+```
+
+So this fails since it is not `carsdata` that is exported. That is just the name of the data file.
+```
+#' @title three datasets of horsepower for different cars
+#'
+#' @docType data
+"carsdata"
+```
+
+# References
+
+If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). However, for simple packages you don't need the book.
+
+
+
+
