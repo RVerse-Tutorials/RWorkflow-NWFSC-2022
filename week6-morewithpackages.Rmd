@@ -1,0 +1,16 @@
+---
+title: "Week 6. Beyond the basics with R packages"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
+
+
+### Checking your package
+
+* Run Check from the Build tab regularly. It is best not to put this off too long or else you'll create a lot more work for yourself as you track down one warning or error after another.
+* Don't let yourself suffer trying to figure out what the warnings and errors mean. Most are simple namespace issues that are easy to fix once you know how. Ask someone who builds packages. The NMFS R UG Group Chat is a good place. 
