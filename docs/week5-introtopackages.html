@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Week 5. Intro to R packages</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li>
+  <a href="week1.html">
+    <span class="fa fa-calendar"></span>
+     
+    Workshop Weekly Notes
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io">
+    <span class="fas fa-toolbox"></span>
+     
+    RVerse
+  </a>
+</li>
+<li>
+  <a href="links.html">
+    <span class="fa fa-info"></span>
+     
+    More resources
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2022">
+    <span class="fab fa-github"></span>
+     
+    Repo
+  </a>
+</li>
+<li>
+  <a href="https://github.com/orgs/RWorkflow-Workshop-2021">Org</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Week 5. Intro to R packages</h1>
+
+</div>
+
+
+<div id="why-a-package" class="section level2">
+<h2>Why a package?</h2>
+<div id="shorter-answer" class="section level3">
+<h3>Shorter answer</h3>
+<ul>
+<li>The package framework really helps you write robust code and well documented code.</li>
+<li>It makes it easy to bundle data with code.</li>
+<li>It make it easy to version and document your data.</li>
+</ul>
+</div>
+<div id="longer-answer" class="section level3">
+<h3>Longer answer</h3>
+<p>An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people. Why use an R package rather than just make a bunch of scripts with your data in a folder?</p>
+<ul>
+<li><strong>Reproducibility and documentation</strong> In the long-run, you will save yourself much work if you organize and document your code. Rather than writing a series of scripts that you copy and alter for each project, you think about how to make your scripts into functions.</li>
+<li><strong>You want to share your code</strong> If you are making code to that can be used for different data, rather than only your specific problem, then you want to make a package so that you can share your code.</li>
+<li><strong>Robust data sharing!</strong> Putting your data in a dedicated data package allows you to version your data (so everyone knows they are using the most up to date data), document your data, track data changes, provide data releases (with archives), provide easy visualizations of the data, and any other packages can load that data package and have access to the data.</li>
+<li><strong>You want to make an application</strong> If you want to make a shiny application, having your code in a package will help.</li>
+</ul>
+</div>
+</div>
+<div id="create-a-simple-package-with-rstudio" class="section level2">
+<h2>Create a simple package with RStudio</h2>
+<ol style="list-style-type: decimal">
+<li>Open RStudio</li>
+<li>In the upper right hand corner, click the blue cube with R, and click New Project.</li>
+<li>In the pop up, click ‘New Directory’ and choose R package.</li>
+<li>Name your package <code>TestPackage</code> and select the directory where to put it. Also check the little box saying ‘Create git repository’.</li>
+<li>Click Create Package.</li>
+</ol>
+<p>That’s it!!</p>
+<p>You will see a ‘Build’ tab.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Click on the ‘Build’ tab in the upper right, and click ‘Install and Restart’. Your package should build and load.</li>
+<li>Click on click ‘check’. Your package won’t pass the checks because the license is not set.</li>
+</ol>
+<div id="on-rstudio-cloud" class="section level3">
+<h3>On RStudio Cloud</h3>
+<p>Open this link, <a href="https://rstudio.cloud/project/3592671">TestPackage</a></p>
+</div>
+</div>
+<div id="parts-of-an-r-package" class="section level2">
+<h2>Parts of an R package</h2>
+<div id="the-essentials" class="section level3">
+<h3>The essentials</h3>
+<p>2 files and a directory.</p>
+<ul>
+<li><p><strong>DESCRIPTION</strong> This file has the meta-data about your package. Name and what packages it depends on. Most of it is self-explanatory. The <code>Depends:</code> and <code>Imports:</code> lines specify any functions from other packages that you use in your functions.</p></li>
+<li><p><strong>NAMESPACE</strong> This file indicates what needs to be exposed to users for your R package. For our course, you won’t need to edit as {roxygen2} takes care of it.</p></li>
+<li><p><strong>R directory</strong> This is where all your R code goes for your package.</p></li>
+</ul>
+</div>
+<div id="basic-add-ons" class="section level3">
+<h3>Basic add-ons</h3>
+<ul>
+<li><p><strong>man</strong> A directory for documentation. You won’t need to write this. It will be added automatically by {roxygen2}.</p></li>
+<li><p><strong>data</strong> A directory for data files saved in RData format with the ending <code>.rda</code> or <code>.RData</code>. Nothing else!</p></li>
+</ul>
+</div>
+<div id="other-add-ons" class="section level3">
+<h3>Other add-ons</h3>
+<ul>
+<li><p><code>inst</code> folder for misc stuff</p></li>
+<li><p><code>inst\extdata</code> folder for external data.</p></li>
+<li><p><code>data-raw</code> A directory for raw data files that produced the data files in <code>data</code> folder.</p></li>
+<li><p><code>.Rbuildignore</code> optional, but in practice you will always need this.</p></li>
+</ul>
+</div>
+<div id="lets-take-a-look-at-the-default-files-that-rstudio-created" class="section level3">
+<h3>Let’s take a look at the default files that RStudio created</h3>
+<ul>
+<li><code>DESCRIPTION</code></li>
+</ul>
+<pre><code>Package: DeleteMe
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer &lt;yourself@somewhere.net&gt;
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true</code></pre>
+<ul>
+<li><code>NAMESPACE</code></li>
+</ul>
+<pre><code>exportPattern(&quot;^[[:alpha:]]+&quot;)</code></pre>
+<p>This is saying export all functions in the R folder.</p>
+</div>
+</div>
+<div id="lets-create-a-real-package" class="section level2">
+<h2>Let’s create a real package</h2>
+<p>We are going to use {roxygen2} which will create our documentation. You should always use this. Don’t get into the bad habit of writing functions without documentation headers!</p>
+<p>We could use</p>
+<pre><code>usethis::create_package(&quot;../TestPackage&quot;)</code></pre>
+<p>to create our package with {roxygen2} set up but I’ll walk you through do it manually.</p>
+<div id="install-roxygen2-if-needed" class="section level3">
+<h3>Install {roxygen2} if needed</h3>
+<pre><code>install.packages(&quot;roxygen2&quot;)</code></pre>
+</div>
+<div id="delete-the-namespace-file" class="section level3">
+<h3>Delete the <code>NAMESPACE</code> file</h3>
+<p>{roxygen2} is going to create that so we need to get rid of non-roxygen2 one. If you forget, you’ll see a warning and {roxygen2} won’t delete the old one.</p>
+</div>
+<div id="set-project-options" class="section level3">
+<h3>Set Project Options</h3>
+<ol style="list-style-type: decimal">
+<li><p>Click on Tools &gt; Project Options &gt; Build Tools</p></li>
+<li><p>Make sure Generate documentation with Roxygen is checked. <em>Don’t see that?</em> Then you need to install the {roxygen2} package.</p></li>
+<li><p>Click Configure next to the Roxygen line. Make sure all the checkboxes are checked. The last 2 won’t be by default.</p></li>
+</ol>
+</div>
+<div id="add-a-function-to-testpackage" class="section level3">
+<h3>Add a function to TestPackage</h3>
+<ol style="list-style-type: decimal">
+<li><p>Change <code>hello.R</code> in the R folder.</p></li>
+<li><p>Paste this code into the script and save. The <code>#'</code> is the {roxygen2} header.</p></li>
+</ol>
+<pre><code>#&#39; @title Hello!
+#&#39;
+#&#39; @description This function just says hello.
+#&#39;
+#&#39; @export
+hello &lt;- function(){ cat(&quot;HELLO&quot;) }</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Click Install and Restart from the Build tab.</li>
+</ol>
+</div>
+<div id="use-your-new-function" class="section level3">
+<h3>Use your new function</h3>
+<p>Learn about your function with</p>
+<pre><code>?hello</code></pre>
+<p>Use your function with</p>
+<pre><code>hello()</code></pre>
+</div>
+</div>
+<div id="add-data" class="section level2">
+<h2>Add data</h2>
+<ol style="list-style-type: decimal">
+<li><p>Add a folder called <code>data</code></p></li>
+<li><p>Run these lines from the command line.</p></li>
+</ol>
+<pre><code>WWW2 &lt;- WWWusage^2
+save(WWW2, file=&quot;data/WWW2.rda&quot;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Click Install and Restart from the Build tab</p></li>
+<li><p>Now your data are available from your package. Type</p></li>
+</ol>
+<pre><code>WWW2</code></pre>
+<p>at the command line.</p>
+<div id="add-a-more-realistic-function-to-testpackage" class="section level3">
+<h3>Add a more realistic function to TestPackage</h3>
+<ol style="list-style-type: decimal">
+<li><p>Create a new R script file. File &gt; New File &gt; R Script.</p></li>
+<li><p>Paste this code into the script and save as <code>littleforecast.R</code> in the R directory.</p></li>
+</ol>
+<pre><code>#&#39; Forecast with Arima Model
+#&#39;
+#&#39; This fits an Arima model to data with forecast&#39;s auto.arima() function and plots
+#&#39; a forecast with the forecast() function.
+#&#39;
+#&#39; @param data A vector (time series) of data
+#&#39; @param nyears Number of time steps to forecast forward
+#&#39; @return A plot of a forecast.
+#&#39; @examples
+#&#39; dat &lt;- WWWusage
+#&#39; littleforecast(dat, nyears=100)
+#&#39; @export
+littleforecast &lt;- function(data, nyears=10){
+  fit &lt;- forecast::auto.arima(data)
+  fc &lt;- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+}</code></pre>
+<p>This function depends on some packages: {forecast} and {ggplot2}. We need to tell our package about these dependencies.</p>
+<p>Add this line to <code>DESCRIPTION</code> file after the <code>Description:</code> line:</p>
+<pre><code>Imports: forecast, ggplot2</code></pre>
+<p>Click Build &gt; Install and Restart. Now we can use our function.</p>
+<pre><code>littleforecast(WWW2)</code></pre>
+</div>
+</div>
+<div id="lets-clean-up-our-description-file" class="section level2">
+<h2>Let’s clean up our DESCRIPTION file</h2>
+<p>Let’s edit our <code>DESCRIPTION</code> file to look like so:</p>
+<pre><code>Package: TestPackage
+Title: This Is A Toy Package
+Version: 1.3
+Author: Eli Holmes
+Maintainer: &lt;eli.holmes@noaa.gov&gt;
+Description: This is a super simple toy package for students to copy and experiment with for the short course.
+Depends: R (&gt;= 3.4.1)
+Imports: forecast, ggplot2
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2</code></pre>
+<p>The packages on the Depends and Imports lines are required to be installed in order to install your package. If the user doesn’t have these packages, then they will be installed when installing the package. When you try to Build and Install, R will complain and throw an error if you are missing packages.</p>
+<ul>
+<li><code>Depends:</code> means the user will have all the commands of that package at the command line.</li>
+<li><code>Imports:</code> is any other R packages that your package needs in order to work but its functions won’t be available at the command line (unless you choose).</li>
+</ul>
+</div>
+<div id="lets-look-at-the-namespace-file" class="section level2">
+<h2>Let’s look at the NAMESPACE file</h2>
+<p>{roxygen2} made this NAMESPACE file.</p>
+<pre><code>export(littleforecast)
+export(hello)</code></pre>
+<p>How does {roxygen2} know to export a function? Add this to the documentation code at the top of your functions.</p>
+<pre><code>#&#39; @export</code></pre>
+<div id="the-r-directory-function-code" class="section level3">
+<h3>The R Directory: Function code</h3>
+<p>This is where functions are put <strong>and our data documentation files</strong>. Each file is a separate function. You can put multiple functions in one file, but that can get confusing unless they are small functions. The top of the function has documentation in {roxygen2} format.</p>
+<pre><code>#&#39; @title A little foo function
+#&#39;
+#&#39; @description This little function does this.
+#&#39;
+#&#39; @param arg1 what this argument is
+#&#39; @export foo
+foo &lt;- function(arg1){
+# The work
+return(&lt;what you want to return to user&gt;)
+}</code></pre>
+</div>
+<div id="rbuildignore" class="section level3">
+<h3><code>.Rbuildignore</code></h3>
+<p>Though not required, in practice you will need to tell R what not to include in your package. RStudio will make this for you but you need to check it and add more stuff.</p>
+<pre><code>^.*\.Rproj$
+^\.Rproj\.user$
+^TestPackage\.Rcheck$
+^TestPackage.*\.tar\.gz$
+^TestPackage.*\.tgz$
+.github
+.git</code></pre>
+</div>
+</div>
+<div id="lets-add-another-function-to-testpackage" class="section level2">
+<h2>Let’s add another function to TestPackage</h2>
+<ol style="list-style-type: decimal">
+<li><p>Create a new R script file. File &gt; New File &gt; R Script.</p></li>
+<li><p>Paste this code into the script and save as <code>irisaverages.R</code> in the R directory.</p></li>
+</ol>
+<pre><code>#&#39; dplyr example
+#&#39; 
+#&#39; This adds a new function that needs {dplyr}
+#&#39; @param col which column to average
+#&#39; @export
+irisaverages &lt;- function(col = c(&quot;Sepal.Length&quot;, &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;)){
+col &lt;- match.arg(col)
+iris$col &lt;- iris[[col]]
+iris %&gt;% dplyr::group_by(Species) %&gt;% 
+   dplyr::summarize(mean = mean(col))
+}</code></pre>
+<p>We now use {dplyr} and <code>%&gt;%</code> (pipe).</p>
+<p>We can either add {dplyr} to <code>Depends</code> in our DESCRIPTION file but that would load the whole {dplyr} library and maybe we don’t want to do that.</p>
+<p>We can add {dplyr} to <code>Imports</code> but how to get <code>%&gt;%</code>? Add a file <code>import_packages.R</code> to the R folder (the name of the file is unimportant).</p>
+<pre><code>#&#39; @importFrom magrittr %&gt;%
+NULL</code></pre>
+<p>or add</p>
+<pre><code>#&#39; @importFrom magrittr %&gt;%</code></pre>
+<p>to the header of <code>irisaverages.R</code>.</p>
+<p><em>How would I ever remember this??</em> Sadly if your use piping, you’ll gets lots of practice with this.</p>
+</div>
+<div id="documenting-data" class="section level2">
+<h2>Documenting data</h2>
+<div id="add-the-data" class="section level3">
+<h3>Add the data</h3>
+<p>Add to the <code>data</code> folder as an <code>.rda</code> or <code>.RData</code> file.</p>
+<pre><code>setosa &lt;- subset(iris, Species==&quot;setosa&quot;)
+save(setosa, file=&quot;data/setosa.rda&quot;)</code></pre>
+</div>
+<div id="document-the-data" class="section level3">
+<h3>Document the data</h3>
+<p>Add in the R folder <code>data-setosa.R</code>. Tip, it is good to give your data documentation scripts a clear name tag to distinguish them from functions.</p>
+<pre><code>#&#39; @title The setosa dataset
+#&#39;
+#&#39; @description
+#&#39;
+#&#39; \itemize{
+#&#39;   \item Sepal.Length. length of sepals
+#&#39;   \item Sepal.Width. with of sepals
+#&#39;   \item Petal.Length. length of petals
+#&#39;   \item Petal.Width. with of petals
+#&#39; }
+#&#39;
+#&#39; @docType data
+#&#39; @name setosa
+#&#39; @usage data(setosa)
+#&#39; @references R base package.
+#&#39; @format A data frame.
+#&#39; @keywords datasets
+NULL</code></pre>
+<p><em>Note</em>, in the latest Roxygen2, you don’t need the <code>@name</code> but that only works if you use <code>LazyData: true</code> in your <code>DESCRIPTION</code> file. You might not want to load data every time the user loads the package.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Click Install and Restart from the Build tab.</li>
+</ol>
+</div>
+</div>
+<div id="file-names-data-names-and-documentation" class="section level2">
+<h2>File names, data names and documentation</h2>
+<div id="rda-file-names" class="section level3">
+<h3><code>rda</code> file names</h3>
+<p>The <code>rda</code> filename in the <code>data</code> folder is what is used to load data. For example, let’s say you have</p>
+<pre><code>save(cars1, cars2, file=&quot;data/carsdata.rda&quot;)</code></pre>
+<p>So 2 data objects saved to one <code>rda</code> file. To load both data objects, you use</p>
+<pre><code>data(carsdata)</code></pre>
+</div>
+<div id="data-documentation" class="section level3">
+<h3>Data documentation</h3>
+<p>What do I document: <code>cars1</code>, <code>cars2</code> or <code>carsdata</code>? You can actually do whatever you want.</p>
+<p>Do this to show this documentation with <code>?cars2</code>.</p>
+<pre><code>#&#39; @title a dataset of horsepower for different cars
+#&#39;
+#&#39; @docType data
+#&#39; @name cars2
+NULL</code></pre>
+<p>Do this to show this documentation with <code>?cars1</code>, <code>?cars2</code>, and <code>?carsdata</code></p>
+<pre><code>#&#39; @title some datasets of horsepower for different cars
+#&#39;
+#&#39; @docType data
+#&#39; @name carsdata
+#&#39; @aliases cars1 cars2
+NULL</code></pre>
+<p>Do this to show this documentation with <code>?carsdata</code>.</p>
+<pre><code>#&#39; @title three datasets of horsepower for different cars
+#&#39;
+#&#39; @docType data
+#&#39; @name carsdata
+NULL</code></pre>
+<p>This will only work for data that are exported. That means <code>Lazydata: true</code> and what is loaded from <code>data(carsdata)</code>.</p>
+<pre><code>#&#39; @title three datasets of horsepower for different cars
+#&#39;
+#&#39; @docType data
+&quot;cars2&quot;</code></pre>
+<p>So this fails since it is not <code>carsdata</code> that is exported. That is just the name of the data file.</p>
+<pre><code>#&#39; @title three datasets of horsepower for different cars
+#&#39;
+#&#39; @docType data
+&quot;carsdata&quot;</code></pre>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>If/when you want to go into R packaging in more depth, see Hadley Wickham’s book <a href="http://r-pkgs.had.co.nz/">R Packages</a>. However, for simple packages you don’t need the book.</p>
+</div>
+
+<hr>
+
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program, NOAA Fisheries <i class="fas fa-cubes"></i>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
