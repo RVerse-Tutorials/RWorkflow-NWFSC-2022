@@ -1,0 +1,60 @@
+---
+title: "Week 3. Intro to Agile project management"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
+
+This is a very brief introduction to Agile project management as it applies to the sort of work that we do at NOAA Fisheries. See the references to go into much much more about Agile project management.
+
+Before we start, what kinds of projects are we talking about?
+
+### complex projects
+
+* big tasks with lots of different stages
+* maybe many different team members and different needed skills (biologists/system specialists, data compilers,  modelers, statisticians, coders, writers, etc.)
+* Often team projects but could also be a solo project but something with multiple steps and lots of planning, e.g. like a R package or manuscript or a report or a complex model.
+
+# What is Agile?
+
+
+## What it is not: Waterfall project management
+
+Let's image that we are preparing a big report or perhaps we have put in a, successful, proposal for a new big model to address some management issue.
+
+![](images/agile-waterfall.png)
+Or for some big coding project it might look like this:
+
+![](images/agile-waterfall2.png)
+
+A key feature of the 'waterfall' approach is "Big Design Upfront": you have a fully fleshed out plan for the project from start to finish. We come from academic backgrounds and the way we get funding forces us into the "Big Design Upfront" paradigm, aka a detailed research proposal that lays out what we are going to do and how.
+
+### Things never go as planned
+
+* Once we start actually implenting things, we run into problems and have to change our plans
+* Maybe we discover new information that makes us change plan
+* Maybe the data we had throught we could get, we can't
+* Maybe our "user" changes what they want
+
+So the detailed plans have to be altered.
+
+* We set-up detailed time lines (as required for our proposal), but really that was all a guess. We don't actually know how long things will take.
+
+
+

@@ -1,0 +1,44 @@
+---
+title: "Week 4. Scrum using GitHub"
+output:
+  html_document:
+    toc: true
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
+kable(dt, col.names=NULL) %>%
+  kable_styling(full_width = TRUE) %>%
+  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
+  column_spec(column = 1:5, width = "20%")
+```
+
+This is going to be a very brief introduction to Scrum, but hopefully will get you started if you want to try running a Scrum sprint. See the references for more info.
+
+## What is Scrum?
+
+*A lightweight framework for applying Agile methodology for complex projects*
+
+* lightweight = not a lot of rules. easy to set up and follow. easy to adapt.
+* framework = a roadmap to follow so you don't have to "make-up" what to do. The Scrum framework is also very popular for a reason.
+* Agile management = a flat project management structure that emphasizes individual team members and communications, a working product at all stages, end-user or stakeholder collaboration and feedback, development under the expectation of change
+* complex projects = big tasks with lots of different stages, maybe many different team members and different needed skills, could also be something like a R package or manuscript too.
+
+
+
+
+# References
+
+* This is a great 3-hour video course https://learning.oreilly.com/videos/scrum-fundamentals  It is available free through most universities.
+
+
+
+
