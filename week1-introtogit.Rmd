@@ -263,6 +263,15 @@ Ok, here's the Git command to get a single file back. This works whether or not 
     
 If you accidentally leave off the file name and Git says you have a detached head, use `git checkout master` or `git checkout main` to reattach your head.
 
+## Cleaning up your commit history
+
+I tend to commit constantly as I make little changes to files. If you do that too, you might want to "squash" commits together into one commit that summarizes all the changes. This is easy to do in GitHub Desktop.
+
+* Go to History
+* Select the commits you want to squash together
+* Right click and select "Squash"
+
+[Show me](https://youtu.be/jklwa0-Wkso)
 
 ## Pro tip
 
