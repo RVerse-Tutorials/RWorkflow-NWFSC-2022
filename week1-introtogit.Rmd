@@ -12,14 +12,17 @@ knitr::opts_chunk$set(echo = TRUE)
 set.seed(1234)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(kableExtra)
-dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
-kable(dt, col.names=NULL) %>%
-  kable_styling(full_width = TRUE) %>%
-  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
-  column_spec(column = 1:5, width = "20%")
-```
+<table style="background-color: blue; width: 100%;">
+<tr>
+<td style="text-align:left; padding:5px;"><a style="color:white" href="http://nmfs-openscapes.github.io">NMFS Openscapes</a>
+</td>
+<td style="text-align:center; padding:5px;"><a style="color:white" href="https://github.com/nmfs-openscapes/.github/wiki">Wiki</a>
+</td>
+<td style="text-align:right; padding:5px;"><a style="color:white" href="https://nmfs-openscapes.github.io/NMFS-R-UG/">NMFS R User Group</a>
+</td>
+</tr>
+</table>
+<br>
 
 # What is Git and GitHub?
 
@@ -39,7 +42,7 @@ kable(dt, col.names=NULL) %>%
 
 Today I will cover the basic Git/GitHub skills (and info) that are all most people need for 95% of their work. I am using [GitHub Desktop](https://desktop.github.com/). ^[**Why GitHub Desktop?** I teach using it because it is made by GitHub and all you have to do is download and login with your GitHub account. No hassles for students. I personally use it because my Git and GitHub work is simply much faster using it. I have many GitHub repos so speed and being able to track multiple repos is important to me. Also I use GitHub issues to plan and track my work. Being able to type '#' in my commit message and see what issues are open on GitHub is critical for my workflow. Other people use RStudio's Git GUI but it doesn't have the functions I need. I also like GitKraken. Search around and find something that works for your purposes. In JupyterLab I use the jupyter-git extension.] If you want to use Git from RStudio, [go to set-up](set-up.html) and scroll to the section on RStudio and Git. 
 
-Simple Workflow:
+Simple Trunk-based Workflow:
 
 * Make local (on your computer) changes to code.
 * Record what those changes were about and commit to the code change record (history).
@@ -59,6 +62,10 @@ I'll be using GitHub Desktop for the lecture. The first time you use it, you wil
 
 * Open GitHub Desktop > Preference > Accounts and log into your GitHub account
 * Open GitHub Desktop > Preference > Git and add your name and email
+
+[Show me](https://youtu.be/94Pp6JgDAzc)
+
+*Not using GitHub Desktop?* Then you need to do this from the shell [Show me how](https://youtu.be/4xrp_AZuyEo). RStudio users could also do this from the R command line; [Read how]()
 
 # The Key Skills
 
@@ -81,6 +88,8 @@ Repository skills (using GitHub Desktop)
 1. Click the + in the upper left from YOUR GitHub page.
 2. Click new and add the Readme file and `.gitignore`
 
+[Show me](https://youtu.be/1uV_7iGVu3o)
+
 ## Skill 2: Clone your repo to your computer
 
 1. Copy the URL of your repo. `https://www.github.com/yourname/yourrepo`
@@ -88,15 +97,21 @@ Repository skills (using GitHub Desktop)
 3. Click URL in the box that pops up and paste in the URL above
 4. Double check that you are saving the repo in the right place
 
+[Show me](https://youtu.be/oFGI48PMEf8) --
+[Show me with the shell](https://youtu.be/7PN-yz9g134) -- [Show me with RStudio](https://youtu.be/EerAPZi9UCo) -- [Show me with Visual Studio Code](https://youtu.be/aMPGKMRjl8A)
+
+
 ## Skill 3: Make some changes and commit your changes
 
 1. Make some changes to a file or add a file. **Make changes however you want.**
 2. Open GitHub Desktop, click the little checkboxes next to the changes.
 3. Add a commit comment, click commit.
 
+[Show me](https://youtu.be/wdVEGGreUhI) -- [Show me with the shell](https://youtu.be/SLuQnRVx7Dk) -- [Show me with RStudio](https://youtu.be/Bc0tvZJa4fI) -- [Show me with Visual Studio Code](https://youtu.be/jMWvLk9iuFw)
+
 ## Skill 4: Push changes to GitHub / Pull changes from GitHub
 
-To push changes you commited in Skill #3
+To push changes you committed in Skill #3
 
 1. In GitHub Desktop, click Push at top to push the changes to GitHub
 
@@ -105,9 +120,11 @@ To pull changes on GitHub that are not on your local computer:
 1. Make some changes directly on GitHub
 2. Click Pull in GitHub Desktop
 
+[Show me](https://youtu.be/7X7kiMAlvjA) -- [Show me with RStudio](https://youtu.be/PSWNBSOUTVE) -- [Show me with the shell](https://youtu.be/LfjG6GGKRio) -- [Show me with VS Code](https://youtu.be/6dW3oT2Ra4U)
+
 ## Skill 1b: Copy a repo on GitHub
 
-You can clone your own or other people's repos.
+You can copy your own or other people's repos^[This is different from forking. There is no connection to the original repository.].
 
 1. In a browser, go to the GitHub repository you want to copy.
 2. Copy its url.
@@ -120,9 +137,9 @@ You can clone your own or other people's repos.
 
 Let say you want to make a copy of one of your GitHub repositories and use it as a template to make something brand new.
 
-1. Clone the repository that you will be building off of to GitHub
-2. Use Skill #1 to pull that repository onto your computer
-3. Get rid of any files you don't want in the new repo and use Skill #3 to push those to GitHub.
+1. Import the repository that you will be building off of to GitHub using Skill 1b.
+2. Once you have the copied repository, copy its url and use Skill #1 to pull that repository onto your computer
+3. Get rid of any files you don't want in the new repo and use Skill #3 to commit those changes and then Skill #4 to push the changes up to GitHub.
 
 # Other skills
 

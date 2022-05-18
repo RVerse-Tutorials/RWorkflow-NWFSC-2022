@@ -407,11 +407,9 @@ div.tocify {
 <p>If you use RStudio Cloud you only need a browser. No installing of programs. Sign up for an <a href="https://rstudio.cloud/">RStudio Cloud</a> account.</p>
 </div>
 </div>
-<div id="using-git-from-within-rstudio" class="section level2">
-<h2>Using Git from within RStudio</h2>
-<p>In the class, I am going to use GitHub Desktop, but if you want to use Git from within RStudio or RStudio Cloud then read this section.</p>
-<div id="git-in-rstudio-cloud" class="section level3">
-<h3>Git in RStudio Cloud</h3>
+<div id="git-in-rstudio-cloud" class="section level2">
+<h2>Git in RStudio Cloud</h2>
+<p>In the class, I am going to use GitHub Desktop, but if you want to use Git from within RStudio Cloud or RStudio Desktop then read these two sections.</p>
 <ol style="list-style-type: decimal">
 <li><p>Tell RStudio Cloud you want use Git. Open your project then Click Tools &gt; Global Options &gt; Git/SVN (left nav) and check ‘Enable version control for RStudio projects’ <img src="images/RStudio-Cloud-Tools.png" alt="Tools tab is on your project page" />{25%}</p></li>
 <li><p>Click the Terminal tab in the lower left panel or click the blue cog below the Git tab in the upper right panel. <img src="images/RStudio-Cloud-Terminal.png" alt="Terminal location" />{25%}</p></li>
@@ -421,9 +419,8 @@ div.tocify {
 
 git config --global user.name &quot;&lt;your name&gt;&quot;</code></pre>
 </div>
-</div>
-<div id="git-from-rstudio" class="section level2">
-<h2>Git from RStudio</h2>
+<div id="git-from-rstudio-desktop" class="section level2">
+<h2>Git from RStudio Desktop</h2>
 <p>There are a few steps involved. Go slow an deliberately. Nothing is hard.</p>
 <div id="tell-rstudio-where-git.exe-is" class="section level3">
 <h3>Tell RStudio where <code>git.exe</code> is</h3>
@@ -465,6 +462,24 @@ install.packages(&quot;gitcreds&quot;)</code></pre>
 <p><a href="https://github.com/settings/tokens" class="uri">https://github.com/settings/tokens</a></p>
 <p>to delete the old one before setting up a new one.</p>
 </div>
+</div>
+<div id="git-in-the-shell-works-for-rstudio-and-visual-studio-code" class="section level2">
+<h2>Git in the shell (works for RStudio and Visual Studio Code)</h2>
+<p>Before you start, get a Personal Access Token (PAT) from GitHub. You’ll need this as you GitHub password. GitHub &gt; Profile (far right drop down) &gt; Settings &gt; Developer settings (far right bottom) &gt; Personal Access Token. Generate a token with write access to repo and copy the PAT (very long).</p>
+<p><a href="https://youtu.be/tkioJhF_gO8">Show me how</a></p>
+<p>Now that you have your PAT, you are ready to set-up Git from the shell/terminal.</p>
+<ol style="list-style-type: decimal">
+<li>Open a terminal window</li>
+<li>Tell Git who you are. Type</li>
+</ol>
+<pre><code>git config --global user.name Your Name
+git config --global user.email your.email@email.com</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Tell Git how to get your username and password for GitHub Type <code>git config --get credential.helper</code> If you are on a PC, you should see <code>manager</code> and if on a mac, <code>osxkeychain</code> If not type, Mac: <code>git config --global credential.helper osxkeychain</code> Windows: <code>git config --global credential.helper manager</code></li>
+<li>The first time you do a push of a commit, you will be asked for your GitHub user name and password. Do not enter your password. Enter a Personal Access Token (PAT).</li>
+</ol>
+<p>Note. Instead of the PC or Mac specific credential managers, you can use the <a href="https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git">GitHub credential manager</a></p>
+<p><a href="https://youtu.be/4xrp_AZuyEo">Show me how</a></p>
 </div>
 <div id="updateR" class="section level2">
 <h2>Updating R/RStudio</h2>

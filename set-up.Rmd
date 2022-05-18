@@ -34,11 +34,9 @@ Everything you'll be using is free. You will need a GitHub (free) account. Sign 
 
 If you use RStudio Cloud you only need a browser. No installing of programs. Sign up for an [RStudio Cloud](https://rstudio.cloud/) account.
 
-## Using Git from within RStudio
+## Git in RStudio Cloud
 
-In the class, I am going to use GitHub Desktop, but if you want to use Git from within RStudio or RStudio Cloud then read this section.
-
-### Git in RStudio Cloud
+In the class, I am going to use GitHub Desktop, but if you want to use Git from within RStudio Cloud or RStudio Desktop then read these two sections.
 
 1. Tell RStudio Cloud you want use Git. Open your project then Click Tools > Global Options > Git/SVN (left nav) and check 'Enable version control for RStudio projects'
 ![Tools tab is on your project page](images/RStudio-Cloud-Tools.png){25%}
@@ -53,7 +51,7 @@ git config --global user.email "<your email>"
 git config --global user.name "<your name>"
 ```
 
-## Git from RStudio
+## Git from RStudio Desktop
 
 There are a few steps involved. Go slow an deliberately. Nothing is hard.
 
@@ -103,6 +101,30 @@ https://github.com/settings/tokens
 
 to delete the old one before setting up a new one.
 
+## Git in the shell (works for RStudio and Visual Studio Code)
+
+Before you start, get a Personal Access Token (PAT) from GitHub. You'll need this as you GitHub password. GitHub > Profile (far right drop down) > Settings > Developer settings (far right bottom) > Personal Access Token. Generate a token with write access to repo and copy the PAT (very long).
+
+[Show me how](https://youtu.be/tkioJhF_gO8)
+
+
+Now that you have your PAT, you are ready to set-up Git from the shell/terminal.
+
+1. Open a terminal window
+2. Tell Git who you are. Type
+```
+git config --global user.name Your Name
+git config --global user.email your.email@email.com
+```
+3. Tell Git how to get your username and password for GitHub
+  Type `git config --get credential.helper`
+  If you are on a PC, you should see `manager` and if on a mac, `osxkeychain`
+  If not type, Mac: `git config --global credential.helper osxkeychain` Windows: `git config --global credential.helper manager`
+4. The first time you do a push of a commit, you will be asked for your GitHub user name and password. Do not enter your password. Enter a Personal Access Token (PAT).
+
+Note. Instead of the PC or Mac specific credential managers, you can use the [GitHub credential manager](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git)
+
+[Show me how](https://youtu.be/4xrp_AZuyEo)
 
 ## Updating R/RStudio {#updateR}
 

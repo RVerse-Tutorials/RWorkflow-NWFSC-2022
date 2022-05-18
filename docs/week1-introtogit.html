@@ -35,8 +35,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -383,27 +381,20 @@ div.tocify {
 </div>
 
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
+<table style="background-color: blue; width: 100%;">
 <tr>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Compartmentalized
+<td style="text-align:left; padding:5px;">
+<a style="color:white" href="http://nmfs-openscapes.github.io">NMFS Openscapes</a>
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Documented
+<td style="text-align:center; padding:5px;">
+<a style="color:white" href="https://github.com/nmfs-openscapes/.github/wiki">Wiki</a>
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Extendible
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Reproducible
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Robust
+<td style="text-align:right; padding:5px;">
+<a style="color:white" href="https://nmfs-openscapes.github.io/NMFS-R-UG/">NMFS R User Group</a>
 </td>
 </tr>
-</tbody>
 </table>
+<p><br></p>
 <div id="what-is-git-and-github" class="section level1">
 <h1>What is Git and GitHub?</h1>
 <p><strong>Git</strong> A program to track your file changes and create a history of those changes. Creates a ‘container’ for a set of files called a repository.</p>
@@ -422,7 +413,7 @@ Robust
 <div id="overview" class="section level1">
 <h1>Overview</h1>
 <p>Today I will cover the basic Git/GitHub skills (and info) that are all most people need for 95% of their work. I am using <a href="https://desktop.github.com/">GitHub Desktop</a>. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> If you want to use Git from RStudio, <a href="set-up.html">go to set-up</a> and scroll to the section on RStudio and Git.</p>
-<p>Simple Workflow:</p>
+<p>Simple Trunk-based Workflow:</p>
 <ul>
 <li>Make local (on your computer) changes to code.</li>
 <li>Record what those changes were about and commit to the code change record (history).</li>
@@ -440,6 +431,8 @@ Robust
 <li>Open GitHub Desktop &gt; Preference &gt; Accounts and log into your GitHub account</li>
 <li>Open GitHub Desktop &gt; Preference &gt; Git and add your name and email</li>
 </ul>
+<p><a href="https://youtu.be/94Pp6JgDAzc">Show me</a></p>
+<p><em>Not using GitHub Desktop?</em> Then you need to do this from the shell <a href="https://youtu.be/4xrp_AZuyEo">Show me how</a>. RStudio users could also do this from the R command line; <a href="">Read how</a></p>
 </div>
 <div id="the-key-skills" class="section level1">
 <h1>The Key Skills</h1>
@@ -462,6 +455,7 @@ Robust
 <li>Click the + in the upper left from YOUR GitHub page.</li>
 <li>Click new and add the Readme file and <code>.gitignore</code></li>
 </ol>
+<p><a href="https://youtu.be/1uV_7iGVu3o">Show me</a></p>
 </div>
 <div id="skill-2-clone-your-repo-to-your-computer" class="section level2">
 <h2>Skill 2: Clone your repo to your computer</h2>
@@ -471,6 +465,7 @@ Robust
 <li>Click URL in the box that pops up and paste in the URL above</li>
 <li>Double check that you are saving the repo in the right place</li>
 </ol>
+<p><a href="https://youtu.be/oFGI48PMEf8">Show me</a> – <a href="https://youtu.be/7PN-yz9g134">Show me with the shell</a> – <a href="https://youtu.be/EerAPZi9UCo">Show me with RStudio</a> – <a href="https://youtu.be/aMPGKMRjl8A">Show me with Visual Studio Code</a></p>
 </div>
 <div id="skill-3-make-some-changes-and-commit-your-changes" class="section level2">
 <h2>Skill 3: Make some changes and commit your changes</h2>
@@ -479,10 +474,11 @@ Robust
 <li>Open GitHub Desktop, click the little checkboxes next to the changes.</li>
 <li>Add a commit comment, click commit.</li>
 </ol>
+<p><a href="https://youtu.be/wdVEGGreUhI">Show me</a> – <a href="https://youtu.be/SLuQnRVx7Dk">Show me with the shell</a> – <a href="https://youtu.be/Bc0tvZJa4fI">Show me with RStudio</a> – <a href="https://youtu.be/jMWvLk9iuFw">Show me with Visual Studio Code</a></p>
 </div>
 <div id="skill-4-push-changes-to-github-pull-changes-from-github" class="section level2">
 <h2>Skill 4: Push changes to GitHub / Pull changes from GitHub</h2>
-<p>To push changes you commited in Skill #3</p>
+<p>To push changes you committed in Skill #3</p>
 <ol style="list-style-type: decimal">
 <li>In GitHub Desktop, click Push at top to push the changes to GitHub</li>
 </ol>
@@ -491,10 +487,11 @@ Robust
 <li>Make some changes directly on GitHub</li>
 <li>Click Pull in GitHub Desktop</li>
 </ol>
+<p><a href="https://youtu.be/7X7kiMAlvjA">Show me</a> – <a href="https://youtu.be/PSWNBSOUTVE">Show me with RStudio</a> – <a href="https://youtu.be/LfjG6GGKRio">Show me with the shell</a> – <a href="https://youtu.be/6dW3oT2Ra4U">Show me with VS Code</a></p>
 </div>
 <div id="skill-1b-copy-a-repo-on-github" class="section level2">
 <h2>Skill 1b: Copy a repo on GitHub</h2>
-<p>You can clone your own or other people’s repos.</p>
+<p>You can copy your own or other people’s repos<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 <ol style="list-style-type: decimal">
 <li>In a browser, go to the GitHub repository you want to copy.</li>
 <li>Copy its url.</li>
@@ -507,9 +504,9 @@ Robust
 <h2>Skill 1c. Use an existing repository as a template for something new</h2>
 <p>Let say you want to make a copy of one of your GitHub repositories and use it as a template to make something brand new.</p>
 <ol style="list-style-type: decimal">
-<li>Clone the repository that you will be building off of to GitHub</li>
-<li>Use Skill #1 to pull that repository onto your computer</li>
-<li>Get rid of any files you don’t want in the new repo and use Skill #3 to push those to GitHub.</li>
+<li>Import the repository that you will be building off of to GitHub using Skill 1b.</li>
+<li>Once you have the copied repository, copy its url and use Skill #1 to pull that repository onto your computer</li>
+<li>Get rid of any files you don’t want in the new repo and use Skill #3 to commit those changes and then Skill #4 to push the changes up to GitHub.</li>
 </ol>
 </div>
 </div>
@@ -678,6 +675,7 @@ rm .git_ls-tree_r_name-only_HEAD .git_diff_name-only</code></pre>
 <ol>
 <li id="fn1"><p><strong>Why GitHub Desktop?</strong> I teach using it because it is made by GitHub and all you have to do is download and login with your GitHub account. No hassles for students. I personally use it because my Git and GitHub work is simply much faster using it. I have many GitHub repos so speed and being able to track multiple repos is important to me. Also I use GitHub issues to plan and track my work. Being able to type ‘#’ in my commit message and see what issues are open on GitHub is critical for my workflow. Other people use RStudio’s Git GUI but it doesn’t have the functions I need. I also like GitKraken. Search around and find something that works for your purposes. In JupyterLab I use the jupyter-git extension.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p> Note, if you decide later on to start using branches, then read up on Gitflow (the second figure) versus trunk-based (the first figure) development styles: <a href="https://www.toptal.com/software/trunk-based-development-git-flow">here</a> and <a href="https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development">here</a>. The development styles with lots of branching (and branches on branches) are known for merge conflict headaches.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>This is different from forking. There is no connection to the original repository.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
