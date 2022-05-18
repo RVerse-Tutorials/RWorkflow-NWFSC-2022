@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Week 3. Intro to Agile project management</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RWorkflow</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="set-up.html">
+    <span class="fa fa-clone"></span>
+     
+    Set-up
+  </a>
+</li>
+<li>
+  <a href="week1.html">
+    <span class="fa fa-calendar"></span>
+     
+    Workshop Weekly Notes
+  </a>
+</li>
+<li>
+  <a href="https://rverse-tutorials.github.io">
+    <span class="fas fa-toolbox"></span>
+     
+    RVerse
+  </a>
+</li>
+<li>
+  <a href="links.html">
+    <span class="fa fa-info"></span>
+     
+    More resources
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2022">
+    <span class="fab fa-github"></span>
+     
+    Repo
+  </a>
+</li>
+<li>
+  <a href="https://github.com/orgs/RWorkflow-Workshop-2021">Org</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Week 3. Intro to Agile project management</h1>
+
+</div>
+
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Compartmentalized
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Documented
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Extendible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Reproducible
+</td>
+<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
+Robust
+</td>
+</tr>
+</tbody>
+</table>
+<p>This is a very brief introduction to Agile project management as it applies to the sort of work that we do at NOAA Fisheries. See the references to go into much much more about Agile project management.</p>
+<p>Before we start, what kinds of projects are we talking about?</p>
+<div id="complex-projects" class="section level3">
+<h3>complex projects</h3>
+<ul>
+<li>big tasks with lots of different stages</li>
+<li>maybe many different team members and different needed skills (biologists/system specialists, data compilers, modelers, statisticians, coders, writers, etc.)</li>
+<li>Often team projects but could also be a solo project but something with multiple steps and lots of planning, e.g. like a R package or manuscript or a report or a complex model.</li>
+</ul>
+</div>
+<div id="what-is-agile" class="section level1">
+<h1>What is Agile?</h1>
+<div id="what-it-is-not-waterfall-project-management" class="section level2">
+<h2>What it is not: Waterfall project management</h2>
+<p>Let’s imagine that we are preparing a big report or perhaps we have put in a, successful, proposal for a new big modeling project to address some management issue.</p>
+<p><img src="images/agile-waterfall.png" /> Or for some big coding project it might look like this:</p>
+<p><img src="images/agile-waterfall2.png" /></p>
+<p>A key feature of the ‘waterfall’ approach is “Big Design Upfront”: you have a fully fleshed out plan for the project from start to finish. We come from academic backgrounds and the way we get funding forces us into the “Big Design Upfront” paradigm, aka a detailed research proposal that lays out what we are going to do and how.</p>
+<p>Sounds great, but let’s be honest that only loosely reflects how the project will play out.</p>
+<div id="things-never-go-as-planned" class="section level3">
+<h3>Things never go as planned</h3>
+<ul>
+<li>Once we start actually implementing things, we run into problems and have to change our plans</li>
+<li>Maybe we discover new information that makes us change plans</li>
+<li>Maybe the data we throught we could get, we can’t</li>
+<li>Maybe our “user” changes what they want</li>
+</ul>
+<p>So the detailed plans have to be altered.</p>
+<p>In addition, we set-up detailed time lines (as required for our proposal), but really that was all a guess. We don’t actually know how long things will take.</p>
+</div>
+</div>
+<div id="agile-manifesto-4-statements" class="section level2">
+<h2>Agile Manifesto: 4 statements</h2>
+<ul>
+<li>Individuals and interactions</li>
+<li>Working software</li>
+<li>Customer collaboration</li>
+<li>Responding to change</li>
+</ul>
+</div>
+<div id="evaluating-your-project" class="section level2">
+<h2>Evaluating your project</h2>
+<table>
+<colgroup>
+<col width="69%" />
+<col width="10%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th align="center">Score 1 to 10</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The team has regular check-ins to discuss what we are working on.</td>
+<td align="center"></td>
+<td>Individuals and interactions</td>
+</tr>
+<tr class="even">
+<td>Everyone on the team knows roughly what everyone else is doing at any time.</td>
+<td align="center"></td>
+<td>Individuals and interactions</td>
+</tr>
+<tr class="odd">
+<td>Team members have autonomy and ability to work on tasks of interest and skill.</td>
+<td align="center"></td>
+<td>Individuals and interactions</td>
+</tr>
+<tr class="even">
+<td>At any point in time, we can show a working version of something.</td>
+<td align="center"></td>
+<td>Working software</td>
+</tr>
+<tr class="odd">
+<td>Once you start, how long is it until you can show something to the customer? 1=week, 10=year</td>
+<td align="center"></td>
+<td>Working software</td>
+</tr>
+<tr class="even">
+<td>Do you have regular and early opportunities for the customer to give feedback and change the project?</td>
+<td align="center"></td>
+<td>Customer collaboration</td>
+</tr>
+<tr class="odd">
+<td>Is the customer a part of the team?</td>
+<td align="center"></td>
+<td>Customer collaboration</td>
+</tr>
+<tr class="even">
+<td>Can your project change or are you locked into a plan?</td>
+<td align="center"></td>
+<td>Responding to change</td>
+</tr>
+<tr class="odd">
+<td>Do you assume that the project will change and plan for that or is it a bad outcome?</td>
+<td align="center"></td>
+<td>Responding to change</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="agile-manifesto-12-principles" class="section level2">
+<h2>Agile Manifesto: 12 principles</h2>
+<p>Similarly you can evaluate your team workflow on the 12 principles</p>
+<p>Our highest priority is to satisfy the customer through <strong>early and continuous delivery of valuable software</strong></p>
+<p><strong>Welcome changing requirements, even late in development</strong>*. Agile processes harness change for the customer’s competitive advantage.</p>
+<p><strong>Deliver working software frequently</strong>, from a couple of weeks to a couple of months, with a preference to the shorter timescale.</p>
+<p>Business people (end user) and developers must <strong>work together daily</strong> throughout the project.</p>
+<p>Build projects around motivated individuals. <strong>Give them the environment and support they need</strong>, and trust them to get the job done.</p>
+<p>The most efficient and effective method of conveying information to and within a development <strong>team is face-to-face conversation</strong>.</p>
+<p><strong>Working software</strong> is the primary measure of progress.</p>
+<p>Agile processes promote sustainable development. The sponsors, developers, and users should be able to <strong>maintain a constant pace indefinitely</strong>.</p>
+<p>Continuous attention to technical excellence and <strong>good design</strong> enhances agility.</p>
+<p>Simplicity–the art of <strong>maximizing the amount of work not done</strong>–is essential.</p>
+<p>The best architectures, requirements, and designs emerge from <strong>self-organizing teams</strong>.</p>
+<p><strong>At regular intervals, the team reflects on how to become more effective</strong>, then tunes and adjusts its behavior accordingly.</p>
+</div>
+</div>
+<div id="lets-see-some-agile-methodologies" class="section level1">
+<h1>Let’s see some Agile methodologies</h1>
+<p>What makes this “Agile” methodologies</p>
+<ul>
+<li>Customer Focus – who are we doing the work for?</li>
+<li>Transparency - we share what we are doing</li>
+<li>Finish Tasks - don’t start and then leave in undone states</li>
+<li>Balance – different viewpoints are included</li>
+<li>Collaboration – work together not individually at the same time</li>
+<li>Leadership – team and individual to realize continuous improvement</li>
+<li>Reflection – promote self- and team-knowledge to improve</li>
+<li>Respect – respect and accommodate differences of opinion and approach</li>
+</ul>
+<p>Respect – Value, understand, and show consideration for people.</p>
+<div id="kanban" class="section level2">
+<h2>Kanban</h2>
+<p>an approach to continuous improvement by focusing on visualizing, for the whole team, the team’s workflow</p>
+<ul>
+<li>visualizing the current system of work scheduling</li>
+<li>how tasks enter the ‘working on’ and move to ‘done’ is the primary measure of performance</li>
+<li>problems with task “flow” are addressed incrementally</li>
+</ul>
+<p>No “sprints”, time-boxed tasks, or time targets.</p>
+<p>Classically Kanban boards are used for maintenance or ongoing evolution rather than a project task board where you don’t have new tasks coming in regularly.</p>
+</div>
+<div id="lets-kanban-with-github" class="section level2">
+<h2>Let’s Kanban with GitHub</h2>
+<p>This is the default template in GitHub Project Boards.</p>
+<div id="kanban-on-a-single-repository" class="section level3">
+<h3>Kanban on a single repository</h3>
+<p><img src="images/new%20project.png" /></p>
+<p><img src="images/blank%20project.png" /></p>
+<p><img src="images/project%20template.png" /></p>
+<p><img src="images/blank%20kanban.png" /></p>
+<div id="adding-tasks-or-issues" class="section level4">
+<h4>Adding tasks or issues</h4>
+<p>You can manually add cards and put tasks on the card.</p>
+<p><img src="images/add%20kanban%20card.png" /> You can add issues (issues tab in GitHub) and then add those issues to the project board. Why use issues? Issues offer much more functionality and can be linked to commits to the repository.</p>
+<p><img src="images/add%20card%20as%20issue.png" /></p>
+</div>
+</div>
+<div id="why-use-a-kanban-board" class="section level3">
+<h3>Why use a Kanban board?</h3>
+<p>Visualize the flow of work so that we can improve it incrementally and organically–meaning no fixed framework. Just seeing your workflow helps you see the problems.</p>
+<ul>
+<li>Promote transparency - we see what team is doing</li>
+<li>Facilitate collaboration – by seeing what we are all doing</li>
+<li><strong>Finish tasks</strong> - shows you if you have a huge ‘work in progress’ list</li>
+</ul>
+</div>
+<div id="kanban-at-the-gh-organization-level" class="section level3">
+<h3>Kanban at the GH organization level</h3>
+</div>
+</div>
+</div>
+
+<hr>
+
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program, NOAA Fisheries <i class="fas fa-cubes"></i>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
