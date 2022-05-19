@@ -20,3 +20,7 @@ How to edit and build website.
 3. click **Build website** in Build tab
 4. push to GitHub
 
+## Re-use Statement
+
+This work is released under a Creative Commons license. You are free to use, copy and adapt the material. It'd be nice if you gave me credit, but this is not required.
+
