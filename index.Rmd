@@ -35,7 +35,7 @@ Alternatively, you can see the sessions on the NMFS R UG calendar with the WebEx
 For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub Desktop](https://desktop.github.com/) installed. For weeks 5-6, you'll want R and RStudio  installed on your computer or you can use [RStudio Cloud](https://rstudio.cloud/). If you do the latter, you don't need to install any software.
 
 
-## 2022 Topics Fridays 10-11am PST (note we skip June 17 and 24)
+## 2022 Topics Fridays 10-11am PDT (we skip June 17 and 24)
 
 ### Part 1
 
