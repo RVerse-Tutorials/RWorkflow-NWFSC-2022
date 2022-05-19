@@ -20,7 +20,7 @@ navbar:
     icon: fab fa-github
     href: https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2022
   - text: Org
-    href: https://github.com/orgs/RWorkflow-Workshop-2021
+    href: https://github.com/orgs/RWorkflow-Workshop
    
 output:
   html_document:
