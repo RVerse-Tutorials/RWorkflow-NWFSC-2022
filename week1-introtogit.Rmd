@@ -207,6 +207,8 @@ If you decide later on to start using branches, then read up on Gitflow  versus 
 
 # More Git skills
 
+![](images/git-cartoon.png){width=200px}
+
 ## Getting rid of changes you have made
 
 Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with `reset` and `revert` commands. Don't do this. Here are some strategies that will make this let prone to leaving your code a mess.
