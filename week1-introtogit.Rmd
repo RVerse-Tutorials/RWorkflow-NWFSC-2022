@@ -188,12 +188,9 @@ If you decide later on to start using branches, then read up on Gitflow  versus 
 * Work in smaller pieces or different sections. **Short iterations**.
 * **Don't leave your code broken** as a general rule. If you are doing that regularly, practice smaller pieces of work.
 
+# More Git skills
 
-### Starting out
-
-* Don't use branches when you are just starting. You might never need them.
-* Skills 1-4 are most of what anyone needs.
-* Get in the habit of always doing a Pull/Push before you start work in your project.
+![](images/git-cartoon.png){width=200px}
 
 ## Tips to be aware of:
 
@@ -205,9 +202,30 @@ If you decide later on to start using branches, then read up on Gitflow  versus 
     * In the `.git` folder
 * *Time stamps* is something that you probably use to see when a file was **last changed**. Time stamps do **NOT** have that meaning in a Git repository. A time stamp in a Git repository is the last time you did something to the file (cloned repo, switched branches, checked out state of repo at some time in the past, ...). See the Pro tips, if you need last time file changed as your time stamp.
 
-# More Git skills
+## The one way to destroy content
 
-![](images/git-cartoon.png){width=200px}
+```
+git reset --hard
+```
+
+Everything else you do can be recovered. `git reset --hard` actually deletes content forever.
+
+Here's an alternative.
+```
+git log
+```
+Look around at the state of your repo at different commits.
+
+```
+git reset <some commit hash #>
+```
+Reset to some past state.
+
+```
+git push -f origin main
+```
+Make the remote match your local state. Note `-f` is `--force` and is a bad thing to do if you are collaborating because you might wipe out the other persons work.
+
 
 ## Getting rid of changes you have made
 

@@ -559,14 +559,10 @@ div.tocify {
 <li>Work in smaller pieces or different sections. <strong>Short iterations</strong>.</li>
 <li><strong>Don’t leave your code broken</strong> as a general rule. If you are doing that regularly, practice smaller pieces of work.</li>
 </ul>
-<div id="starting-out" class="section level3">
-<h3>Starting out</h3>
-<ul>
-<li>Don’t use branches when you are just starting. You might never need them.</li>
-<li>Skills 1-4 are most of what anyone needs.</li>
-<li>Get in the habit of always doing a Pull/Push before you start work in your project.</li>
-</ul>
 </div>
+<div id="more-git-skills" class="section level1">
+<h1>More Git skills</h1>
+<p><img src="images/git-cartoon.png" width="200" /></p>
 <div id="tips-to-be-aware-of" class="section level2">
 <h2>Tips to be aware of:</h2>
 <ul>
@@ -583,10 +579,18 @@ div.tocify {
 <li><em>Time stamps</em> is something that you probably use to see when a file was <strong>last changed</strong>. Time stamps do <strong>NOT</strong> have that meaning in a Git repository. A time stamp in a Git repository is the last time you did something to the file (cloned repo, switched branches, checked out state of repo at some time in the past, …). See the Pro tips, if you need last time file changed as your time stamp.</li>
 </ul>
 </div>
+<div id="the-one-way-to-destroy-content" class="section level2">
+<h2>The one way to destroy content</h2>
+<pre><code>git reset --hard</code></pre>
+<p>Everything else you do can be recovered. <code>git reset --hard</code> actually deletes content forever.</p>
+<p>Here’s an alternative.</p>
+<pre><code>git log</code></pre>
+<p>Look around at the state of your repo at different commits.</p>
+<pre><code>git reset &lt;some commit hash #&gt;</code></pre>
+<p>Reset to some past state.</p>
+<pre><code>git push -f origin main</code></pre>
+<p>Make the remote match your local state. Note <code>-f</code> is <code>--force</code> and is a bad thing to do if you are collaborating because you might wipe out the other persons work.</p>
 </div>
-<div id="more-git-skills" class="section level1">
-<h1>More Git skills</h1>
-<p><img src="images/git-cartoon.png" width="200" /></p>
 <div id="getting-rid-of-changes-you-have-made" class="section level2">
 <h2>Getting rid of changes you have made</h2>
 <p>Say you made a change and you need to get rid of that. The temptation (for me) is to jump onto the Git command line and clobber my repository with <code>reset</code> and <code>revert</code> commands. Don’t do this. Here are some strategies that will make this let prone to leaving your code a mess.</p>
