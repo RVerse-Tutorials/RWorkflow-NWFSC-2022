@@ -334,12 +334,30 @@ div.tocify {
     Set-up
   </a>
 </li>
-<li>
-  <a href="week1.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-calendar"></span>
      
     Workshop Weekly Notes
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1.html">
+        <span class="fa fa-cogs"></span>
+         
+        Week 1 Intro to Git
+      </a>
+    </li>
+    <li>
+      <a href="week2.html">
+        <span class="fab fa-github-alt"></span>
+         
+        Week 2 More Git/Intro to GitHub
+      </a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="https://rverse-tutorials.github.io">
@@ -643,7 +661,7 @@ div.tocify {
 <ul>
 <li>Open the a terminal window where you are in the repository</li>
 <li>Use GitHub Desktop to navigate to the commit you want. Right click and ‘Copy SHA’</li>
-<li>The command to checkout the version of the file one commit befor the bad one is <code>git checkout SHA~1 -- ./&lt;file name&gt;</code> For example</li>
+<li>The command to checkout the version of the file one commit before the bad one is <code>git checkout SHA~1 -- ./&lt;file name&gt;</code> For example</li>
 <li><code>git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R</code> would reset test.R to one before that commit. This part <code>1d0f8c2eb4e66db0a7123588ae2fad26a6338303</code> is the bad commit hash and this part <code>~1</code> means what the file was like 1 commit before that.</li>
 </ul>
 <p><a href="https://youtu.be/GmQuL45jnT8">Show me</a></p>

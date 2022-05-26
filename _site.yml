@@ -8,7 +8,13 @@ navbar:
     href: set-up.html
   - text: Workshop Weekly Notes
     icon: fa-calendar
-    href: week1.html
+    menu:
+    - text: Week 1 Intro to Git
+      icon: fa-cogs
+      href: week1.html
+    - text: Week 2 More Git/Intro to GitHub
+      icon: fab fa-github-alt
+      href: week2.html
   - text: RVerse
     icon: fas fa-toolbox
     href: https://rverse-tutorials.github.io

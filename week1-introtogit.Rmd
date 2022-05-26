@@ -276,7 +276,7 @@ Ok, here's the Git command to get a single file back. This works whether or not 
 
 * Open the a terminal window where you are in the repository
 * Use GitHub Desktop to navigate to the commit you want. Right click and 'Copy SHA'
-* The command to checkout the version of the file one commit befor the bad one is `git checkout SHA~1 -- ./<file name>` For example
+* The command to checkout the version of the file one commit before the bad one is `git checkout SHA~1 -- ./<file name>` For example
 * `git checkout 1d0f8c2eb4e66db0a7123588ae2fad26a6338303~1 -- ./R/test.R`  would reset test.R to one before that commit. This part `1d0f8c2eb4e66db0a7123588ae2fad26a6338303` is the bad commit hash and this part `~1` means what the file was like 1 commit before that.
 
 [Show me](https://youtu.be/GmQuL45jnT8)
