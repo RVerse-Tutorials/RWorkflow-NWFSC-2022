@@ -415,13 +415,15 @@ div.tocify {
 <p><br></p>
 <div id="overview" class="section level1">
 <h1>Overview</h1>
-<p>This week I will cover the basic GitHub features and a few more Git skills.</p>
+<p>This week I will cover key GitHub features and a few more Git skills.</p>
 <p>A few more Git skills</p>
 <ul>
-<li>How to revert changes</li>
 <li>The basics of Git branches</li>
+<li>How to revert changes</li>
+<li>How to deal with merge conflicts</li>
 <li>How to issue a Git command in a terminal window.</li>
 <li>Where the Git info is hidden in a repository.</li>
+<li><a href="https://rverse-tutorials.github.io/RWorkflow-NWFSC-2022/week1-introtogit.html#Other_skills">Other useful Git skills</a></li>
 </ul>
 <p>Key GitHub.com skills.</p>
 <ul>
@@ -448,14 +450,14 @@ div.tocify {
 <li>Skill 1. Create a branch from main</li>
 <li>Skill 2. Merge a branch back into main</li>
 </ul>
-<p><a href="https://youtu.be/Nfj-PpsvsuM">Show me</a></p>
+<p><a href="https://youtu.be/Nfj-PpsvsuM">Show me w GitHub Desktop</a></p>
 <ul>
 <li>Skill 3. Update a branch from main*</li>
 <li>Skill 4. Delete a branch</li>
 </ul>
-<p><a href="https://youtu.be/cbXO63jz3S0">Show me</a></p>
+<p><a href="https://youtu.be/cbXO63jz3S0">Show me w GitHub Desktop</a></p>
 <ul>
-<li>making changes on main while working on a branch is a recipe for merge conflicts by the way.</li>
+<li>making changes on main while working on a branch is a common way to run into merge conflicts by the way.</li>
 </ul>
 </div>
 <div id="why-do-branches-cause-so-many-headaches" class="section level3">
@@ -481,7 +483,7 @@ div.tocify {
 <li>an easy way to do this is from the terminal: <code>git checkout branchname filepath</code> e.g. from main branch</li>
 </ul>
 <pre><code>git checkout development ./hello.R</code></pre>
-<p>would replace the file <code>hello.R</code> on the main branch with the current version of <code>hello.R</code> on the development branch. Note the <code>./</code> in the path.</p>
+<p>would replace the file <code>hello.R</code> on the main branch with the current version of <code>hello.R</code> on the development branch. Note the <code>./</code> in the path. <em>Confession, the following achieves the exact same effect and is 5x faster than trying to remember <code>checkout</code> syntax: switch to the branch, copy the contents of <code>hello.R</code>, switch back to main branch, and paste in what you just copied.</em></p>
 </div>
 </div>
 <div id="getting-rid-of-changes-you-have-made" class="section level2">
@@ -545,6 +547,20 @@ div.tocify {
 <p><strong>Those using Git in RStudio</strong> Merge conflicts are a bit of a disaster in RStudio, and RStudio gives no warning before it mucks up your files. So it you are pushing/pulling from RStudio be sure to practice on some toy merge conflicts before you run into a real one.</p>
 </div>
 </div>
+<div id="lastly-the-main-git-commands-that-cause-beginners-trouble" class="section level2">
+<h2>Lastly, the main Git commands that cause beginners trouble</h2>
+<ul>
+<li><code>git reset</code></li>
+<li><code>git checkout</code></li>
+<li><code>git branch</code></li>
+</ul>
+<p>And the commands that will help you</p>
+<ul>
+<li><code>git status</code></li>
+<li><code>git log</code></li>
+<li><code>git reflog</code></li>
+</ul>
+</div>
 </div>
 <div id="key-github-skills" class="section level1">
 <h1>Key GitHub skills</h1>
@@ -575,6 +591,20 @@ div.tocify {
 <pre><code>git switch -</code></pre>
 <p><strong>Warning <code>git checkout ...</code> will change all your time stamps.</strong> Might be better to just do this from GitHub…</p>
 </div>
+<div id="discussion-boards" class="section level2">
+<h2>Discussion Boards</h2>
+<p><img src="images/github-discussions.png" /></p>
+</div>
+<div id="github-organizations" class="section level2">
+<h2>GitHub Organizations</h2>
+<p>I use this to organize collections of repositories.</p>
+<ul>
+<li>Share access to repos across a team</li>
+<li>Have team discussions</li>
+<li>Have a organization landing page</li>
+</ul>
+<p><img src="images/github-orgs.png" /></p>
+</div>
 <div id="project-boards" class="section level2">
 <h2>Project Boards</h2>
 <p><img src="images/project-board.png" /></p>
@@ -587,15 +617,6 @@ div.tocify {
 </div>
 <div id="additional-github-features" class="section level1">
 <h1>Additional GitHub features</h1>
-<div id="organizations" class="section level2">
-<h2>Organizations</h2>
-<p>I use this to organize collections of repositories.</p>
-<ul>
-<li>Share access to repos across a team</li>
-<li>Have team discussions</li>
-<li>Have a organization landing page</li>
-</ul>
-</div>
 <div id="github-pages" class="section level2">
 <h2>GitHub Pages</h2>
 <ul>

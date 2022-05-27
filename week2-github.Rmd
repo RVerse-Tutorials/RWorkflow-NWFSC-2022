@@ -28,14 +28,16 @@ set.seed(1234)
 # Overview
 
 
-This week I will cover the basic GitHub features and a few more Git skills.
+This week I will cover key GitHub features and a few more Git skills.
 
 A few more Git skills
 
-* How to revert changes
 * The basics of Git branches
+* How to revert changes
+* How to deal with merge conflicts
 * How to issue a Git command in a terminal window.
 * Where the Git info is hidden in a repository.
+* [Other useful Git skills](https://rverse-tutorials.github.io/RWorkflow-NWFSC-2022/week1-introtogit.html#Other_skills)
 
 Key GitHub.com skills.
 
@@ -62,14 +64,14 @@ As I mentioned in week 1, you should get familiar with the 4 basic Git skills be
 * Skill 1. Create a branch from main
 * Skill 2. Merge a branch back into main
 
-[Show me](https://youtu.be/Nfj-PpsvsuM)
+[Show me w GitHub Desktop](https://youtu.be/Nfj-PpsvsuM)
 
 * Skill 3. Update a branch from main*
 * Skill 4. Delete a branch
 
-[Show me](https://youtu.be/cbXO63jz3S0)
+[Show me w GitHub Desktop](https://youtu.be/cbXO63jz3S0)
 
-* making changes on main while working on a branch is a recipe for merge conflicts by the way.
+* making changes on main while working on a branch is a common way to run into merge conflicts by the way.
 
 ### Why do branches cause so many headaches?
 
@@ -95,7 +97,7 @@ This approach to branches will lead to headaches. Better to be more methodical a
 ```
 git checkout development ./hello.R
 ```
-would replace the file `hello.R` on the main branch with the current version of `hello.R` on the development branch. Note the `./` in the path. 
+would replace the file `hello.R` on the main branch with the current version of `hello.R` on the development branch. Note the `./` in the path. *Confession, the following achieves the exact same effect and is 5x faster than trying to remember `checkout` syntax: switch to the branch, copy the contents of `hello.R`, switch back to main branch, and paste in what you just copied.*
 
 
 ## Getting rid of changes you have made
@@ -160,7 +162,17 @@ GitHub Desktop makes resolving these pretty easy.
     
 **Those using Git in RStudio** Merge conflicts are a bit of a disaster in RStudio, and RStudio gives no warning before it mucks up your files. So it you are pushing/pulling from RStudio be sure to practice on some toy merge conflicts before you run into a real one.
 
+## Lastly, the main Git commands that cause beginners trouble
 
+* `git reset`
+* `git checkout`
+* `git branch`
+
+And the commands that will help you
+
+* `git status`
+* `git log`
+* `git reflog`
 
 # Key GitHub skills
 
@@ -194,6 +206,20 @@ git switch -
 
 **Warning `git checkout ...` will change all your time stamps.** Might be better to just do this from GitHub...
 
+## Discussion Boards
+
+![](images/github-discussions.png)
+
+## GitHub Organizations
+
+I use this to organize collections of repositories.
+
+* Share access to repos across a team
+* Have team discussions
+* Have a organization landing page
+
+![](images/github-orgs.png)
+
 ## Project Boards
 
 ![](images/project-board.png)
@@ -206,14 +232,6 @@ We'll work with project boards more in Week 3 and 4 when we learn about project 
 
 
 # Additional GitHub features
-
-## Organizations
-
-I use this to organize collections of repositories.
-
-* Share access to repos across a team
-* Have team discussions
-* Have a organization landing page
 
 ## GitHub Pages
 
