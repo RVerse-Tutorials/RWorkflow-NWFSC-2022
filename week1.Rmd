@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Key Git/GitHub Skills
 
 * [The lecture notes](week1-introtogit.html)
-* Lecture video
+* [Lecture video](https://youtu.be/M1sOC4046PQ)
 
 ## Some more videos illustrating Git/GitHub skills
 
