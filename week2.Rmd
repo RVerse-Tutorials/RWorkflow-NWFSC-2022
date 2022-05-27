@@ -18,3 +18,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Questions from the post-lecture chat
 
+* I didn't show how to compare branches. [Show me in GitHub Desktop](https://youtu.be/JFUeF3cqccw)
+* A more complicated example of updating a branch and dealing with a merge conflict [Show me in GitHub Desktop](https://youtu.be/uu92kFnp7iw)
+* Discard changes that you have saved but not committed yet. [Show me in GitHub Desktop](https://youtu.be/DokyxU8ORWc) - [Show me in VS Code](https://youtu.be/mz-ywBzW5ow) - [Show me in RStudio/shell](https://youtu.be/3J2PlxaBbBE)
+* I added another example that of something you need to know before working with branches: work you haven't committed yet behaves differently!
+
+The default behavior is that any changes you have not committed will **follow** you when you change branches. This will through you for a loop if you don't know about this. GitHub Desktop will alert you and default is that these changes do **not** follow, but in every other GUI, they follow without warning. [Show me in RStudio/shell](https://youtu.be/uN_Gx7YIl64) - [Show me in GitHub Desktop](https://youtu.be/o2GAxSl_9nY) - [Show me in Visual Studio Code](https://youtu.be/JGQ-0HYdvWA)
+
+

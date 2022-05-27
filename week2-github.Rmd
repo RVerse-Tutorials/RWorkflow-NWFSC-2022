@@ -64,14 +64,14 @@ As I mentioned in week 1, you should get familiar with the 4 basic Git skills be
 * Skill 1. Create a branch from main
 * Skill 2. Merge a branch back into main
 
-[Show me w GitHub Desktop](https://youtu.be/Nfj-PpsvsuM)
+[Show me w GitHub Desktop](https://youtu.be/Nfj-PpsvsuM) - [Show me from the shell](https://youtu.be/jBLsELmtGEA) - [Show me from RStudio](https://youtu.be/3L2MXf-cg3Y) - [Show me from VS Code](https://youtu.be/07PgyheQmBo)
 
 * Skill 3. Update a branch from main*
 * Skill 4. Delete a branch
 
-[Show me w GitHub Desktop](https://youtu.be/cbXO63jz3S0)
+[Show me w GitHub Desktop](https://youtu.be/cbXO63jz3S0) - [Show me from the shell](https://youtu.be/YMdri9bmhGU) - [Show me from RStudio](https://youtu.be/DvKLV-EFUYw) - [Show me from VS Code](https://youtu.be/SV-_tlg0t3Y)
 
-* making changes on main while working on a branch is a common way to run into merge conflicts by the way.
+* making changes on main while working on a branch is a common way to run into merge conflicts by the way. [Show me an example of fixing such a merge conflict](https://youtu.be/uu92kFnp7iw)
 
 ### Why do branches cause so many headaches?
 
@@ -83,6 +83,12 @@ The skills above are simple, why do branches causes beginners to hate Git?
 * Beginners are confused when they look at their file folder outside of GitHub Desktop, RStudio or VS Code.
 
 [Show me](https://youtu.be/FNLwsu-sy7E)
+
+* Work you haven't committed yet behaves differently!
+
+The default behavior is that any changes you have not committed will **follow** you when you change branches. This will through you for a loop if you don't know about this. GitHub Desktop will alert you and default is that these changes do **not** follow, but in every other GUI, they follow without warning.
+
+[Show me in RStudio/shell](https://youtu.be/uN_Gx7YIl64) - [Show me in GitHub Desktop](https://youtu.be/o2GAxSl_9nY)
 
 * Beginners use file time-stamps.
 
@@ -107,6 +113,8 @@ Say you made a change and you need to get rid of that. The temptation is to jump
 ### Have you commited the changes yet?
 
 **No?** Easy click on the file in GitHub Desktop, right click and click 'Discard Changes...'. Note this will take things all the way back to your last commit!! If you have been making a bunch of changes without committing those, then you are out of luck.
+
+[Show me in GitHub Desktop](https://youtu.be/DokyxU8ORWc) - [Show me in VS Code](https://youtu.be/mz-ywBzW5ow) - [Show me in RStudio/shell](https://youtu.be/3J2PlxaBbBE)
 
 **Yes?** Go to History in the GitHub Desktop window, click on the commit and click 'Revert'. This will get rid of all the changes that went with that commit. So if you changed multiple files, all those files will be reverted. If you have pushed the changes to GitHub, then you can push the revert and it'll show up on GitHub too.
 
