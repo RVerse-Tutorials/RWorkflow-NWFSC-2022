@@ -1,5 +1,5 @@
 ---
-title: "Practical R Workflow for Scientists May-July 2022"
+title: "Practical R+Git Workflow for Scientists May-July 2022"
 ---
 
 <table style="background-color: blue; width: 100%;">
