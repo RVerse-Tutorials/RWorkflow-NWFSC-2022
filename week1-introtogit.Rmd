@@ -141,6 +141,14 @@ Let say you want to make a copy of one of your GitHub repositories and use it as
 2. Once you have the copied repository, copy its url and use Skill #2 to clone that repository onto your computer
 3. Get rid of any files you don't want in the new repo and use Skill #3 to commit those changes and then Skill #4 to push the changes up to GitHub.
 
+<hr>
+<div style="background-color: grey;">
+**END OF MATERIAL COVERED IN WEEK 1 LECTURE**
+
+**Below is supplemental information**
+</div>
+<hr>
+
 # Other skills
 
 ## Make an existing folder on your computer a GitHub repository
