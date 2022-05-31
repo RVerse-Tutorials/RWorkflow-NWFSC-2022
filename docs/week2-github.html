@@ -450,14 +450,14 @@ div.tocify {
 <li>Skill 1. Create a branch from main</li>
 <li>Skill 2. Merge a branch back into main</li>
 </ul>
-<p><a href="https://youtu.be/Nfj-PpsvsuM">Show me w GitHub Desktop</a></p>
+<p><a href="https://youtu.be/Nfj-PpsvsuM">Show me w GitHub Desktop</a> - <a href="https://youtu.be/jBLsELmtGEA">Show me from the shell</a> - <a href="https://youtu.be/3L2MXf-cg3Y">Show me from RStudio</a> - <a href="https://youtu.be/07PgyheQmBo">Show me from VS Code</a></p>
 <ul>
 <li>Skill 3. Update a branch from main*</li>
 <li>Skill 4. Delete a branch</li>
 </ul>
-<p><a href="https://youtu.be/cbXO63jz3S0">Show me w GitHub Desktop</a></p>
+<p><a href="https://youtu.be/cbXO63jz3S0">Show me w GitHub Desktop</a> - <a href="https://youtu.be/YMdri9bmhGU">Show me from the shell</a> - <a href="https://youtu.be/DvKLV-EFUYw">Show me from RStudio</a> - <a href="https://youtu.be/SV-_tlg0t3Y">Show me from VS Code</a></p>
 <ul>
-<li>making changes on main while working on a branch is a common way to run into merge conflicts by the way.</li>
+<li>making changes on main while working on a branch is a common way to run into merge conflicts by the way. <a href="https://youtu.be/uu92kFnp7iw">Show me an example of fixing such a merge conflict</a></li>
 </ul>
 </div>
 <div id="why-do-branches-cause-so-many-headaches" class="section level3">
@@ -470,6 +470,11 @@ div.tocify {
 <li>Beginners are confused when they look at their file folder outside of GitHub Desktop, RStudio or VS Code.</li>
 </ul>
 <p><a href="https://youtu.be/FNLwsu-sy7E">Show me</a></p>
+<ul>
+<li>Work you haven’t committed yet behaves differently!</li>
+</ul>
+<p>The default behavior is that any changes you have not committed will <strong>follow</strong> you when you change branches. This will through you for a loop if you don’t know about this. GitHub Desktop will alert you and default is that these changes do <strong>not</strong> follow, but in every other GUI, they follow without warning.</p>
+<p><a href="https://youtu.be/uN_Gx7YIl64">Show me in RStudio/shell</a> - <a href="https://youtu.be/o2GAxSl_9nY">Show me in GitHub Desktop</a></p>
 <ul>
 <li>Beginners use file time-stamps.</li>
 </ul>
@@ -492,6 +497,7 @@ div.tocify {
 <div id="have-you-commited-the-changes-yet" class="section level3">
 <h3>Have you commited the changes yet?</h3>
 <p><strong>No?</strong> Easy click on the file in GitHub Desktop, right click and click ‘Discard Changes…’. Note this will take things all the way back to your last commit!! If you have been making a bunch of changes without committing those, then you are out of luck.</p>
+<p><a href="https://youtu.be/DokyxU8ORWc">Show me in GitHub Desktop</a> - <a href="https://youtu.be/mz-ywBzW5ow">Show me in VS Code</a> - <a href="https://youtu.be/3J2PlxaBbBE">Show me in RStudio/shell</a></p>
 <p><strong>Yes?</strong> Go to History in the GitHub Desktop window, click on the commit and click ‘Revert’. This will get rid of all the changes that went with that commit. So if you changed multiple files, all those files will be reverted. If you have pushed the changes to GitHub, then you can push the revert and it’ll show up on GitHub too.</p>
 <p><strong>But I need to revert multiple commits!</strong> Work backwards one by one.</p>
 <p>Why not use <code>git reset HEAD~1</code> or similar? You can. Search Google and you will find many ways to to that. But I warn you that <code>git reset</code> is the path to many frustrating hours with Git (see the many StackOverflow questions).</p>

@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## More Git and GitHub Skills
 
 * [The lecture notes](week2-github.html)
-* Lecture video
+* [Lecture video](https://youtu.be/NrHTf-TF_7A)
 
 ## Questions from the post-lecture chat
 
