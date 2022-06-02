@@ -38,7 +38,7 @@ output:
     toc_float:
       collapsed: no
     highlight: textmate
-    css: styles.css
+    css: css/styles.css
     lib_dir: site_libs
     self_contained: no
     include:
