@@ -25,4 +25,64 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The default behavior is that any changes you have not committed will **follow** you when you change branches. This will through you for a loop if you don't know about this. GitHub Desktop will alert you and default is that these changes do **not** follow, but in every other GUI, they follow without warning. [Show me in RStudio/shell](https://youtu.be/uN_Gx7YIl64) - [Show me in GitHub Desktop](https://youtu.be/o2GAxSl_9nY) - [Show me in Visual Studio Code](https://youtu.be/JGQ-0HYdvWA)
 
+### Migrating repos
+
+**I would like to organize my repositories into organizations. How do I move my repos to my new organization.**
+
+There is a migrate button. GitHub does all the work for you.
+
+* Open the repo you want to migrate. 
+* Go to Settings (cog on right). 
+* Scroll all the way down to 'Transfer ownership'. Click on Transfer.
+* Look for an email in the email address for the organization. You'll need to accept the transfer. Note, you can use the same email for all your organizations. It's really just like repo folders.
+* Once the transfer is done, go into Settings for the repo and adjust the membership access as needed. You can add individuals (using their GitHub address) or add teams.
+
+### Issues vs discussions
+
+**What is the difference between issues and discussions**
+
+Discussions happen within an organization and are not specific to a repository. Issues are specific to a particular repository and have features like assigning tasks to specific people and assigning labels.
+
+### Find my issues
+
+**My team is using issues across a variety of organizations and repositories. How do I find all the issues assigned to me.**
+
+* Log into GitHub
+* Go to https://github.com/issues/assigned and you'll see all the issues assigned to you.
+
+### File in use
+
+**Can I see when someone is working on a file?**
+
+No. You can see when they commit a change and push the file up to GitHub. Click the history link (circled in red belew) on GitHub to see what's been happening.
+
+![](images/history-github.png)
+
+### Preventing conflicts
+
+**How I prevent two people from working on a file at the same time?**
+
+In my experience, this is actually less of a problem than you might imagine in small teams. Generally we are dividing up our tasks and work on different parts of a repository. For example, someone is working on data and another on functions to make plots with data and another on prose. Also you can work on the same file as long as you are working on different parts of the file.  So if I add documentation to the top and you change code lower down, those changes are not in conflict.
+
+Before embarking on the full-scale solution to this which is using forks (or branches) and pull-requests, I'd try just using old fashioned team communication if your team is small. So message (or email) your 1-3 collaborators when doing something that will conflict. "Hey all, I'm doing that repo reorganization that we talked about. I'll let you know when I'm done. If you can stay out of the repo until then, that'd be great."
+
+If that doesn't work or you'd rather review changes before that are committed to the repository, then use a forking and pull-request workflow (below). I'd steer clear of branches unless you know that's what you want to do. Forks don't have the branch dangers that I've talked about in lecture.
+
+## Forking workflow
+
+[Video showing this workflow](https://youtu.be/q3L6Z0zvo_4)
+
+Let's say Org A is where you have a repo that you are working on.
+
+* Fork that to your personal GitHub account. This created a copy of the repo that is linked to the Org A repo.
+* Pull the forked repo into your computer.
+* Work on the fork, and when you are ready submit a Pull Request (click the button with that name). It is fairly self-explanatory once you click on Pull Request.
+
+![](images/pullrequest.png)
+
+* Then over in the Org A repo, you'll see a Pull Request. They owner will also get an email. You can review and merge (if you want).
+* Keep your fork up to date with Org A repo using the Fetch Upstream link
+
+![](images/fetchupstream.png)
+
 

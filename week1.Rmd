@@ -121,3 +121,29 @@ done
 
 rm .git_ls-tree_r_name-only_HEAD .git_diff_name-only
 ```
+
+### RStudio and Git
+
+**I want to link RStudio to Git, but I am getting an error that RStudio cannot find Git**
+
+Open RStudio. Go to Tools > Global Options... > Git/SVN . The paste in the location of the git.exe file. 
+
+On a Mac? location is `usr/bin/git`
+
+Finding that location if you are on a PC can be onerous. First make sure you can see hidden folders. In a finder window, you click View and make sure the hidden files checkbox is checked. Then here are some ideas of where to find `git.exe`. Note you might not see `.exe` . You might only see `git`. It depends if you have `show file endings` selected in preferences.
+
+If you only installed GitHub Desktop, look here 
+```
+C:\Users\UserName\AppData\Local\GitHubDesktop\app-2.8.3\resources\app\git\cmd\git.exe
+```
+You have to change app-x.x.x to whatever version you have.
+
+If you installed Git for Windows, look in these places.
+```
+C:/Program Files/Git/bin/git.exe
+```
+If you installed Git for Windows locally, look here
+```
+C:\Users\UserName\AppData\Local\Programs\Git\bin\git.exe
+```
+

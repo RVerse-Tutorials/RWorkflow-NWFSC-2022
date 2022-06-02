@@ -11,7 +11,7 @@
 
 
 
-<title>Week 3. Intro to Agile project management</title>
+<title>Week 3. Intro to Agile + Kanban with GitHub</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,8 +35,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -359,6 +357,13 @@ div.tocify {
         Week 2 More Git/Intro to GitHub
       </a>
     </li>
+    <li>
+      <a href="week3.html">
+        <span class="fa fa-note"></span>
+         
+        Week 3 Intro to Agile and Kanban
+      </a>
+    </li>
   </ul>
 </li>
 <li>
@@ -396,74 +401,74 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 3. Intro to Agile project management</h1>
+<h1 class="title toc-ignore">Week 3. Intro to Agile + Kanban with GitHub</h1>
 
 </div>
 
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
+<table style="background-color: blue; width: 100%;">
 <tr>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Compartmentalized
+<td style="text-align:left; padding:5px;">
+<a style="color:white" href="http://nmfs-openscapes.github.io">NMFS Openscapes</a>
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Documented
+<td style="text-align:center; padding:5px;">
+<a style="color:white" href="https://github.com/nmfs-openscapes/.github/wiki">Wiki</a>
 </td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Extendible
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Reproducible
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Robust
+<td style="text-align:right; padding:5px;">
+<a style="color:white" href="https://nmfs-openscapes.github.io/NMFS-R-UG/">NMFS R User Group</a>
 </td>
 </tr>
-</tbody>
 </table>
+<p><br></p>
 <p>This is a very brief introduction to Agile project management as it applies to the sort of work that we do at NOAA Fisheries. See the references to go into much much more about Agile project management.</p>
 <p>Before we start, what kinds of projects are we talking about?</p>
-<div id="complex-projects" class="section level3">
-<h3>complex projects</h3>
+<p><strong>Complex projects</strong></p>
 <ul>
 <li>big tasks with lots of different stages</li>
 <li>maybe many different team members and different needed skills (biologists/system specialists, data compilers, modelers, statisticians, coders, writers, etc.)</li>
-<li>Often team projects but could also be a solo project but something with multiple steps and lots of planning, e.g. like a R package or manuscript or a report or a complex model.</li>
+<li>Often team projects but could also be a solo project but if a solo project then something with multiple steps and lots of planning, e.g. like a R package, manuscript or a report or a complex model.</li>
 </ul>
-</div>
 <div id="what-is-agile" class="section level1">
-<h1>What is Agile?</h1>
-<div id="what-it-is-not-waterfall-project-management" class="section level2">
-<h2>What it is not: Waterfall project management</h2>
+<h1>What is agile?</h1>
+<p>Refers to a lightweight workflow for software development which is characterized by 4 key elements (Figure below). Traced back to the <a href="https://agilemanifesto.org/">Agile Manifesto</a> (4 statement and 12 principles) written at a 2001 gathering of software development “visionaries”, but the ideas trace back much earlier. <a href="https://en.wikipedia.org/wiki/Agile_software_development">Good overview on Wikipedia</a>. Today agile methodologies are the norm in software development.</p>
+<p><img src="images/agile-elements-w-text.png" /></p>
+<div id="what-it-is-not-waterfall" class="section level2">
+<h2>What it is not: Waterfall</h2>
 <p>Let’s imagine that we are preparing a big report or perhaps we have put in a, successful, proposal for a new big modeling project to address some management issue.</p>
-<p><img src="images/agile-waterfall.png" /> Or for some big coding project it might look like this:</p>
-<p><img src="images/agile-waterfall2.png" /></p>
+<p><img src="images/agile-waterfall.png" /></p>
+<p>Or for a research project it might look like:</p>
+<p><img src="images/agile-waterfall3.png" /></p>
 <p>A key feature of the ‘waterfall’ approach is “Big Design Upfront”: you have a fully fleshed out plan for the project from start to finish. We come from academic backgrounds and the way we get funding forces us into the “Big Design Upfront” paradigm, aka a detailed research proposal that lays out what we are going to do and how.</p>
-<p>Sounds great, but let’s be honest that only loosely reflects how the project will play out.</p>
-<div id="things-never-go-as-planned" class="section level3">
-<h3>Things never go as planned</h3>
+</div>
+<div id="originating-ideas" class="section level2">
+<h2>Originating ideas</h2>
+<div id="thinking-on-industrial-quality-control" class="section level3">
+<h3>Thinking on industrial quality control</h3>
+<p>A key element of agile methodologies is iterative cycles, similar to the Plan-Do-Check-Act (PDCA) cycle:</p>
+<p><img src="images/PDCA-Multi-Loop.png" style="width:50.0%" /></p>
+<p>This was popularized by the work of W. Edwards Deming on how to design workflow and organizational systems that improve quality control, though the ideas are traced back to the 1930-50s with work on industrial quality control systems (e.g., Walter A. Shewhart cycle) and earlier ideas on the scientific method.</p>
+<p><img src="images/agile-deming.png" style="width:50.0%" /></p>
+</div>
+<div id="lean-manufacturing" class="section level3">
+<h3>Lean manufacturing</h3>
+<p>Despite the name, “lean manufacturing” refers to a profound change in the structure and culture of manufacturing teams to a flat hierarchy with a intense focus on empowering of and continually learning by individual team members combined with systems (workflows) that are self-organizing, self-correcting, and spontaneously continually improving.</p>
+<p>The origin of these ideas is again credited to W. Edwards Deming (“Out of the Crisis: quality, productivity and competitive position” 1982. MIT Press Books), but adopted earliest in Japan where he visited to train Japanese engineers in quality control in the post-WWII period. These ideas were applied in the Japanese auto industry and written about in The Toyota Way (2003) by Jeffrey Liker and Toyota Kata (2009) by Mike Rother.</p>
+<p><img src="images/agile-toyota.png" style="width:50.0%" /></p>
+</div>
+<div id="rapid-application-development-theory" class="section level3">
+<h3>Rapid application development theory</h3>
+<p>Lastly, agile is related to work on frameworks for rapid innovation for software applications developed in the 1980s (Barry Boehm, James Martin, James Kerr). By definition, innovation is creating something novel so you can’t write a plan to get to the “product” because you don’t know what the product is. Because the customer (who you don’t yet since you are developing something new) has never seen the product, the design process is organic and knowledge gained from the development process itself affects the design at each cycle.</p>
 <ul>
-<li>Once we start actually implementing things, we run into problems and have to change our plans</li>
-<li>Maybe we discover new information that makes us change plans</li>
-<li>Maybe the data we throught we could get, we can’t</li>
-<li>Maybe our “user” changes what they want</li>
+<li>Rapid iterations with learning</li>
+<li>Working demos (prototypes)</li>
+<li>Tight collaboration with “customer”</li>
+<li>Team culture: autonomous teams where members plan their own work and work their own plans.</li>
 </ul>
-<p>So the detailed plans have to be altered.</p>
-<p>In addition, we set-up detailed time lines (as required for our proposal), but really that was all a guess. We don’t actually know how long things will take.</p>
+<p><img src="images/agile-innovation.png" style="width:50.0%" /></p>
 </div>
 </div>
-<div id="agile-manifesto-4-statements" class="section level2">
-<h2>Agile Manifesto: 4 statements</h2>
-<ul>
-<li>Individuals and interactions</li>
-<li>Working software</li>
-<li>Customer collaboration</li>
-<li>Responding to change</li>
-</ul>
-</div>
-<div id="evaluating-your-project" class="section level2">
-<h2>Evaluating your project</h2>
+<div id="evaluating-your-workflow" class="section level2">
+<h2>Evaluating your workflow</h2>
 <table>
 <colgroup>
 <col width="69%" />
@@ -479,12 +484,12 @@ Robust
 </thead>
 <tbody>
 <tr class="odd">
-<td>The team has regular check-ins to discuss what we are working on.</td>
+<td>How often does the team check-in to discuss what they are working on? Daily, weekly, monthly, yearly, never?</td>
 <td align="center"></td>
 <td>Individuals and interactions</td>
 </tr>
 <tr class="even">
-<td>Everyone on the team knows roughly what everyone else is doing at any time.</td>
+<td>Everyone on the team knows roughly what everyone else is doing at any time. 1=noone has any idea, 10=we can all see each others tasks and status.</td>
 <td align="center"></td>
 <td>Individuals and interactions</td>
 </tr>
@@ -494,7 +499,17 @@ Robust
 <td>Individuals and interactions</td>
 </tr>
 <tr class="even">
-<td>At any point in time, we can show a working version of something.</td>
+<td>At regular intervals, the team reflects on how to become more effective and adjusts</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>its behavior. 10=never, 5=yearly, 1=biweekly</td>
+<td align="center"></td>
+<td>Individuals and interactions</td>
+</tr>
+<tr class="even">
+<td>At any point in time, we can show a working version of something. Only when done, sometimes, most of the time.</td>
 <td align="center"></td>
 <td>Working software</td>
 </tr>
@@ -526,56 +541,40 @@ Robust
 </tbody>
 </table>
 </div>
-<div id="agile-manifesto-12-principles" class="section level2">
-<h2>Agile Manifesto: 12 principles</h2>
-<p>Similarly you can evaluate your team workflow on the 12 principles</p>
-<p>Our highest priority is to satisfy the customer through <strong>early and continuous delivery of valuable software</strong></p>
-<p><strong>Welcome changing requirements, even late in development</strong>*. Agile processes harness change for the customer’s competitive advantage.</p>
-<p><strong>Deliver working software frequently</strong>, from a couple of weeks to a couple of months, with a preference to the shorter timescale.</p>
-<p>Business people (end user) and developers must <strong>work together daily</strong> throughout the project.</p>
-<p>Build projects around motivated individuals. <strong>Give them the environment and support they need</strong>, and trust them to get the job done.</p>
-<p>The most efficient and effective method of conveying information to and within a development <strong>team is face-to-face conversation</strong>.</p>
-<p><strong>Working software</strong> is the primary measure of progress.</p>
-<p>Agile processes promote sustainable development. The sponsors, developers, and users should be able to <strong>maintain a constant pace indefinitely</strong>.</p>
-<p>Continuous attention to technical excellence and <strong>good design</strong> enhances agility.</p>
-<p>Simplicity–the art of <strong>maximizing the amount of work not done</strong>–is essential.</p>
-<p>The best architectures, requirements, and designs emerge from <strong>self-organizing teams</strong>.</p>
-<p><strong>At regular intervals, the team reflects on how to become more effective</strong>, then tunes and adjusts its behavior accordingly.</p>
 </div>
-</div>
-<div id="lets-see-some-agile-methodologies" class="section level1">
-<h1>Let’s see some Agile methodologies</h1>
-<p>What makes this “Agile” methodologies</p>
+<div id="agile-methodologies" class="section level1">
+<h1>Agile methodologies</h1>
+<p>What makes an “agile” methodologies?</p>
 <ul>
-<li>Customer Focus – who are we doing the work for?</li>
-<li>Transparency - we share what we are doing</li>
-<li>Finish Tasks - don’t start and then leave in undone states</li>
-<li>Balance – different viewpoints are included</li>
-<li>Collaboration – work together not individually at the same time</li>
-<li>Leadership – team and individual to realize continuous improvement</li>
-<li>Reflection – promote self- and team-knowledge to improve</li>
-<li>Respect – respect and accommodate differences of opinion and approach</li>
+<li>customer focus – we keep in mind our target customer</li>
+<li>incremental - we work in small <strong>functional</strong> chunks, which means we don’t start and then leave tasks in undone states, we don’t multi-task and work on many things all at once.</li>
+<li>collaboration – we implement workflows and use frameworks to work openly together not individually at the same time</li>
+<li>reflection – we implement regular team reflection to realize continuous improvement</li>
+<li>respect – we use forms of team interaction that actively accommodate differences of opinion and approach</li>
+<li>simplicity - we focus on getting the important things done first and quickly</li>
 </ul>
-<p>Respect – Value, understand, and show consideration for people.</p>
 <div id="kanban" class="section level2">
 <h2>Kanban</h2>
-<p>an approach to continuous improvement by focusing on visualizing, for the whole team, the team’s workflow</p>
+<p><img src="images/Kanban_board_example.jpeg" /></p>
+<p>Kanban is an approach to project management that allows the whole team to visualize the project workflow.</p>
 <ul>
-<li>visualizing the current system of work scheduling</li>
-<li>how tasks enter the ‘working on’ and move to ‘done’ is the primary measure of performance</li>
-<li>problems with task “flow” are addressed incrementally</li>
+<li>transparency – visual representation of the team’s workflow</li>
+<li>iterative and incremental – each task is a well-defined task (ca 1-2 days to move columns)</li>
+<li>“workable product” – minimize work in progress and focus on finishing tasks before taking on new tasks</li>
+<li>problems with task “flow” are addressed as they arise</li>
 </ul>
 <p>No “sprints”, time-boxed tasks, or time targets.</p>
-<p>Classically Kanban boards are used for maintenance or ongoing evolution rather than a project task board where you don’t have new tasks coming in regularly.</p>
+<p>Classically Kanban boards are used for tasks that come in regularly rather than a project task board where you curate a backlog of planned tasks.</p>
+<ul>
+<li>Atlassian has a nice Kanban video series: <a href="https://www.youtube.com/watch?v=iVaFVa7HYj4">intro</a>, <a href="https://www.youtube.com/watch?v=Bcid33tgq8A">designing your Kanban board</a>, <a href="https://www.youtube.com/watch?v=zEJn6eQO6FE">work in progress limits</a>, <a href="https://www.youtube.com/watch?v=PxXdcQrPIUI">writing kanban cards</a></li>
+</ul>
 </div>
-<div id="lets-kanban-with-github" class="section level2">
-<h2>Let’s Kanban with GitHub</h2>
+<div id="kanban-with-github" class="section level2">
+<h2>Kanban with GitHub</h2>
 <p>This is the default template in GitHub Project Boards.</p>
-<div id="kanban-on-a-single-repository" class="section level3">
-<h3>Kanban on a single repository</h3>
 <p><img src="images/new%20project.png" /></p>
 <p><img src="images/blank%20project.png" /></p>
-<p><img src="images/project%20template.png" /></p>
+<p><img src="images/project%20template.png" style="width:25.0%" /></p>
 <p><img src="images/blank%20kanban.png" /></p>
 <div id="adding-tasks-or-issues" class="section level4">
 <h4>Adding tasks or issues</h4>
@@ -584,18 +583,17 @@ Robust
 <p><img src="images/add%20card%20as%20issue.png" /></p>
 </div>
 </div>
-<div id="why-use-a-kanban-board" class="section level3">
-<h3>Why use a Kanban board?</h3>
+<div id="why-use-a-kanban-board" class="section level2">
+<h2>Why use a Kanban board?</h2>
 <p>Visualize the flow of work so that we can improve it incrementally and organically–meaning no fixed framework. Just seeing your workflow helps you see the problems.</p>
 <ul>
 <li>Promote transparency - we see what team is doing</li>
 <li>Facilitate collaboration – by seeing what we are all doing</li>
 <li><strong>Finish tasks</strong> - shows you if you have a huge ‘work in progress’ list</li>
+<li>Visualize problems, e.g. tasks that are in “in progress” forever.</li>
+<li>Especially helpful if there is a natural flow to the work: write function, write documentation, write test, done</li>
 </ul>
-</div>
-<div id="kanban-at-the-gh-organization-level" class="section level3">
-<h3>Kanban at the GH organization level</h3>
-</div>
+<p><img src="images/kanban-board-with-swimlanes.jpeg" /></p>
 </div>
 </div>
 
@@ -653,7 +651,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

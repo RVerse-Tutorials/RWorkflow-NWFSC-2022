@@ -357,6 +357,13 @@ div.tocify {
         Week 2 More Git/Intro to GitHub
       </a>
     </li>
+    <li>
+      <a href="week3.html">
+        <span class="fa fa-note"></span>
+         
+        Week 3 Intro to Agile and Kanban
+      </a>
+    </li>
   </ul>
 </li>
 <li>
@@ -508,6 +515,20 @@ comm -2 -3 .git_ls-tree_r_name-only_HEAD .git_diff_name-only | while read filena
 done
 
 rm .git_ls-tree_r_name-only_HEAD .git_diff_name-only</code></pre>
+<div id="rstudio-and-git" class="section level3">
+<h3>RStudio and Git</h3>
+<p><strong>I want to link RStudio to Git, but I am getting an error that RStudio cannot find Git</strong></p>
+<p>Open RStudio. Go to Tools &gt; Global Options… &gt; Git/SVN . The paste in the location of the git.exe file.</p>
+<p>On a Mac? location is <code>usr/bin/git</code></p>
+<p>Finding that location if you are on a PC can be onerous. First make sure you can see hidden folders. In a finder window, you click View and make sure the hidden files checkbox is checked. Then here are some ideas of where to find <code>git.exe</code>. Note you might not see <code>.exe</code> . You might only see <code>git</code>. It depends if you have <code>show file endings</code> selected in preferences.</p>
+<p>If you only installed GitHub Desktop, look here</p>
+<pre><code>C:\Users\UserName\AppData\Local\GitHubDesktop\app-2.8.3\resources\app\git\cmd\git.exe</code></pre>
+<p>You have to change app-x.x.x to whatever version you have.</p>
+<p>If you installed Git for Windows, look in these places.</p>
+<pre><code>C:/Program Files/Git/bin/git.exe</code></pre>
+<p>If you installed Git for Windows locally, look here</p>
+<pre><code>C:\Users\UserName\AppData\Local\Programs\Git\bin\git.exe</code></pre>
+</div>
 </div>
 
 <hr>
