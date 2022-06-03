@@ -55,7 +55,7 @@ A key feature of the 'waterfall' approach is "Big Design Upfront": you have a fu
 
 ## Originating ideas
 
-### Thinking on industrial quality control
+### Industrial quality control
 
 A key element of agile methodologies is iterative cycles, similar to the Plan-Do-Check-Act (PDCA) cycle:
 

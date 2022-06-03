@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Intro to Agile and Kanban with GitHub project boards
 
-* [The lecture notes](week3-introtoagile.html)
+* [lecture notes](week3-introtoagile.html) - [slides](week3-introtoagile-slides.html)
 * Lecture video
 
 ## Session questions and comments
