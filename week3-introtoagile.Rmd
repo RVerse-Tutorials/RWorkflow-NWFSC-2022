@@ -83,6 +83,12 @@ Lastly, agile is related to work on frameworks for rapid innovation for software
 * Team culture: autonomous teams where members plan their own work and work their own plans.
 
 ![](images/agile-innovation.png){width=50%}
+## A few references
+
+* Origins PDSA cycle https://ieeexplore-ieee-org.offcampus.lib.washington.edu/document/1204375
+* Origins of Scrum https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z#ref-CR16
+* Historical roots of Agile https://link.springer.com/chapter/10.1007/978-3-540-68255-4_10
+* More Agile history https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z
 
 ## Evaluating your workflow
 
