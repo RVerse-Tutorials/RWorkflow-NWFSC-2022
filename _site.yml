@@ -16,7 +16,7 @@ navbar:
       icon: fab fa-github-alt
       href: week2.html
     - text: Week 3 Intro to Agile and Kanban
-      icon: fa-note
+      icon: fa-recycle
       href: week3.html
   - text: RVerse
     icon: fas fa-toolbox
