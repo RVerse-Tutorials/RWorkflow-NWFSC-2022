@@ -150,6 +150,36 @@ You can add issues (issues tab in GitHub) and then add those issues to the proje
 
 ![](images/add card as issue.png)
 
+### Automation of your Kanban board
+
+#### Use GitHub's automation
+
+* Click `...` on a column to add
+* Make sure to select project when you add an issue
+
+#### Use a plug-in
+
+https://github.com/philschatz/project-bot 
+
+First column must have
+```
+###### Automation Rules
+
+<!-- Documentation: https://github.com/philschatz/project-bot -->
+
+- `new_issue`
+- `reopened_issue`
+```
+
+Then you can use automation to move around the cards
+```
+###### Automation Rules
+
+<!-- Documentation: https://github.com/philschatz/project-bot -->
+
+- `milestoned_issue` **3.11.4**
+```
+
 ## Why use a Kanban board?
 
 Visualize the flow of work so that we can improve it incrementally and organically--meaning no fixed framework. Just seeing your workflow helps you see the problems.

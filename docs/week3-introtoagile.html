@@ -582,6 +582,33 @@ div.tocify {
 <p><img src="images/add%20kanban%20card.png" /> You can add issues (issues tab in GitHub) and then add those issues to the project board. Why use issues? Issues offer much more functionality and can be linked to commits to the repository.</p>
 <p><img src="images/add%20card%20as%20issue.png" /></p>
 </div>
+<div id="automation-of-your-kanban-board" class="section level3">
+<h3>Automation of your Kanban board</h3>
+<div id="use-githubs-automation" class="section level4">
+<h4>Use GitHub’s automation</h4>
+<ul>
+<li>Click <code>...</code> on a column to add</li>
+<li>Make sure to select project when you add an issue</li>
+</ul>
+</div>
+<div id="use-a-plug-in" class="section level4">
+<h4>Use a plug-in</h4>
+<p><a href="https://github.com/philschatz/project-bot" class="uri">https://github.com/philschatz/project-bot</a></p>
+<p>First column must have</p>
+<pre><code>###### Automation Rules
+
+&lt;!-- Documentation: https://github.com/philschatz/project-bot --&gt;
+
+- `new_issue`
+- `reopened_issue`</code></pre>
+<p>Then you can use automation to move around the cards</p>
+<pre><code>###### Automation Rules
+
+&lt;!-- Documentation: https://github.com/philschatz/project-bot --&gt;
+
+- `milestoned_issue` **3.11.4**</code></pre>
+</div>
+</div>
 </div>
 <div id="why-use-a-kanban-board" class="section level2">
 <h2>Why use a Kanban board?</h2>
