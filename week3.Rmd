@@ -15,9 +15,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Intro to Agile and Kanban with GitHub project boards
 
 * [lecture notes](week3-introtoagile.html) - [slides](week3-introtoagile-slides.html)
-* Lecture video
+* [Lecture video](https://youtu.be/uBTzghMCDaQ)
 
 ## Session questions and comments
+
+* There was a discussion about how to do Kanban across multiple teams each with their own boards. I think at that point, you want to start looking at something like Jira or Trello. NOAA has a Jira Enterprise licese. Contact your IT to get on that. Or try out Jira [for free with up to 10 team members](https://www.atlassian.com/software/jira/pricing). Note you can connect Jira and GitHub.
 
 
 
