@@ -18,6 +18,9 @@ navbar:
     - text: Week 3 Intro to Agile and Kanban
       icon: fa-recycle
       href: week3.html
+    - text: Week 4 Intro to Scrum
+      icon: fa-recycle
+      href: week4.html
   - text: RVerse
     icon: fas fa-toolbox
     href: https://rverse-tutorials.github.io

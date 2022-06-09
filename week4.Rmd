@@ -1,0 +1,25 @@
+---
+title: "Week 4"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Intro to Agile Part 2: Scrum with GitHub issues and project boards
+
+* [slides](week4-scrum-slides.html)
+* Lecture video
+
+## Session questions and comments
+
+* Note within the software development industry, everyone uses Jira to run their Scrum sprints. If you get into using Scrum, especially for complex projects, big teams, multiple projects, then learning more versatile tools like Jira is probably worth the learning curve involved. Note, Jira is not free but NOAA has a license. Contact your IT to get on that. Or try out Jira [for free with up to 10 team members](https://www.atlassian.com/software/jira/pricing). Note you can connect Jira and GitHub.
+
+
+

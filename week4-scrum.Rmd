@@ -1,44 +1,211 @@
 ---
-title: "Week 4. Scrum using GitHub"
+title:  "Week 3 & 4: Intro to agile project management"
+subtitle: "Scrum with GitHub project boards"
+date: "`r Sys.Date()`"
 output:
-  html_document:
-    toc: true
-    include:
-      after_body: footer.html
+  xaringan::moon_reader:
+    self_contained: true
+    css: ["xaringan-themer.css"]
+    lib_dir: libs
+    nature:
+      ratio: '4:3'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      slideNumberFormat: "Page %current%"
 ---
+layout: true
+
+.footnote[U.S. Department of Commerce | National Oceanic and Atmospheric Administration | National Marine Fisheries Service]
+
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-set.seed(1234)
+options(htmltools.dir.version = FALSE)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(kableExtra)
-dt <- data.frame("Compartmentalized", "Documented", "Extendible", "Reproducible", "Robust")
-kable(dt, col.names=NULL) %>%
-  kable_styling(full_width = TRUE) %>%
-  row_spec(1, bold = FALSE, color = "white", background = "blue") %>%
-  column_spec(column = 1:5, width = "20%")
-```
 
-This is going to be a very brief introduction to Scrum, but hopefully will get you started if you want to try running a Scrum sprint. See the references for more info.
+---
 
-## What is Scrum?
+.pull-left[
+![](images/scrum_ultimate_beginners_guide.jpg)
+]
+.pull-right[
+Note there are tons on info online: videos and courses on Scrum. 
 
-*A lightweight framework for applying Agile methodology for complex projects*
+* Good 3-hour video course. [Scrum Fundamentals](https://learning.oreilly.com/videos/scrum-fundamentals)  It is available free through most universities or you can get a free 10-day trial.
+* <img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"> [4 minute overview of product development with Scrum](https://www.youtube.com/watch?v=L_sAo93ASTU&ab_channel=Kaizenko)
+* <img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"> [Longer 15min overview of Scrum sprints](https://www.youtube.com/watch?v=wxbjCSEyq2I&t=398s&ab_channel=AgileEducationbyAgileAcademy)
+* <img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"> [What is a sprint?](https://www.youtube.com/watch?v=7wGQU37fyiI&ab_channel=Codecademy)
+]
+---
 
-* lightweight = not a lot of rules. easy to set up and follow. easy to adapt.
-* framework = a roadmap to follow so you don't have to "make-up" what to do. The Scrum framework is also very popular for a reason.
-* Agile management = a flat project management structure that emphasizes individual team members and communications, a working product at all stages, end-user or stakeholder collaboration and feedback, development under the expectation of change
-* complex projects = big tasks with lots of different stages, maybe many different team members and different needed skills, could also be something like a R package or manuscript too.
+## What kinds of projects are we talking about?
 
+**Complex projects**
 
-
-
-# References
-
-* This is a great 3-hour video course https://learning.oreilly.com/videos/scrum-fundamentals  It is available free through most universities.
+* big tasks with lots of different stages
+* potentially many different team members and different needed skills 
+* Often team projects but could also be a solo project
+* Examples: a large report or manuscript, a complex model, a software package, or an software application.
 
 
+---
+
+
+# Agile principles
+
+![](images/agile-elements.png)
+
+
+---
+
+## Iterative cycles of work and learning
+
+A key element of agile methodologies is iterative cycles:
+
+.center[
+![](images/PDCA-Multi-Loop.png)
+]
+
+---
+
+class: middle
+
+## Nice idea...but how on earth do we make this happen?
+
+---
+
+## Scrum
+
+A lightweight framework (meaning flexible and easy to apply) for applying agile principles to making useable products. Define "product" however is appropriate for your work. Scrum uses repeated 14-30 day cycles of work (time-boxed).
+
+
+![](images/Scrum_process.svg)
+
+---
+
+## 3 Roles (jobs) in Scrum
+
+* **Product owner** -- works on the backlog and liasons with the customer so work for next sprint is ready
+
+* **Scrum master** -- basically a team coach to help team stay "agile" and so product owner doesn't start micro-managing things
+
+* **Developers** -- people working on the individual tasks and helping peers
+
+.center[
+*The most important element to Agile (and Scrum) is the team's enthusiasm for communication, openness and transparency*
+]
+
+---
+
+## 5 events
+
+.center[
+*Plan some work - Get it done - Debrief/learn -  Plan more work*
+]
+
+* **Sprint Planning** - what will we complete in our time-boxed window
+
+* **Sprint** - working on tasks
+
+* **Daily Scrum** - check-in every day (yesterday, today, any barriers)
+
+* **Sprint Review** - end of sprint, get feedback on the product produced in sprint
+
+* **Sprint Retrospective** - last event, whole team discusses any problems with the workflow and makes improvements
+
+---
+
+## 3 artifacts
+
+* **Product backlog** - all the things we need to do to complete the product. **ordered** and prioritized
+
+* **Sprint backlog** - everything that the team commits to achieve in a given sprint 
+
+* **Sprint Product Increment** - something you can show, demo, get feedback on
+
+---
+
+## Scrum board
+
+Not an "official" artifact, this is a key part of the sprint and is used at the daily check-in and throughout the day. **Names are attached to each task.**
+
+.center[
+<img src="images/scrum-board.jpeg" width="75%">
+]
+
+---
+
+## User Stories
+
+.pull-left[
+These are the 1-3 day chunks of work. You'll complete user stories during a sprint. Not actually part of Scrum Framework, but widely used in software development's application of Scrum.
+
+* Who: is this task for?
+
+* What: is the task producting?
+
+* Why: does the person want this?
+
+* Definition of done
+
+]
+.pull-right[
+
+#### Tasks
+
+User stories will have a series of tasks to complete. Depending on the user story and the person(s) doing the work, you might list these out as separate issues or just checkboxes.
+
+* <img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"> [How to create effective user stories](https://www.youtube.com/watch?v=KnXqHK2t3KQ&ab_channel=dan2dan)
+
+
+]
+
+---
+
+.center[
+![](images/user-story.png)
+]
+
+---
+
+## Epics
+
+.pull-left[
+A larger (multiple sprints) chunk of related work that can be broken down into user stories. Goal is to organize your work into pieces that have some natural hierarchy and order so that you can **get work down more efficiently**.
+
+Epics are fleshed out (broken into user stories + adding detail) as the project gets closer to being ready for the epic. 
+]
+
+.pull-right[
+* [Atlassian info on epics](https://www.atlassian.com/agile/project-management/epics)
+* <img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"> [What is an Epic in Agile and Scrum?](https://www.youtube.com/watch?v=8eDyB3MSibc&ab_channel=DejanMajkic)
+]
+
+---
+
+class: middle
+
+## Let's run a Scrum Sprint with GitHub! 
+
+.center[
+## *"Doing" is the teacher*
+]
+
+---
+
+## Note
+
+My solo sprint is missing an essential feature of Scrum
+
+* Daily check-in with team, preferably face-to-face
+
+## Retrospective
+
+* Also my "stories" were not proper user stories, more like tasks
+
+* Review - I did present to the end users but didn't get actual feedback
+
+* Retrospective (I sort of did this), but this was definitely a weak point
 
 

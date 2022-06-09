@@ -1,532 +1,337 @@
 <!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Week 3 &amp; 4: Intro to agile project management</title>
+    <meta charset="utf-8" />
+    <meta name="date" content="2022-06-08" />
+    <script src="site_libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
 
-<html>
+# Week 3 &amp; 4: Intro to agile project management
+## Scrum with GitHub project boards
+### 2022-06-08
 
-<head>
+---
 
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+layout: true
 
-
-
-
-<title>Week 4. Scrum using GitHub</title>
-
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
-
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
+.footnote[U.S. Department of Commerce | National Oceanic and Atmospheric Administration | National Marine Fisheries Service]
 
 
 
 
 
-<link rel="stylesheet" href="css/styles.css" type="text/css" />
+---
+
+.pull-left[
+![](images/scrum_ultimate_beginners_guide.jpg)
+]
+.pull-right[
+Note there are tons on info online: videos and courses on Scrum. 
+
+* Good 3-hour video course. [Scrum Fundamentals](https://learning.oreilly.com/videos/scrum-fundamentals)  It is available free through most universities or you can get a free 10-day trial.
+* &lt;img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"&gt; [4 minute overview of product development with Scrum](https://www.youtube.com/watch?v=L_sAo93ASTU&amp;ab_channel=Kaizenko)
+* &lt;img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"&gt; [Longer 15min overview of Scrum sprints](https://www.youtube.com/watch?v=wxbjCSEyq2I&amp;t=398s&amp;ab_channel=AgileEducationbyAgileAcademy)
+* &lt;img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"&gt; [What is a sprint?](https://www.youtube.com/watch?v=7wGQU37fyiI&amp;ab_channel=Codecademy)
+]
+---
+
+## What kinds of projects are we talking about?
+
+**Complex projects**
+
+* big tasks with lots of different stages
+* potentially many different team members and different needed skills 
+* Often team projects but could also be a solo project
+* Examples: a large report or manuscript, a complex model, a software package, or an software application.
 
 
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-img {
-  max-width:100%;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-pre code {
-  padding: 0;
-}
-</style>
+---
 
 
-<style type="text/css">
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
-}
-</style>
+# Agile principles
 
-<script type="text/javascript">
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
+![](images/agile-elements.png)
 
-  // mark it active
-  menuAnchor.tab('show');
 
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+---
 
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
+## Iterative cycles of work and learning
+
+A key element of agile methodologies is iterative cycles:
+
+.center[
+![](images/PDCA-Multi-Loop.png)
+]
+
+---
+
+class: middle
+
+## Nice idea...but how on earth do we make this happen?
+
+---
+
+## Scrum
+
+A lightweight framework (meaning flexible and easy to apply) for applying agile principles to making useable products. Define "product" however is appropriate for your work. Scrum uses repeated 14-30 day cycles of work (time-boxed).
+
+
+![](images/Scrum_process.svg)
+
+---
+
+## 3 Roles (jobs) in Scrum
+
+* **Product owner** -- works on the backlog and liasons with the customer so work for next sprint is ready
+
+* **Scrum master** -- basically a team coach to help team stay "agile" and so product owner doesn't start micro-managing things
+
+* **Developers** -- people working on the individual tasks and helping peers
+
+.center[
+*The most important element to Agile (and Scrum) is the team's enthusiasm for communication, openness and transparency*
+]
+
+---
+
+## 5 events
+
+.center[
+*Plan some work - Get it done - Debrief/learn -  Plan more work*
+]
+
+* **Sprint Planning** - what will we complete in our time-boxed window
+
+* **Sprint** - working on tasks
+
+* **Daily Scrum** - check-in every day (yesterday, today, any barriers)
+
+* **Sprint Review** - end of sprint, get feedback on the product produced in sprint
+
+* **Sprint Retrospective** - last event, whole team discusses any problems with the workflow and makes improvements
+
+---
+
+## 3 artifacts
+
+* **Product backlog** - all the things we need to do to complete the product. **ordered** and prioritized
+
+* **Sprint backlog** - everything that the team commits to achieve in a given sprint 
+
+* **Sprint Product Increment** - something you can show, demo, get feedback on
+
+---
+
+## Scrum board
+
+Not an "official" artifact, this is a key part of the sprint and is used at the daily check-in and throughout the day. **Names are attached to each task.**
+
+.center[
+&lt;img src="images/scrum-board.jpeg" width="75%"&gt;
+]
+
+---
+
+## User Stories
+
+.pull-left[
+These are the 1-3 day chunks of work. You'll complete user stories during a sprint. Not actually part of Scrum Framework, but widely used in software development's application of Scrum.
+
+* Who: is this task for?
+
+* What: is the task producting?
+
+* Why: does the person want this?
+
+* Definition of done
+
+]
+.pull-right[
+
+#### Tasks
+
+User stories will have a series of tasks to complete. Depending on the user story and the person(s) doing the work, you might list these out as separate issues or just checkboxes.
+
+* &lt;img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"&gt; [How to create effective user stories](https://www.youtube.com/watch?v=KnXqHK2t3KQ&amp;ab_channel=dan2dan)
+
+
+]
+
+---
+
+.center[
+![](images/user-story.png)
+]
+
+---
+
+## Epics
+
+.pull-left[
+A larger (multiple sprints) chunk of related work that can be broken down into user stories. Goal is to organize your work into pieces that have some natural hierarchy and order so that you can **get work down more efficiently**.
+
+Epics are fleshed out (broken into user stories + adding detail) as the project gets closer to being ready for the epic. 
+]
+
+.pull-right[
+* [Atlassian info on epics](https://www.atlassian.com/agile/project-management/epics)
+* &lt;img src="images/youtube-brands.svg" width=30px style="vertical-align: middle"&gt; [What is an Epic in Agile and Scrum?](https://www.youtube.com/watch?v=8eDyB3MSibc&amp;ab_channel=DejanMajkic)
+]
+
+---
+
+class: middle
+
+## Let's run a Scrum Sprint with GitHub! 
+
+.center[
+## *"Doing" is the teacher*
+]
+
+---
+
+## Note
+
+My solo sprint is missing an essential feature of Scrum
+
+* Daily check-in with team, preferably face-to-face
+
+## Retrospective
+
+* Also my "stories" were not proper user stories, more like tasks
+
+* Review - I did present to the end users but didn't get actual feedback
+
+* Retrospective (I sort of did this), but this was definitely a weak point
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "4:3",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "Page %current%"
 });
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: transparent;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<!-- code folding -->
-
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">RWorkflow</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="set-up.html">
-    <span class="fa fa-clone"></span>
-     
-    Set-up
-  </a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-calendar"></span>
-     
-    Workshop Weekly Notes
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week1.html">
-        <span class="fa fa-cogs"></span>
-         
-        Week 1 Intro to Git
-      </a>
-    </li>
-    <li>
-      <a href="week2.html">
-        <span class="fab fa-github-alt"></span>
-         
-        Week 2 More Git/Intro to GitHub
-      </a>
-    </li>
-    <li>
-      <a href="week3.html">
-        <span class="fa fa-recycle"></span>
-         
-        Week 3 Intro to Agile and Kanban
-      </a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="https://rverse-tutorials.github.io">
-    <span class="fas fa-toolbox"></span>
-     
-    RVerse
-  </a>
-</li>
-<li>
-  <a href="links.html">
-    <span class="fa fa-info"></span>
-     
-    More resources
-  </a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/RVerse-Tutorials/RWorkflow-NWFSC-2022">
-    <span class="fab fa-github"></span>
-     
-    Repo
-  </a>
-</li>
-<li>
-  <a href="https://github.com/orgs/RWorkflow-Workshop">Org</a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
-
-<div id="header">
-
-
-
-<h1 class="title toc-ignore">Week 4. Scrum using GitHub</h1>
-
-</div>
-
-
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Compartmentalized
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Documented
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Extendible
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Reproducible
-</td>
-<td style="text-align:left;color: white !important;background-color: blue !important;width: 20%; ">
-Robust
-</td>
-</tr>
-</tbody>
-</table>
-<p>This is going to be a very brief introduction to Scrum, but hopefully will get you started if you want to try running a Scrum sprint. See the references for more info.</p>
-<div id="what-is-scrum" class="section level2">
-<h2>What is Scrum?</h2>
-<p><em>A lightweight framework for applying Agile methodology for complex projects</em></p>
-<ul>
-<li>lightweight = not a lot of rules. easy to set up and follow. easy to adapt.</li>
-<li>framework = a roadmap to follow so you don’t have to “make-up” what to do. The Scrum framework is also very popular for a reason.</li>
-<li>Agile management = a flat project management structure that emphasizes individual team members and communications, a working product at all stages, end-user or stakeholder collaboration and feedback, development under the expectation of change</li>
-<li>complex projects = big tasks with lots of different stages, maybe many different team members and different needed skills, could also be something like a R package or manuscript too.</li>
-</ul>
-</div>
-<div id="references" class="section level1">
-<h1>References</h1>
-<ul>
-<li>This is a great 3-hour video course <a href="https://learning.oreilly.com/videos/scrum-fundamentals" class="uri">https://learning.oreilly.com/videos/scrum-fundamentals</a> It is available free through most universities.</li>
-</ul>
-</div>
-
-<hr>
-
-<div style="text-align: center">
-<i class="fas fa-cubes"></i> NWFSC Math Bio Program, NOAA Fisheries <i class="fas fa-cubes"></i>
-</div>
-
-
-</div>
-</div>
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
 });
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
 
-
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
   });
-});
-</script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
 
-<!-- code folding -->
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
 </script>
-
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
 </script>
-
-</body>
+  </body>
 </html>
