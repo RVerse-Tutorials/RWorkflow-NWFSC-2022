@@ -33,7 +33,7 @@ Alternatively, you can see the sessions on the NMFS R UG calendar with the WebEx
 For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub Desktop](https://desktop.github.com/) installed. For weeks 5-6, you'll want R and RStudio  installed on your computer or you can use [RStudio Cloud](https://rstudio.cloud/). If you do the latter, you don't need to install any software.
 
 
-## 2022 Topics Fridays 10-11am PDT (we skip June 17 and 24)
+## 2022 Topics Fridays 10-11am PDT (we skip June 17 & 24, and July 1)
 
 ### Part 1
 
@@ -45,20 +45,23 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 
 * [June 10](week4-scrum-slides.html) **Intro to Scrum using GitHub issues and project boards** This week will focus on the most popular Agile methodology: Scrum. Although Scrum is associated with software development, it is used in many different fields. Scrum is a lightweight and flexible framework that helps teams to work together better and learn with each cycle of work. It has 3 roles, 5 events (steps) that the team goes through during a time-boxed period of work. I will show you how to set up and run a Scrum Sprint in GitHub. The real power of Scrum comes with teams by promoting high functioning teamwork, but you can use Scrum solo; you’ll just have to ‘switch hats’ when you take on different roles. [Slides](week4-scrum-slides.html) -  Lecture video - [Q&A](week4.html)
 
-### Part 2 starts July 1. NO SESSION ON JUNE 17 or 24
+### Part 2 starts July 8. NO SESSION ON JUNE 17 or 24 or July 1
 
-* July 1 **Intro to creating R packages** This week I will show you how to make an R package for code or data. RStudio makes this incredibly easy; literally 2-3 clicks. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework helps you write robust and well documented code. It also makes it easy to bundle data with code. By the end of this session, you will be able to build your own mini R package.
+* July 8 **Intro to creating R packages** This week I will show you how to make an R package for code or data. RStudio makes this incredibly easy; literally 2-3 clicks. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework helps you write robust and well documented code. It also makes it easy to bundle data with code. By the end of this session, you will be able to build your own mini R package.
 <!-- [The lecture notes and discussion](week5.html) -->
 
-* July 8 **Beyond the basics with R packages** This lecture will take you past the basics. In the first half, we'll dive a bit deeper into {roxygen2} documentation. Gone are the days when you need to write documentation manuals. Roxygen  automatically assembled your headers into documentation (help files, manuals, etc). Once your package is documented with Roxygen, creating a website is simple with pkgdown. In the second half, I give you a brief overview of the very handy {usethis} package. We'll push our package up to GitHub so others can install it and use the {usethis} package to get started using GitHub Actions for automated package checks and to host our package website. 
+* July 15 **Beyond the basics with R packages** This lecture will take you past the basics. In the first half, we'll dive a bit deeper into {roxygen2} documentation. Gone are the days when you need to write documentation manuals. Roxygen  automatically assembled your headers into documentation (help files, manuals, etc). Once your package is documented with Roxygen, creating a website is simple with pkgdown. In the second half, I give you a brief overview of the very handy {usethis} package. We'll push our package up to GitHub so others can install it and use the {usethis} package to get started using GitHub Actions for automated package checks and to host our package website. 
 <!-- [The lecture notes and discussion](week6.html) -->
 
-* July 15 **R Markdown for reports: integrating text and data tables** There are many online tutorials for R Markdown which will cover the basics. I will focus on R Markdown for fisheries (or other) reports. When the data change (which happens often), we have to remake tables (and graphs) and update the numbers in text. For big reports, this is time-consuming and creates errors. I'll show you how to use R Markdown to automate this process, so you are not manually remaking reports. In the last 1/3, I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories.
+* July 22 **R Markdown for reports: integrating text and data tables** There are many online tutorials for R Markdown which will cover the basics. I will focus on R Markdown for fisheries (or other) reports. When the data change (which happens often), we have to remake tables (and graphs) and update the numbers in text. For big reports, this is time-consuming and creates errors. I'll show you how to use R Markdown to automate this process, so you are not manually remaking reports. In the last 1/3, I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories.
 <!-- [The lecture notes and discussion](week7.html) -->
 
-* July 22 **Writing tests for R packages and other code** 
-Writing tests and automating quality control for your R packages and code: we know we should do it, but for most of us, it is the last thing we do or want to do. In this session, I’ll get you started writing unit tests using the {testthat} package (the standard). I’ll also give examples of the other types of common tests and some ideas of how to automate these tests with GitHub Actions. The goal is to give you some easy coding habits that will help you incorporate tests without too much extra work.
+* July 29 **R Markdown + GitHub Pages for webpages**
+This week we will use R Markdown and GitHub Pages to create webpages, such as the RWorkflow website. RStudio makes this very easy so you can focus on content. I’ll show you a few common website templates. I will also show you how you can update your pages with a GitHub Action so you don’t have to remember to rebuild the site.
 <!-- [The lecture notes and discussion](week8.html) -->
+
+* Video only **Writing tests for R packages and other code** 
+Writing tests and automating quality control for your R packages and code: we know we should do it, but for most of us, it is the last thing we do or want to do. In this session, I’ll get you started writing unit tests using the {testthat} package (the standard). I’ll also give examples of the other types of common tests and some ideas of how to automate these tests with GitHub Actions. The goal is to give you some easy coding habits that will help you incorporate tests without too much extra work.
 
 <hr>
 
