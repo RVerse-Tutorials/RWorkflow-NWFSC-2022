@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Intro to Agile Part 2: Scrum with GitHub issues and project boards
 
 * [slides](week4-scrum-slides.html)
-* Lecture video
+* [Lecture video](https://youtu.be/mPyT0g3kBQE)
 
 ## Session questions and comments
 
