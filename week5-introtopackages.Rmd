@@ -55,7 +55,7 @@ You will see a 'Build' tab.
 
 ### On RStudio Cloud
 
-Open this link, [TestPackage](https://rstudio.cloud/project/3592671)
+Open this link, [TestPackage](https://rstudio.cloud/project/3592671). You will need to login. You can use your Google account.
 
 ## Parts of an R package
 
@@ -449,6 +449,15 @@ So this fails since it is not `carsdata` that is exported. That is just the name
 # References
 
 If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). However, for simple packages you don't need the book.
+
+# Next Week
+
+* Ways to share your package
+* How to share your package on GitHub
+* More on documentating your package functions and data
+* Creating a nifty package landing page with all the documentation (one line of code!)
+* Easy intro to GitHub Actions
+
 
 
 
