@@ -371,6 +371,13 @@ div.tocify {
         Week 4 Intro to Scrum
       </a>
     </li>
+    <li>
+      <a href="week5.html">
+        <span class="fa fa-box"></span>
+         
+        Week 5 R packages
+      </a>
+    </li>
   </ul>
 </li>
 <li>
@@ -408,7 +415,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 3. Intro to Agile + Kanban with GitHub</h1>
+<h1 class="title toc-ignore">Week 3. Intro to Agile + Kanban with
+GitHub</h1>
 
 </div>
 
@@ -416,67 +424,121 @@ div.tocify {
 <table style="background-color: blue; width: 100%;">
 <tr>
 <td style="text-align:left; padding:5px;">
-<a style="color:white" href="http://nmfs-openscapes.github.io">NMFS Openscapes</a>
+<a style="color:white" href="http://nmfs-openscapes.github.io">NMFS
+Openscapes</a>
 </td>
 <td style="text-align:center; padding:5px;">
 <a style="color:white" href="https://github.com/nmfs-openscapes/.github/wiki">Wiki</a>
 </td>
 <td style="text-align:right; padding:5px;">
-<a style="color:white" href="https://nmfs-openscapes.github.io/NMFS-R-UG/">NMFS R User Group</a>
+<a style="color:white" href="https://nmfs-openscapes.github.io/NMFS-R-UG/">NMFS
+R User Group</a>
 </td>
 </tr>
 </table>
 <p><br></p>
-<p>This is a very brief introduction to Agile project management as it applies to the sort of work that we do at NOAA Fisheries. See the references to go into much much more about Agile project management.</p>
+<p>This is a very brief introduction to Agile project management as it
+applies to the sort of work that we do at NOAA Fisheries. See the
+references to go into much much more about Agile project management.</p>
 <p>Before we start, what kinds of projects are we talking about?</p>
 <p><strong>Complex projects</strong></p>
 <ul>
 <li>big tasks with lots of different stages</li>
-<li>maybe many different team members and different needed skills (biologists/system specialists, data compilers, modelers, statisticians, coders, writers, etc.)</li>
-<li>Often team projects but could also be a solo project but if a solo project then something with multiple steps and lots of planning, e.g. like a R package, manuscript or a report or a complex model.</li>
+<li>maybe many different team members and different needed skills
+(biologists/system specialists, data compilers, modelers, statisticians,
+coders, writers, etc.)</li>
+<li>Often team projects but could also be a solo project but if a solo
+project then something with multiple steps and lots of planning,
+e.g. like a R package, manuscript or a report or a complex model.</li>
 </ul>
 <div id="what-is-agile" class="section level1">
 <h1>What is agile?</h1>
-<p>Refers to a lightweight workflow for software development which is characterized by 4 key elements (Figure below). Traced back to the <a href="https://agilemanifesto.org/">Agile Manifesto</a> (4 statement and 12 principles) written at a 2001 gathering of software development “visionaries”, but the ideas trace back much earlier. <a href="https://en.wikipedia.org/wiki/Agile_software_development">Good overview on Wikipedia</a>. Today agile methodologies are the norm in software development.</p>
+<p>Refers to a lightweight workflow for software development which is
+characterized by 4 key elements (Figure below). Traced back to the <a
+href="https://agilemanifesto.org/">Agile Manifesto</a> (4 statement and
+12 principles) written at a 2001 gathering of software development
+“visionaries”, but the ideas trace back much earlier. <a
+href="https://en.wikipedia.org/wiki/Agile_software_development">Good
+overview on Wikipedia</a>. Today agile methodologies are the norm in
+software development.</p>
 <p><img src="images/agile-elements-w-text.png" /></p>
 <div id="what-it-is-not-waterfall" class="section level2">
 <h2>What it is not: Waterfall</h2>
-<p>Let’s imagine that we are preparing a big report or perhaps we have put in a, successful, proposal for a new big modeling project to address some management issue.</p>
+<p>Let’s imagine that we are preparing a big report or perhaps we have
+put in a, successful, proposal for a new big modeling project to address
+some management issue.</p>
 <p><img src="images/agile-waterfall.png" /></p>
 <p>Or for a research project it might look like:</p>
 <p><img src="images/agile-waterfall3.png" /></p>
-<p>A key feature of the ‘waterfall’ approach is “Big Design Upfront”: you have a fully fleshed out plan for the project from start to finish. We come from academic backgrounds and the way we get funding forces us into the “Big Design Upfront” paradigm, aka a detailed research proposal that lays out what we are going to do and how.</p>
+<p>A key feature of the ‘waterfall’ approach is “Big Design Upfront”:
+you have a fully fleshed out plan for the project from start to finish.
+We come from academic backgrounds and the way we get funding forces us
+into the “Big Design Upfront” paradigm, aka a detailed research proposal
+that lays out what we are going to do and how.</p>
 </div>
 <div id="originating-ideas" class="section level2">
 <h2>Originating ideas</h2>
 <div id="industrial-quality-control" class="section level3">
 <h3>Industrial quality control</h3>
-<p>A key element of agile methodologies is iterative cycles, similar to the Plan-Do-Check-Act (PDCA) cycle:</p>
+<p>A key element of agile methodologies is iterative cycles, similar to
+the Plan-Do-Check-Act (PDCA) cycle:</p>
 <p><img src="images/PDCA-Multi-Loop.png" style="width:50.0%" /></p>
-<p>This was popularized by the work of W. Edwards Deming on how to design workflow and organizational systems that improve quality control, though the ideas are traced back to the 1930-50s with work on industrial quality control systems (e.g., Walter A. Shewhart cycle) and earlier ideas on the scientific method.</p>
+<p>This was popularized by the work of W. Edwards Deming on how to
+design workflow and organizational systems that improve quality control,
+though the ideas are traced back to the 1930-50s with work on industrial
+quality control systems (e.g., Walter A. Shewhart cycle) and earlier
+ideas on the scientific method.</p>
 <p><img src="images/agile-deming.png" style="width:50.0%" /></p>
 </div>
 <div id="lean-manufacturing" class="section level3">
 <h3>Lean manufacturing</h3>
-<p>Despite the name, “lean manufacturing” refers to a profound change in the structure and culture of manufacturing teams to a flat hierarchy with a intense focus on empowering of and continually learning by individual team members combined with systems (workflows) that are self-organizing, self-correcting, and spontaneously continually improving.</p>
-<p>The origin of these ideas is again credited to W. Edwards Deming (“Out of the Crisis: quality, productivity and competitive position” 1982. MIT Press Books), but adopted earliest in Japan where he visited to train Japanese engineers in quality control in the post-WWII period. These ideas were applied in the Japanese auto industry and written about in The Toyota Way (2003) by Jeffrey Liker and Toyota Kata (2009) by Mike Rother.</p>
+<p>Despite the name, “lean manufacturing” refers to a profound change in
+the structure and culture of manufacturing teams to a flat hierarchy
+with a intense focus on empowering of and continually learning by
+individual team members combined with systems (workflows) that are
+self-organizing, self-correcting, and spontaneously continually
+improving.</p>
+<p>The origin of these ideas is again credited to W. Edwards Deming
+(“Out of the Crisis: quality, productivity and competitive position”
+1982. MIT Press Books), but adopted earliest in Japan where he visited
+to train Japanese engineers in quality control in the post-WWII period.
+These ideas were applied in the Japanese auto industry and written about
+in The Toyota Way (2003) by Jeffrey Liker and Toyota Kata (2009) by Mike
+Rother.</p>
 <p><img src="images/agile-toyota.png" style="width:50.0%" /></p>
 </div>
 <div id="rapid-application-development-theory" class="section level3">
 <h3>Rapid application development theory</h3>
-<p>Lastly, agile is related to work on frameworks for rapid innovation for software applications developed in the 1980s (Barry Boehm, James Martin, James Kerr). By definition, innovation is creating something novel so you can’t write a plan to get to the “product” because you don’t know what the product is. Because the customer (who you don’t yet since you are developing something new) has never seen the product, the design process is organic and knowledge gained from the development process itself affects the design at each cycle.</p>
+<p>Lastly, agile is related to work on frameworks for rapid innovation
+for software applications developed in the 1980s (Barry Boehm, James
+Martin, James Kerr). By definition, innovation is creating something
+novel so you can’t write a plan to get to the “product” because you
+don’t know what the product is. Because the customer (who you don’t yet
+since you are developing something new) has never seen the product, the
+design process is organic and knowledge gained from the development
+process itself affects the design at each cycle.</p>
 <ul>
 <li>Rapid iterations with learning</li>
 <li>Working demos (prototypes)</li>
 <li>Tight collaboration with “customer”</li>
-<li>Team culture: autonomous teams where members plan their own work and work their own plans.</li>
+<li>Team culture: autonomous teams where members plan their own work and
+work their own plans.</li>
 </ul>
-<p><img src="images/agile-innovation.png" style="width:50.0%" /> ## A few references</p>
+<p><img src="images/agile-innovation.png" style="width:50.0%" /> ## A
+few references</p>
 <ul>
-<li>Origins PDSA cycle <a href="https://ieeexplore-ieee-org.offcampus.lib.washington.edu/document/1204375" class="uri">https://ieeexplore-ieee-org.offcampus.lib.washington.edu/document/1204375</a></li>
-<li>Origins of Scrum <a href="https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z#ref-CR16" class="uri">https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z#ref-CR16</a></li>
-<li>Historical roots of Agile <a href="https://link.springer.com/chapter/10.1007/978-3-540-68255-4_10" class="uri">https://link.springer.com/chapter/10.1007/978-3-540-68255-4_10</a></li>
-<li>More Agile history <a href="https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z" class="uri">https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z</a></li>
+<li>Origins PDSA cycle <a
+href="https://ieeexplore-ieee-org.offcampus.lib.washington.edu/document/1204375"
+class="uri">https://ieeexplore-ieee-org.offcampus.lib.washington.edu/document/1204375</a></li>
+<li>Origins of Scrum <a
+href="https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z#ref-CR16"
+class="uri">https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z#ref-CR16</a></li>
+<li>Historical roots of Agile <a
+href="https://link.springer.com/chapter/10.1007/978-3-540-68255-4_10"
+class="uri">https://link.springer.com/chapter/10.1007/978-3-540-68255-4_10</a></li>
+<li>More Agile history <a
+href="https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z"
+class="uri">https://jserd.springeropen.com/articles/10.1186/s40411-018-0059-z</a></li>
 </ul>
 </div>
 </div>
@@ -497,22 +559,27 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td>How often does the team check-in to discuss what they are working on? Daily, weekly, monthly, yearly, never?</td>
+<td>How often does the team check-in to discuss what they are working
+on? Daily, weekly, monthly, yearly, never?</td>
 <td align="center"></td>
 <td>Individuals and interactions</td>
 </tr>
 <tr class="even">
-<td>Everyone on the team knows roughly what everyone else is doing at any time. 1=noone has any idea, 10=we can all see each others tasks and status.</td>
+<td>Everyone on the team knows roughly what everyone else is doing at
+any time. 1=noone has any idea, 10=we can all see each others tasks and
+status.</td>
 <td align="center"></td>
 <td>Individuals and interactions</td>
 </tr>
 <tr class="odd">
-<td>Team members have autonomy and ability to work on tasks of interest and skill.</td>
+<td>Team members have autonomy and ability to work on tasks of interest
+and skill.</td>
 <td align="center"></td>
 <td>Individuals and interactions</td>
 </tr>
 <tr class="even">
-<td>At regular intervals, the team reflects on how to become more effective and adjusts</td>
+<td>At regular intervals, the team reflects on how to become more
+effective and adjusts</td>
 <td align="center"></td>
 <td></td>
 </tr>
@@ -522,17 +589,20 @@ div.tocify {
 <td>Individuals and interactions</td>
 </tr>
 <tr class="even">
-<td>At any point in time, we can show a working version of something. Only when done, sometimes, most of the time.</td>
+<td>At any point in time, we can show a working version of something.
+Only when done, sometimes, most of the time.</td>
 <td align="center"></td>
 <td>Working software</td>
 </tr>
 <tr class="odd">
-<td>Once you start, how long is it until you can show something to the customer? 1=week, 10=year</td>
+<td>Once you start, how long is it until you can show something to the
+customer? 1=week, 10=year</td>
 <td align="center"></td>
 <td>Working software</td>
 </tr>
 <tr class="even">
-<td>Do you have regular and early opportunities for the customer to give feedback and change the project?</td>
+<td>Do you have regular and early opportunities for the customer to give
+feedback and change the project?</td>
 <td align="center"></td>
 <td>Customer collaboration</td>
 </tr>
@@ -547,7 +617,8 @@ div.tocify {
 <td>Responding to change</td>
 </tr>
 <tr class="odd">
-<td>Do you assume that the project will change and plan for that or is it a bad outcome?</td>
+<td>Do you assume that the project will change and plan for that or is
+it a bad outcome?</td>
 <td align="center"></td>
 <td>Responding to change</td>
 </tr>
@@ -560,26 +631,43 @@ div.tocify {
 <p>What makes an “agile” methodologies?</p>
 <ul>
 <li>customer focus – we keep in mind our target customer</li>
-<li>incremental - we work in small <strong>functional</strong> chunks, which means we don’t start and then leave tasks in undone states, we don’t multi-task and work on many things all at once.</li>
-<li>collaboration – we implement workflows and use frameworks to work openly together not individually at the same time</li>
-<li>reflection – we implement regular team reflection to realize continuous improvement</li>
-<li>respect – we use forms of team interaction that actively accommodate differences of opinion and approach</li>
-<li>simplicity - we focus on getting the important things done first and quickly</li>
+<li>incremental - we work in small <strong>functional</strong> chunks,
+which means we don’t start and then leave tasks in undone states, we
+don’t multi-task and work on many things all at once.</li>
+<li>collaboration – we implement workflows and use frameworks to work
+openly together not individually at the same time</li>
+<li>reflection – we implement regular team reflection to realize
+continuous improvement</li>
+<li>respect – we use forms of team interaction that actively accommodate
+differences of opinion and approach</li>
+<li>simplicity - we focus on getting the important things done first and
+quickly</li>
 </ul>
 <div id="kanban" class="section level2">
 <h2>Kanban</h2>
 <p><img src="images/Kanban_board_example.jpeg" /></p>
-<p>Kanban is an approach to project management that allows the whole team to visualize the project workflow.</p>
+<p>Kanban is an approach to project management that allows the whole
+team to visualize the project workflow.</p>
 <ul>
 <li>transparency – visual representation of the team’s workflow</li>
-<li>iterative and incremental – each task is a well-defined task (ca 1-2 days to move columns)</li>
-<li>“workable product” – minimize work in progress and focus on finishing tasks before taking on new tasks</li>
+<li>iterative and incremental – each task is a well-defined task (ca 1-2
+days to move columns)</li>
+<li>“workable product” – minimize work in progress and focus on
+finishing tasks before taking on new tasks</li>
 <li>problems with task “flow” are addressed as they arise</li>
 </ul>
 <p>No “sprints”, time-boxed tasks, or time targets.</p>
-<p>Classically Kanban boards are used for tasks that come in regularly rather than a project task board where you curate a backlog of planned tasks.</p>
+<p>Classically Kanban boards are used for tasks that come in regularly
+rather than a project task board where you curate a backlog of planned
+tasks.</p>
 <ul>
-<li>Atlassian has a nice Kanban video series: <a href="https://www.youtube.com/watch?v=iVaFVa7HYj4">intro</a>, <a href="https://www.youtube.com/watch?v=Bcid33tgq8A">designing your Kanban board</a>, <a href="https://www.youtube.com/watch?v=zEJn6eQO6FE">work in progress limits</a>, <a href="https://www.youtube.com/watch?v=PxXdcQrPIUI">writing kanban cards</a></li>
+<li>Atlassian has a nice Kanban video series: <a
+href="https://www.youtube.com/watch?v=iVaFVa7HYj4">intro</a>, <a
+href="https://www.youtube.com/watch?v=Bcid33tgq8A">designing your Kanban
+board</a>, <a href="https://www.youtube.com/watch?v=zEJn6eQO6FE">work in
+progress limits</a>, <a
+href="https://www.youtube.com/watch?v=PxXdcQrPIUI">writing kanban
+cards</a></li>
 </ul>
 </div>
 <div id="kanban-with-github" class="section level2">
@@ -592,7 +680,10 @@ div.tocify {
 <div id="adding-tasks-or-issues" class="section level4">
 <h4>Adding tasks or issues</h4>
 <p>You can manually add cards and put tasks on the card.</p>
-<p><img src="images/add%20kanban%20card.png" /> You can add issues (issues tab in GitHub) and then add those issues to the project board. Why use issues? Issues offer much more functionality and can be linked to commits to the repository.</p>
+<p><img src="images/add%20kanban%20card.png" /> You can add issues
+(issues tab in GitHub) and then add those issues to the project board.
+Why use issues? Issues offer much more functionality and can be linked
+to commits to the repository.</p>
 <p><img src="images/add%20card%20as%20issue.png" /></p>
 </div>
 <div id="automation-of-your-kanban-board" class="section level3">
@@ -606,7 +697,8 @@ div.tocify {
 </div>
 <div id="use-a-plug-in" class="section level4">
 <h4>Use a plug-in</h4>
-<p><a href="https://github.com/philschatz/project-bot" class="uri">https://github.com/philschatz/project-bot</a></p>
+<p><a href="https://github.com/philschatz/project-bot"
+class="uri">https://github.com/philschatz/project-bot</a></p>
 <p>First column must have</p>
 <pre><code>###### Automation Rules
 
@@ -625,13 +717,18 @@ div.tocify {
 </div>
 <div id="why-use-a-kanban-board" class="section level2">
 <h2>Why use a Kanban board?</h2>
-<p>Visualize the flow of work so that we can improve it incrementally and organically–meaning no fixed framework. Just seeing your workflow helps you see the problems.</p>
+<p>Visualize the flow of work so that we can improve it incrementally
+and organically–meaning no fixed framework. Just seeing your workflow
+helps you see the problems.</p>
 <ul>
 <li>Promote transparency - we see what team is doing</li>
 <li>Facilitate collaboration – by seeing what we are all doing</li>
-<li><strong>Finish tasks</strong> - shows you if you have a huge ‘work in progress’ list</li>
-<li>Visualize problems, e.g. tasks that are in “in progress” forever.</li>
-<li>Especially helpful if there is a natural flow to the work: write function, write documentation, write test, done</li>
+<li><strong>Finish tasks</strong> - shows you if you have a huge ‘work
+in progress’ list</li>
+<li>Visualize problems, e.g. tasks that are in “in progress”
+forever.</li>
+<li>Especially helpful if there is a natural flow to the work: write
+function, write documentation, write test, done</li>
 </ul>
 <p><img src="images/kanban-board-with-swimlanes.jpeg" /></p>
 </div>

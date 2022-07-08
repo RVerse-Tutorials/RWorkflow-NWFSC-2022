@@ -21,6 +21,9 @@ navbar:
     - text: Week 4 Intro to Scrum
       icon: fa-recycle
       href: week4.html
+    - text: Week 5 R packages
+      icon: fa-box
+      href: week5.html
   - text: RVerse
     icon: fas fa-toolbox
     href: https://rverse-tutorials.github.io

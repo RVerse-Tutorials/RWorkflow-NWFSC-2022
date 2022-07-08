@@ -1,0 +1,38 @@
+---
+title: "Week 5: Intro to R packages"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+## Intro to R packages
+
+* Lecture Video
+* [The lecture notes](week5-introtopackages.html)
+
+## Notes from Q&A
+
+* [GitHub info on large files](https://docs.github.com/en/github/managing-large-files/working-with-large-files/conditions-for-large-files)
+
+## Helpful NOAA resources
+
+* [NMFS Openscapes Wiki](https://github.com/nmfs-openscapes/.github/wiki)
+* [FIT Resources](https://github.com/nmfs-fish-tools/Resources) License, disclaimer and NOAA footer for your packages here.
+* [FIT Resources blog](https://noaa-fisheries-integrated-toolbox.github.io/resources/) Scroll down the navbar on left to see coding resources.
+* [Package review template](https://github.com/nmfs-general-modeling-tools/nmfs-general-modeling-tools.github.io/blob/master/.github/ISSUE_TEMPLATE/r-package-code-review.md) 
+* [FIT NOAA Themed pkgdown](https://noaa-fisheries-integrated-toolbox.github.io/resources/workshops/NOAA-pkgdown/)
+* [Code Testing](https://noaa-fisheries-integrated-toolbox.github.io/resources/best-practices/code-testing/)
+* [Code review](https://noaa-fisheries-integrated-toolbox.github.io/resources/best-practices/code-review/)
+
+## Example R packages
+
+* [MyNewPackage](https://github.com/RWorkflow-Workshop-2021/MyNewPackage) The package I made during class. You can also open on [RStudio Cloud](https://rstudio.cloud/project/2574138) and build it from there.
+* [VRData](https://nwfsc-math-bio.github.io/VRData/) This is the data package that I spent the most time on in lecture.
+* [many NOAA examples](https://github.com/nmfs-openscapes/.github/wiki/02-GitHub-in-Government#github-in-noaa--nmfs)

@@ -340,7 +340,7 @@ or add
 ```
 to the header of `irisaverages.R`.
 
-*How would I ever remember this??* Sadly if your use piping, you'll gets lots of practice with this.
+*How would I ever remember this??* Sadly if your use the `%>%` pipe, you'll gets lots of practice with this. Starting with R version 4.1, [there is now a native R pipe](https://www.r-bloggers.com/2021/05/the-new-r-pipe/), `|>`, which works like `%>%` in most cases so you might want to switch to that.
 
 
 ## Documenting data
