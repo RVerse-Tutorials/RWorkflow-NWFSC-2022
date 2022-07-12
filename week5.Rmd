@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, error=TRUE)
 
 ## Intro to R packages
 
-* Lecture Video
+* [Lecture Video](https://youtu.be/LWWfRlyBbVs)
 * [The lecture notes](week5-introtopackages.html)
 
 ## Notes from Q&A
