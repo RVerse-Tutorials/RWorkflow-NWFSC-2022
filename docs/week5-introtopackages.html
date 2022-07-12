@@ -443,10 +443,10 @@ Robust
 </tr>
 </tbody>
 </table>
-<div id="why-a-package" class="section level2">
-<h2>Why a package?</h2>
-<div id="shorter-answer" class="section level3">
-<h3>Shorter answer</h3>
+<div id="why-a-package" class="section level1">
+<h1>Why a package?</h1>
+<div id="shorter-answer" class="section level2">
+<h2>Shorter answer</h2>
 <ul>
 <li>The package framework really helps you write robust code and well
 documented code.</li>
@@ -454,8 +454,8 @@ documented code.</li>
 <li>It make it easy to version and document your data.</li>
 </ul>
 </div>
-<div id="longer-answer" class="section level3">
-<h3>Longer answer</h3>
+<div id="longer-answer" class="section level2">
+<h2>Longer answer</h2>
 <p>An R package is an easy and the standard way to organize your R code,
 document your code, and share your code with other people. Why use an R
 package rather than just make a bunch of scripts with your data in a
@@ -480,8 +480,8 @@ a shiny application, having your code in a package will help.</li>
 </ul>
 </div>
 </div>
-<div id="create-a-simple-package-with-rstudio" class="section level2">
-<h2>Create a simple package with RStudio</h2>
+<div id="create-a-simple-package-with-rstudio" class="section level1">
+<h1>Create a simple package with RStudio</h1>
 <ol style="list-style-type: decimal">
 <li>Open RStudio</li>
 <li>In the upper right hand corner, click the blue cube with R, and
@@ -500,17 +500,15 @@ Restart’. Your package should build and load.</li>
 <li>Click on click ‘check’. Your package won’t pass the checks because
 the license is not set.</li>
 </ol>
-<div id="on-rstudio-cloud" class="section level3">
-<h3>On RStudio Cloud</h3>
+<p><strong>If you want to use RStudio Cloud</strong></p>
 <p>Open this link, <a
 href="https://rstudio.cloud/project/3592671">TestPackage</a>. You will
 need to login. You can use your Google account.</p>
 </div>
-</div>
-<div id="parts-of-an-r-package" class="section level2">
-<h2>Parts of an R package</h2>
-<div id="the-essentials" class="section level3">
-<h3>The essentials</h3>
+<div id="parts-of-an-r-package" class="section level1">
+<h1>Parts of an R package</h1>
+<div id="the-essentials" class="section level2">
+<h2>The essentials</h2>
 <p>2 files and a directory.</p>
 <ul>
 <li><p><strong>DESCRIPTION</strong> This file has the meta-data about
@@ -525,8 +523,8 @@ edit as {roxygen2} takes care of it.</p></li>
 for your package.</p></li>
 </ul>
 </div>
-<div id="basic-add-ons" class="section level3">
-<h3>Basic add-ons</h3>
+<div id="basic-add-ons" class="section level2">
+<h2>Basic add-ons</h2>
 <ul>
 <li><p><strong>man</strong> A directory for documentation. You won’t
 need to write this. It will be added automatically by
@@ -536,8 +534,8 @@ format with the ending <code>.rda</code> or <code>.RData</code>. Nothing
 else!</p></li>
 </ul>
 </div>
-<div id="other-add-ons" class="section level3">
-<h3>Other add-ons</h3>
+<div id="other-add-ons" class="section level2">
+<h2>Other add-ons</h2>
 <ul>
 <li><p><code>inst</code> folder for misc stuff</p></li>
 <li><p><code>inst\extdata</code> folder for external data.</p></li>
@@ -547,9 +545,9 @@ produced the data files in <code>data</code> folder.</p></li>
 always need this.</p></li>
 </ul>
 </div>
-<div id="lets-take-a-look-at-the-default-files-that-rstudio-created"
-class="section level3">
-<h3>Let’s take a look at the default files that RStudio created</h3>
+<div id="the-default-files" class="section level2">
+<h2>The default files</h2>
+<p>By default, RStudio will create the following files.</p>
 <ul>
 <li><code>DESCRIPTION</code></li>
 </ul>
@@ -571,8 +569,8 @@ LazyData: true</code></pre>
 <p>This is saying export all functions in the R folder.</p>
 </div>
 </div>
-<div id="lets-create-a-real-package" class="section level2">
-<h2>Let’s create a real package</h2>
+<div id="lets-create-a-real-package" class="section level1">
+<h1>Let’s create a real package</h1>
 <p>We are going to use {roxygen2} which will create our documentation.
 You should always use this. Don’t get into the bad habit of writing
 functions without documentation headers!</p>
@@ -580,18 +578,18 @@ functions without documentation headers!</p>
 <pre><code>usethis::create_package(&quot;../TestPackage&quot;)</code></pre>
 <p>to create our package with {roxygen2} set up but I’ll walk you
 through do it manually.</p>
-<div id="install-roxygen2-if-needed" class="section level3">
-<h3>Install {roxygen2} if needed</h3>
+<div id="install-roxygen2-if-needed" class="section level2">
+<h2>Install {roxygen2} if needed</h2>
 <pre><code>install.packages(&quot;roxygen2&quot;)</code></pre>
 </div>
-<div id="delete-the-namespace-file" class="section level3">
-<h3>Delete the <code>NAMESPACE</code> file</h3>
+<div id="delete-the-namespace-file" class="section level2">
+<h2>Delete the <code>NAMESPACE</code> file</h2>
 <p>{roxygen2} is going to create that so we need to get rid of
 non-roxygen2 one. If you forget, you’ll see a warning and {roxygen2}
 won’t delete the old one.</p>
 </div>
-<div id="set-project-options" class="section level3">
-<h3>Set Project Options</h3>
+<div id="set-project-options" class="section level2">
+<h2>Set Project Options</h2>
 <ol style="list-style-type: decimal">
 <li><p>Click on Tools &gt; Project Options &gt; Build Tools</p></li>
 <li><p>Make sure Generate documentation with Roxygen is checked.
@@ -601,8 +599,8 @@ package.</p></li>
 checkboxes are checked. The last 2 won’t be by default.</p></li>
 </ol>
 </div>
-<div id="add-a-function-to-testpackage" class="section level3">
-<h3>Add a function to TestPackage</h3>
+<div id="add-a-function" class="section level2">
+<h2>Add a function</h2>
 <ol style="list-style-type: decimal">
 <li><p>Change <code>hello.R</code> in the R folder.</p></li>
 <li><p>Paste this code into the script and save. The <code>#'</code> is
@@ -618,16 +616,15 @@ hello &lt;- function(){ cat(&quot;HELLO&quot;) }</code></pre>
 <li>Click Install and Restart from the Build tab.</li>
 </ol>
 </div>
-<div id="use-your-new-function" class="section level3">
-<h3>Use your new function</h3>
+<div id="use-your-new-function" class="section level2">
+<h2>Use your new function</h2>
 <p>Learn about your function with</p>
 <pre><code>?hello</code></pre>
 <p>Use your function with</p>
 <pre><code>hello()</code></pre>
 </div>
-</div>
-<div id="add-data" class="section level2">
-<h2>Add data</h2>
+<div id="add-some-data" class="section level2">
+<h2>Add some data</h2>
 <ol style="list-style-type: decimal">
 <li><p>Add a folder called <code>data</code></p></li>
 <li><p>Run these lines from the command line.</p></li>
@@ -640,9 +637,11 @@ save(WWW2, file=&quot;data/WWW2.rda&quot;)</code></pre>
 </ol>
 <pre><code>WWW2</code></pre>
 <p>at the command line.</p>
-<div id="add-a-more-realistic-function-to-testpackage"
-class="section level3">
-<h3>Add a more realistic function to TestPackage</h3>
+</div>
+</div>
+<div id="add-a-more-realistic-function" class="section level1">
+<h1>Add a more realistic function</h1>
+<p>Now we will add a function that uses another R package.</p>
 <ol style="list-style-type: decimal">
 <li><p>Create a new R script file. File &gt; New File &gt; R
 Script.</p></li>
@@ -674,10 +673,8 @@ need to tell our package about these dependencies.</p>
 <p>Click Build &gt; Install and Restart. Now we can use our
 function.</p>
 <pre><code>littleforecast(WWW2)</code></pre>
-</div>
-</div>
-<div id="lets-clean-up-our-description-file" class="section level2">
-<h2>Let’s clean up our DESCRIPTION file</h2>
+<div id="clean-up-the-description-file" class="section level2">
+<h2>Clean up the DESCRIPTION file</h2>
 <p>Let’s edit our <code>DESCRIPTION</code> file to look like so:</p>
 <pre><code>Package: TestPackage
 Title: This Is A Toy Package
@@ -704,16 +701,18 @@ needs in order to work but its functions won’t be available at the
 command line (unless you choose).</li>
 </ul>
 </div>
-<div id="lets-look-at-the-namespace-file" class="section level2">
-<h2>Let’s look at the NAMESPACE file</h2>
+<div id="look-at-the-namespace-file" class="section level2">
+<h2>Look at the NAMESPACE file</h2>
 <p>{roxygen2} made this NAMESPACE file.</p>
 <pre><code>export(littleforecast)
 export(hello)</code></pre>
 <p>How does {roxygen2} know to export a function? Add this to the
 documentation code at the top of your functions.</p>
 <pre><code>#&#39; @export</code></pre>
-<div id="the-r-directory-function-code" class="section level3">
-<h3>The R Directory: Function code</h3>
+</div>
+</div>
+<div id="the-r-directory-function-code" class="section level1">
+<h1>The R Directory: Function code</h1>
 <p>This is where functions are put <strong>and our data documentation
 files</strong>. Each file is a separate function. You can put multiple
 functions in one file, but that can get confusing unless they are small
@@ -730,8 +729,8 @@ foo &lt;- function(arg1){
 return(&lt;what you want to return to user&gt;)
 }</code></pre>
 </div>
-<div id="rbuildignore" class="section level3">
-<h3><code>.Rbuildignore</code></h3>
+<div id="rbuildignore" class="section level1">
+<h1><code>.Rbuildignore</code></h1>
 <p>Though not required, in practice you will need to tell R what not to
 include in your package. RStudio will make this for you but you need to
 check it and add more stuff.</p>
@@ -743,10 +742,8 @@ check it and add more stuff.</p>
 .github
 .git</code></pre>
 </div>
-</div>
-<div id="lets-add-another-function-to-testpackage"
-class="section level2">
-<h2>Let’s add another function to TestPackage</h2>
+<div id="functions-with-pipes" class="section level1">
+<h1>Functions with pipes</h1>
 <ol style="list-style-type: decimal">
 <li><p>Create a new R script file. File &gt; New File &gt; R
 Script.</p></li>
@@ -784,17 +781,17 @@ native R pipe</a>, <code>|&gt;</code>, which works like
 <code>%&gt;%</code> in most cases so you might want to switch to
 that.</p>
 </div>
-<div id="documenting-data" class="section level2">
-<h2>Documenting data</h2>
-<div id="add-the-data" class="section level3">
-<h3>Add the data</h3>
+<div id="documenting-data" class="section level1">
+<h1>Documenting data</h1>
+<div id="add-the-data" class="section level2">
+<h2>Add the data</h2>
 <p>Add to the <code>data</code> folder as an <code>.rda</code> or
 <code>.RData</code> file.</p>
 <pre><code>setosa &lt;- subset(iris, Species==&quot;setosa&quot;)
 save(setosa, file=&quot;data/setosa.rda&quot;)</code></pre>
 </div>
-<div id="document-the-data" class="section level3">
-<h3>Document the data</h3>
+<div id="document-the-data" class="section level2">
+<h2>Document the data</h2>
 <p>Add in the R folder <code>data-setosa.R</code>. Tip, it is good to
 give your data documentation scripts a clear name tag to distinguish
 them from functions.</p>
@@ -824,21 +821,14 @@ might not want to load data every time the user loads the package.</p>
 <li>Click Install and Restart from the Build tab.</li>
 </ol>
 </div>
-</div>
-<div id="file-names-data-names-and-documentation"
-class="section level2">
-<h2>File names, data names and documentation</h2>
-<div id="rda-file-names" class="section level3">
-<h3><code>rda</code> file names</h3>
+<div id="more-details" class="section level2">
+<h2>More details</h2>
 <p>The <code>rda</code> filename in the <code>data</code> folder is what
 is used to load data. For example, let’s say you have</p>
 <pre><code>save(cars1, cars2, file=&quot;data/carsdata.rda&quot;)</code></pre>
 <p>So 2 data objects saved to one <code>rda</code> file. To load both
 data objects, you use</p>
 <pre><code>data(carsdata)</code></pre>
-</div>
-<div id="data-documentation" class="section level3">
-<h3>Data documentation</h3>
 <p>What do I document: <code>cars1</code>, <code>cars2</code> or
 <code>carsdata</code>? You can actually do whatever you want.</p>
 <p>Do this to show this documentation with <code>?cars2</code>.</p>

@@ -21,15 +21,15 @@ kable(dt, col.names=NULL) %>%
   column_spec(column = 1:5, width = "20%")
 ```
 
-## Why a package?
+# Why a package?
 
-### Shorter answer
+## Shorter answer
 
 * The package framework really helps you write robust code and well documented code. 
 * It makes it easy to bundle data with code.
 * It make it easy to version and document your data.
 
-### Longer answer
+## Longer answer
 
 An R package is an easy and the standard way to organize your R code, document your code, and share your code with other people.  Why use an R package rather than just make a bunch of scripts with your data in a folder?
 
@@ -38,7 +38,7 @@ An R package is an easy and the standard way to organize your R code, document y
 * **Robust data sharing!** Putting your data in a dedicated data package allows you to version your data (so everyone knows they are using the most up to date data), document your data, track data changes, provide data releases (with archives), provide easy visualizations of the data, and any other packages can load that data package and have access to the data.
 * **You want to make an application**  If you want to make a shiny application, having your code in a package will help.
 
-## Create a simple package with RStudio
+# Create a simple package with RStudio
 
 1. Open RStudio
 2. In the upper right hand corner, click the blue cube with R, and click New Project.
@@ -53,13 +53,13 @@ You will see a 'Build' tab.
 6. Click on the 'Build' tab in the upper right, and click 'Install and Restart'.  Your package should build and load.
 7. Click on click 'check'.  Your package won't pass the checks because the license is not set.
 
-### On RStudio Cloud
+**If you want to use RStudio Cloud**
 
 Open this link, [TestPackage](https://rstudio.cloud/project/3592671). You will need to login. You can use your Google account.
 
-## Parts of an R package
+# Parts of an R package
 
-### The essentials
+## The essentials
 
 2 files and a directory.
 
@@ -69,14 +69,14 @@ Open this link, [TestPackage](https://rstudio.cloud/project/3592671). You will n
 
 * **R directory** This is where all your R code goes for your package.
 
-### Basic add-ons
+## Basic add-ons
 
 * **man** A directory for documentation.  You won't need to write this.  It will be added automatically by {roxygen2}.
 
 * **data** A directory for data files saved in RData format with the ending `.rda` or `.RData`. Nothing else!
 
 
-### Other add-ons
+## Other add-ons
 
 * `inst` folder for misc stuff
 
@@ -86,7 +86,9 @@ Open this link, [TestPackage](https://rstudio.cloud/project/3592671). You will n
 
 * `.Rbuildignore` optional, but in practice you will always need this.
 
-### Let's take a look at the default files that RStudio created
+## The default files
+
+By default, RStudio will create the following files.
 
 * `DESCRIPTION`
 
@@ -113,7 +115,7 @@ exportPattern("^[[:alpha:]]+")
 This is saying export all functions in the R folder.
 
 
-## Let's create a real package
+# Let's create a real package
 
 We are going to use {roxygen2} which will create our documentation. You should always use this. Don't get into the bad habit of writing functions without documentation headers!
 
@@ -123,17 +125,17 @@ usethis::create_package("../TestPackage")
 ```
 to create our package with {roxygen2} set up but I'll walk you through do it manually.
 
-### Install {roxygen2} if needed
+## Install {roxygen2} if needed
 
 ```
 install.packages("roxygen2")
 ```
 
-### Delete the `NAMESPACE` file
+## Delete the `NAMESPACE` file
 
 {roxygen2} is going to create that so we need to get rid of non-roxygen2 one. If you forget, you'll see a warning and {roxygen2} won't delete the old one.
 
-### Set Project Options
+## Set Project Options
 
 1. Click on Tools > Project Options > Build Tools
 
@@ -142,7 +144,7 @@ install.packages("roxygen2")
 3. Click Configure next to the Roxygen line. Make sure all the checkboxes are checked. The last 2 won't be by default.
 
 
-### Add a function to TestPackage
+## Add a function
 
 1. Change `hello.R` in the R folder. 
 
@@ -159,7 +161,7 @@ hello <- function(){ cat("HELLO") }
 
 3. Click Install and Restart from the Build tab.
 
-### Use your new function
+## Use your new function
 
 Learn about your function with
 
@@ -173,7 +175,7 @@ Use your function with
 hello()
 ```
 
-## Add data
+## Add some data
 
 1. Add a folder called `data`
 
@@ -193,7 +195,9 @@ WWW2
 ```
 at the command line.
 
-### Add a more realistic function to TestPackage
+# Add a more realistic function
+
+Now we will add a function that uses another R package.
 
 1. Create a new R script file. File > New File > R Script. 
 
@@ -234,7 +238,7 @@ littleforecast(WWW2)
 ```
 
 
-## Let's clean up our DESCRIPTION file
+## Clean up the DESCRIPTION file
 
 Let's edit our `DESCRIPTION` file to look like so:
 
@@ -259,7 +263,7 @@ The packages on the Depends and Imports lines are required to be installed in or
 * `Imports:` is any other R packages that your package needs in order to work but its functions won't be available at the command line (unless you choose). 
 
 
-## Let's look at the NAMESPACE file
+## Look at the NAMESPACE file
 
 {roxygen2} made this NAMESPACE file.
 
@@ -274,7 +278,7 @@ How does {roxygen2} know to export a function? Add this to the documentation cod
 #' @export
 ```
 
-### The R Directory: Function code
+# The R Directory: Function code
 
 This is where functions are put **and our data documentation files**.  Each file is a separate function.  You can put multiple functions in one file, but that can get confusing unless they are small functions. The top of the function has documentation in {roxygen2} format.
 
@@ -291,7 +295,7 @@ return(<what you want to return to user>)
 }
 ```
 
-### `.Rbuildignore`
+#  `.Rbuildignore`
 
 Though not required, in practice you will need to tell R what not to include in your package. RStudio will make this for you but you need to check it and add more stuff.
 
@@ -305,7 +309,7 @@ Though not required, in practice you will need to tell R what not to include in 
 .git
 ```
 
-## Let's add another function to TestPackage
+# Functions with pipes
 
 1. Create a new R script file. File > New File > R Script. 
 
@@ -343,9 +347,9 @@ to the header of `irisaverages.R`.
 *How would I ever remember this??* Sadly if your use the `%>%` pipe, you'll gets lots of practice with this. Starting with R version 4.1, [there is now a native R pipe](https://www.r-bloggers.com/2021/05/the-new-r-pipe/), `|>`, which works like `%>%` in most cases so you might want to switch to that.
 
 
-## Documenting data
+# Documenting data
 
-### Add the data
+## Add the data
 
 Add to the `data` folder as an `.rda` or `.RData` file.
 
@@ -354,9 +358,10 @@ setosa <- subset(iris, Species=="setosa")
 save(setosa, file="data/setosa.rda")
 ```
 
-### Document the data
+## Document the data
 
 Add in the R folder `data-setosa.R`. Tip, it is good to give your data documentation scripts a clear name tag to distinguish them from functions.
+
 ```
 #' @title The setosa dataset
 #'
@@ -377,14 +382,13 @@ Add in the R folder `data-setosa.R`. Tip, it is good to give your data documenta
 #' @keywords datasets
 NULL
 ```
+
 *Note*, in the latest Roxygen2, you don't need the `@name` but that only works if you use `LazyData: true` in your `DESCRIPTION` file. You might not want to load data every time the user loads the package.
 
 5. Click Install and Restart from the Build tab.
 
 
-## File names, data names and documentation
-
-### `rda` file names
+## More details
 
 The `rda` filename in the `data` folder is what is used to load data. For example, let's say you have
 
@@ -397,8 +401,6 @@ So 2 data objects saved to one `rda` file. To load both data objects, you use
 ```
 data(carsdata)
 ```
-
-### Data documentation
 
 What do I document: `cars1`, `cars2` or `carsdata`? You can actually do whatever you want.
 
