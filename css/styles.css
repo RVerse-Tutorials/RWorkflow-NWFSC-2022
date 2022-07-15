@@ -48,3 +48,14 @@ padding-bottom: 0.5em;
 .section {
    padding-bottom: 2em;
 }
+
+.column-left{
+  float: left;
+  width: 50%;
+  text-align: left;}
+.column-right{
+  float: right;
+  width: 50%;
+  text-align: left;
+  padding-left: 20px;
+}

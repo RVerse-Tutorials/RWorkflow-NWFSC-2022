@@ -22,18 +22,37 @@ Starting May 20th, 2022. These short sessions (45min to 1hr) will be focused on 
 
 **About the instructor Eli Holmes**: I am a modeler/applied mathematician. I develop R packages for public use. I teach time-series analysis at the University of Washington (using R) and I teach workshops on R and reproducible research and am heavily involved in efforts to support transition to Open Science workflows within NOAA Fisheries. [website](http://eeholmes.github.io/)
 
-## Video links for the sessions
+<div class="column-left">
+
+### Video links for the sessions
 
 [Join via WebEx](https://noaanmfs-meets.webex.com/noaanmfs-meets/j.php?MTID=m78f662eb57d19d05c40c45a722d81d5e) (same link each week)
 
-Alternatively, you can see the sessions on the NMFS R UG calendar with the WebEx info. You can copy the events into your calendar or add to another group calendar. [NMFS R UG calendar -- NOAA access only](https://calendar.google.com/calendar/u/0?cid=bm9hYS5nb3ZfNjByZm43bWw5cnBjaGw2M3ZzNGFmOW4wMThAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ)
-
-## Set-up for the workshop
+### Set-up for the workshop
 
 For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub Desktop](https://desktop.github.com/) installed. For weeks 5-6, you'll want R and RStudio  installed on your computer or you can use [RStudio Cloud](https://rstudio.cloud/). If you do the latter, you don't need to install any software.
 
+</div>
 
-## 2022 Topics Fridays 10-11am PDT (we skip June 17 & 24, and July 1)
+<div class="column-right">
+
+| topic |
+|----------------|
+| May 20   Git/GitHub, part 1  [lecture](week1-introtogit.html)        --   [video](https://youtu.be/M1sOC4046PQ) |
+| May 27   Git/GitHub, part 2  [lecture](week2-github.html)         --      [video](https://youtu.be/NrHTf-TF_7A) |
+| June 3   Agile part 1, Kanban       [lecture](week3-introtoagile-slides.html) -- [video](https://youtu.be/uBTzghMCDaQ) |
+| June 10  Agile part 2, Scrum        [lecture](week4-scrum-slides.html)        -- [video](https://youtu.be/mPyT0g3kBQE) |
+| July 8   R packages, part 1  [lecture](week5-introtopackages.html)     -- [video](https://youtu.be/LWWfRlyBbVs) |
+| July 15  R packages, part 2  [lecture](week6-morewithpackages.html)     |
+| July 22  R markdown reports   |
+| July 29      |
+
+</div>
+
+# ----
+
+### 2022 Topics Fridays 10-11am PDT
+
 
 ### Part 1
 
@@ -45,7 +64,7 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 
 * [June 10](week4-scrum-slides.html) **Intro to Scrum using GitHub issues and project boards** This week will focus on the most popular Agile methodology: Scrum. Although Scrum is associated with software development, it is used in many different fields. Scrum is a lightweight and flexible framework that helps teams to work together better and learn with each cycle of work. It has 3 roles, 5 events (steps) that the team goes through during a time-boxed period of work. I will show you how to set up and run a Scrum Sprint in GitHub. The real power of Scrum comes with teams by promoting high functioning teamwork, but you can use Scrum solo; you’ll just have to ‘switch hats’ when you take on different roles. [Slides](week4-scrum-slides.html) -  [Lecture video](https://youtu.be/mPyT0g3kBQE) - [Q&A](week4.html)
 
-### Part 2 starts July 8. NO SESSION ON JUNE 17 or 24 or July 1
+### Part 2
 
 * [July 8](week5-introtopackages.html) **Intro to creating R packages** This week I will show you how to make an R package for code or data. RStudio makes this incredibly easy; literally 2-3 clicks. R packages are not just for work that you share with others. Most of my code projects are organized into an R package and definitely any project that I have that involves data and code is organized into an R package. The package framework helps you write robust and well documented code. It also makes it easy to bundle data with code. By the end of this session, you will be able to build your own mini R package. [Lecture notes](week5-introtopackages.html) - [Lecture video](https://youtu.be/LWWfRlyBbVs) - [Q&A](week5.html)
 
