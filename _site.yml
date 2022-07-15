@@ -24,6 +24,9 @@ navbar:
     - text: Week 5 R packages
       icon: fa-box
       href: week5.html
+    - text: Week 6 Part 2. R packages
+      icon: fa-box
+      href: week6.html
   - text: RVerse
     icon: fas fa-toolbox
     href: https://rverse-tutorials.github.io

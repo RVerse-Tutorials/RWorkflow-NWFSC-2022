@@ -1,0 +1,21 @@
+---
+title: "Week 6: Part 2. Intro to R packages"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    include:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+## Part 2. Intro to R packages
+
+* Lecture Video
+* [The lecture notes](week6-morewithpackages.html)
+
+## Notes from Q&A
+

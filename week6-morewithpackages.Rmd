@@ -1,5 +1,5 @@
 ---
-title: "Week 6. Beyond the basics with R packages"
+title: "Week 6. Part 2 Intro to R packages"
 output:
   html_document:
     toc: true
@@ -7,14 +7,396 @@ output:
       after_body: footer.html
 ---
 
+<table style="background-color: blue; width: 100%;">
+<tr>
+<td style="text-align:left; padding:5px;"><a style="color:white" href="http://nmfs-openscapes.github.io">NMFS Openscapes</a>
+</td>
+<td style="text-align:center; padding:5px;"><a style="color:white" href="https://github.com/nmfs-openscapes/.github/wiki">Wiki</a>
+</td>
+<td style="text-align:right; padding:5px;"><a style="color:white" href="https://nmfs-openscapes.github.io/NMFS-R-UG/">NMFS R User Group</a>
+</td>
+</tr>
+</table>
+<br>
+
 If/when you want to go into R packaging in more depth, see Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/).
 
+# Part 2. Beyond Basics
 
-### Checking your package
+* How to write print and plot functions for your objects.
+* A little more Roxygen documentation
+* Using pkgdown to make a website for your package.
+* Sharing your package
+* Sharing on GitHub
+* Checking your package
 
-* Run Check from the Build tab regularly. It is best not to put this off too long or else you'll create a lot more work for yourself as you track down one warning or error after another.
-* Don't let yourself suffer trying to figure out what the warnings and errors mean. Most are simple namespace issues that are easy to fix once you know how. Ask someone who builds packages. The NMFS R UG Group Chat is a good place. 
+
+## Creating print and plot methods for your objects
+
+### Make your output an object
+
+```
+littleforecast <- function(data, nyears=10){
+  fit <- forecast::auto.arima(data)
+  fc <- forecast::forecast(fit, h = nyears)
+  ggplot2::autoplot(fc)
+  class(fit) <- c("foo", class(fit))
+  return(fit)
+}
+```
+
+### print method
+
+```
+#' Prints foo object
+#'
+#' prints a foo object returned from littlefunction().
+#'
+#' @param x foo object
+#' @param ... Not used
+#' @method print foo
+#' @export
+print.foo <- function(x, ...) {
+  cat("Hello there")
+}
+```
+
+### plot method
+
+```
+#' Plots foo object
+#'
+#' Plots foo object.
+#'
+#' @param x An foo object.
+#' @param ... Not used.
+#' @method plot foo
+#' @export
+plot.foo <- function(x, ...) {
+  plot(1:10)
+}
+```
+
+## Roxygen Documentation
+
+**roxygen2** (and the the 'Build and Install' step) will create the help files that users access with `?function.name.
+
+The same man files are also used to create a package manual, e.g. 
+[package help file](https://cran.r-project.org/web/packages/MARSS/MARSS.pdf)
+
+And it generates the navigation page for all the documentation
+```
+help(package="forecast")
+```
+
+The man files are also used by **pkgdown** to make a website version of your documentation. Here is an example of a [pkgdown-generated webpage](https://nmfs-fish-tools.github.io/r4MAS/) for the FIT R package r4MAS.
+
+
+### Set-up
+
+* Install the **roxygen2** R package.
+
+```
+install.packages("roxygen2")
+```
+
+* Set the Project Build Options to use Roxygen
+
+  Tools > Project Options... > Build Tools > then check the checkbox "Generate documentation with Roxygen". Then click "Configure". Check the box at the bottom for "Install and Restart".
+  
+* Make sure your DESCRIPTION file has these lines:
+```
+Roxygen: list(markdown = TRUE)
+RoxygenNote: <some number>
+```
+
+### Basic structure
+
+Roxygen comments with `#'` are put at the top of your function, in the same file. They have a standard format and standard sections. There is a bit of customization you can do, but the following basic form will cover 95% of your needs. [Read this](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd-formatting.html#links) for more details.
+
+```
+#' @title Short title
+#'
+#' @description 
+#' Description should be one paragraph. Put details in details.
+#'
+#' @details
+#' Optional if you want to add more detais.J
+#'
+#' @param param.name1 Describe all your function arguments
+#' @param param.name2 Describe all your function arguments
+#'
+#' @examples
+#' # provide some examples of how to use your function
+#' hello()
+#'
+#' @seealso List relevant other functions [littleforecast()].
+#' 
+#` @references 
+#' List references
+#' @export
+yourfunction <- function(param.name1, param.name2){}
+```
+
+`@title` and `@description` can be left off (not the text, just the @.... part), but title text should be in line 1, then a blank line (#' only), and then the description text. The only required elements are `@title`, `@description`, and `@param` (defining the function arguments).
+
+`@export` means that your function is added to your NAMESPACE so is not hidden.  Just include this for now.
+
+
+### Add help to `hello()`
+
+First remove the old `hello.Rd` file from the man folder. That is there because when we created our new package using RStudio's template, we didn't select 'use Roxygen' so it added a manually created help (i.e. Rd) file for us in the man folder. Now we are going to use Roxygen, so we need to remove that file.
+
+Copy and paste this to the top of `hello.r` in the R folder. Replace all the comments at the top with these lines.
+
+```
+#' Hello World!
+#'
+#' Prints a the classic first program greeting. It takes no arguments.
+#'
+#' @examples
+#' hello()
+#' @export
+```
+
+To build the documentation, click 'Install and Restart' from the Build tab.
+
+Once your package is reloaded (`library(MyPackage)` appears on the command line), you can type `?hello` to get the help info.
+
+### Updating the documentation
+
+When you update the documentation or add new documentation, rebuild the help files using the 'Install and Restart' button on the Build tab. Note, with the default Project Options, RStudio does not remake the documentation when you click 'Install and Restart'.  You have to change that by going to Tools > Project Options > Build Tools and then clicking 'Configure' next to 'Generate documentation with Roxygen' and then clicking the box next to 'Install and Restart'.
+
+### Adding references
+
+If you use BibTex you can insert references by citation in your help files.
+
+1. Create the `inst` folder if you don't have one
+2. Within that, create `REFERENCES.bib`
+3  Add refs to that in BibTex format.
+4. Install the **Rdpack** package
+5. Add **Rdpack** to `Imports` in your DESCRIPTION file and add `RdMacros: Rdpack` to your DESCRIPTION file.
+3. Cite in your Roxygen header using
+```
+\insertRef{Waltonetal1998}{MyPackage}
+```
+
+
+Example of a reference in `REFERENCES.bib`
+
+```
+@article{Waltonetal1998,
+  title={The development and operational application of nonlinear algorithms for the measurement of sea surface temperatures with the NOAA polar-orbiting environmental satellites},
+  author={Walton, CC and Pichel, WG and Sapper, JF and May, DA},
+  journal={Journal of Geophysical Research: Oceans},
+  volume={103},
+  number={C12},
+  pages={27999--28012},
+  year={1998},
+  publisher={Wiley Online Library}
+}
+```
+
+Add the citation to your Rd file with
+
+```
+\insertRef{Waltonetal1998}{MyPackage}
+```
+
+
+## **pkgdown**
+
+* [VRData](https://nwfsc-math-bio.github.io/VRData/) example pkgdown site.
+* [r4MAS](https://nmfs-fish-tools.github.io/r4MAS/) FIT public R package.
+
+Install the packages. I'll use {usethis} to make things easier.
+
+```
+install.packages("usethis")
+install.packages("pkgdown")
+```
+
+### Build your package site
+
+```
+usethis::use_pkgdown()
+pkgdown::build_site()
+```
+
+Let's get this up on GitHub using GitHub Pages. Go to Settings on your repo and scroll down to 'GitHub Pages'.
+
+### NOAA branding
+
+
+The NMFS Fisheries Integrated Toolbox has a branded template that you can use [pkgdown template](https://github.com/nmfs-fish-tools/pkgdownTemplate).
+
+## Sharing your package
+
+* Share a zip file. See `?install.packages` for how to install from a zip file
+* Share in the cloud (e.g. GitHub)
+* Share on CRAN (or similar)
+
+## Let's share our package on GitHub
+
+> **_NOTE:_**  I am not showing how to connect your RStudio project to Git here. I'll post a video showing that step separately. I am just focusing on usng GitHub to display the {pkgdown} site.
+
+* Create a repo on GitHub
+* Move all the files that don't start with `.` or end in `.Rproj` into the repo
+* Go to Settings and enable GitHub Pages
+* Direct GitHub to use the main branch and `docs` folder
+* Wait. You can watch the build tab to see how it is going.
+
+## GitHub Actions
+
+Remembering to run {pkgdown::build.site()} every time you change code is both a hassle and unnecessary. Today, we use GitHub Actions to do that for us.
+
+These are put in a `.github/workflows` folder in your GitHub repo.  [Here is an example](https://github.com/nmfs-fish-tools/pkgdownTemplate/blob/main/.github/workflows/build-pkgdown-site.yaml).
+
+That looks hard! Oh we don't write that code. You just copy a template.  Talk to someone who uses these to get tips. 
+
+* Use the [NMFS Fisheries Intergrated Toolbox actions](https://nmfs-fish-tools.github.io/ghactions4r/)
+* Talk to a local R UG group. NOAA R Users can join the [NMFS R UG](https://nmfs-openscapes.github.io/NMFS-R-UG/)
+
+## Styling your code
+
+You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the [**styler** R package](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/). **styler** has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools > Addins > Browse Addins. Scroll down to styler, and select the file(s), you want to style.
+
+Spell-checking all your code. Use an RStudio add-in or {usethis} package.
+
+## Checking your package
+
+Just use the RStudio Check in the Build tab. You'll have many issues (most likely). Plug away at each one until you pass with no errors or warnings. Don't ignore Notes either. They are sometimes more serious than the errors and warnings.
+
+If R asks you to update packages, and then proceeds to fail at installation because of a warning that a package was built under a later R version than you have on your computer, use
+```
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)
+```
+
+* Run Check from the Build tab regularly. 
+
+  It is best not to put this off too long or else you'll create a lot more work for yourself as you track down one warning or error after another.
+  
+* Don't let yourself suffer trying to figure out what the warnings and errors mean. 
+
+  Most are simple namespace issues that are easy to fix once you know how. Ask someone who builds packages. The NMFS R UG Group Chat is a good place. 
+  
+### Common errors
+
+* Undeclared global functions: You forgot `::` somewhere
+* Undeclared global. That's either a bug or its the **ggplot2** and **dplyr** problem.
+* Examples have problems. Note check runs through these alphabetically. Sometimes it can be hard to figure out where the problem was.
+  * Use `dontrun{}` to make code that won't run. Horribly, it can be really hard to actually not run this code, so make sure the code is correct. If you are showing bad code, then you'll need to comment it out.
+  * Use `donttest{}`. It is hard to get this respected when you run check. If you have `donttest{}` in your examples you'll need to get some help.
+  
+  
+# Extras
+
+These are the most common things I run into or want to do with my packages.
+
+## Depends versus Imports
+
+**@Depends** These packages that will be loaded when your package is loaded. So if you have **gplot2** in @Depends, like above, then the user automatically can use **ggplot2** functions without issuing the command `library(ggplot2)`. 
+
+**@Imports** Are required for the package functions, but the user will not have access to the functions without calling `library(...)`. In your package, you will use `::` to access the functions from the packages on the @Imports line. *Most of your package dependencies will be here.*
+
+To limit the number of headaches that users face when trying to install your package, use as few packages on your @Depends and @Imports lines in DESCRIPTION file as possible. If your package does not need the package to work, then put the package on @Suggests.
+
+I have R packages that are mainly for my personal use. I use the package to make sure I have access to the various packages that I'll be using. So for example, if I am doing work on my sardine papers, I have set of packages that I use. When I issue the command `library(SardineForecast)` a bunch of packages are loaded. This makes it handy for me, but all those dependencies makes it a huge hassle to install the package from GitHub for my collaborators (and even a hassle for me to install from GitHub). Huge Hassle. Invariable one of the 15 packages that I need will itself have a dependency that won't load and then I have to debug that. If I need collaborators, who are on different operating systems and various versions of R to install it, it's a suffer-fest.
+
+For my MARSS package, I have only 3 non-base dependencies in the @Imports line and nothing on the @Depends line besides R. The imports are KFAS, mvtnorm, and nlme. Then on the @Suggests line, I have a bunch of packages that are used in the vignettes. MARSS is easy to install from GitHub (though it is also hosted on CRAN).
+
+**What should you put on your Depends and Imports lines?**
+
+First off, when you are starting, don't worry too much about this. Just add packages that are needed as you work on your functions.
+
+* ALWAYS use `::` to use functions from other packages in your package functions. Seriously. You will save yourself so many headaches down the road by being able to search for `xyzpackage::` to find all that packages functions. Why? Trust me, one day you will want to swap out packages or remove dependencies. Note, this can be a hassle with functions like `ggplot()` which use functions within their calls and you have to use `::` everywhere. Like so
+    ```{r eval=FALSE}
+    ggplot2::ggplot(df) +
+       ggplot2::geom_point(ggplot2::aes(gp, y))
+    ```
+    Arg. Another example is say a GAM call:
+    ```{r eval=FALSE}
+    mgcv::gam(a ~ mgcv::s(b), data=df)
+    ```
+    But this is just for your package functions. In your scripts, you'd probably use a `library()` call.
+
+* Never ever use `library()` in a function! Use `xyzfunction::function`. Sure use `library()` in your scripts, but never in a package function.  When you add a function from a new package to your function, add those packages to @Depends or @Imports in your DESCRIPTION file as you go along.
+
+* Every so often check that you don't have packages on @Depends and @Imports that you don't use. Just do a Edit > Find in Files... search for `xyzpackage::` to find out if you are still using `xyzpackage`.
+
+* How do you know if you forgot a dependency or forgot a `::` somewhere? Two ways:
+
+    1. Do Session > Restart R to close all your loaded packages. Then load your package with `library(yourpackagename)` and try your functions. Things will fail if you have a package in @Imports but forgot a `::` somewhere.
+    2. From the Build tab, use More > Check Package. That should show package dependency errors (plus a whole slew of other problems for you to work through).
+
+## Styling your code
+
+You should stick with a uniform style guide to make your code easier to follow. I use the tidyverse style guide with the [**styler** R package](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/). **styler** has an RStudio Addin which does all the work of styling my code for me. Install the package, restart RStudio, and then go to Tools > Addins > Browse Addins. Scroll down to styler, and select the file(s), you want to style.
+
+
+## Writing a vignette
+
+Doing this in RStudio is easy. See [rmarkdown vignette chapter](https://bookdown.org/yihui/rmarkdown-cookbook/package-vignette.html) and [Hadley's vignette chapter](http://r-pkgs.had.co.nz/vignettes.html) for more info.
+
+### Making the vignette
+
+Manually
+
+* Make a vignettes folder at the base level (same level as the R folder)
+* Create a new vignette file from a template. RStudio > File > New > R Markdown > From Template > Vignette
+* Save in vignettes folder
+* Change the title in the 2 places in the yaml at the top. 'yaml' is between the `---` fences.
+* Add the following 2 lines to your DESCRIPTION file:
+
+```
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+```
+
+Or use a helper function:
+
+```
+devtools::use_vignette("my-vignette")
+```
+
+or 
+
+```
+usethis::use_vignette("MyNewPackage")
+```
+
+### Testing your vignette
+
+Open your vignette file and click the Knit button.
+
+### Getting your vignette to show up
+
+Once you have your vignettes in the `vignettes` folder, you'l like to be able to build them and have them appear when you type `browseVignettes("MyNewPackage")`. This will not work. In fact, RStudio seems to actively hinders this workflow.
+
+Vignettes can take a long time to build and by default when R builds a package from source (which is what Install and Restart on the build tab does), it does not re-make your vignettes. You can make RStudio re-make your vignettes in the `vignettes` folder (if the Rmd file changes) using Tools > Project Options > Build Tools > Generate documentation with Roxygen > Configure and clicking the vignettes check-box. But this will not get your vignettes loaded when you click Install and Restart on the Build tab (`browseVignettes()` still won't work). 
+
+So how does R know about your vignettes when it is building from source (i.e. from Install and Restart in the Build tab in RStudio)? It needs the vignette files (.Rmd, .R and .html) in the `inst/doc` folder. How do you get them there? You have to put them there. 
+
+That's easy. I'll just put them there whenever I change or add vignettes. Unfortunately, the default RStudio default behavior is to delete the whole `inst/doc` folder whenever you click Check (package) in the Build tab. It's happening because the default is to use `devtools::check()` and there is no way to set `devtools::check(vignettes=FALSE)`. To stop RStudio from deleting `inst/doc` on package checking, uncheck the `use devtools package functions if available` box. You may also want to add `--no-manual` to the R CMD Check options box since that is the default for `devtools::check()`.  
+
+
+This is my vignette workflow:
+
+* Create the `vignette` folder and add vignette Rmds to it using the R Markdown vignette template in RStudio.
+* Create the `inst` folder in my package at the base level (same level as the R folder).
+* Edit my vignette Rmd and use the Knit button to preview.
+* When I am done, run the following code to update the vignette files and copy to the `inst/doc` folder.
+
+```
+tools::buildVignettes(dir = ".", tangle=TRUE)
+dir.create("inst/doc")
+file.copy(dir("vignettes", full.names=TRUE), "inst/doc", overwrite=TRUE)
+```
+
+Once your vignette files are in `inst/doc`, Install and Restart button will add the vignettes to your package and `install_github()` will have them too.
+
+**Careful, RStudio `Check` in the Build tab will delete the `inst/doc` folder and not recreate it.** So always check that `inst/doc` not been trashed and **uncheck** the `use devtools package functions` checkbox on the Build > More > Configure Build Tools... window. You will most likely also want to add `--no-manual` to the `R CMD check additional options` box.
 
 ## References
 
-http://www.danieldsjoberg.com/writing-R-packages/#1
+If/when you want to go into R packaging in more depth, work through the material from this [R package workshop material](https://combine-australia.github.io/r-pkg-dev/). You've seen much of this material so it should be somewhat familiar. See also Hadley Wickham's book [R Packages](http://r-pkgs.had.co.nz/). I like this reference too http://www.danieldsjoberg.com/writing-R-packages/#1
