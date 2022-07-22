@@ -23,7 +23,7 @@ When you are ready to explore more, go to this great R Markdown resource [R Mark
 
 ### What about Quarto?
 
-[https://quarto.org/] is also created by RStudio and is the "next-gen" R Markdown. If you are just starting out, just stick with R Markdown. Quarto is back compatible with R Markdown. But going forward, everyone will be switching to Quarto. I've started converting my easy websites and simple online documentation to Quarto. It's not hard. *Note the material here will work for Quarto*.
+[Quarto](https://quarto.org/) is also created by RStudio and is the "next-gen" R Markdown. If you are just starting out, just stick with R Markdown. Quarto is back compatible with R Markdown. But going forward, everyone will be switching to Quarto. I've started converting my easy websites and simple online documentation to Quarto. It's not hard. *Note the material here will work for Quarto*.
 
 ## R Markdown for reports
 
@@ -49,11 +49,12 @@ Part 2 tomorrow
 
 Today I will use RStudio Cloud so you can follow along without having to install any packages or TeX (for PDF generation).
 
-[Click here](https://rstudio.cloud/content/4279394) and sign in with a Google account (any one you want) to follow along. You can also make an account. 
+[Click here](https://rstudio.cloud/content/4288342) and sign in with a Google account (any one you want) to follow along. You can also make an account. 
 
 ### Running locally
 
 If you want to follow along on your computer, then create a RStudio project using this repo https://github.com/RVerse-Tutorials/Rmarkdown-Tutorial.git
+
 * You can download a zip file of the repo and create an RStudio project from that folder
 * Or if you are set up with Git, you can use the link to create an RStudio project with the files
 
@@ -74,7 +75,7 @@ tinytex::install_tinytex()
 * Download the necessary packages if RStudio complains and won't build.
 
 
-Note the first time you make a PDF, tinytex will load any needed packages and it can take a **long** time. You'll see a spinning wheel on the R Markdown tab.
+Note the first time you make a PDF, {tinytex} will load any needed packages and it can take a **long** time. You'll see a spinning wheel on the R Markdown tab.
 
 Note, if you are using RStudio Cloud, I have installed all these things for you.
 
