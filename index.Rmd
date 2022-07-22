@@ -44,8 +44,8 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 | June 10  Agile part 2, Scrum        [lecture](week4-scrum-slides.html)        -- [video](https://youtu.be/mPyT0g3kBQE) |
 | July 8   R packages, part 1  [lecture](week5-introtopackages.html)     -- [video](https://youtu.be/LWWfRlyBbVs) |
 | July 15  R packages, part 2  [lecture](week6-morewithpackages.html)  -- [video](https://youtu.be/SxDLLtaYmj8)  |
-| July 22  R markdown reports   |
-| July 29      |
+| July 22  R markdown reports, part 1 [lecture](week7-rmdreports-part1.html)  |
+| July 29  R markdown reports, part 2      |
 
 </div>
 
@@ -71,11 +71,11 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 * [July 15](week6-morewithpackages.html) **Beyond the basics with R packages** This lecture will take you past the basics. In the first half, we'll dive a bit deeper into {roxygen2} documentation. Gone are the days when you need to write documentation manuals. Roxygen  automatically assembled your headers into documentation (help files, manuals, etc). Once your package is documented with Roxygen, creating a website is simple with pkgdown. In the second half, I give you a brief overview of the very handy {usethis} package. We'll put our package on GitHub so others can install it. I briefly show you how we use GitHub Actions for automated pkgdown updating when we change our package files. 
 [Lecture notes](week6-morewithpackages.html) - [Lecture video](https://youtu.be/SxDLLtaYmj8) - [Q&A](week6.html)
 
-* July 22 **R Markdown for reports: integrating text and data tables** There are many online tutorials for R Markdown which will cover the basics. I will focus on R Markdown for fisheries (or other) reports. When the data change (which happens often), we have to remake tables (and graphs) and update the numbers in text. For big reports, this is time-consuming and creates errors. I'll show you how to use R Markdown to automate this process, so you are not manually remaking reports. In the last 1/3, I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories.
-<!-- [The lecture notes and discussion](week7.html) -->
+* [July 22](week7-rmdreports-part1.html) **R Markdown for reports Part 1: integrating text and data tables** There are many online tutorials for R Markdown which will cover the basics. I will focus on R Markdown for fisheries (or other) reports. When the data change (which happens often), we have to remake tables (and graphs) and update the numbers in text. For big reports, this is time-consuming and creates errors. In this 2 part series, I'll show you how to use R Markdown to automate this process, so you are not manually remaking reports. 
+[Lecture notes](week7-rmdreports-part1.html) - Lecture video - [Q&A](week7.html)
 
-* July 29 **R Markdown + GitHub Pages for webpages**
-This week we will use R Markdown and GitHub Pages to create webpages, such as the RWorkflow website. RStudio makes this very easy so you can focus on content. I’ll show you a few common website templates. I will also show you how you can update your pages with a GitHub Action so you don’t have to remember to rebuild the site.
+* July 29 **R Markdown for reports Part 2: creating a report**
+Part 1, introduced you to some of the elements of R Markdown used in a report. In part 2, we'll put these elements together to create a report. You'll also learn how to use Word templates to give your report the right "look", i.e. like an official report not a generic R Markdown document. I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories. I'll also give a brief intro to GitHub Actions which are used to automate rebuilding of online reports.
 <!-- [The lecture notes and discussion](week8.html) -->
 
 * Video only **Writing tests for R packages and other code** 

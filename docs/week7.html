@@ -11,15 +11,15 @@
 
 
 
-<title>Resources</title>
+<title>Week 7</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/bootstrap/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -29,11 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="site_libs/jqueryui/jquery-ui.min.js"></script>
+<link href="site_libs/tocify/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify/jquery.tocify.js"></script>
+<script src="site_libs/navigation/tabsets.js"></script>
+<link href="site_libs/highlightjs/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/font-awesome/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <style type="text/css">
@@ -226,6 +229,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -233,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -351,157 +433,106 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Resources</h1>
+<h1 class="title toc-ignore">Week 7</h1>
 
 </div>
 
 
-<div id="noaa-affiliated-github-sites" class="section level2">
-<h2>NOAA affiliated GitHub sites</h2>
+<div id="r-markdown-reports-part-1" class="section level2">
+<h2>R Markdown Reports, Part 1</h2>
 <ul>
-<li><a href="https://nmfs-openscapes.github.io/">NMFS
-Openscapes</a></li>
-<li><a href="https://nmfs-openscapes.github.io/NMFS-R-UG/">NMFS R User
-Group</a></li>
-<li><a href="https://noaa-fisheries-integrated-toolbox.github.io/">NOAA
-Fisheries Integrated Toolbox</a></li>
+<li><p>Lecture video</p></li>
+<li><p><a href="week7-rmdreports-part1.html">The lecture
+notes</a></p></li>
+<li><p><a
+href="https://github.com/RWorkflow-Workshop-2021/Week4-rmarkdown">Sample
+R Markdown repository on GitHub</a></p></li>
+<li><p><a
+href="https://github.com/RWorkflow-Workshop-2021/Week4-report">Sample
+Word repository on GitHub</a></p></li>
+<li><p>Try out R Markdown on <a
+href="https://rstudio.cloud/project/2649365">R Studio Cloud</a>. Open
+one of the Rmds and click the Knit button.</p></li>
+<li><p>Try out creating the Word report on <a
+href="https://rstudio.cloud/project/2643984">R Studio Cloud</a>. Open
+<code>Report_with_Tables.Rmd</code>, Click Knit, and then download the
+Word output to look at it. If you forget to download, then click on the
+file and click ‘Export’. For some reason, ‘Download’ is ‘Export’ in R
+Studio Cloud.</p></li>
 </ul>
 </div>
-<div id="noaa-fisheries-github-resources" class="section level2">
-<h2>NOAA Fisheries GitHub Resources</h2>
+<div id="more-example-videos" class="section level2">
+<h2>More example videos</h2>
 <ul>
-<li><a href="https://github.com/nmfs-fish-tools/Resources">FIT
-Resources</a> NOAA licences, Disclaimers, code review procedures.</li>
-<li><a
-href="https://noaa-fisheries-integrated-toolbox.github.io/resources/">FIT
-Resources blog</a> Scroll down the navbar on left to see coding
-resources.</li>
-<li><a
-href="https://github.com/nmfs-general-modeling-tools/nmfspalette">NMFS
-Palette</a></li>
-<li><a
-href="https://github.com/nmfs-general-modeling-tools/nmfspalette/blob/main/pkgdown/extra.css">pkgdown
-css for NOAA pkgdown sites</a></li>
-<li><a href="https://emilymarkowitz-noaa.github.io/NMFSReports/">NMFS
-Reports</a> Check out this package by Emily Markowitz at AFSC for making
-NMFS Reports with proper branding and structure.</li>
+<li><p><a href="https://youtu.be/CAdIrDj9k9A">Create a Word
+template</a>. This shows you how to make a Word template that works with
+the output from R Markdown.</p></li>
+<li><p><a href="https://youtu.be/6vTzzlTxn0o">Creating the R Markdown
+folder</a> A short clip of me making the folder and publishing it to
+GitHub.</p></li>
+<li><p><a href="https://youtu.be/8eBBPVMwTLo">Kniting a R Markdown
+file</a> This shows you how to open a demo R Markdown file in RStudio
+and knit it to html.</p></li>
 </ul>
 </div>
-<div id="never-worked-with-r" class="section level2">
-<h2>Never worked with R?</h2>
-<p>If you have never worked with R, you can get a basic familiarity by
-going through <a
-href="https://www.datacamp.com/courses/free-introduction-to-r">this free
-tutorial</a>. Takes about 4 hours.</p>
-<p>You can also learn R straight from within R using the <a
-href="https://swirlstats.com/">swirl package</a>. This doesn’t require
-internet access except to install the package.</p>
-<p>Here is another basic R introduction from <a
-href="https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html">ComputerWorld</a>.</p>
-<p>The book that I recommend for scientists who have never worked with R
-is <a
-href="https://www.amazon.com/R-Student-Companion-Brian-Dennis-ebook/dp/B009AIU07G">The
-R Student Companion</a> by Brian Dennis. It’ll get you up to speed with
-the type of programming that scientists do with R. I think you’d be fine
-just renting it for a month and getting through as much as you can in a
-month. After a few chapters, you’ll know your way around R and, more
-importantly, how to program with functions. Then you’ll be ready for
-something else.</p>
-<p>Once you work through that, <a href="https://r4ds.had.co.nz/">R for
-Data Science</a> by Garrett Grolemund and Hadley Wickham is very good
-for what the sort of work we do.</p>
-</div>
-<div id="r-markdown" class="section level1">
-<h1>R Markdown</h1>
+<div id="post-lecture-qa" class="section level2">
+<h2>Post-lecture Q&amp;A</h2>
+<div id="how-to-improve-accessiblilty-508-compliance"
+class="section level3">
+<h3>How to improve accessiblilty (508 compliance)</h3>
 <ul>
-<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">RStudio’s
-lessons</a></li>
+<li>for PDF, explore the <a
+href="https://www.ctan.org/pkg/tagpdf"><strong>tagpdf</strong>
+package</a></li>
+<li>for html, see the <a
+href="https://bookdown.org/yihui/rmarkdown-cookbook/html-accessibility.html">Improve
+accessibility of HTML pages</a> chapter in the <a
+href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown
+Cookbook</a>.</li>
 </ul>
 </div>
-<div id="git-and-github" class="section level1">
-<h1>Git and GitHub</h1>
+<div id="essential-reading-for-advanced-r-markdown-work"
+class="section level3">
+<h3>Essential reading for advanced R Markdown work</h3>
 <ul>
-<li><a href="https://happygitwithr.com/">Happy Git with R</a> Detail on
-Git and GitHub, but accessible.</li>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">R Markdown
+tutorials</a> More basic but good to see esp if you are teaching
+others.</li>
+<li>the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R
+Markdown Cookbook</a></li>
+<li>the <a href="https://bookdown.org/yihui/blogdown/">blogdown
+book</a></li>
+<li>the <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown
+Definitive Guide</a></li>
 </ul>
-</div>
-<div id="r-packages-that-i-use-all-the-time" class="section level1">
-<h1>R packages that I use all the time</h1>
-<p>These are some basic packages that I use all the time. This does not
-include the analysis packages that I use.</p>
-<ul>
-<li><a href="https://www.tidyverse.org/">Tidyverse</a> packages. I am
-not a fan of all the tidyverse package and I dislike piping (because it
-is horribly slow and I need fast for simulation work), but I try to keep
-up with the ideas in the “tidyverse” and I try to adopt tidyverse style.
-In particular, I try to format all my data into tidy format.</li>
-<li>ggplot2: I find ggplot to be hard to learn and too confining, but I
-use it all the time because it makes plots with many layers so much
-easier and it makes plot layout easier. I don’t like it for my
-publication quality plots (just too much hassle to get the look I want)
-but I use it constantly for mock-ups.</li>
-<li>stringr: I work with strings all the time so I always need
-this.</li>
-<li>dplyr: When I need to go from wide-form to short-form layout, I like
-it. Definitely I think it is good to inform yourself as to what it
-does.</li>
-<li>XML: I use it to scrape data from online tables using the
-<code>readHTMLTable()</code> function. I think xml2 in the tidyverse
-might do the same thing.</li>
-<li>here: This is a handy utility package, along with
-<code>file.path()</code> allows you to make file paths to the base of
-the project. If you find yourself doing <code>setwd()</code> anywhere in
-your code, you’ll want to use <code>here()</code> to avoid that because
-doing that breaks your code for anyone else.</li>
-<li>xtable: Handy for making complex tables.</li>
-</ul>
-</div>
-<div id="other-reproducible-research-short-courses"
-class="section level1">
-<h1>Other Reproducible Research Short-Courses</h1>
+<p>Some of my tips:</p>
 <ul>
 <li><a
-href="https://eriqande.github.io/rep-res-eeb-2017/index.html">Reproductible
-Research 2017</a> Source for some of the introductory material.</li>
-</ul>
-</div>
-<div id="making-simple-websites" class="section level1">
-<h1>Making simple websites</h1>
-<ul>
-<li>[Another tutorial] (<a
-href="https://jules32.github.io/rmarkdown-website-tutorial/index.html"
-class="uri">https://jules32.github.io/rmarkdown-website-tutorial/index.html</a>)
-with more examples and slightly more complicated websites.</li>
-</ul>
-</div>
-<div id="jekyll" class="section level1">
-<h1>Jekyll</h1>
-<ul>
+href="https://stackoverflow.com/questions/25579868/how-to-add-footnotes-to-github-flavoured-markdown/47839024#47839024">Footnotes
+that work across output types</a></li>
 <li><a
-href="https://learn.cloudcannon.com/jekyll/install-jekyll-on-os-x/">Installing
-Jekyll on Mac OS</a></li>
+href="https://stackoverflow.com/questions/37116632/r-markdown-html-number-figures/47298632#47298632">Figure
+and table refs across child Rmds</a></li>
 <li><a
-href="https://learn.cloudcannon.com/jekyll/running-jekyll/">Jekyll
-build</a></li>
+href="https://stackoverflow.com/questions/33226675/how-to-get-bm-to-work-in-an-r-markdown-to-html-file/43595791#43595791">Including
+a long list of math definitions in your Rmd</a></li>
+<li><a href="https://github.com/nwfsc-timeseries/atsa-labs">the atsa
+labbook</a> A complex bookdown book where a lot of post-processing of
+files and special equation, figure and table reference code was/is
+needed.</li>
 </ul>
 </div>
-<div id="jekyll-templates" class="section level1">
-<h1>Jekyll Templates</h1>
-<ul>
-<li><a href="https://sourcethemes.com/academic/">Hugo Academic</a>
-Popular Jekyll template in academia.</li>
-</ul>
 </div>
-<div id="travis-ci-continuous-integration" class="section level1">
-<h1>Travis CI (continuous integration)</h1>
-<ul>
-<li><a href="https://juliasilge.com/blog/beginners-guide-to-travis/"
-class="uri">https://juliasilge.com/blog/beginners-guide-to-travis/</a></li>
-</ul>
+
+<hr>
+
+<div style="text-align: center">
+<i class="fas fa-cubes"></i> NWFSC Math Bio Program, NOAA Fisheries <i class="fas fa-cubes"></i>
 </div>
 
 
-
+</div>
+</div>
 
 </div>
 
@@ -534,6 +565,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
