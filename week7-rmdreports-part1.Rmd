@@ -138,6 +138,8 @@ Tips:
 * Templates with branding
     - https://github.com/nmfs-openscapes/xaringan-nmfs [Demo1](https://nmfs-openscapes.github.io/xaringan-nmfs/docs/template.html#1) &#10070; [Tufte demo](https://nmfs-openscapes.github.io/xaringan-nmfs/docs/template-tufte.html#1)
     - https://github.com/nmfs-fish-tools/presentations
+* Examples of xaringan slides for the sdmTMB package
+    - https://github.com/pbs-assess/sdmTMB-teaching/tree/main/noaa-psaw-2022
 
 ## Extras
 
@@ -156,6 +158,8 @@ Here are some real examples of NOAA Fisheries reproducible reports created with 
 * <img style="float: right;" src="images/sa4ss.png"  height="100px">[{sa4ss} R package](https://github.com/nwfsc-assess/sa4ss) for creating stock assessment documents for the Pacific Fishery Management Council. The package provides (1) a consistent structure, (2) generic text that should be the same across all stocks, (3) embedded functionality to create an accessible pdf that satisfies NOAA's guidance for 508 compliance, and (4) increased speed compared to creating a word document from scratch.
 
 * <img style="float: right;" src="images/nmfs-reports.png"  height="100px">[{NMFSReports} R package](https://emilymarkowitz-noaa.github.io/NMFSReports/) The NMFSReports Package has all of the basic architecture you need to create reproducible and repeatable NOAA Tech Memos in R Markdown! This approach is perfect for efficiently rolling out annual (or other regular) reports or reports with formulaic sections (the same chapter structure but for a different area or species). Scripts integrate table, figure, data, and bibliography management and design automation.
+
+* [Fisheries Economics of the United States](https://www.fisheries.noaa.gov/national/sustainable-fisheries/fisheries-economics-united-states) The 2016-2019 reports were produced with R Markdown. This shows you that you can customize the output of your reports to achieve a specific, and uniform, formating.
 
 
 ## More Rmd examples

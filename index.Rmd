@@ -74,9 +74,9 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 * [July 22](week7-rmdreports-part1.html) **R Markdown for reports Part 1: integrating text and data tables** There are many online tutorials for R Markdown which will cover the basics. I will focus on R Markdown for fisheries (or other) reports. When the data change (which happens often), we have to remake tables (and graphs) and update the numbers in text. For big reports, this is time-consuming and creates errors. In this 2 part series, I'll show you how to use R Markdown to automate this process, so you are not manually remaking reports. 
 [Lecture notes](week7-rmdreports-part1.html) - Lecture video - [Q&A](week7.html)
 
-* July 29 **R Markdown for reports Part 2: creating a report**
+* [July 29](week8-rmdreports-part2.html) **R Markdown for reports Part 2: creating a report**
 Part 1, introduced you to some of the elements of R Markdown used in a report. In part 2, we'll put these elements together to create a report. You'll also learn how to use Word templates to give your report the right "look", i.e. like an official report not a generic R Markdown document. I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories. I'll also give a brief intro to GitHub Actions which are used to automate rebuilding of online reports.
-<!-- [The lecture notes and discussion](week8.html) -->
+[Lecture notes](week8-rmdreports-part2.html) - Lecture video - [Q&A](week8.html)
 
 * Video only **Writing tests for R packages and other code** 
 Writing tests and automating quality control for your R packages and code: we know we should do it, but for most of us, it is the last thing we do or want to do. In this session, I’ll get you started writing unit tests using the {testthat} package (the standard). I’ll also give examples of the other types of common tests and some ideas of how to automate these tests with GitHub Actions. The goal is to give you some easy coding habits that will help you incorporate tests without too much extra work.

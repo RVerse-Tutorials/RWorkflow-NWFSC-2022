@@ -11,7 +11,7 @@
 
 
 
-<title>Week 8: R Markdown and GitHub Pages</title>
+<title>Week 8: Reports with Quarto</title>
 
 <script src="site_libs/header-attrs/header-attrs.js"></script>
 <script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
@@ -396,6 +396,13 @@ div.tocify {
         Week 7 Part 1. R Markdown
       </a>
     </li>
+    <li>
+      <a href="week8.html">
+        <span class="fa fa-file-code"></span>
+         
+        Week 8 Part 2. Reports with R Markdown/Quarto
+      </a>
+    </li>
   </ul>
 </li>
 <li>
@@ -433,110 +440,15 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Week 8: R Markdown and GitHub Pages</h1>
+<h1 class="title toc-ignore">Week 8: Reports with Quarto</h1>
 
 </div>
 
 
-<div id="roxygen2-and-pkgdown" class="section level2">
-<h2>Roxygen2 and pkgdown</h2>
 <ul>
-<li><a href="https://youtu.be/UYKezKp5dkY">Lecture video</a></li>
-<li><a href="week7-roxygen.html">The lecture notes</a></li>
+<li>Lecture video</li>
+<li><a href="week8-rmdreports-part2.html">The lecture notes</a></li>
 </ul>
-<p>Links to resources for <strong>pkgdown</strong> sites:</p>
-<ul>
-<li>The NOAA branded <strong>pkgdown template</strong> for you to clone
-(<a
-href="https://github.com/RWorkflow-Workshop-2021/pkgdown-template">repo</a>,
-<a
-href="https://rworkflow-workshop-2021.github.io/pkgdown-template/">webpage</a>)</li>
-<li><a href="https://github.com/nmfs-fish-tools/Resources">FIT
-Resources</a> <code>LICENSE</code> file, <code>Disclaimer.md</code> and
-NOAA footer for your packages here.</li>
-<li><a
-href="https://noaa-fisheries-integrated-toolbox.github.io/resources/workshops/NOAA-pkgdown/">FIT
-NOAA Themed pkgdown</a>. The <strong>pkgdown template</strong> repo uses
-the information from this.</li>
-<li><a
-href="https://noaa-fisheries-integrated-toolbox.github.io/resources/">FIT
-Resources blog</a> Scroll down the navbar on left to see coding
-resources.</li>
-</ul>
-</div>
-<div id="q-a" class="section level2">
-<h2>Q &amp; A</h2>
-<div id="badges" class="section level3">
-<h3>Badges</h3>
-<p>Check out <code>usethis::use_badges()</code>. You’ll want to make
-sure your <code>Readme.md</code> file has</p>
-<pre><code>&lt;!-- badges: start --&gt;
-
-&lt;!-- badges: end --&gt;</code></pre>
-<p>So <strong>usethis</strong> knows where to put the badge code.</p>
-</div>
-<div id="github-pages" class="section level3">
-<h3>GitHub Pages</h3>
-<p>With the last 2 <strong>pkgdown</strong> sites that I put up on
-GitHub Pages, I had some trouble where GitHub was only showing a page
-made from the Readme file and not the <strong>pkgdown</strong> site even
-though I had the GitHub Pages settings done correctly. so on my GitHub
-repository under Settings &gt; GitHub Pages &gt; branch = main and
-folder = docs.</p>
-<p>To solve, I changed branch = None in Settings &gt; GitHub Pages. That
-turns off GitHub Pages, then I immediately reset branch = main and
-folder = docs and hit Save. The <strong>pkgdown</strong> site then
-appeared within 30 seconds or so.</p>
-</div>
-<div id="github-pages-1" class="section level3">
-<h3>GitHub Pages</h3>
-<p><strong>How do you decide whether to use a GitHub Pages landing
-page?</strong></p>
-<p>Anything that is for someone other than me has a landing page. This
-gives someone a readable entry to the repository with instructions for
-how to use the repository. I always put a link to the landing page in
-the repo description. Then it appears on the right side of my repo files
-and is easy to find.</p>
-<p><strong>Examples of simple pages</strong></p>
-<p>Here are some videos showing how to make a few different simple
-landing pages from your Readme file or from an RMarkdown file in a docs
-folder.</p>
-<ul>
-<li><a href="https://youtu.be/HIAvNi-4TkU">Super simple</a> - just your
-<code>Readme.md</code> file</li>
-<li><a href="https://youtu.be/gNVcAnds-Ys">Use a theme</a> - still just
-your <code>Readme.md</code> file but with a GitHub generated “skin”. My
-<a href="https://nwfsc-timeseries.github.io/MARSS/">MARSS</a> landing
-page is generated like this.</li>
-<li><a href="https://youtu.be/fA5BeCaX1eo">User an RMarkdown file</a> -
-from <code>index.Rmd</code> in a <code>docs</code> folder. This allows
-you to combine text and figures generated from R. Here is a real example
-from one of my colleagues <a
-href="https://mdscheuerell.github.io/ASSESSOR/">ASSESSOR</a>. It was
-generated from a single <code>index.Rmd</code> file just like in the
-video.</li>
-</ul>
-<p>Now that you see how landing pages are often generated, if you see a
-landing page that you like, go to their <code>Readme.md</code> file and
-see how they wrote it or look for a <code>docs</code> folder and their
-<code>index.Rmd</code> file.</p>
-<p><strong>Do you use a landing page for a personal-only
-repo?</strong></p>
-<p>If the repo is just for myself, then I will often only have a Readme
-file. I write this for my ‘future’ self to help me quickly get back into
-the project at a later date. What I have here is really project
-dependent. Some things I usually have in the Readme for personal repos
-are</p>
-<ul>
-<li>If it is an R package, the code to install. I just want to copy and
-paste this. Saves me time later.</li>
-<li>Basic organization of the repo if it is anything unique or
-bespoke.</li>
-<li>Where I am at in the project and what the status was when I
-stopped.</li>
-</ul>
-</div>
-</div>
 
 <hr>
 
