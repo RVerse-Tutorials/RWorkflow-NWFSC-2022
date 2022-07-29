@@ -45,7 +45,7 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 | July 8   R packages, part 1  [lecture](week5-introtopackages.html)     -- [video](https://youtu.be/LWWfRlyBbVs) |
 | July 15  R packages, part 2  [lecture](week6-morewithpackages.html)  -- [video](https://youtu.be/SxDLLtaYmj8)  |
 | July 22  R markdown reports, part 1 [lecture](week7-rmdreports-part1.html)  |
-| July 29  R markdown reports, part 2      |
+| July 29  R markdown reports, part 2 [lecture](week8-rmdreports-part2.html)   |
 
 </div>
 
