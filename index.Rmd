@@ -78,7 +78,7 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 
 * [Aug 5](week8-rmdreports-part2.html) **R Markdown for reports Part 2: creating a report**
 Part 1, introduced you to some of the elements of R Markdown used in a report. In part 2, we'll put these elements together to create a report. You'll also learn how to use Word templates to give your report the right "look", i.e. like an official report not a generic R Markdown document. I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories. I'll also give a brief intro to GitHub Actions which are used to automate rebuilding of online reports.
-[Lecture notes](week8-rmdreports-part2.html) - Lecture video - [Q&A](week8.html)
+[Lecture notes](week8-rmdreports-part2.html) - [Lecture video](https://youtu.be/u79WfOWAoN4) - [Q&A](week8.html)
 
 * Video only **Writing tests for R packages and other code** 
 Writing tests and automating quality control for your R packages and code: we know we should do it, but for most of us, it is the last thing we do or want to do. In this session, I’ll get you started writing unit tests using the {testthat} package (the standard). I’ll also give examples of the other types of common tests and some ideas of how to automate these tests with GitHub Actions. The goal is to give you some easy coding habits that will help you incorporate tests without too much extra work.
