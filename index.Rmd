@@ -46,8 +46,8 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 | June 10  Agile part 2, Scrum        [lecture](week4-scrum-slides.html)        -- [video](https://youtu.be/mPyT0g3kBQE) |
 | July 8   R packages, part 1  [lecture](week5-introtopackages.html)     -- [video](https://youtu.be/LWWfRlyBbVs) |
 | July 15  R packages, part 2  [lecture](week6-morewithpackages.html)  -- [video](https://youtu.be/SxDLLtaYmj8)  |
-| July 22  R markdown reports, part 1 [lecture](week7-rmdreports-part1.html)  |
-| Aug 5  R markdown reports, part 2    |
+| July 22  R markdown reports, part 1 [lecture](week7-rmdreports-part1.html)  -- [video](https://youtu.be/zPzhQYuWO68)  | 
+| Aug 5  R markdown reports, part 2  [lecture] -- [video]()  |
 
 </div>
 
@@ -74,7 +74,7 @@ For weeks 1-4, you'll need a [GitHub](https://github.com/) account and [GitHub D
 [Lecture notes](week6-morewithpackages.html) - [Lecture video](https://youtu.be/SxDLLtaYmj8) - [Q&A](week6.html)
 
 * [July 22](week7-rmdreports-part1.html) **R Markdown for reports Part 1: integrating text and data tables** There are many online tutorials for R Markdown which will cover the basics. I will focus on R Markdown for fisheries (or other) reports. When the data change (which happens often), we have to remake tables (and graphs) and update the numbers in text. For big reports, this is time-consuming and creates errors. In this 2 part series, I'll show you how to use R Markdown to automate this process, so you are not manually remaking reports. 
-[Lecture notes](week7-rmdreports-part1.html) - Lecture video - [Q&A](week7.html)
+[Lecture notes](week7-rmdreports-part1.html) - [Lecture video](https://youtu.be/zPzhQYuWO68) - [Q&A](week7.html)
 
 * [Aug 5](week8-rmdreports-part2.html) **R Markdown for reports Part 2: creating a report**
 Part 1, introduced you to some of the elements of R Markdown used in a report. In part 2, we'll put these elements together to create a report. You'll also learn how to use Word templates to give your report the right "look", i.e. like an official report not a generic R Markdown document. I’ll give a tour of a variety of fisheries reports using R Markdown for inspiration; along with their GitHub repositories. I'll also give a brief intro to GitHub Actions which are used to automate rebuilding of online reports.
