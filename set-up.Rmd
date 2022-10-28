@@ -62,6 +62,9 @@ There are a few steps involved. Go slow an deliberately. Nothing is hard.
 3. Click Git/SVN on the left
 4. Click the little check box at the top
 5. In the Git executable box, paste in the location of `git.exe`
+
+*Where is git on my computer?* Open a terminal and type `which git`. That will show you where it is. *It can't find it.* Git is probably not installed.
+
 * On a Mac? It is at `/usr/bin/git` Just paste that in.
 * On a PC? Look (by opening a finder window) in the following places. Try the GitHub Desktop one first.
     * C:/Program Files/Git/bin/git.exe
@@ -70,6 +73,12 @@ There are a few steps involved. Go slow an deliberately. Nothing is hard.
 6. Restart R. From within RStudio go to Session > Restart R...
 
 ### Tell RStudio your GitHub username and password
+
+*New in 2020!*
+
+In the newest RStudio, there is browser authentication so you don't need to deal with personal access tokens. When you try to push the first time, you should see a pop-up window that will allow you to log into GitHub to authenticate. *I don't see this pop-up.* Before giving up, try closing and reopening RStudio. Also you need an updated version of RStudio for this to work.
+
+*Method using Personal Access Tokens*
 
 Go to [HappyGitwR](https://happygitwithr.com/credential-caching.html) to read all about how to pass your credentials (e.g. username and password) to GitHub so you can interact (read push/pull changes) with your GitHub reponsitories.
 
