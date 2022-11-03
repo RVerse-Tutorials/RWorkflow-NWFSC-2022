@@ -63,7 +63,7 @@ There are a few steps involved. Go slow an deliberately. Nothing is hard.
 4. Click the little check box at the top
 5. In the Git executable box, paste in the location of `git.exe`
 
-*Where is git on my computer?* Open a terminal and type `which git`. That will show you where it is. *It can't find it.* Git is probably not installed.
+*Where is git on my computer?* Open a terminal and type `which git`. That will show you where it is. Windows, if your terminal doesn't recognize the `which` command, try `dir "git.exe” /s` from your user directory. *It still can't find it.* Git is probably not installed. 
 
 * On a Mac? It is at `/usr/bin/git` Just paste that in.
 * On a PC? Look (by opening a finder window) in the following places. Try the GitHub Desktop one first.
